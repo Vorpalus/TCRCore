@@ -1,0 +1,11 @@
+{
+  "type": "tcrcore:the_incinerator",
+  "attributes": {
+    "two_hand": {
+      "impact": 2.5,
+      "armor_negation":20.0,
+      "max_strikes":4,
+      "damage_bonus":-7
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "tcrcore:soul_render",
+  "attributes": {
+    "two_hand": {
+      "impact": 1.0,
+      "armor_negation":20.0,
+      "max_strikes":3,
+      "damage_bonus":-7
+    }
+  }
+}
