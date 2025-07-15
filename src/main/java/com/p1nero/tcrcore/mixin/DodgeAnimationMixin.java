@@ -38,7 +38,7 @@ public abstract class DodgeAnimationMixin  extends ActionAnimation {
                 .addState(EntityState.INACTION, true)
                 .newTimePair(0.0F, Float.MAX_VALUE)
                 .addState(EntityState.ATTACK_RESULT, (damagesource) ->
-                        damagesource.getEntity() != null && !damagesource.is(EpicFightDamageType.BYPASS_DODGE) ? AttackResult.ResultType.MISSED : AttackResult.ResultType.SUCCESS)
+                        !damagesource.is(EpicFightDamageType.BYPASS_DODGE) ? AttackResult.ResultType.MISSED : AttackResult.ResultType.SUCCESS)
                 .addState(EntityState.PROJECTILE_IMPACT_RESULT, IGNORE_ALL_PROJECTILES);
     }
 

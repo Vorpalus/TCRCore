@@ -4,12 +4,13 @@ import com.p1nero.dialog_lib.client.screen.DialogueScreen;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.client.gui.CustomGuiRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
+@Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID, value = Dist.CLIENT)
 public class ClientForgeEvents {
 
     @SubscribeEvent
@@ -22,4 +23,5 @@ public class ClientForgeEvents {
             CustomGuiRenderer.renderSkillPoints(event.getGuiGraphics(), event.getWindow(), event.getPartialTick());
         }
     }
+
 }

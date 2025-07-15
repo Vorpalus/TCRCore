@@ -1,33 +1,41 @@
 package com.p1nero.tcrcore.mixin;
 
-import com.github.L_Ender.cataclysm.config.CMConfig;
-import com.github.L_Ender.cataclysm.entity.projectile.Cursed_Sandstorm_Entity;
 import com.github.L_Ender.cataclysm.entity.projectile.Phantom_Arrow_Entity;
 import com.github.L_Ender.cataclysm.items.Wrath_of_the_desert;
+import com.p1nero.tcrcore.animations.ScanAttackAnimation;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import yesman.epicfight.api.animation.AnimationPlayer;
+import yesman.epicfight.client.ClientEngine;
+import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
+
+import static com.github.L_Ender.cataclysm.items.Wrath_of_the_desert.getUseTime;
 
 @Mixin(Wrath_of_the_desert.class)
-public abstract class Wrath_of_the_desertMixin {
+public abstract class Wrath_of_the_desertMixin extends Item {
+    public Wrath_of_the_desertMixin(Properties p_41383_) {
+        super(p_41383_);
+    }
+
     @Shadow(remap = false) protected abstract Entity getPlayerLookTarget(Level level, LivingEntity living);
 
     @Shadow(remap = false)
@@ -35,7 +43,49 @@ public abstract class Wrath_of_the_desertMixin {
         return 0;
     }
 
-    @Shadow public abstract int getUseDuration(ItemStack stack);
+    @Shadow public abstract int getUseDuration(@NotNull ItemStack stack);
+
+    @Shadow(remap = false)
+    public static void setUseTime(ItemStack stack, int useTime) {
+    }
+
+
+    @Shadow(remap = false)
+    private static int getMaxLoadTime() {
+        return 0;
+    }
+
+    @Inject(method = "inventoryTick", at = @At("HEAD"), cancellable = true)
+    private void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean held, CallbackInfo ci) {
+        super.inventoryTick(stack, level, entity, i, held);
+        boolean using = entity instanceof LivingEntity living && living.getUseItem().equals(stack);
+        int useTime = getUseTime(stack);
+        if (level.isClientSide) {
+
+            CompoundTag tag = stack.getOrCreateTag();
+            if (tag.getInt("PrevUseTime") != tag.getInt("UseTime")) {
+                tag.putInt("PrevUseTime", getUseTime(stack));
+            }
+
+            LocalPlayerPatch localPlayerPatch = ClientEngine.getInstance().getPlayerPatch();
+            if(localPlayerPatch != null && localPlayerPatch.getEntityState().attacking()) {
+                AnimationPlayer animationPlayer = localPlayerPatch.getAnimator().getPlayerFor(null);
+                if(animationPlayer != null && animationPlayer.getAnimation().get() instanceof ScanAttackAnimation) {
+                    setUseTime(stack, (int) (animationPlayer.getElapsedTime() * 40.0F));
+                }
+            } else {
+                int maxLoadTime = getMaxLoadTime();
+                if (using && useTime < maxLoadTime) {
+                    int set = useTime + 1;
+                    setUseTime(stack, set);
+                }
+            }
+        }
+        if (!using && useTime > 0.0F) {
+            setUseTime(stack, Math.max(0, useTime - 5));
+        }
+        ci.cancel();
+    }
 
     /**
      * 改为一根箭且削弱伤害

@@ -20,7 +20,7 @@ public record SyncTCRPlayerPacket(CompoundTag data) implements BasePacket {
     @Override
     public void execute(Player playerEntity) {
         DistHelper.runClient(() -> () -> {
-            TCRClientHandler.syncSMCPlayer(data);
+            TCRClientHandler.syncTCRPlayer(data);
         });
     }
 }

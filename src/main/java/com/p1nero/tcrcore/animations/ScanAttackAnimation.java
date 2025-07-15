@@ -95,7 +95,7 @@ public class ScanAttackAnimation extends AttackAnimation {
                 LivingEntity trueEntity = this.getTrueEntity(target);
                 if (trueEntity != null && trueEntity.isAlive() && !entityPatch.getCurrenltyAttackedEntities().contains(trueEntity) && !entityPatch.isTargetInvulnerable(target) && (target instanceof LivingEntity || target instanceof PartEntity) && entity.hasLineOfSight(target)) {
                     entityPatch.getCurrenltyAttackedEntities().add(trueEntity);
-                    if(entityPatch instanceof ServerPlayerPatch serverPlayerPatch) {
+                    if(entityPatch instanceof ServerPlayerPatch serverPlayerPatch && serverPlayerPatch.getTarget() == null) {
                         entityPatch.getCurrenltyAttackedEntities().sort((e1, e2) -> Float.compare(e1.distanceTo(entity), e2.distanceTo(entity)));
                         LivingEntity nearest = entityPatch.getCurrenltyAttackedEntities().get(0);
                         serverPlayerPatch.setAttackTarget(nearest);

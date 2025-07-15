@@ -47,7 +47,7 @@ public class TCRClientHandler {
         }
     }
 
-    public static void syncSMCPlayer(CompoundTag compoundTag) {
+    public static void syncTCRPlayer(CompoundTag compoundTag) {
         if(Minecraft.getInstance().player != null && Minecraft.getInstance().level != null) {
             TCRCapabilityProvider.getTCRPlayer(Minecraft.getInstance().player).loadNBTData(compoundTag);
         }

@@ -91,6 +91,9 @@ public class TCRCapabilityProvider implements ICapabilityProvider, INBTSerializa
     }
 
     public static TCRPlayer getTCRPlayer(Player player) {
+        if(player == null) {
+            return new TCRPlayer();
+        }
         return player.getCapability(TCRCapabilityProvider.TCR_PLAYER).orElse(new TCRPlayer());
     }
 

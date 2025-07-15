@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.capability;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.dialog_lib.network.PacketRelay;
+import com.p1nero.tcrcore.client.gui.CustomGuiRenderer;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.SyncTCRPlayerPacket;
 import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
@@ -21,6 +22,7 @@ import java.util.function.Consumer;
 public class TCRPlayer {
     public static final int MAX_SKILL_POINTS = 5;
     private CompoundTag data = new CompoundTag();
+    private int lastSkillPoints;
 
     public static boolean isValidWeapon(ItemStack itemStack) {
         return itemStack.is(ModItems.CERAUNUS.get()) || itemStack.is(ModItems.THE_INCINERATOR.get()) || itemStack.is(ModItems.SOUL_RENDER.get()) || itemStack.is(ModItems.WRATH_OF_THE_DESERT.get());
@@ -83,6 +85,8 @@ public class TCRPlayer {
     }
 
     public void loadNBTData(CompoundTag tag) {
+        lastSkillPoints = 0;
+        CustomGuiRenderer.reset();
         data = tag.getCompound("customDataManager");
     }
 
@@ -96,7 +100,22 @@ public class TCRPlayer {
     }
 
     public void tick(Player player) {
-
+        if(player.isLocalPlayer()) {
+            CustomGuiRenderer.update();
+            int currentSkillPoint = DataManager.skillPoint.get(player).intValue();
+            if(lastSkillPoints != currentSkillPoint) {
+                lastSkillPoints = currentSkillPoint;
+                for(int i = 0; i < TCRPlayer.MAX_SKILL_POINTS; i++) {
+                    if(i < currentSkillPoint) {
+                        if(CustomGuiRenderer.isSkillPointEmpty(i)) {
+                            CustomGuiRenderer.addPoint(i);
+                        }
+                    } else if(!CustomGuiRenderer.isSkillPointEmpty(i)){
+                        CustomGuiRenderer.remove(i);
+                    }
+                }
+            }
+        }
     }
 
 }
