@@ -1,10 +1,6 @@
 package com.p1nero.tcrcore.mixin;
 
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -15,7 +11,7 @@ import yesman.epicfight.api.animation.types.EntityState;
 import yesman.epicfight.api.asset.AssetAccessor;
 import yesman.epicfight.api.model.Armature;
 import yesman.epicfight.api.utils.AttackResult;
-import yesman.epicfight.world.damagesource.EpicFightDamageType;
+import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 
 import static yesman.epicfight.api.animation.types.DodgeAnimation.IGNORE_ALL_PROJECTILES;
 
@@ -38,8 +34,7 @@ public abstract class DodgeAnimationMixin  extends ActionAnimation {
                 .addState(EntityState.INACTION, true)
                 .newTimePair(0.0F, Float.MAX_VALUE)
                 .addState(EntityState.ATTACK_RESULT, (damagesource) ->
-                        !damagesource.is(EpicFightDamageType.BYPASS_DODGE) ? AttackResult.ResultType.MISSED : AttackResult.ResultType.SUCCESS)
-                .addState(EntityState.PROJECTILE_IMPACT_RESULT, IGNORE_ALL_PROJECTILES);
+                        !damagesource.is(EpicFightDamageTypeTags.BYPASS_DODGE) ? AttackResult.ResultType.MISSED : AttackResult.ResultType.SUCCESS);
     }
 
 }

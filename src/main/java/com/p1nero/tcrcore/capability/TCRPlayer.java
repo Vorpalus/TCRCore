@@ -12,6 +12,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import yesman.epicfight.client.ClientEngine;
+import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
 
 import java.util.function.Consumer;
 
@@ -23,6 +25,7 @@ public class TCRPlayer {
     public static final int MAX_SKILL_POINTS = 5;
     private CompoundTag data = new CompoundTag();
     private int lastSkillPoints;
+    private boolean isClientLockOn;
 
     public static boolean isValidWeapon(ItemStack itemStack) {
         return itemStack.is(ModItems.CERAUNUS.get()) || itemStack.is(ModItems.THE_INCINERATOR.get()) || itemStack.is(ModItems.SOUL_RENDER.get()) || itemStack.is(ModItems.WRATH_OF_THE_DESERT.get());
@@ -39,9 +42,22 @@ public class TCRPlayer {
 
     public static void setSkillPoint(ServerPlayer serverPlayer, int point) {
         if(point < TCRPlayer.MAX_SKILL_POINTS && point >= 0) {
+            int current = DataManager.skillPoint.get(serverPlayer).intValue();
             DataManager.skillPoint.put(serverPlayer, (double) point);
-            serverPlayer.connection.send(new ClientboundSoundPacket(EpicSkillsSounds.GAIN_ABILITY_POINTS.getHolder().orElseThrow(), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F+ 0.1F * point, 0.7F + 0.1F * point, serverPlayer.getRandom().nextInt()));
+            //增加就播音效
+            if(point > current) {
+                serverPlayer.connection.send(new ClientboundSoundPacket(EpicSkillsSounds.GAIN_ABILITY_POINTS.getHolder().orElseThrow(), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F+ 0.1F * point, 0.7F + 0.1F * point, serverPlayer.getRandom().nextInt()));
+            }
         }
+    }
+
+    public static boolean consumeSkillPoint(ServerPlayer serverPlayer, int consumeValue) {
+        int current = getSkillPoint(serverPlayer);
+        if(current >= consumeValue) {
+            setSkillPoint(serverPlayer, current - consumeValue);
+            return true;
+        }
+        return false;
     }
 
     public static int getSkillPoint(Player serverPlayer) {
@@ -101,6 +117,15 @@ public class TCRPlayer {
 
     public void tick(Player player) {
         if(player.isLocalPlayer()) {
+            LocalPlayerPatch localPlayerPatch = ClientEngine.getInstance().getPlayerPatch();
+            if(localPlayerPatch != null) {
+                boolean currentLockOn = localPlayerPatch.isTargetLockedOn();
+                if(isClientLockOn != currentLockOn) {
+                    DataManager.isLockOn.put(player, currentLockOn);
+                    isClientLockOn = currentLockOn;
+                }
+            }
+
             CustomGuiRenderer.update();
             int currentSkillPoint = DataManager.skillPoint.get(player).intValue();
             if(lastSkillPoints != currentSkillPoint) {

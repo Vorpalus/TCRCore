@@ -7,18 +7,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
-import yesman.epicfight.world.entity.eventlistener.HurtEvent;
+import yesman.epicfight.world.entity.eventlistener.TakeDamageEvent;
 import yesman.epicfight.world.entity.eventlistener.PlayerEvent;
 
 /**
  * 招架计数
  */
-@Mixin(value = HurtEvent.class, remap = false)
-public abstract class HurtEventMixin extends PlayerEvent<ServerPlayerPatch> {
+@Mixin(value = TakeDamageEvent.Attack.class, remap = false)
+public abstract class TakeDamageEventAttackMixin extends PlayerEvent<ServerPlayerPatch> {
 
-    @Shadow private boolean parried;
+    @Shadow
+    protected boolean parried;
 
-    public HurtEventMixin(ServerPlayerPatch playerPatch, boolean cancelable) {
+    public TakeDamageEventAttackMixin(ServerPlayerPatch playerPatch, boolean cancelable) {
         super(playerPatch, cancelable);
     }
 

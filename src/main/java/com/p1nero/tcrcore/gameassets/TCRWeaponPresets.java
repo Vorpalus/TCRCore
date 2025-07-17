@@ -2,7 +2,7 @@ package com.p1nero.tcrcore.gameassets;
 
 import com.hm.efn.animations.EFNAnimations;
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.capability.item.BowCapability;
+import com.p1nero.tcrcore.capability.item.WrathOfTheDesertCapability;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,6 +24,7 @@ import java.util.function.Function;
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TCRWeaponPresets {
     public static final Collider BOW_SCAN = new MultiOBBCollider(2, 16, 4D, 16, 0.0D, 1, 0);
+
     public static final Function<Item, CapabilityItem.Builder> CERAUNUS = (item) ->
             WeaponCapability.builder().category(CapabilityItem.WeaponCategories.GREATSWORD)
                     .styleProvider((entityPatch) -> CapabilityItem.Styles.TWO_HAND)
@@ -38,6 +39,7 @@ public class TCRWeaponPresets {
                             EFNAnimations.ARC_AUTO3,
                             Animations.GREATSWORD_DASH,
                             Animations.GREATSWORD_DASH)
+                    .innateSkill(CapabilityItem.Styles.TWO_HAND, (itemStack -> TCRSkills.CERAUNUS_INNATE))
                     .livingMotionModifier(CapabilityItem.Styles.TWO_HAND, LivingMotions.BLOCK, Animations.GREATSWORD_GUARD)
                     .livingMotionModifier(CapabilityItem.Styles.TWO_HAND, LivingMotions.IDLE, EFNAnimations.ARC_IDLE)
                     .livingMotionModifier(CapabilityItem.Styles.TWO_HAND, LivingMotions.WALK, Animations.BIPED_WALK_GREATSWORD)
@@ -83,6 +85,7 @@ public class TCRWeaponPresets {
                     .livingMotionModifier(CapabilityItem.Styles.TWO_HAND, LivingMotions.WALK, EFNAnimations.NG_GREATSWOED_WALK)
                     .livingMotionModifier(CapabilityItem.Styles.TWO_HAND, LivingMotions.RUN, EFNAnimations.NG_GREATSWORD_RUN)
                     .comboCancel((style) -> false);
+
     public static final Function<Item, CapabilityItem.Builder> WRATH_OF_THE_DESERT = (item) ->
             RangedWeaponCapability.builder()
             .zoomInType(CapabilityItem.ZoomInType.USE_TICK)
@@ -90,7 +93,7 @@ public class TCRWeaponPresets {
                     .addAnimationsModifier(LivingMotions.WALK, Animations.BIPED_WALK)
                     .addAnimationsModifier(LivingMotions.AIM, Animations.BIPED_BOW_AIM)
                     .addAnimationsModifier(LivingMotions.SHOT, Animations.BIPED_BOW_SHOT)
-            .constructor(BowCapability::new);
+            .constructor(WrathOfTheDesertCapability::new);
 
     @SubscribeEvent
     public static void register(WeaponCapabilityPresetRegistryEvent event) {

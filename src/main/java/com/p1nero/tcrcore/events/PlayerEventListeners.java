@@ -4,7 +4,15 @@ package com.p1nero.tcrcore.events;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.DataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
+import com.p1nero.tcrcore.gameassets.TCRSkills;
+import com.yesman.epicskills.network.NetworkManager;
+import com.yesman.epicskills.network.client.ClientBoundUnlockNode;
+import com.yesman.epicskills.registry.SkillTree;
+import com.yesman.epicskills.world.capability.AbilityPoints;
+import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -27,9 +35,23 @@ public class PlayerEventListeners {
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2);
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule keepInventory true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule mobGriefing false");
-                //TODO 学习初始技能 闪避和招架
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn tcrcore:step true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn efn:efn_dodge true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn epicfight:parrying true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge tcrcore:step");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
                 DataManager.firstJoint.put(serverPlayer, true);
             }
+            DataManager.skillPoint.put(serverPlayer, 0D);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+        if(player instanceof ServerPlayer serverPlayer) {
+            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
             DataManager.skillPoint.put(serverPlayer, 0D);
         }
     }

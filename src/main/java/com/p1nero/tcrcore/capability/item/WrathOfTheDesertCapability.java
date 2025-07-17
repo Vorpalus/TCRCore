@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.p1nero.tcrcore.gameassets.TCRAnimations;
+import com.p1nero.tcrcore.gameassets.TCRSkills;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
@@ -23,11 +24,11 @@ import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.capabilities.item.RangedWeaponCapability;
 import yesman.epicfight.world.capabilities.item.Style;
 
-public class BowCapability extends RangedWeaponCapability {
+public class WrathOfTheDesertCapability extends RangedWeaponCapability {
     private List<AnimationManager.AnimationAccessor<? extends AttackAnimation>> attackMotion;
     private List<AnimationManager.AnimationAccessor<? extends AttackAnimation>> mountAttackMotion;
 
-    public BowCapability(CapabilityItem.Builder builder) {
+    public WrathOfTheDesertCapability(CapabilityItem.Builder builder) {
         super(builder);
         this.attackMotion = List.of(TCRAnimations.BOW_1, TCRAnimations.BOW_2, TCRAnimations.BOW_3, TCRAnimations.BOW_2, TCRAnimations.BOW_2);
         this.mountAttackMotion = List.of(Animations.SWORD_MOUNT_ATTACK);
@@ -60,6 +61,6 @@ public class BowCapability extends RangedWeaponCapability {
 
     @Nullable
     public Skill getInnateSkill(PlayerPatch<?> playerpatch, ItemStack itemstack) {
-        return null;
+        return TCRSkills.WRATH_OF_THE_DESERT_INNATE;
     }
 }

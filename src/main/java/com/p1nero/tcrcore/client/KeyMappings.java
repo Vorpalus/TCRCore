@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.client;
 
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.skills.WeaponInnateSkillBase;
+import com.p1nero.tcrcore.skills.TCRWeaponInnateSkillBase;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -43,7 +43,7 @@ public class KeyMappings {
 		public static void onClientTick(TickEvent.ClientTickEvent event) {
 			if(event.phase.equals(TickEvent.Phase.END)){
 				LocalPlayerPatch localPlayerPatch = ClientEngine.getInstance().getPlayerPatch();
-				if(localPlayerPatch != null && localPlayerPatch.getSkill(SkillSlots.WEAPON_INNATE).getSkill() instanceof WeaponInnateSkillBase) {
+				if(localPlayerPatch != null && localPlayerPatch.getSkill(SkillSlots.WEAPON_INNATE).getSkill() instanceof TCRWeaponInnateSkillBase) {
 					while (SKILL_1.consumeClick()){
 						if (Minecraft.getInstance().player != null && Minecraft.getInstance().screen == null && !Minecraft.getInstance().isPaused()) {
 							sendExecuteRequest(localPlayerPatch, 1);

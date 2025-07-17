@@ -16,9 +16,12 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import yesman.epicfight.api.animation.types.DodgeAnimation;
+import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
+import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 import yesman.epicfight.world.entity.DodgeLocationIndicator;
 
 /**
@@ -33,13 +36,18 @@ public abstract class DodgeLocationIndicatorMixin extends LivingEntity {
         super(p_20966_, p_20967_);
     }
 
-    @Inject(method = "hurt", at = @At("HEAD"), remap = false)
+    @Inject(method = "hurt", at = @At("HEAD"), remap = false, cancellable = true)
     private void tcr$hurt(DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir){
         if(this.entitypatch instanceof ServerPlayerPatch serverPlayerPatch) {
             TCRPlayer.addSkillPoint(serverPlayerPatch.getOriginal());
             ServerPlayer serverPlayer = serverPlayerPatch.getOriginal();
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new AddAvlEntityAfterImageParticle(serverPlayer.getId()), serverPlayer);
             serverPlayerPatch.getOriginal().connection.send(new ClientboundSoundPacket(EpicFightSounds.ENTITY_MOVE.getHolder().orElseThrow(), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
+            if (!damageSource.is(EpicFightDamageTypeTags.BYPASS_DODGE)) {
+                this.entitypatch.onDodgeSuccess(damageSource, this.position());
+            }
+            this.discard();
+            cir.setReturnValue(false);
         }
     }
 }
