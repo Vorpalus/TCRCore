@@ -23,5 +23,6 @@ public class TheIncineratorInnateSkill extends TCRWeaponInnateSkillBase {
     @Override
     public void executeSkill3(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
         System.out.println(3);
+        //枪蓄力下落
     }
 }

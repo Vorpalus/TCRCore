@@ -22,4 +22,5 @@ public class TCRCoreMod {
     private void commonSetup(final FMLCommonSetupEvent event) {
         TCRPacketHandler.register();
     }
+
 }

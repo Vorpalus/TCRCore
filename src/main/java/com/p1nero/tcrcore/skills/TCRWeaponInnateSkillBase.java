@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.skills;
 
 import com.p1nero.tcrcore.capability.TCRPlayer;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillCategories;
@@ -30,28 +31,37 @@ public abstract class TCRWeaponInnateSkillBase extends Skill {
     public void executeOnServer(SkillContainer container, FriendlyByteBuf args) {
         int skillId = args.readInt();
         ServerPlayerPatch serverPlayerPatch = container.getServerExecutor();
+        if(!TCRPlayer.isValidWeapon(serverPlayerPatch.getOriginal().getMainHandItem())) {
+            return;
+        }
         switch (skillId) {
-            case 1 -> {
-                if (TCRPlayer.consumeSkillPoint(serverPlayerPatch.getOriginal(), 1)) {
-                    executeSkill1(serverPlayerPatch, container);
-                } else {
-                    onSkillPointNotEnough(container, 1);
-                }
-            }
-            case 2 -> {
-                if (TCRPlayer.consumeSkillPoint(serverPlayerPatch.getOriginal(), 2)) {
-                    executeSkill2(serverPlayerPatch, container);
-                } else {
-                    onSkillPointNotEnough(container, 2);
-                }
-            }
-            case 3 -> {
-                if (TCRPlayer.consumeSkillPoint(serverPlayerPatch.getOriginal(), 3)) {
-                    executeSkill3(serverPlayerPatch, container);
-                } else {
-                    onSkillPointNotEnough(container, 3);
-                }
-            }
+            case 1 -> tryExecuteSkill1(serverPlayerPatch, container);
+            case 2 -> tryExecuteSkill2(serverPlayerPatch, container);
+            case 3 -> tryExecuteSkill3(serverPlayerPatch, container);
+        }
+    }
+
+    protected void tryExecuteSkill1(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
+        if (TCRPlayer.consumeSkillPoint(serverPlayerPatch.getOriginal(), 1)) {
+            executeSkill1(serverPlayerPatch, container);
+        } else {
+            onSkillPointNotEnough(container, 1);
+        }
+    }
+
+    protected void tryExecuteSkill2(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
+        if (TCRPlayer.consumeSkillPoint(serverPlayerPatch.getOriginal(), 2)) {
+            executeSkill2(serverPlayerPatch, container);
+        } else {
+            onSkillPointNotEnough(container, 2);
+        }
+    }
+
+    protected void tryExecuteSkill3(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
+        if (TCRPlayer.consumeSkillPoint(serverPlayerPatch.getOriginal(), 3)) {
+            executeSkill3(serverPlayerPatch, container);
+        } else {
+            onSkillPointNotEnough(container, 3);
         }
     }
 
@@ -62,7 +72,7 @@ public abstract class TCRWeaponInnateSkillBase extends Skill {
     public abstract void executeSkill3(ServerPlayerPatch serverPlayerPatch, SkillContainer container);
 
     public void onSkillPointNotEnough(SkillContainer container, int need) {
-
+        container.getExecutor().getOriginal().displayClientMessage(Component.translatable("info.tcrcore.skill_point_lack", need), true);
     }
 
 }

@@ -23,6 +23,6 @@ public class Wrath_of_the_desertInnateSkill extends TCRWeaponInnateSkillBase {
 
     @Override
     public void executeSkill3(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
-        System.out.println(3);//TODO 天崩地裂
+        serverPlayerPatch.playAnimationSynchronized(TCRAnimations.BOW_SKILL3, 0.15F);
     }
 }

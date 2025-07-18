@@ -52,6 +52,9 @@ public class TCRPlayer {
     }
 
     public static boolean consumeSkillPoint(ServerPlayer serverPlayer, int consumeValue) {
+        if(serverPlayer.isCreative()) {
+            return true;
+        }
         int current = getSkillPoint(serverPlayer);
         if(current >= consumeValue) {
             setSkillPoint(serverPlayer, current - consumeValue);

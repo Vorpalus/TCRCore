@@ -54,6 +54,7 @@ public class TCRWeaponPresets {
                     .hitSound(EpicFightSounds.BLADE_HIT.get())
                     .hitParticle(EpicFightParticles.HIT_BLADE.get())
                     .canBePlacedOffhand(false)
+                    .innateSkill(CapabilityItem.Styles.TWO_HAND, (itemStack -> TCRSkills.SOUL_RENDER_INNATE))
                     .newStyleCombo(CapabilityItem.Styles.TWO_HAND,
                             EFNAnimations.NF_MEEN_AUTO1,
                             EFNAnimations.NF_MEEN_AUTO2,
@@ -74,6 +75,7 @@ public class TCRWeaponPresets {
                     .hitSound(EpicFightSounds.BLADE_HIT.get())
                     .hitParticle(EpicFightParticles.HIT_BLADE.get())
                     .canBePlacedOffhand(false)
+                    .innateSkill(CapabilityItem.Styles.TWO_HAND, (itemStack -> TCRSkills.THE_INCINERATOR_INNATE))
                     .newStyleCombo(CapabilityItem.Styles.TWO_HAND,
                             EFNAnimations.NG_GREATSWORD_AUTO1,
                             EFNAnimations.NG_GREATSWORD_AUTO2,

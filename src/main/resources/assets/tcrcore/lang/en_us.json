@@ -1,4 +1,5 @@
 {
   "skill.tcrcore.step": "Step",
-  "skill.tcrcore.step.tooltip": "Slide a short distance in the direction a player is moving. Evades all incoming attacks."
+  "skill.tcrcore.step.tooltip": "Slide a short distance in the direction a player is moving. Evades all incoming attacks.",
+  "info.tcrcore.skill_point_lack": "%d skill points are required"
 }

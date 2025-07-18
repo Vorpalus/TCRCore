@@ -1,4 +1,5 @@
 {
   "skill.tcrcore.step": "跨步",
-  "skill.tcrcore.step.tooltip": "按方向键结合闪避键可进行一段短距离的闪避，躲开敌人的攻击。"
+  "skill.tcrcore.step.tooltip": "按方向键结合闪避键可进行一段短距离的闪避，躲开敌人的攻击。",
+  "info.tcrcore.skill_point_lack": "释放该技能需 %d 技能点"
 }
