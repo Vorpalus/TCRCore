@@ -2,7 +2,11 @@ package com.p1nero.tcrcore.gameassets;
 
 import com.github.L_Ender.cataclysm.capabilities.RenderRushCapability;
 import com.github.L_Ender.cataclysm.client.particle.RingParticle;
+import com.github.L_Ender.cataclysm.client.particle.RoarParticle;
 import com.github.L_Ender.cataclysm.config.CMConfig;
+import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Ancient_Remnant.Ancient_Remnant_Entity;
+import com.github.L_Ender.cataclysm.entity.effect.Cm_Falling_Block_Entity;
+import com.github.L_Ender.cataclysm.entity.effect.Sandstorm_Entity;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
 import com.github.L_Ender.cataclysm.entity.projectile.*;
 import com.github.L_Ender.cataclysm.init.ModCapabilities;
@@ -11,7 +15,6 @@ import com.github.L_Ender.cataclysm.init.ModParticle;
 import com.github.L_Ender.cataclysm.init.ModSounds;
 import com.github.L_Ender.cataclysm.items.Ceraunus;
 import com.hm.efn.registries.NightFallEffectsRegistry;
-import com.hm.efn.util.EffectConditionParticleTrail;
 import com.hm.efn.util.EffectEntityInvoker;
 import com.hm.efn.util.WeaponTrailGroundSplitter;
 import com.merlin204.avalon.epicfight.animations.AvalonAttackAnimation;
@@ -20,16 +23,18 @@ import com.merlin204.avalon.util.AvalonEventUtils;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.animations.ScanAttackAnimation;
 import com.p1nero.tcrcore.utils.TCREffectConditionParticleTrail;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -38,7 +43,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -65,6 +73,7 @@ import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 import yesman.epicfight.world.damagesource.ExtraDamageInstance;
 import yesman.epicfight.world.damagesource.StunType;
 
+import java.util.List;
 import java.util.Set;
 
 import static com.hm.efn.animations.EFNAnimations.MEEN_LANCE_1;
@@ -171,16 +180,20 @@ public class TCRAnimations {
                             .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, ((dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1.0F)));
 
             BOW_SKILL3 = builder.nextAccessor("skill/bow_skill3", (accessor) ->
-                    new ScanAttackAnimation(0.15F, 0.0F, 0.15F, 3.0F, 3.0F,
+                    new ScanAttackAnimation(0.15F, 0.0F, 0.15F, 4.0F, 5.0F,
                             InteractionHand.MAIN_HAND, TCRWeaponPresets.BOW_SCAN, Armatures.BIPED.get().rootJoint, accessor, Armatures.BIPED)
                             .newTimePair(0.0F, 3.0F)
                             .addStateRemoveOld(EntityState.ATTACK_RESULT, (damageSource -> AttackResult.ResultType.BLOCKED))
                             .addEvents(AnimationEvent.InTimeEvent.create(1.0F,
-                                    summonArrowParticles(), AnimationEvent.Side.SERVER))
-                            .addEvents(AnimationEvent.InTimeEvent.create(1.5F,
-                                    summonArrowParticles(), AnimationEvent.Side.SERVER))
-                            .addEvents(AnimationEvent.InTimeEvent.create(2.5F,
-                                    shootRain(true), AnimationEvent.Side.SERVER))
+                                            shootSandstormByView(1.0F, false), AnimationEvent.Side.SERVER),
+                                    AnimationEvent.InTimeEvent.create(1.6F,
+                                            shootCursedSandstorm(1.0F, false), AnimationEvent.Side.SERVER),
+                                    AnimationEvent.InTimeEvent.create(2.2F,
+                                            shootThreeStorm(false), AnimationEvent.Side.SERVER),
+                                    AvalonEventUtils.simpleCameraShake((int) (2.2 * 60), 60, 7,6, 6),
+                                    AnimationEvent.InTimeEvent.create(3.0F,
+                                            shootRain(true), AnimationEvent.Side.BOTH)
+                            )
                             .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, ((dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1.0F)));
 
             CERAUNUS_SKILL1 = builder.nextAccessor("skill/ceraunus_skill1", (accessor) ->
@@ -257,7 +270,7 @@ public class TCRAnimations {
                             WeaponTrailGroundSplitter.create(54, 80, InteractionHand.MAIN_HAND
                                     , new Vec3(0, 0, -2.25F), new Vec3(0, 0, -2.3F),
                                     1.8F, ModParticle.PHANTOM_WING_FLAME.get(), 0, 3F, 6, 15),
-                            AnimationEvent.InTimeEvent.create(1.2F, (entityPatch, self, params) -> {
+                            AnimationEvent.InTimeEvent.create(1.0F, (entityPatch, self, params) -> {
                                 double radius = 6.0F;
                                 Level world = entityPatch.getOriginal().level();
                                 LivingEntity caster = entityPatch.getOriginal();
@@ -267,7 +280,7 @@ public class TCRAnimations {
 
                                 for(Entity entity : world.getEntities(caster, caster.getBoundingBox().inflate(radius, radius, radius))) {
                                     if (entity instanceof LivingEntity living && living.isAlive()) {
-                                        living.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 30, 0));
+                                        living.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 60, 0));
                                     }
                                 }
                                 if (world.isClientSide) {
@@ -717,6 +730,31 @@ public class TCRAnimations {
         };
     }
 
+    public static AnimationEvent.E0 shootSandstormByView(float damageRate, boolean shouldClear) {
+        return (entityPatch, animation, params) -> {
+            LivingEntity self = entityPatch.getOriginal();
+            Level level = self.level();
+            Vec3 startPos = getJointWorldPos(entityPatch, Armatures.BIPED.get().toolL);
+            float d7 = entityPatch.getYRot();
+            float xRot = entityPatch.getOriginal().getViewXRot(1.0F);
+            for (int j = -1; j <= 1; ++j) {
+                float yaw = d7 + (float) (j * 15);
+                float directionX = -Mth.sin(yaw * ((float) Math.PI / 180F)) * Mth.cos(xRot * ((float) Math.PI / 180F));
+                float directionY = -Mth.sin(xRot * ((float) Math.PI / 180F));
+                float directionZ = Mth.cos(yaw * ((float) Math.PI / 180F)) * Mth.cos(xRot * ((float) Math.PI / 180F));
+                Sandstorm_Projectile sandstormProjectile = new Sandstorm_Projectile(self, directionX, directionY, directionZ, self.level(), 6.0F);
+                sandstormProjectile.setState(1);
+                sandstormProjectile.setPos(startPos);
+                level.addFreshEntity(sandstormProjectile);
+            }
+            level.playSound(null, self.getX(), self.getY(), self.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (level.getRandom().nextFloat() * 0.4F + 1.2F) + damageRate * 0.4F);
+            entityPatch.getOriginal().stopUsingItem();
+            if (shouldClear) {
+                entityPatch.removeHurtEntities();
+            }
+        };
+    }
+
     public static AnimationEvent.E0 shootSandstorm(float damageRate, boolean shouldClear) {
         return (entityPatch, animation, params) -> {
             LivingEntity self = entityPatch.getOriginal();
@@ -782,23 +820,108 @@ public class TCRAnimations {
         };
     }
 
-    public static AnimationEvent.E0 summonArrowParticles() {
-        return (entityPatch, animation, params) -> {
-            LivingEntity self = entityPatch.getOriginal();
-            Level level = self.level();
+    private static void roarParticle(LivingEntity entity, float vec, float math, float y, int duration, int r, int g, int b, float a, float start, float inc, float end) {
+        if (entity.level().isClientSide) {
+            float f = Mth.cos(entity.yBodyRot * ((float)Math.PI / 180F));
+            float f1 = Mth.sin(entity.yBodyRot * ((float)Math.PI / 180F));
+            double theta = (double)entity.yBodyRot * (Math.PI / 180D);
+            ++theta;
+            double vecX = Math.cos(theta);
+            double vecZ = Math.sin(theta);
+            entity.level().addParticle(new RoarParticle.RoarData(duration, r, g, b, a, start, inc, end), entity.getX() + (double)vec * vecX + (double)(f * math), entity.getY() + (double)y, entity.getZ() + (double)vec * vecZ + (double)(f1 * math), (double)0.0F, (double)0.0F, (double)0.0F);
+        }
 
-        };
     }
 
-    public static AnimationEvent.E0 shootRain(boolean shouldClear) {
+    public static AnimationEvent.E0 shootThreeStorm(boolean shouldClear) {
         return (entityPatch, animation, params) -> {
             LivingEntity self = entityPatch.getOriginal();
             Level level = self.level();
-
+            for(int i = 0; i < 3; ++i) {
+                float angle = (float)i * (float)Math.PI / 1.5F;
+                double sx = self.getX() + (double)(Mth.cos(angle) * 8.0F);
+                double sy = self.getY();
+                double sz = self.getZ() + (double)(Mth.sin(angle) * 8.0F);
+                if (!self.level().isClientSide()) {
+                    Sandstorm_Entity projectile = new Sandstorm_Entity(self.level(), sx, sy, sz, 140, angle, self);
+                    self.level().addFreshEntity(projectile);
+                }
+            }
+            level.playSound(null, self.getX(), self.getY(), self.getZ(), ModSounds.SANDSTORM.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             if (shouldClear) {
                 entityPatch.removeHurtEntities();
             }
         };
+    }
+    
+    public static AnimationEvent.E0 shootRain(boolean shouldClear) {
+        return (entityPatch, animation, params) -> {
+            LivingEntity self = entityPatch.getOriginal();
+            LivingEntity target = entityPatch.getTarget();
+            Level level = self.level();
+            double d1;
+            if(target != null) {
+                d1 = target.getY();
+            } else {
+                d1 = self.getY();
+            }
+            float f = (float)Mth.atan2(target != null ? (target.getZ() - self.getZ()) : 0, target != null ? target.getX() - self.getX() : 0);
+            StrikeWindmillMonolith(self, 8, 16, 2.0F, 0.75F, 0.6, d1, 1);
+
+            for(int l = 0; l < 16; ++l) {
+                double d2 = (double)1.25F * (double)(l + 1);
+                int j = (int)(5.0F + 1.5F * (float)l);
+                spawnSpikeLine(self, self.getX() + (double)Mth.cos(f) * d2, self.getZ() + (double)Mth.sin(f) * d2, d1, f, j);
+            }
+            level.playSound(null, self.getX(), self.getY(), self.getZ(), ModSounds.IGNIS_EARTHQUAKE.get(), SoundSource.PLAYERS, 2.0F, 1.0F);
+            if (shouldClear) {
+                entityPatch.removeHurtEntities();
+            }
+        };
+    }
+
+    private static void StrikeWindmillMonolith(LivingEntity entity, int numberOfBranches, int particlesPerBranch, double initialRadius, double radiusIncrement, double curveFactor, double spawnY, int delay) {
+        float angleIncrement = (float)((Math.PI * 2D) / (double)numberOfBranches);
+
+        for(int branch = 0; branch < numberOfBranches; ++branch) {
+            float baseAngle = angleIncrement * (float)branch;
+
+            for(int i = 0; i < particlesPerBranch; ++i) {
+                double currentRadius = initialRadius + (double)i * radiusIncrement;
+                float currentAngle = (float)((double)baseAngle + (double)((float)i * angleIncrement) / initialRadius + (double)((float)((double)i * curveFactor)));
+                double xOffset = currentRadius * Math.cos(currentAngle);
+                double zOffset = currentRadius * Math.sin(currentAngle);
+                double spawnX = entity.getX() + xOffset;
+                double spawnZ = entity.getZ() + zOffset;
+                int d3 = delay * (i + 1);
+                spawnSpikeLine(entity, spawnX, spawnZ, spawnY, currentAngle, d3);
+            }
+        }
+
+    }
+
+    private static void spawnSpikeLine(LivingEntity entity, double posX, double posZ, double posY, float rotation, int delay) {
+        BlockPos blockpos = BlockPos.containing(posX, posY, posZ);
+        double d0 = 0.0F;
+
+        do {
+            BlockPos blockpos1 = blockpos.above();
+            BlockState blockstate = entity.level().getBlockState(blockpos1);
+            if (blockstate.isFaceSturdy(entity.level(), blockpos1, Direction.DOWN)) {
+                if (!entity.level().isEmptyBlock(blockpos)) {
+                    BlockState blockstate1 = entity.level().getBlockState(blockpos);
+                    VoxelShape voxelshape = blockstate1.getCollisionShape(entity.level(), blockpos);
+                    if (!voxelshape.isEmpty()) {
+                        d0 = voxelshape.max(Direction.Axis.Y);
+                    }
+                }
+                break;
+            }
+
+            blockpos = blockpos.above();
+        } while(blockpos.getY() < Math.min(entity.level().getMaxBuildHeight(), entity.getBlockY() + 20));
+
+        entity.level().addFreshEntity(new Ancient_Desert_Stele_Entity(entity.level(), posX, (double)blockpos.getY() + d0 - (double)3.0F, posZ, rotation, delay, (float)CMConfig.AncientDesertSteledamage, entity));
     }
 
     public static AnimationEvent.E0 shootCeraunus() {
@@ -807,7 +930,7 @@ public class TCRAnimations {
             if (living.getMainHandItem().getItem() instanceof Ceraunus) {
                 Level level = living.level();
                 Player_Ceraunus_Entity launchedBlock = new Player_Ceraunus_Entity(level, living);
-                launchedBlock.setBaseDamage((float) living.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                launchedBlock.setBaseDamage((float) living.getAttributeValue(Attributes.ATTACK_DAMAGE) + 15);
                 float xRot = living.getXRot() - 5;
                 if (xRot < -5) {
                     xRot = -5;

@@ -49,6 +49,17 @@ public class ScanAttackAnimation extends AttackAnimation {
     }
 
     @Override
+    public void begin(LivingEntityPatch<?> entitypatch) {
+        if(entitypatch instanceof ServerPlayerPatch serverPlayerPatch) {
+            if(!DataManager.isLockOn.get(serverPlayerPatch.getOriginal())) {
+                serverPlayerPatch.setAttackTarget(null);
+                serverPlayerPatch.removeHurtEntities();
+            }
+        }
+        super.begin(entitypatch);
+    }
+
+    @Override
     protected void attackTick(LivingEntityPatch<?> entityPatch, AssetAccessor<? extends DynamicAnimation> animation) {
         AnimationPlayer player = entityPatch.getAnimator().getPlayerFor(this.getAccessor());
         if(player == null) {
