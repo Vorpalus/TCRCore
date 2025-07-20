@@ -4,10 +4,10 @@ import com.github.L_Ender.cataclysm.capabilities.RenderRushCapability;
 import com.github.L_Ender.cataclysm.client.particle.RingParticle;
 import com.github.L_Ender.cataclysm.client.particle.RoarParticle;
 import com.github.L_Ender.cataclysm.config.CMConfig;
-import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Ancient_Remnant.Ancient_Remnant_Entity;
-import com.github.L_Ender.cataclysm.entity.effect.Cm_Falling_Block_Entity;
+import com.github.L_Ender.cataclysm.entity.effect.Lightning_Storm_Entity;
 import com.github.L_Ender.cataclysm.entity.effect.Sandstorm_Entity;
 import com.github.L_Ender.cataclysm.entity.effect.ScreenShake_Entity;
+import com.github.L_Ender.cataclysm.entity.effect.Wave_Entity;
 import com.github.L_Ender.cataclysm.entity.projectile.*;
 import com.github.L_Ender.cataclysm.init.ModCapabilities;
 import com.github.L_Ender.cataclysm.init.ModEffect;
@@ -25,7 +25,6 @@ import com.p1nero.tcrcore.animations.ScanAttackAnimation;
 import com.p1nero.tcrcore.utils.TCREffectConditionParticleTrail;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -34,7 +33,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -43,10 +41,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -58,6 +53,8 @@ import yesman.epicfight.api.animation.Pose;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
+import yesman.epicfight.api.collider.Collider;
+import yesman.epicfight.api.collider.OBBCollider;
 import yesman.epicfight.api.model.Armature;
 import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.api.utils.math.MathUtils;
@@ -73,7 +70,6 @@ import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 import yesman.epicfight.world.damagesource.ExtraDamageInstance;
 import yesman.epicfight.world.damagesource.StunType;
 
-import java.util.List;
 import java.util.Set;
 
 import static com.hm.efn.animations.EFNAnimations.MEEN_LANCE_1;
@@ -94,8 +90,8 @@ public class TCRAnimations {
     public static AnimationManager.AnimationAccessor<ScanAttackAnimation> BOW_SKILL2;
     public static AnimationManager.AnimationAccessor<ScanAttackAnimation> BOW_SKILL3;
     public static AnimationManager.AnimationAccessor<ActionAnimation> CERAUNUS_SKILL1;
-    public static AnimationManager.AnimationAccessor<ActionAnimation> CERAUNUS_SKILL2;
-    public static AnimationManager.AnimationAccessor<ActionAnimation> CERAUNUS_SKILL3;
+    public static AnimationManager.AnimationAccessor<AvalonAttackAnimation> CERAUNUS_SKILL2;
+    public static AnimationManager.AnimationAccessor<AvalonAttackAnimation> CERAUNUS_SKILL3;
     public static AnimationManager.AnimationAccessor<AvalonAttackAnimation> SOUL_RENDER_SKILL1;
     public static AnimationManager.AnimationAccessor<AvalonAttackAnimation> SOUL_RENDER_SKILL2;
     public static AnimationManager.AnimationAccessor<AvalonAttackAnimation> SOUL_RENDER_SKILL3;
@@ -103,6 +99,7 @@ public class TCRAnimations {
     public static AnimationManager.AnimationAccessor<ActionAnimation> THE_INCINERATOR_SKILL2;
     public static AnimationManager.AnimationAccessor<ActionAnimation> THE_INCINERATOR_SKILL3;
 
+    public static final Collider CERAUNUS_SKILL = new OBBCollider(1.7, 1.7, 1.7, 0.0, 0.0, 0.0);
     @SubscribeEvent
     public static void registerAnimations(AnimationManager.AnimationRegistryEvent event) {
         event.newBuilder(TCRCoreMod.MOD_ID, (builder) -> {
@@ -190,7 +187,7 @@ public class TCRAnimations {
                                             shootCursedSandstorm(1.0F, false), AnimationEvent.Side.SERVER),
                                     AnimationEvent.InTimeEvent.create(2.2F,
                                             shootThreeStorm(false), AnimationEvent.Side.SERVER),
-                                    AvalonEventUtils.simpleCameraShake((int) (2.2 * 60), 60, 7,6, 6),
+                                    AvalonEventUtils.simpleCameraShake((int) (2.2 * 60), 60, 7, 6, 6),
                                     AnimationEvent.InTimeEvent.create(3.0F,
                                             shootRain(true), AnimationEvent.Side.BOTH)
                             )
@@ -202,6 +199,165 @@ public class TCRAnimations {
                             .newTimePair(0.0F, 1.5F)
                             .addStateRemoveOld(EntityState.ATTACK_RESULT, (damageSource -> AttackResult.ResultType.BLOCKED))
                             .addEvents(AnimationEvent.InTimeEvent.create(0.5F, shootCeraunus(), AnimationEvent.Side.SERVER)));
+
+            CERAUNUS_SKILL2 = builder.nextAccessor("skill/ceraunus_skill2", accessor -> new AvalonAttackAnimation(0.15F, accessor, Armatures.BIPED, 2F, 2F, createSimplePhase(45, 53, 80, InteractionHand.MAIN_HAND, 1.2F, 1.2F, Armatures.BIPED.get().toolR, null))
+                    .addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, EpicFightParticles.HIT_BLADE)
+                    .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.BLADE_RUSH_FINISHER.get())
+                    .newTimePair(0.0F, 1.5F)
+                    .addStateRemoveOld(EntityState.ATTACK_RESULT, (damageSource -> AttackResult.ResultType.BLOCKED))
+                    .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, ((dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1F))
+                    .addEvents(AnimationEvent.InTimeEvent.create(0.35F, (entitypatch, animation, params) -> {
+                                LivingEntity entity = entitypatch.getOriginal();
+                                entity.level().addParticle(AvalonParticles.AVALON_ENTITY_AFTER_IMAGE.get()
+                                        , entity.getX()
+                                        , entity.getY()
+                                        , entity.getZ()
+                                        , Double.longBitsToDouble(entity.getId())
+                                        , 0, 0);
+                            }, AnimationEvent.Side.CLIENT), AvalonEventUtils.simpleCameraShake(40, 50, 5, 4, 5),
+                            AnimationEvent.InTimeEvent.create(0.6F, (entitypatch, self, params) -> {
+                                if (!entitypatch.getOriginal().level().isClientSide()) {
+                                    LivingEntity attacker = entitypatch.getOriginal();
+                                    ServerLevel level = (ServerLevel) attacker.level();
+                                    // 冲击波参数
+                                    double centerX = attacker.getX();
+                                    double centerY = attacker.getY(); // 脚底位置
+                                    double centerZ = attacker.getZ();
+                                    double baseRadius = 8.0; // 基础半径
+                                    double maxRadius = 15.0; // 最大半径
+                                    int waveCount = 3; // 冲击波层数
+                                    int particlesPerWave = 80; // 每层粒子数
+                                    double speed = 0.4; // 粒子速度
+                                    // 生成多层冲击波
+                                    for (int wave = 0; wave < waveCount; wave++) {
+                                        double radius = baseRadius + (maxRadius - baseRadius) * wave / (waveCount - 1);
+                                        for (int i = 0; i < particlesPerWave; i++) {
+                                            double angle = 2 * Math.PI * i / particlesPerWave;
+                                            double randomOffset = 0.3 * (level.random.nextDouble() - 0.5);
+                                            double xOffset = radius * Math.cos(angle) + randomOffset;
+                                            double zOffset = radius * Math.sin(angle) + randomOffset;
+                                            double motionX = xOffset * speed / radius;
+                                            double motionZ = zOffset * speed / radius;
+                                            //高度变化
+                                            double yOffset = 0.5 * Math.sin(angle * 2 + wave * 0.5);
+                                            level.sendParticles(ParticleTypes.SMOKE, centerX + xOffset, centerY + 0.1 + yOffset, centerZ + zOffset, 1, motionX, 0.05, motionZ, 0.8);
+                                        }
+                                    }
+
+                                    //海浪
+                                    level.playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), ModSounds.HEAVY_SMASH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+
+                                    float yawRadians = (float)Math.toRadians(90.0F + entitypatch.getYRot());
+                                    double vecX = Math.cos(yawRadians);
+                                    double vecZ = Math.sin(yawRadians);
+                                    double vec = 2.0F;
+                                    double spawnX = attacker.getX() + vecX * vec;
+                                    double spawnY = attacker.getY();
+                                    double spawnZ = attacker.getZ() + vecZ * vec;
+                                    int numberOfWaves = 4;
+                                    float angleStep = 25.0F;
+                                    double firstAngleOffset = (double)(numberOfWaves - 1) / (double)2.0F * (double)angleStep;
+                                    for(int k = 0; k < numberOfWaves; ++k) {
+                                        double angle = (double)attacker.getYRot() - firstAngleOffset + (double)((float)k * angleStep);
+                                        double rad = Math.toRadians(angle);
+                                        double dx = -Math.sin(rad);
+                                        double dz = Math.cos(rad);
+                                        Wave_Entity WaveEntity = new Wave_Entity(level, attacker, 60, (float)CMConfig.CeraunusWaveDamage);
+                                        WaveEntity.setPos(spawnX, spawnY, spawnZ);
+                                        WaveEntity.setState(1);
+                                        WaveEntity.setYRot(-((float)(Mth.atan2(dx, dz) * (180D / Math.PI))));
+                                        level.addFreshEntity(WaveEntity);
+                                    }
+                                }
+                            }, AnimationEvent.Side.SERVER),
+                            AvalonEventUtils.simpleGroundSplit(40, 2, 0, 0, 0, 3F, true),
+                            AvalonEventUtils.simpleCameraShake(40, 40, 3, 3, 3)
+                    )
+            );
+
+            CERAUNUS_SKILL3 = builder.nextAccessor("skill/ceraunus_skill3",accessor -> new AvalonAttackAnimation(0.1F,accessor,Armatures.BIPED,1,1
+                            , createSimplePhase(29,39,79, InteractionHand.MAIN_HAND,0.8F,0.8F,Armatures.BIPED.get().toolR,null)
+                            , createSimplePhase(79,85,120, InteractionHand.MAIN_HAND,0.8F,0.8F,Armatures.BIPED.get().rootJoint, CERAUNUS_SKILL))
+                            .addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, EpicFightParticles.HIT_BLADE)
+                            .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND,EpicFightSounds.BLADE_RUSH_FINISHER.get())
+                            .addProperty(AnimationProperty.AttackPhaseProperty.EXTRA_DAMAGE, Set.of(ExtraDamageInstance.SWEEPING_EDGE_ENCHANTMENT.create()))
+                            .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, true)
+                            .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, ((dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1F))
+                            .newTimePair(0.0F, 1.5F)
+                            .addStateRemoveOld(EntityState.ATTACK_RESULT, (damageSource -> AttackResult.ResultType.BLOCKED))
+                            .addEvents(AnimationEvent.InTimeEvent.create(0.6F, (entityPatch, self, params) -> {
+                                    LivingEntity attacker = entityPatch.getOriginal();
+                                    if (attacker.level() instanceof ServerLevel level) {
+                                            // 冲击波参数
+                                            double centerX = attacker.getX();
+                                            double centerY = attacker.getY(); // 脚底位置
+                                            double centerZ = attacker.getZ();
+                                            double baseRadius = 8.0; // 基础半径
+                                            double maxRadius = 15.0; // 最大半径
+                                            int waveCount = 3; // 冲击波层数
+                                            int particlesPerWave = 80; // 每层粒子数
+                                            double speed = 0.4; // 粒子速度
+                                            // 生成多层冲击波
+                                            for (int wave = 0; wave < waveCount; wave++) {
+                                                double radius = baseRadius + (maxRadius - baseRadius) * wave / (waveCount - 1);
+                                                for (int i = 0; i < particlesPerWave; i++) {
+                                                    double angle = 2 * Math.PI * i / particlesPerWave;
+                                                    double randomOffset = 0.3 * (level.random.nextDouble() - 0.5);
+                                                    double xOffset = radius * Math.cos(angle) + randomOffset;
+                                                    double zOffset = radius * Math.sin(angle) + randomOffset;
+                                                    double motionX = xOffset * speed / radius;
+                                                    double motionZ = zOffset * speed / radius;
+                                                    //高度变化
+                                                    double yOffset = 0.5 * Math.sin(angle * 2 + wave * 0.5);
+                                                    level.sendParticles(ParticleTypes.SMOKE, centerX + xOffset, centerY + 0.1 + yOffset, centerZ + zOffset, 1, motionX, 0.05, motionZ, 0.8);
+                                                }
+                                            }
+
+                                            int rune = 7;
+                                            int time = 4;
+                                            for(int i = 0; i < rune; ++i) {
+                                                float throwAngle = (float)i * (float)Math.PI / (float)(rune / 2);
+
+                                                for(int k = 0; k < 5; ++k) {
+                                                    double d2 = (double)1.75F * (double)(k + 1);
+                                                    int d3 = time * (k + 1) - 9;
+                                                    spawnLightning(attacker, attacker.getX() + (double)Mth.cos(throwAngle) * (double)1.25F * d2, attacker.getZ() + (double)Mth.sin(throwAngle) * (double)1.25F * d2, attacker.getY() - 5, attacker.getY() + (double)2.0F, throwAngle, d3, 2.0F);
+                                                }
+                                            }
+                                        }
+                                    }, AnimationEvent.Side.SERVER),
+                                    AnimationEvent.InTimeEvent.create(1.4F, (entityPatch, self, params) -> {
+                                        LivingEntity attacker = entityPatch.getOriginal();
+                                        if (attacker.level() instanceof ServerLevel level) {
+                                            level.playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), ModSounds.HEAVY_SMASH.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                            float yawRadians = (float)Math.toRadians(90.0F + entityPatch.getYRot());
+                                            double vecX = Math.cos(yawRadians);
+                                            double vecZ = Math.sin(yawRadians);
+                                            double vec = 2.0F;
+                                            double spawnX = attacker.getX() + vecX * vec;
+                                            double spawnY = attacker.getY();
+                                            double spawnZ = attacker.getZ() + vecZ * vec;
+                                            int numberOfWaves = 12;
+                                            float angleStep = 30.0F;
+                                            double firstAngleOffset = (double)(numberOfWaves - 1) / (double)2.0F * (double)angleStep;
+                                            for(int k = 0; k < numberOfWaves; ++k) {
+                                                double angle = (double)attacker.getYRot() - firstAngleOffset + (double)((float)k * angleStep);
+                                                double rad = Math.toRadians(angle);
+                                                double dx = -Math.sin(rad);
+                                                double dz = Math.cos(rad);
+                                                Wave_Entity WaveEntity = new Wave_Entity(level, attacker, 60, (float)CMConfig.CeraunusWaveDamage);
+                                                WaveEntity.setPos(spawnX, spawnY, spawnZ);
+                                                WaveEntity.setState(1);
+                                                WaveEntity.setYRot(-((float)(Mth.atan2(dx, dz) * (180D / Math.PI))));
+                                                level.addFreshEntity(WaveEntity);
+                                            }
+                                        }
+                                    }, AnimationEvent.Side.SERVER),
+                                    AnimationEvent.InTimeEvent.create(0.3F, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.CLIENT).params(new Vec3f(0.0F, 0.3F, 0.0F), Armatures.BIPED.get().toolR, 2D, 0.5F),
+                                    AnimationEvent.InTimeEvent.create(1.4F, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.CLIENT).params(new Vec3f(0.0F, 0.3F, 0.0F), Armatures.BIPED.get().rootJoint, 4D, 0.55F),
+                                    AvalonEventUtils.simpleCameraShake(80,40,4,4,4)
+                            )
+                    );
 
             SOUL_RENDER_SKILL1 = builder.nextAccessor("skill/soul_render_skill1", accessor -> new AvalonAttackAnimation(0.15F, accessor, Armatures.BIPED, 1.1F, 1,
                     createSimplePhase(38, 56, 75, InteractionHand.MAIN_HAND, 1.5F, 1.5F, Armatures.BIPED.get().toolR, null))
@@ -278,372 +434,403 @@ public class TCRAnimations {
                                 world.playSound(null, caster.getX(), caster.getY(), caster.getZ(), ModSounds.MALEDICTUS_SHORT_ROAR.get(), SoundSource.PLAYERS, 2.0F, 1.0F);
                                 world.playSound(null, caster.getX(), caster.getY(), caster.getZ(), SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 1.5F, 1.0F / (caster.getRandom().nextFloat() * 0.4F + 0.8F));
 
-                                for(Entity entity : world.getEntities(caster, caster.getBoundingBox().inflate(radius, radius, radius))) {
+                                for (Entity entity : world.getEntities(caster, caster.getBoundingBox().inflate(radius, radius, radius))) {
                                     if (entity instanceof LivingEntity living && living.isAlive()) {
                                         living.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 60, 0));
                                     }
                                 }
                                 if (world.isClientSide) {
-                                    world.addParticle(new RingParticle.RingData(0.0F, ((float)Math.PI / 2F), 30, 0.337F, 0.925F, 0.8F, 1.0F, 85.0F, false, RingParticle.EnumRingBehavior.GROW), caster.getX(), caster.getY() + (double)0.03F, caster.getZ(), (double)0.0F, (double)0.0F, (double)0.0F);
+                                    world.addParticle(new RingParticle.RingData(0.0F, ((float) Math.PI / 2F), 30, 0.337F, 0.925F, 0.8F, 1.0F, 85.0F, false, RingParticle.EnumRingBehavior.GROW), caster.getX(), caster.getY() + (double) 0.03F, caster.getZ(), (double) 0.0F, (double) 0.0F, (double) 0.0F);
                                 }
                             }, AnimationEvent.Side.BOTH)
                     )
             );
 
             SOUL_RENDER_SKILL3 = builder.nextAccessor("skill/soul_render_skill3", accessor -> new AvalonAttackAnimation(0.15F, accessor, Armatures.BIPED, 1, 1,
-                            createSimplePhase(59, 100, 120, InteractionHand.MAIN_HAND, 2.0F, 0, Armatures.BIPED.get().rootJoint, MEEN_LANCE_CHARGE3))
-                            .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.KNOCKDOWN)
-                            .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_BIG.get())
-                            .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.BLADE_RUSH_FINISHER.get())
-                            .addProperty(AnimationProperty.AttackPhaseProperty.ARMOR_NEGATION_MODIFIER, ValueModifier.setter(100))
-                            .addProperty(AnimationProperty.AttackPhaseProperty.EXTRA_DAMAGE, Set.of(ExtraDamageInstance.SWEEPING_EDGE_ENCHANTMENT.create()))
-                            .addProperty(AnimationProperty.AttackPhaseProperty.MAX_STRIKES_MODIFIER, ValueModifier.setter(10))
-                            .addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, EpicFightParticles.HIT_BLADE)
-                            .newTimePair(0.0F, 1.5F)
-                            .addStateRemoveOld(EntityState.ATTACK_RESULT, (damageSource -> AttackResult.ResultType.BLOCKED))
-                            .newTimePair(0.0F, Float.MAX_VALUE)
-                            .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, ((dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1F))
-                            .addEvents(// 第一阶段：火焰爆发效果（客户端）
-                                    AnimationEvent.InTimeEvent.create(1.1F, (entityPatch, self, params) -> {
-                                        if (entityPatch.getOriginal().level().isClientSide()) {
-                                            LivingEntity attacker = entityPatch.getOriginal();
-                                            Level level = attacker.level();
+                    createSimplePhase(59, 100, 120, InteractionHand.MAIN_HAND, 2.0F, 0, Armatures.BIPED.get().rootJoint, MEEN_LANCE_CHARGE3))
+                    .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.KNOCKDOWN)
+                    .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_BIG.get())
+                    .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.BLADE_RUSH_FINISHER.get())
+                    .addProperty(AnimationProperty.AttackPhaseProperty.ARMOR_NEGATION_MODIFIER, ValueModifier.setter(100))
+                    .addProperty(AnimationProperty.AttackPhaseProperty.EXTRA_DAMAGE, Set.of(ExtraDamageInstance.SWEEPING_EDGE_ENCHANTMENT.create()))
+                    .addProperty(AnimationProperty.AttackPhaseProperty.MAX_STRIKES_MODIFIER, ValueModifier.setter(10))
+                    .addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, EpicFightParticles.HIT_BLADE)
+                    .newTimePair(0.0F, 1.5F)
+                    .addStateRemoveOld(EntityState.ATTACK_RESULT, (damageSource -> AttackResult.ResultType.BLOCKED))
+                    .newTimePair(0.0F, Float.MAX_VALUE)
+                    .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, ((dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1F))
+                    .addEvents(// 第一阶段：火焰爆发效果（客户端）
+                            AnimationEvent.InTimeEvent.create(1.1F, (entityPatch, self, params) -> {
+                                if (entityPatch.getOriginal().level().isClientSide()) {
+                                    LivingEntity attacker = entityPatch.getOriginal();
+                                    Level level = attacker.level();
 
-                                            // ===== 强化参数配置 =====
-                                            float intensity = 2.5f; // 增强强度系数
-                                            int coneParticles = (int) (150 * intensity); // 增加锥形粒子数
+                                    // ===== 强化参数配置 =====
+                                    float intensity = 2.5f; // 增强强度系数
+                                    int coneParticles = (int) (150 * intensity); // 增加锥形粒子数
 
-                                            // ===== 改进版：完整形状的扩散火圈 =====
-                                            Vec3 centerPos = attacker.position().add(0, 0.05, 0); // 中心位置
-                                            int totalRings = 5; // 总圈数
-                                            int particlesPerRing = 36; // 每圈粒子数(36个粒子形成完整圆)
-                                            float maxRadius = 5.0f; // 最大半径
-                                            float duration = 0.5f; // 扩散持续时间(秒)
-                                            float currentTime = 0.0f; // 当前时间(用于动画)
+                                    // ===== 改进版：完整形状的扩散火圈 =====
+                                    Vec3 centerPos = attacker.position().add(0, 0.05, 0); // 中心位置
+                                    int totalRings = 5; // 总圈数
+                                    int particlesPerRing = 36; // 每圈粒子数(36个粒子形成完整圆)
+                                    float maxRadius = 5.0f; // 最大半径
+                                    float duration = 0.5f; // 扩散持续时间(秒)
+                                    float currentTime = 0.0f; // 当前时间(用于动画)
 
-                                            currentTime += 0.05f; // 假设每帧0.05秒
-                                            float progress = Math.min(currentTime / duration, 1.0f);
+                                    currentTime += 0.05f; // 假设每帧0.05秒
+                                    float progress = Math.min(currentTime / duration, 1.0f);
 
-                                            for (int ring = 0; ring < totalRings; ring++) {
-                                                // 当前圈的半径(从内到外)
-                                                float radius = maxRadius * (ring + progress) / totalRings;
+                                    for (int ring = 0; ring < totalRings; ring++) {
+                                        // 当前圈的半径(从内到外)
+                                        float radius = maxRadius * (ring + progress) / totalRings;
 
-                                                // 完整圆形生成
-                                                for (int i = 0; i < particlesPerRing; i++) {
-                                                    float angle = (float) (6.283185307179586 * i / particlesPerRing);
-                                                    float xOffset = radius * Mth.cos(angle);
-                                                    float zOffset = radius * Mth.sin(angle);
+                                        // 完整圆形生成
+                                        for (int i = 0; i < particlesPerRing; i++) {
+                                            float angle = (float) (6.283185307179586 * i / particlesPerRing);
+                                            float xOffset = radius * Mth.cos(angle);
+                                            float zOffset = radius * Mth.sin(angle);
 
-                                                    // 基础火焰粒子
-                                                    level.addParticle(
-                                                            ModParticle.PHANTOM_WING_FLAME.get(),
-                                                            centerPos.x + xOffset,
-                                                            centerPos.y + 0.05f, // 紧贴地面
-                                                            centerPos.z + zOffset,
-                                                            xOffset * 0.1f, // 轻微的向外速度
-                                                            0.08f, // 轻微上浮
-                                                            zOffset * 0.1f
-                                                    );
-
-                                                    // 每5个粒子添加一个强化粒子
-                                                    if (i % 5 == 0) {
-                                                        level.addParticle(
-                                                                ModParticle.SOUL_LAVA.get(), // 使用灵魂火增加视觉效果
-                                                                centerPos.x + xOffset,
-                                                                centerPos.y + 0.07f,
-                                                                centerPos.z + zOffset,
-                                                                xOffset * 0.15f,
-                                                                0.12f,
-                                                                zOffset * 0.15f
-                                                        );
-                                                    }
-                                                }
-                                            }
-
-
-                                            // ===== 第一阶段：武器球状粒子 =====
-                                            OpenMatrix4f transformMatrix = entityPatch.getArmature()
-                                                    .getBoundTransformFor(entityPatch.getAnimator().getPose(0.0F), Armatures.BIPED.get().toolR);
-
-                                            transformMatrix.translate(new Vec3f(-0.2F, 0.0F, 0.4F));
-                                            OpenMatrix4f.mul(
-                                                    new OpenMatrix4f().rotate(-(float) Math.toRadians(attacker.yBodyRotO + 180.0F),
-                                                            new Vec3f(0.0F, 1.0F, 0.0F)),
-                                                    transformMatrix,
-                                                    transformMatrix
+                                            // 基础火焰粒子
+                                            level.addParticle(
+                                                    ModParticle.PHANTOM_WING_FLAME.get(),
+                                                    centerPos.x + xOffset,
+                                                    centerPos.y + 0.05f, // 紧贴地面
+                                                    centerPos.z + zOffset,
+                                                    xOffset * 0.1f, // 轻微的向外速度
+                                                    0.08f, // 轻微上浮
+                                                    zOffset * 0.1f
                                             );
-                                            // 70个球状粒子（完全复刻原版）
-                                            for (int i = 0; i < 70; ++i) {
-                                                double theta = 6.283185307179586 * Math.random();
-                                                double thetax = Math.acos(2.0 * Math.random() - 1.0);
-                                                float dx = (float) (0.1 * Math.sin(thetax) * Math.cos(theta));
-                                                float dy = (float) (0.1 * Math.sin(thetax) * Math.sin(theta));
-                                                float dz = (float) (0.1 * Math.cos(thetax));
 
+                                            // 每5个粒子添加一个强化粒子
+                                            if (i % 5 == 0) {
                                                 level.addParticle(
-                                                        ModParticle.PHANTOM_WING_FLAME.get(),
-                                                        transformMatrix.m30 + attacker.getX(),
-                                                        transformMatrix.m31 + attacker.getY() + (float) (Math.random() * 2.9F),
-                                                        transformMatrix.m32 + attacker.getZ(),
-                                                        dx, dy, dz
+                                                        ModParticle.SOUL_LAVA.get(), // 使用灵魂火增加视觉效果
+                                                        centerPos.x + xOffset,
+                                                        centerPos.y + 0.07f,
+                                                        centerPos.z + zOffset,
+                                                        xOffset * 0.15f,
+                                                        0.12f,
+                                                        zOffset * 0.15f
                                                 );
-
-                                                if (i % 2 == 0) {
-                                                    level.addParticle(
-                                                            ModParticle.SOUL_LAVA.get(),
-                                                            transformMatrix.m30 + attacker.getX(),
-                                                            transformMatrix.m31 + attacker.getY() + (float) (Math.random() * 2.9F),
-                                                            transformMatrix.m32 + attacker.getZ(),
-                                                            dx, dy, dz
-                                                    );
-                                                }
-                                            }
-
-
-                                            // ===== 双锥形冲击波 =====
-                                            transformMatrix = entityPatch.getArmature()
-                                                    .getBoundTransformFor(entityPatch.getAnimator().getPose(0.0F), Armatures.BIPED.get().chest);
-                                            OpenMatrix4f.mul(
-                                                    new OpenMatrix4f().rotate(-(float) Math.toRadians(attacker.yBodyRotO + 180.0F),
-                                                            new Vec3f(0.0F, 1.0F, 0.0F)),
-                                                    transformMatrix,
-                                                    transformMatrix
-                                            );
-                                            transformMatrix.translate(new Vec3f(0.0F, 0.3F, -0.5F)); // 调整发射位置
-
-                                            double r = 0.5 * intensity; // 扩大半径
-                                            double t = 0.006; // 调整锥形角度
-
-                                            // 强化双锥形（每组粒子数增加）
-                                            for (int group = 0; group < 2; group++) {
-                                                float angle = group == 0 ? 110.0f : 70.0f;
-
-                                                for (int i = 0; i < coneParticles; ++i) {
-                                                    double theta = 6.283185307179586 * Math.random();
-                                                    double phi = (Math.random() - 0.2) * Math.PI * t / r; // 调整分布
-
-                                                    Vec3f direction = new Vec3f(
-                                                            (float) (r * Math.cos(phi) * Math.cos(theta)),
-                                                            (float) (r * Math.cos(phi) * Math.sin(theta)) * 1.5f, // 增强垂直效果
-                                                            (float) (r * Math.sin(phi))
-                                                    );
-
-                                                    OpenMatrix4f rotation = new OpenMatrix4f()
-                                                            .rotate((float) Math.toRadians(-attacker.yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F))
-                                                            .rotate((float) Math.toRadians(angle), new Vec3f(1.0F, 0.0F, 0.0F));
-                                                    OpenMatrix4f.transform3v(rotation, direction, direction);
-
-                                                    float speedVariation = 0.3f + 0.3f * (float) Math.random();
-                                                    direction.scale(speedVariation);
-
-                                                    // 添加粒子多样性
-                                                    ParticleOptions particle;
-                                                    if (Math.random() < 0.7) {
-                                                        particle = ModParticle.PHANTOM_WING_FLAME.get();
-                                                    } else {
-                                                        particle = ParticleTypes.END_ROD; // 添加火星效果
-                                                    }
-
-                                                    level.addParticle(
-                                                            particle,
-                                                            transformMatrix.m30 + attacker.getX(),
-                                                            transformMatrix.m31 + attacker.getY() + 0.7f,
-                                                            transformMatrix.m32 + attacker.getZ(),
-                                                            direction.x * 1.3f,
-                                                            direction.y * 1.5f, // 增强上升效果
-                                                            direction.z * 1.3f
-                                                    );
-
-                                                    // 随机熔岩尾迹
-                                                    if (Math.random() < 0.2f) {
-                                                        Vec3f lavaDir = new Vec3f(direction.x, direction.y, direction.z).scale(0.7f);
-                                                        level.addParticle(
-                                                                ModParticle.SOUL_LAVA.get(),
-                                                                transformMatrix.m30 + attacker.getX(),
-                                                                transformMatrix.m31 + attacker.getY(),
-                                                                transformMatrix.m32 + attacker.getZ(),
-                                                                lavaDir.x, lavaDir.y * 1.4f, lavaDir.z
-                                                        );
-                                                    }
-                                                }
-                                            }
-
-                                            // ===== 地面燃烧效果 =====
-                                            for (int i = 0; i < 120 * intensity; i++) {
-                                                double angle = Math.random() * 6.283185307179586;
-                                                double radius = 4.0 * intensity * Math.random();
-                                                Vec3 pos = new Vec3(
-                                                        radius * Math.cos(angle),
-                                                        0.1,
-                                                        radius * Math.sin(angle)
-                                                ).add(attacker.position());
-
-                                                // 主火焰粒子
-                                                level.addParticle(
-                                                        Math.random() < 0.6 ? ParticleTypes.SOUL_FIRE_FLAME : ModParticle.PHANTOM_WING_FLAME.get(),
-                                                        pos.x, pos.y, pos.z,
-                                                        (Math.random() - 0.5) * 0.25,
-                                                        0.15 + Math.random() * 0.4,
-                                                        (Math.random() - 0.5) * 0.25
-                                                );
-
-                                                // 熔岩斑块
-                                                if (i % 4 == 0) {
-                                                    level.addParticle(
-                                                            ModParticle.SOUL_LAVA.get(),
-                                                            pos.x, pos.y + 0.05, pos.z,
-                                                            0, 0.03, 0
-                                                    );
-                                                }
-
-                                                // 烟雾效果
-                                                if (i % 3 == 0) {
-                                                    level.addParticle(
-                                                            ParticleTypes.ENCHANT,
-                                                            pos.x, pos.y + 0.1, pos.z,
-                                                            (Math.random() - 0.5) * 0.1,
-                                                            0.1,
-                                                            (Math.random() - 0.5) * 0.1
-                                                    );
-                                                }
                                             }
                                         }
-                                    }, AnimationEvent.Side.CLIENT),
-                                    // 第二阶段：冲击波效果（服务端）
-                                    AnimationEvent.InTimeEvent.create(1.85F, (entityPatch, self, params) -> {
-                                        if (!entityPatch.getOriginal().level().isClientSide()) {
-                                            LivingEntity attacker = entityPatch.getOriginal();
-                                            ServerLevel level = (ServerLevel) attacker.level();
+                                    }
 
-                                            // 强化冲击波参数
-                                            double centerX = attacker.getX();
-                                            double centerY = attacker.getY() + 0.2; // 稍微抬升中心点
-                                            double centerZ = attacker.getZ();
-                                            double baseRadius = 10.0; // 扩大基础半径
-                                            double maxRadius = 18.0; // 扩大最大半径
-                                            int waveCount = 4; // 增加波次
-                                            int particlesPerWave = 100; // 增加每波粒子数
-                                            double speed = 0.5; // 提高速度
 
-                                            // 多层冲击波
-                                            for (int wave = 0; wave < waveCount; wave++) {
-                                                double progress = wave / (double) (waveCount - 1);
-                                                double radius = Mth.lerp(progress, baseRadius, maxRadius);
-                                                double verticalScale = 1.8 * Math.sin(progress * Math.PI); // 增强垂直波动
+                                    // ===== 第一阶段：武器球状粒子 =====
+                                    OpenMatrix4f transformMatrix = entityPatch.getArmature()
+                                            .getBoundTransformFor(entityPatch.getAnimator().getPose(0.0F), Armatures.BIPED.get().toolR);
 
-                                                for (int i = 0; i < particlesPerWave; i++) {
-                                                    double angle = 2 * Math.PI * i / particlesPerWave;
-                                                    double randomSpread = 0.5 * (level.random.nextDouble() - 0.5);
+                                    transformMatrix.translate(new Vec3f(-0.2F, 0.0F, 0.4F));
+                                    OpenMatrix4f.mul(
+                                            new OpenMatrix4f().rotate(-(float) Math.toRadians(attacker.yBodyRotO + 180.0F),
+                                                    new Vec3f(0.0F, 1.0F, 0.0F)),
+                                            transformMatrix,
+                                            transformMatrix
+                                    );
+                                    // 70个球状粒子（完全复刻原版）
+                                    for (int i = 0; i < 70; ++i) {
+                                        double theta = 6.283185307179586 * Math.random();
+                                        double thetax = Math.acos(2.0 * Math.random() - 1.0);
+                                        float dx = (float) (0.1 * Math.sin(thetax) * Math.cos(theta));
+                                        float dy = (float) (0.1 * Math.sin(thetax) * Math.sin(theta));
+                                        float dz = (float) (0.1 * Math.cos(thetax));
 
-                                                    // 粒子位置计算（带螺旋效果）
-                                                    Vec3 pos = new Vec3(
-                                                            radius * Math.cos(angle + progress * 1.5 * Math.PI) + randomSpread,
-                                                            verticalScale * Math.sin(angle * 3 + wave * 0.7),
-                                                            radius * Math.sin(angle + progress * 1.5 * Math.PI) + randomSpread
-                                                    ).add(centerX, centerY, centerZ);
+                                        level.addParticle(
+                                                ModParticle.PHANTOM_WING_FLAME.get(),
+                                                transformMatrix.m30 + attacker.getX(),
+                                                transformMatrix.m31 + attacker.getY() + (float) (Math.random() * 2.9F),
+                                                transformMatrix.m32 + attacker.getZ(),
+                                                dx, dy, dz
+                                        );
 
-                                                    // 动态速度（向外扩散）
-                                                    Vec3 motion = pos.subtract(centerX, centerY, centerZ).normalize()
-                                                            .scale(speed * (0.4 + 0.6 * (1 - progress)))
-                                                            .add(0, 0.2, 0);
+                                        if (i % 2 == 0) {
+                                            level.addParticle(
+                                                    ModParticle.SOUL_LAVA.get(),
+                                                    transformMatrix.m30 + attacker.getX(),
+                                                    transformMatrix.m31 + attacker.getY() + (float) (Math.random() * 2.9F),
+                                                    transformMatrix.m32 + attacker.getZ(),
+                                                    dx, dy, dz
+                                            );
+                                        }
+                                    }
 
-                                                    // 核心火焰粒子
-                                                    level.sendParticles(
-                                                            ModParticle.PHANTOM_WING_FLAME.get(),
-                                                            pos.x, pos.y, pos.z,
-                                                            2, // 每组2个粒子
-                                                            motion.x * 0.4, motion.y * 0.9, motion.z * 0.4,
-                                                            1.0
-                                                    );
 
-                                                    // 50%概率生成附加火星
-                                                    if (level.random.nextDouble() < 0.5) {
-                                                        level.sendParticles(
-                                                                ParticleTypes.ENCHANT,
-                                                                pos.x, pos.y + 0.3, pos.z,
-                                                                1,
-                                                                motion.x * 1.5, motion.y * 2.0, motion.z * 1.5,
-                                                                0.5
-                                                        );
-                                                    }
-                                                }
+                                    // ===== 双锥形冲击波 =====
+                                    transformMatrix = entityPatch.getArmature()
+                                            .getBoundTransformFor(entityPatch.getAnimator().getPose(0.0F), Armatures.BIPED.get().chest);
+                                    OpenMatrix4f.mul(
+                                            new OpenMatrix4f().rotate(-(float) Math.toRadians(attacker.yBodyRotO + 180.0F),
+                                                    new Vec3f(0.0F, 1.0F, 0.0F)),
+                                            transformMatrix,
+                                            transformMatrix
+                                    );
+                                    transformMatrix.translate(new Vec3f(0.0F, 0.3F, -0.5F)); // 调整发射位置
+
+                                    double r = 0.5 * intensity; // 扩大半径
+                                    double t = 0.006; // 调整锥形角度
+
+                                    // 强化双锥形（每组粒子数增加）
+                                    for (int group = 0; group < 2; group++) {
+                                        float angle = group == 0 ? 110.0f : 70.0f;
+
+                                        for (int i = 0; i < coneParticles; ++i) {
+                                            double theta = 6.283185307179586 * Math.random();
+                                            double phi = (Math.random() - 0.2) * Math.PI * t / r; // 调整分布
+
+                                            Vec3f direction = new Vec3f(
+                                                    (float) (r * Math.cos(phi) * Math.cos(theta)),
+                                                    (float) (r * Math.cos(phi) * Math.sin(theta)) * 1.5f, // 增强垂直效果
+                                                    (float) (r * Math.sin(phi))
+                                            );
+
+                                            OpenMatrix4f rotation = new OpenMatrix4f()
+                                                    .rotate((float) Math.toRadians(-attacker.yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F))
+                                                    .rotate((float) Math.toRadians(angle), new Vec3f(1.0F, 0.0F, 0.0F));
+                                            OpenMatrix4f.transform3v(rotation, direction, direction);
+
+                                            float speedVariation = 0.3f + 0.3f * (float) Math.random();
+                                            direction.scale(speedVariation);
+
+                                            // 添加粒子多样性
+                                            ParticleOptions particle;
+                                            if (Math.random() < 0.7) {
+                                                particle = ModParticle.PHANTOM_WING_FLAME.get();
+                                            } else {
+                                                particle = ParticleTypes.END_ROD; // 添加火星效果
                                             }
 
-                                            // 中心爆炸强化
+                                            level.addParticle(
+                                                    particle,
+                                                    transformMatrix.m30 + attacker.getX(),
+                                                    transformMatrix.m31 + attacker.getY() + 0.7f,
+                                                    transformMatrix.m32 + attacker.getZ(),
+                                                    direction.x * 1.3f,
+                                                    direction.y * 1.5f, // 增强上升效果
+                                                    direction.z * 1.3f
+                                            );
+
+                                            // 随机熔岩尾迹
+                                            if (Math.random() < 0.2f) {
+                                                Vec3f lavaDir = new Vec3f(direction.x, direction.y, direction.z).scale(0.7f);
+                                                level.addParticle(
+                                                        ModParticle.SOUL_LAVA.get(),
+                                                        transformMatrix.m30 + attacker.getX(),
+                                                        transformMatrix.m31 + attacker.getY(),
+                                                        transformMatrix.m32 + attacker.getZ(),
+                                                        lavaDir.x, lavaDir.y * 1.4f, lavaDir.z
+                                                );
+                                            }
+                                        }
+                                    }
+
+                                    // ===== 地面燃烧效果 =====
+                                    for (int i = 0; i < 120 * intensity; i++) {
+                                        double angle = Math.random() * 6.283185307179586;
+                                        double radius = 4.0 * intensity * Math.random();
+                                        Vec3 pos = new Vec3(
+                                                radius * Math.cos(angle),
+                                                0.1,
+                                                radius * Math.sin(angle)
+                                        ).add(attacker.position());
+
+                                        // 主火焰粒子
+                                        level.addParticle(
+                                                Math.random() < 0.6 ? ParticleTypes.SOUL_FIRE_FLAME : ModParticle.PHANTOM_WING_FLAME.get(),
+                                                pos.x, pos.y, pos.z,
+                                                (Math.random() - 0.5) * 0.25,
+                                                0.15 + Math.random() * 0.4,
+                                                (Math.random() - 0.5) * 0.25
+                                        );
+
+                                        // 熔岩斑块
+                                        if (i % 4 == 0) {
+                                            level.addParticle(
+                                                    ModParticle.SOUL_LAVA.get(),
+                                                    pos.x, pos.y + 0.05, pos.z,
+                                                    0, 0.03, 0
+                                            );
+                                        }
+
+                                        // 烟雾效果
+                                        if (i % 3 == 0) {
+                                            level.addParticle(
+                                                    ParticleTypes.ENCHANT,
+                                                    pos.x, pos.y + 0.1, pos.z,
+                                                    (Math.random() - 0.5) * 0.1,
+                                                    0.1,
+                                                    (Math.random() - 0.5) * 0.1
+                                            );
+                                        }
+                                    }
+                                }
+                            }, AnimationEvent.Side.CLIENT),
+                            // 第二阶段：冲击波效果（服务端）
+                            AnimationEvent.InTimeEvent.create(1.85F, (entityPatch, self, params) -> {
+                                if (!entityPatch.getOriginal().level().isClientSide()) {
+                                    LivingEntity attacker = entityPatch.getOriginal();
+                                    ServerLevel level = (ServerLevel) attacker.level();
+
+                                    // 强化冲击波参数
+                                    double centerX = attacker.getX();
+                                    double centerY = attacker.getY() + 0.2; // 稍微抬升中心点
+                                    double centerZ = attacker.getZ();
+                                    double baseRadius = 10.0; // 扩大基础半径
+                                    double maxRadius = 18.0; // 扩大最大半径
+                                    int waveCount = 4; // 增加波次
+                                    int particlesPerWave = 100; // 增加每波粒子数
+                                    double speed = 0.5; // 提高速度
+
+                                    // 多层冲击波
+                                    for (int wave = 0; wave < waveCount; wave++) {
+                                        double progress = wave / (double) (waveCount - 1);
+                                        double radius = Mth.lerp(progress, baseRadius, maxRadius);
+                                        double verticalScale = 1.8 * Math.sin(progress * Math.PI); // 增强垂直波动
+
+                                        for (int i = 0; i < particlesPerWave; i++) {
+                                            double angle = 2 * Math.PI * i / particlesPerWave;
+                                            double randomSpread = 0.5 * (level.random.nextDouble() - 0.5);
+
+                                            // 粒子位置计算（带螺旋效果）
+                                            Vec3 pos = new Vec3(
+                                                    radius * Math.cos(angle + progress * 1.5 * Math.PI) + randomSpread,
+                                                    verticalScale * Math.sin(angle * 3 + wave * 0.7),
+                                                    radius * Math.sin(angle + progress * 1.5 * Math.PI) + randomSpread
+                                            ).add(centerX, centerY, centerZ);
+
+                                            // 动态速度（向外扩散）
+                                            Vec3 motion = pos.subtract(centerX, centerY, centerZ).normalize()
+                                                    .scale(speed * (0.4 + 0.6 * (1 - progress)))
+                                                    .add(0, 0.2, 0);
+
+                                            // 核心火焰粒子
                                             level.sendParticles(
                                                     ModParticle.PHANTOM_WING_FLAME.get(),
-                                                    centerX, centerY + 0.5, centerZ,
-                                                    30,
-                                                    1.8, 0.8, 1.8,
-                                                    0.9
+                                                    pos.x, pos.y, pos.z,
+                                                    2, // 每组2个粒子
+                                                    motion.x * 0.4, motion.y * 0.9, motion.z * 0.4,
+                                                    1.0
                                             );
 
-                                            level.sendParticles(
-                                                    ParticleTypes.ENCHANT,
-                                                    centerX, centerY + 0.5, centerZ,
-                                                    80,
-                                                    2.0, 1.0, 2.0,
-                                                    0.8
-                                            );
-                                        }
-                                    }, AnimationEvent.Side.SERVER),
-                                    AnimationEvent.InTimeEvent.create(0.0F, (entityPatch, animation, params) -> {
-                                        LivingEntity entity = entityPatch.getOriginal();
-                                        entity.level().addParticle(AvalonParticles.AVALON_ENTITY_AFTER_IMAGE.get()
-                                                , entity.getX()
-                                                , entity.getY()
-                                                , entity.getZ()
-                                                , Double.longBitsToDouble(entity.getId())
-                                                , 0, 0);
-                                    }, AnimationEvent.Side.CLIENT),
-                                    AnimationEvent.InTimeEvent.create(0.0F, (entityPatch, self, params) -> {
-                                        entityPatch.getOriginal().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, 5, false, false, false));
-                                    }, AnimationEvent.Side.BOTH),
-                                    AnimationEvent.InTimeEvent.create(0.2F, (entityPatch, self, params) -> {
-                                        entityPatch.playSound(SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), 150, 0, 0);
-                                    }, AnimationEvent.Side.CLIENT),
-                                    AnimationEvent.InTimeEvent.create(1.1F, (entityPatch, self, params) -> {
-                                        entityPatch.playSound(SoundEvents.GENERIC_EXPLODE, 150, 0, 0);
-                                    }, AnimationEvent.Side.CLIENT),
-                                    AvalonEventUtils.simpleGroundSplit(57, 0, 0, 0, 0, 5F, true),
-                                    AvalonEventUtils.simpleCameraShake(59, 60, 4, 4, 4),
-                                    AnimationEvent.InTimeEvent.create(0.9F, (entityPatch, self, params) -> {
-                                        StrikeWindmillHalberd(entityPatch.getOriginal().level(), entityPatch.getOriginal(), 3, 3, 1.0F, 1.0F, 0.4, 1);
-                                        Level world = entityPatch.getOriginal().level();
-                                        LivingEntity caster = entityPatch.getOriginal();
-                                        for(Entity entity : world.getEntities(caster, caster.getBoundingBox().inflate(6, 6, 6))) {
-                                            if (entity instanceof LivingEntity living && living.isAlive()) {
-                                                living.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 30, 0));
+                                            // 50%概率生成附加火星
+                                            if (level.random.nextDouble() < 0.5) {
+                                                level.sendParticles(
+                                                        ParticleTypes.ENCHANT,
+                                                        pos.x, pos.y + 0.3, pos.z,
+                                                        1,
+                                                        motion.x * 1.5, motion.y * 2.0, motion.z * 1.5,
+                                                        0.5
+                                                );
                                             }
                                         }
-                                    }, AnimationEvent.Side.BOTH),
-                                    AnimationEvent.InTimeEvent.create(1.2F, (entityPatch, self, params) -> {
-                                        StrikeWindmillHalberd(entityPatch.getOriginal().level(), entityPatch.getOriginal(), 5, 3, 1.0F, 1.0F, 0.4, 1);
-                                    }, AnimationEvent.Side.BOTH),
-                                    AnimationEvent.InTimeEvent.create(1.5F, (entityPatch, self, params) -> {
-                                        StrikeWindmillHalberd(entityPatch.getOriginal().level(), entityPatch.getOriginal(), 5, 5, 1.4F, 1.4F, 0.4, 1);
-                                        entityPatch.playSound(EpicFightSounds.BIG_ENTITY_MOVE.get(), 1.0F, 1.0F);
-                                    }, AnimationEvent.Side.BOTH)
-                            )
-                            .newTimePair(0.0F, Float.MAX_VALUE)
-                            .addStateRemoveOld(EntityState.MOVEMENT_LOCKED, true)
-                            .addStateRemoveOld(EntityState.CAN_SWITCH_HAND_ITEM, false)
-                            .addStateRemoveOld(EntityState.INACTION, true)
-                    );
+                                    }
+
+                                    // 中心爆炸强化
+                                    level.sendParticles(
+                                            ModParticle.PHANTOM_WING_FLAME.get(),
+                                            centerX, centerY + 0.5, centerZ,
+                                            30,
+                                            1.8, 0.8, 1.8,
+                                            0.9
+                                    );
+
+                                    level.sendParticles(
+                                            ParticleTypes.ENCHANT,
+                                            centerX, centerY + 0.5, centerZ,
+                                            80,
+                                            2.0, 1.0, 2.0,
+                                            0.8
+                                    );
+                                }
+                            }, AnimationEvent.Side.SERVER),
+                            AnimationEvent.InTimeEvent.create(0.0F, (entityPatch, animation, params) -> {
+                                LivingEntity entity = entityPatch.getOriginal();
+                                entity.level().addParticle(AvalonParticles.AVALON_ENTITY_AFTER_IMAGE.get()
+                                        , entity.getX()
+                                        , entity.getY()
+                                        , entity.getZ()
+                                        , Double.longBitsToDouble(entity.getId())
+                                        , 0, 0);
+                            }, AnimationEvent.Side.CLIENT),
+                            AnimationEvent.InTimeEvent.create(0.0F, (entityPatch, self, params) -> {
+                                entityPatch.getOriginal().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, 5, false, false, false));
+                            }, AnimationEvent.Side.BOTH),
+                            AnimationEvent.InTimeEvent.create(0.2F, (entityPatch, self, params) -> {
+                                entityPatch.playSound(SoundEvents.RESPAWN_ANCHOR_DEPLETE.get(), 150, 0, 0);
+                            }, AnimationEvent.Side.CLIENT),
+                            AnimationEvent.InTimeEvent.create(1.1F, (entityPatch, self, params) -> {
+                                entityPatch.playSound(SoundEvents.GENERIC_EXPLODE, 150, 0, 0);
+                            }, AnimationEvent.Side.CLIENT),
+                            AvalonEventUtils.simpleGroundSplit(57, 0, 0, 0, 0, 5F, true),
+                            AvalonEventUtils.simpleCameraShake(59, 60, 4, 4, 4),
+                            AnimationEvent.InTimeEvent.create(0.9F, (entityPatch, self, params) -> {
+                                StrikeWindmillHalberd(entityPatch.getOriginal().level(), entityPatch.getOriginal(), 3, 3, 1.0F, 1.0F, 0.4, 1);
+                                Level world = entityPatch.getOriginal().level();
+                                LivingEntity caster = entityPatch.getOriginal();
+                                for (Entity entity : world.getEntities(caster, caster.getBoundingBox().inflate(6, 6, 6))) {
+                                    if (entity instanceof LivingEntity living && living.isAlive()) {
+                                        living.addEffect(new MobEffectInstance(ModEffect.EFFECTSTUN.get(), 30, 0));
+                                    }
+                                }
+                            }, AnimationEvent.Side.BOTH),
+                            AnimationEvent.InTimeEvent.create(1.2F, (entityPatch, self, params) -> {
+                                StrikeWindmillHalberd(entityPatch.getOriginal().level(), entityPatch.getOriginal(), 5, 3, 1.0F, 1.0F, 0.4, 1);
+                            }, AnimationEvent.Side.BOTH),
+                            AnimationEvent.InTimeEvent.create(1.5F, (entityPatch, self, params) -> {
+                                StrikeWindmillHalberd(entityPatch.getOriginal().level(), entityPatch.getOriginal(), 5, 5, 1.4F, 1.4F, 0.4, 1);
+                                entityPatch.playSound(EpicFightSounds.BIG_ENTITY_MOVE.get(), 1.0F, 1.0F);
+                            }, AnimationEvent.Side.BOTH)
+                    )
+                    .newTimePair(0.0F, Float.MAX_VALUE)
+                    .addStateRemoveOld(EntityState.MOVEMENT_LOCKED, true)
+                    .addStateRemoveOld(EntityState.CAN_SWITCH_HAND_ITEM, false)
+                    .addStateRemoveOld(EntityState.INACTION, true)
+            );
 
         });
     }
 
 
+    protected static void spawnLightning(LivingEntity entity, double x, double z, double minY, double maxY, float rotation, int delay, float size) {
+        BlockPos blockpos = BlockPos.containing(x, maxY, z);
+        boolean flag = false;
+        double d0 = 0.0F;
+
+        do {
+            BlockPos blockpos1 = blockpos.below();
+            BlockState blockstate = entity.level().getBlockState(blockpos1);
+            if (blockstate.isFaceSturdy(entity.level(), blockpos1, Direction.UP)) {
+                if (!entity.level().isEmptyBlock(blockpos)) {
+                    BlockState blockstate1 = entity.level().getBlockState(blockpos);
+                    VoxelShape voxelshape = blockstate1.getCollisionShape(entity.level(), blockpos);
+                    if (!voxelshape.isEmpty()) {
+                        d0 = voxelshape.max(Direction.Axis.Y);
+                    }
+                }
+
+                flag = true;
+                break;
+            }
+
+            blockpos = blockpos.below();
+        } while(blockpos.getY() >= Mth.floor(minY) - 1);
+
+        if (flag) {
+            entity.level().addFreshEntity(new Lightning_Storm_Entity(entity.level(), x, (double)blockpos.getY() + d0, z, rotation, delay, (float)CMConfig.ScyllaLightningStormDamage, (float)CMConfig.ScyllaLightningStormHpDamage, entity, size));
+        }
+
+    }
+
+
     public static void StrikeWindmillHalberd(Level level, LivingEntity player, int numberOfBranches, int particlesPerBranch, double initialRadius, double radiusIncrement, double curveFactor, int delay) {
-        float angleIncrement = (float)((Math.PI * 2D) / (double)numberOfBranches);
+        float angleIncrement = (float) ((Math.PI * 2D) / (double) numberOfBranches);
 
-        for(int branch = 0; branch < numberOfBranches; ++branch) {
-            float baseAngle = angleIncrement * (float)branch;
+        for (int branch = 0; branch < numberOfBranches; ++branch) {
+            float baseAngle = angleIncrement * (float) branch;
 
-            for(int i = 0; i < particlesPerBranch; ++i) {
-                double currentRadius = initialRadius + (double)i * radiusIncrement;
-                float currentAngle = (float)((double)baseAngle + (double)((float)i * angleIncrement) / initialRadius + (double)((float)((double)i * curveFactor)));
+            for (int i = 0; i < particlesPerBranch; ++i) {
+                double currentRadius = initialRadius + (double) i * radiusIncrement;
+                float currentAngle = (float) ((double) baseAngle + (double) ((float) i * angleIncrement) / initialRadius + (double) ((float) ((double) i * curveFactor)));
                 double xOffset = currentRadius * Math.cos(currentAngle);
                 double zOffset = currentRadius * Math.sin(currentAngle);
                 double spawnX = player.getX() + xOffset;
@@ -686,10 +873,10 @@ public class TCRAnimations {
             }
 
             blockpos = blockpos.below();
-        } while(blockpos.getY() >= Mth.floor(minY) - 1);
+        } while (blockpos.getY() >= Mth.floor(minY) - 1);
 
         if (flag) {
-            world.addFreshEntity(new Phantom_Halberd_Entity(world, x, (double)blockpos.getY() + d0, z, rotation, delay, player, (float)CMConfig.PhantomHalberddamage));
+            world.addFreshEntity(new Phantom_Halberd_Entity(world, x, (double) blockpos.getY() + d0, z, rotation, delay, player, (float) CMConfig.PhantomHalberddamage));
         }
 
     }
@@ -822,13 +1009,13 @@ public class TCRAnimations {
 
     private static void roarParticle(LivingEntity entity, float vec, float math, float y, int duration, int r, int g, int b, float a, float start, float inc, float end) {
         if (entity.level().isClientSide) {
-            float f = Mth.cos(entity.yBodyRot * ((float)Math.PI / 180F));
-            float f1 = Mth.sin(entity.yBodyRot * ((float)Math.PI / 180F));
-            double theta = (double)entity.yBodyRot * (Math.PI / 180D);
+            float f = Mth.cos(entity.yBodyRot * ((float) Math.PI / 180F));
+            float f1 = Mth.sin(entity.yBodyRot * ((float) Math.PI / 180F));
+            double theta = (double) entity.yBodyRot * (Math.PI / 180D);
             ++theta;
             double vecX = Math.cos(theta);
             double vecZ = Math.sin(theta);
-            entity.level().addParticle(new RoarParticle.RoarData(duration, r, g, b, a, start, inc, end), entity.getX() + (double)vec * vecX + (double)(f * math), entity.getY() + (double)y, entity.getZ() + (double)vec * vecZ + (double)(f1 * math), (double)0.0F, (double)0.0F, (double)0.0F);
+            entity.level().addParticle(new RoarParticle.RoarData(duration, r, g, b, a, start, inc, end), entity.getX() + (double) vec * vecX + (double) (f * math), entity.getY() + (double) y, entity.getZ() + (double) vec * vecZ + (double) (f1 * math), (double) 0.0F, (double) 0.0F, (double) 0.0F);
         }
 
     }
@@ -837,11 +1024,11 @@ public class TCRAnimations {
         return (entityPatch, animation, params) -> {
             LivingEntity self = entityPatch.getOriginal();
             Level level = self.level();
-            for(int i = 0; i < 3; ++i) {
-                float angle = (float)i * (float)Math.PI / 1.5F;
-                double sx = self.getX() + (double)(Mth.cos(angle) * 8.0F);
+            for (int i = 0; i < 3; ++i) {
+                float angle = (float) i * (float) Math.PI / 1.5F;
+                double sx = self.getX() + (double) (Mth.cos(angle) * 8.0F);
                 double sy = self.getY();
-                double sz = self.getZ() + (double)(Mth.sin(angle) * 8.0F);
+                double sz = self.getZ() + (double) (Mth.sin(angle) * 8.0F);
                 if (!self.level().isClientSide()) {
                     Sandstorm_Entity projectile = new Sandstorm_Entity(self.level(), sx, sy, sz, 140, angle, self);
                     self.level().addFreshEntity(projectile);
@@ -853,25 +1040,25 @@ public class TCRAnimations {
             }
         };
     }
-    
+
     public static AnimationEvent.E0 shootRain(boolean shouldClear) {
         return (entityPatch, animation, params) -> {
             LivingEntity self = entityPatch.getOriginal();
             LivingEntity target = entityPatch.getTarget();
             Level level = self.level();
             double d1;
-            if(target != null) {
+            if (target != null) {
                 d1 = target.getY();
             } else {
                 d1 = self.getY();
             }
-            float f = (float)Mth.atan2(target != null ? (target.getZ() - self.getZ()) : 0, target != null ? target.getX() - self.getX() : 0);
+            float f = (float) Mth.atan2(target != null ? (target.getZ() - self.getZ()) : 0, target != null ? target.getX() - self.getX() : 0);
             StrikeWindmillMonolith(self, 8, 16, 2.0F, 0.75F, 0.6, d1, 1);
 
-            for(int l = 0; l < 16; ++l) {
-                double d2 = (double)1.25F * (double)(l + 1);
-                int j = (int)(5.0F + 1.5F * (float)l);
-                spawnSpikeLine(self, self.getX() + (double)Mth.cos(f) * d2, self.getZ() + (double)Mth.sin(f) * d2, d1, f, j);
+            for (int l = 0; l < 16; ++l) {
+                double d2 = (double) 1.25F * (double) (l + 1);
+                int j = (int) (5.0F + 1.5F * (float) l);
+                spawnSpikeLine(self, self.getX() + (double) Mth.cos(f) * d2, self.getZ() + (double) Mth.sin(f) * d2, d1, f, j);
             }
             level.playSound(null, self.getX(), self.getY(), self.getZ(), ModSounds.IGNIS_EARTHQUAKE.get(), SoundSource.PLAYERS, 2.0F, 1.0F);
             if (shouldClear) {
@@ -881,14 +1068,14 @@ public class TCRAnimations {
     }
 
     private static void StrikeWindmillMonolith(LivingEntity entity, int numberOfBranches, int particlesPerBranch, double initialRadius, double radiusIncrement, double curveFactor, double spawnY, int delay) {
-        float angleIncrement = (float)((Math.PI * 2D) / (double)numberOfBranches);
+        float angleIncrement = (float) ((Math.PI * 2D) / (double) numberOfBranches);
 
-        for(int branch = 0; branch < numberOfBranches; ++branch) {
-            float baseAngle = angleIncrement * (float)branch;
+        for (int branch = 0; branch < numberOfBranches; ++branch) {
+            float baseAngle = angleIncrement * (float) branch;
 
-            for(int i = 0; i < particlesPerBranch; ++i) {
-                double currentRadius = initialRadius + (double)i * radiusIncrement;
-                float currentAngle = (float)((double)baseAngle + (double)((float)i * angleIncrement) / initialRadius + (double)((float)((double)i * curveFactor)));
+            for (int i = 0; i < particlesPerBranch; ++i) {
+                double currentRadius = initialRadius + (double) i * radiusIncrement;
+                float currentAngle = (float) ((double) baseAngle + (double) ((float) i * angleIncrement) / initialRadius + (double) ((float) ((double) i * curveFactor)));
                 double xOffset = currentRadius * Math.cos(currentAngle);
                 double zOffset = currentRadius * Math.sin(currentAngle);
                 double spawnX = entity.getX() + xOffset;
@@ -919,9 +1106,9 @@ public class TCRAnimations {
             }
 
             blockpos = blockpos.above();
-        } while(blockpos.getY() < Math.min(entity.level().getMaxBuildHeight(), entity.getBlockY() + 20));
+        } while (blockpos.getY() < Math.min(entity.level().getMaxBuildHeight(), entity.getBlockY() + 20));
 
-        entity.level().addFreshEntity(new Ancient_Desert_Stele_Entity(entity.level(), posX, (double)blockpos.getY() + d0 - (double)3.0F, posZ, rotation, delay, (float)CMConfig.AncientDesertSteledamage, entity));
+        entity.level().addFreshEntity(new Ancient_Desert_Stele_Entity(entity.level(), posX, (double) blockpos.getY() + d0 - (double) 3.0F, posZ, rotation, delay, (float) CMConfig.AncientDesertSteledamage, entity));
     }
 
     public static AnimationEvent.E0 shootCeraunus() {

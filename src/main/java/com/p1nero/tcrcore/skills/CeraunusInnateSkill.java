@@ -18,11 +18,11 @@ public class CeraunusInnateSkill extends TCRWeaponInnateSkillBase {
 
     @Override
     public void executeSkill2(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
-        System.out.println(2);
+        serverPlayerPatch.playAnimationSynchronized(TCRAnimations.CERAUNUS_SKILL2, 0.15F);
     }
 
     @Override
     public void executeSkill3(ServerPlayerPatch serverPlayerPatch, SkillContainer container) {
-        System.out.println(3);
+        serverPlayerPatch.playAnimationSynchronized(TCRAnimations.CERAUNUS_SKILL3, 0.15F);
     }
 }
