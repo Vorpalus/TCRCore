@@ -2,8 +2,6 @@ package com.p1nero.tcrcore.mixin;
 
 import com.github.L_Ender.cataclysm.entity.projectile.Phantom_Arrow_Entity;
 import com.github.L_Ender.cataclysm.items.Wrath_of_the_desert;
-import com.p1nero.tcrcore.animations.ScanAttackAnimation;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -22,11 +20,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import yesman.epicfight.api.animation.AnimationPlayer;
-import yesman.epicfight.client.ClientEngine;
-import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
-
-import static com.github.L_Ender.cataclysm.items.Wrath_of_the_desert.getUseTime;
 
 @Mixin(Wrath_of_the_desert.class)
 public abstract class Wrath_of_the_desertMixin extends Item {
@@ -43,50 +36,8 @@ public abstract class Wrath_of_the_desertMixin extends Item {
 
     @Shadow public abstract int getUseDuration(@NotNull ItemStack stack);
 
-    @Shadow(remap = false)
-    public static void setUseTime(ItemStack stack, int useTime) {
-    }
-
-
-    @Shadow(remap = false)
-    private static int getMaxLoadTime() {
-        return 0;
-    }
-
-    @Inject(method = "inventoryTick", at = @At("HEAD"), cancellable = true)
-    private void inventoryTick(ItemStack stack, Level level, Entity entity, int i, boolean held, CallbackInfo ci) {
-        super.inventoryTick(stack, level, entity, i, held);
-        boolean using = entity instanceof LivingEntity living && living.getUseItem().equals(stack);
-        int useTime = getUseTime(stack);
-        if (level.isClientSide) {
-
-            CompoundTag tag = stack.getOrCreateTag();
-            if (tag.getInt("PrevUseTime") != tag.getInt("UseTime")) {
-                tag.putInt("PrevUseTime", getUseTime(stack));
-            }
-
-            LocalPlayerPatch localPlayerPatch = ClientEngine.getInstance().getPlayerPatch();
-            if(localPlayerPatch != null && localPlayerPatch.getEntityState().attacking()) {
-                AnimationPlayer animationPlayer = localPlayerPatch.getAnimator().getPlayerFor(null);
-                if(animationPlayer != null && animationPlayer.getAnimation().get() instanceof ScanAttackAnimation) {
-                    setUseTime(stack, (int) (animationPlayer.getElapsedTime() * 40.0F));
-                }
-            } else {
-                int maxLoadTime = getMaxLoadTime();
-                if (using && useTime < maxLoadTime) {
-                    int set = useTime + 1;
-                    setUseTime(stack, set);
-                }
-            }
-        }
-        if (!using && useTime > 0.0F) {
-            setUseTime(stack, Math.max(0, useTime - 5));
-        }
-        ci.cancel();
-    }
-
     /**
-     * 改为一根箭且削弱伤害
+     * 改为箭且削弱伤害
      */
     @Inject(method = "releaseUsing", at = @At("HEAD"), cancellable = true)
     private void tcr$releaseUsing(ItemStack stack, Level level, LivingEntity living, int timeleft, CallbackInfo ci) {
@@ -96,31 +47,6 @@ public abstract class Wrath_of_the_desertMixin extends Item {
             float f = getPowerForTime(i);
             if (f >= 0.3) {
                 if (!level.isClientSide) {
-//                    float baseYaw = player.getYRot();
-//                    float pitch = player.getXRot();
-//                    for (int j = -1; j <= 1; j++) {
-//                        float yaw = baseYaw + (j * 15);
-//                        float directionX = -Mth.sin(yaw * ((float) Math.PI / 180F)) * Mth.cos(pitch * ((float) Math.PI / 180F));
-//                        float directionY = -Mth.sin(pitch * ((float) Math.PI / 180F));
-//                        float directionZ = Mth.cos(yaw * ((float) Math.PI / 180F)) * Mth.cos(pitch * ((float) Math.PI / 180F));
-//                        double theta = yaw * (Math.PI / 180); theta += Math.PI / 2;
-//                        double vecX = Math.cos(theta);
-//                        double vecZ = Math.sin(theta);
-//                        double x = player.getX() + vecX;
-//                        double Z = player.getZ() + vecZ;
-//                        int p = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
-//                        if (pointedEntity instanceof LivingEntity target && !target.isAlliedTo(living)) {
-//                            Cursed_Sandstorm_Entity largefireball = new Cursed_Sandstorm_Entity(player, directionX, directionY, directionZ, player.level(), (float) CMConfig.CursedSandstormDamage * f + (float) CMConfig.CursedSandstormDamage * f * p * 0.05F, target);
-//                            largefireball.setPos(x, player.getEyeY() - 0.5D, Z);
-//                            largefireball.setUp(15);
-//                            level.addFreshEntity(largefireball);
-//                        }else{
-//                            Cursed_Sandstorm_Entity largefireball = new Cursed_Sandstorm_Entity(player, directionX, directionY, directionZ, player.level(), (float) CMConfig.CursedSandstormDamage * f + (float) CMConfig.CursedSandstormDamage * f * p * 0.05F, null);
-//                            largefireball.setPos(x, player.getEyeY() - 0.5D, Z);
-//                            largefireball.setUp(15);
-//                            level.addFreshEntity(largefireball);
-//                        }
-//                    }
 
                     for (int j = 0; j < 3; j++) {
                         int p = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);

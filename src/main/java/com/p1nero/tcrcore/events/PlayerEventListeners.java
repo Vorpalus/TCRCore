@@ -44,7 +44,6 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
                 DataManager.firstJoint.put(serverPlayer, true);
             }
-            DataManager.skillPoint.put(serverPlayer, 0D);
         }
     }
 
@@ -54,7 +53,6 @@ public class PlayerEventListeners {
         Level level = player.level();
         if(player instanceof ServerPlayer serverPlayer) {
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
-            DataManager.skillPoint.put(serverPlayer, 0D);
         }
     }
 

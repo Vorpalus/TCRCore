@@ -9,15 +9,12 @@
     "DodgeAnimationMixin",
     "DodgeLocationIndicatorMixin",
     "GuardSkillMixin",
-    "TakeDamageEventAttackMixin",
     "ItemMixin",
     "PlayerPatchMixin",
-    "Soul_RenderMixin",
     "Wrath_of_the_desertMixin"
   ],
   "client": [
-    "LocalPlayerPatchAccessor",
-    "Player_Ceraunus_RendererMixin"
+    "LocalPlayerPatchAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

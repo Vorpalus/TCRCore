@@ -17,8 +17,6 @@ import java.util.Set;
 public class DataManager {
     private final static Set<String> EXISTING_ID = new HashSet<>();
     public static BoolData firstJoint = new BoolData("first_joint", false);
-    public static DoubleData skillPoint = new DoubleData("skill_point", 0);
-    public static BoolData isLockOn = new BoolData("is_lock_on", false);
 
     public static void putData(Player player, String key, double value) {
         getSMCPlayer(player).putDouble(key, value);
