@@ -1,6 +1,7 @@
 package com.p1nero.tcrcore.events;
 
 
+import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.DataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
@@ -42,6 +43,7 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge tcrcore:step");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
+                serverPlayer.addItem(ModItems.CERAUNUS.get().getDefaultInstance());
                 DataManager.firstJoint.put(serverPlayer, true);
             }
         }

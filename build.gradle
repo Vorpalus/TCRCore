@@ -153,20 +153,40 @@ dependencies {
     implementation fg.deobf("libs:dodge_parry_reward:20.12.0")
     implementation fg.deobf("libs:invincible:20.12.0.0")
     implementation fg.deobf("libs:EpicFight-Nightfall:20.12.0.5")
-
-//    implementation fg.deobf("curse.maven:fast-tpa-1122207:6680358")
+    implementation fg.deobf("libs:p1nero_ec:20.12.0.0")
 
     implementation fg.deobf("curse.maven:p1neros-dialogue-lib-1274526:6583713")
 
     implementation fg.deobf("curse.maven:hunger-strike-75334:5574481")
 
-    implementation fg.deobf("curse.maven:starter-kit-390717:6429851")
-    implementation fg.deobf("curse.maven:collective-342584:6429218")
+    implementation fg.deobf("curse.maven:ob-aquamirae-536254:4616373")
+    implementation fg.deobf("curse.maven:obscure-api-638417:4616364")
 
     implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6756271")
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+
+    //结构类
+    implementation fg.deobf("curse.maven:ati-structures-964608:6730813")
+    implementation fg.deobf("libs:trek:B0.5")
+    implementation fg.deobf("curse.maven:hopo-better-underwater-ruins-632622:6337946")
+
+    implementation fg.deobf("curse.maven:travelers-titles-504908:5065825")
+    implementation fg.deobf("curse.maven:yungs-better-ocean-monuments-689238:4883003")
+    implementation fg.deobf("curse.maven:yungs-api-421850:5769971")
+
+    implementation fg.deobf("curse.maven:awesome-dungeon-edition-ocean-forge-556490:4601248")
+    implementation fg.deobf("curse.maven:library-ferret-forge-532727:4601234")
+
+    //地形群系
+    implementation "curse.maven:terralith-513688:5512076"
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
+    implementation fg.deobf("curse.maven:terrablender-563928:6290448")
+    implementation fg.deobf("curse.maven:glitchcore-955399:5787839")
+
+    implementation fg.deobf("curse.maven:ecliptic-seasons-1118306:6544587")
+
 
     implementation fg.deobf("curse.maven:embeddium-908741:5681725")
     implementation fg.deobf("curse.maven:oculus-581495:6020952")

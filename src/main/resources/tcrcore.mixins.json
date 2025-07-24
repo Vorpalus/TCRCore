@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "tcrcore.refmap.json",
   "mixins": [
+    "CaptainCorneliaMixin",
     "CeraunusMixin",
     "DodgeAnimationMixin",
     "DodgeLocationIndicatorMixin",
