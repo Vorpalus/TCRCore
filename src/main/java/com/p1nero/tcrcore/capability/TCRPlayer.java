@@ -1,11 +1,13 @@
 package com.p1nero.tcrcore.capability;
 
-import com.p1nero.dialog_lib.network.PacketRelay;
+import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.SyncTCRPlayerPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -15,6 +17,16 @@ import java.util.function.Consumer;
  */
 public class TCRPlayer {
     private CompoundTag data = new CompoundTag();
+
+    private PathfinderMob currentTalkingEntity;
+
+    public void setCurrentTalkingEntity(@Nullable PathfinderMob currentTalkingEntity) {
+        this.currentTalkingEntity = currentTalkingEntity;
+    }
+
+    public @Nullable PathfinderMob getCurrentTalkingEntity() {
+        return currentTalkingEntity;
+    }
 
     public boolean getBoolean(String key) {
         return data.getBoolean(key);
@@ -68,6 +80,14 @@ public class TCRPlayer {
     public void tick(Player player) {
         if(player.isLocalPlayer()) {
 
+        } else if(!player.level().isClientSide){
+            if (this.currentTalkingEntity != null && this.currentTalkingEntity.isAlive()) {
+                this.currentTalkingEntity.getLookControl().setLookAt(player);
+                this.currentTalkingEntity.getNavigation().stop();
+                if (this.currentTalkingEntity.distanceTo(player) > 8) {
+                    this.currentTalkingEntity = null;
+                }
+            }
         }
     }
 

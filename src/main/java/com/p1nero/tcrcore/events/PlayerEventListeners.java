@@ -1,30 +1,49 @@
 package com.p1nero.tcrcore.events;
 
 
-import com.github.L_Ender.cataclysm.init.ModItems;
+import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.capability.DataManager;
+import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
-import com.p1nero.tcrcore.gameassets.TCRSkills;
-import com.yesman.epicskills.network.NetworkManager;
-import com.yesman.epicskills.network.client.ClientBoundUnlockNode;
-import com.yesman.epicskills.registry.SkillTree;
-import com.yesman.epicskills.world.capability.AbilityPoints;
-import com.yesman.epicskills.world.capability.SkillTreeProgression;
+import com.p1nero.tcrcore.datagen.TCRAdvancementData;
+import com.p1nero.tcrcore.utils.ItemUtil;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
+import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 
 import java.util.Objects;
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class PlayerEventListeners {
+
+
+    @SubscribeEvent
+    public static void onPlayerAdvancementEarn(AdvancementEvent.AdvancementEarnEvent event) {
+        if(event.getEntity() instanceof ServerPlayer serverPlayer) {
+            String path = event.getAdvancement().getId().getPath();
+            String namespace = event.getAdvancement().getId().getNamespace();
+            if(namespace.equals(TCRCoreMod.MOD_ID)) {
+                if(path.equals("kill_pillager")) {
+                    PlayerDataManager.pillagerKilled.put(serverPlayer, true);
+                }
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_show_progress"), false);
+            }
+            if(namespace.equals("minecraft") && path.equals("recipes/transportation/oak_boat")) {
+                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("riptide_tutorial")));
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
@@ -32,8 +51,9 @@ public class PlayerEventListeners {
         Level level = player.level();
         if(player instanceof ServerPlayer serverPlayer) {
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
-            if(!DataManager.firstJoint.get(serverPlayer)) {
-                CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2);
+            if(!PlayerDataManager.firstJoint.get(serverPlayer)) {
+                TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID, serverPlayer);
+                CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule keepInventory true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule mobGriefing false");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn tcrcore:step true");
@@ -43,8 +63,17 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge tcrcore:step");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
-                serverPlayer.addItem(ModItems.CERAUNUS.get().getDefaultInstance());
-                DataManager.firstJoint.put(serverPlayer, true);
+                ItemUtil.addItem(serverPlayer, AquamiraeItems.FIN_CUTTER.get(), 1);
+                ItemUtil.addItem(serverPlayer, Items.OAK_BOAT, 1);
+                ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
+                ItemStack trident = Items.TRIDENT.getDefaultInstance();
+                trident.enchant(Enchantments.LOYALTY, 3);
+                ItemUtil.addItem(serverPlayer, trident);
+                ItemStack fishingRod = Items.FISHING_ROD.getDefaultInstance();
+                fishingRod.enchant(Enchantments.FISHING_LUCK, 3);
+                fishingRod.enchant(Enchantments.FISHING_SPEED, 3);
+                ItemUtil.addItem(serverPlayer, fishingRod);
+                PlayerDataManager.firstJoint.put(serverPlayer, true);
             }
         }
     }

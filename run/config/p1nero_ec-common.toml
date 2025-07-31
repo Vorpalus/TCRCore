@@ -5,5 +5,5 @@ ui_x = -95
 #Range: > -2147483647
 ui_y = 0
 #是否启用全局的充能设置
-global_charge = true
+global_charge = false
 

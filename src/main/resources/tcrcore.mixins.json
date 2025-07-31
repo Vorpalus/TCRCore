@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "tcrcore.refmap.json",
   "mixins": [
+    "BackpackConfigMixin",
     "CaptainCorneliaMixin",
     "CeraunusMixin",
     "DodgeAnimationMixin",
@@ -12,9 +13,13 @@
     "GuardSkillMixin",
     "ItemMixin",
     "PlayerPatchMixin",
+    "VillagerMixin",
     "Wrath_of_the_desertMixin"
   ],
   "client": [
+    "AquamiraeClientMixin",
+    "BetterAdvancementsScreenMixin",
+    "CataclysmClientEventMixin",
     "LocalPlayerPatchAccessor"
   ],
   "injectors": {

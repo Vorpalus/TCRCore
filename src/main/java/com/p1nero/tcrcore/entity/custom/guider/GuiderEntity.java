@@ -1,0 +1,192 @@
+package com.p1nero.tcrcore.entity.custom.guider;
+
+import com.obscuria.aquamirae.registry.AquamiraeItems;
+import com.p1nero.dialog_lib.api.NpcDialogueEntity;
+import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
+import com.p1nero.dialog_lib.api.component.TreeNode;
+import com.p1nero.dialog_lib.api.goal.LookAtConservingPlayerGoal;
+import com.p1nero.dialog_lib.client.screen.LinkListStreamDialogueScreenBuilder;
+import com.p1nero.fast_tpa.network.PacketRelay;
+import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.datagen.TCRAdvancementData;
+import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.WaypointUtil;
+import com.p1nero.tcrcore.utils.WorldUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import xaero.hud.minimap.waypoint.WaypointColor;
+import yesman.epicfight.api.utils.math.Vec2i;
+
+public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity {
+
+    @Nullable
+    private Player conversingPlayer;
+
+    public GuiderEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
+        super(entityType, level);
+    }
+
+    @Override
+    public boolean hurt(@NotNull DamageSource source, float value) {
+        if(source.getEntity() instanceof ServerPlayer serverPlayer) {
+            //彩蛋对话
+            if (this.getConversingPlayer() == null){
+                CompoundTag compoundTag = new CompoundTag();
+                compoundTag.putBoolean("from_hurt", true);
+                this.sendDialogTo(serverPlayer, compoundTag);
+                this.setConversingPlayer(serverPlayer);
+            } else {
+                return false;
+            }
+            source.getEntity().hurt(this.damageSources().indirectMagic(this, this), value * 0.5F);
+            EntityType.LIGHTNING_BOLT.spawn(serverPlayer.serverLevel(), serverPlayer.getOnPos(), MobSpawnType.MOB_SUMMONED);
+        }
+        return source.isCreativePlayer();
+    }
+
+    public static AttributeSupplier setAttributes() {
+        return Animal.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 20.0f)
+                .add(Attributes.ATTACK_DAMAGE, 1.0f)
+                .add(Attributes.ATTACK_SPEED, 2.0f)
+                .add(Attributes.MOVEMENT_SPEED, 0.3f)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 114514f)
+                .build();
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new LookAtConservingPlayerGoal<>(this));
+    }
+
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double p_21542_) {
+        return false;
+    }
+
+    @Override
+    protected @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            this.sendDialogTo(serverPlayer);
+        }
+        return InteractionResult.sidedSuccess(level().isClientSide);
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void openDialogueScreen(CompoundTag compoundTag) {
+        LocalPlayer localPlayer = Minecraft.getInstance().player;
+        if(localPlayer == null) {
+            return;
+        }
+        LinkListStreamDialogueScreenBuilder treeBuilder = new LinkListStreamDialogueScreenBuilder(this);
+        DialogueComponentBuilder dBuilder = new DialogueComponentBuilder(this);
+
+        if(compoundTag.getBoolean("from_hurt")) {
+            treeBuilder.start(5).addFinalChoice(6);
+        } else {
+            TreeNode root = new TreeNode(dBuilder.ans(0), dBuilder.optWithBrackets(0));//开场白 | 返回
+
+            TreeNode ans1 = new TreeNode(dBuilder.ans(1), dBuilder.optWithBrackets(1))
+                    .addChild(root)
+                    .addLeaf(dBuilder.optWithBrackets(2));
+
+            TreeNode ans2 = new TreeNode(dBuilder.ans(2), dBuilder.optWithBrackets(3))
+                    .addChild(root);
+
+            TreeNode ans3 = new TreeNode(dBuilder.ans(3), dBuilder.optWithBrackets(4))
+                    .addChild(root);
+
+            if(PlayerDataManager.pillagerKilled.get(localPlayer)) {
+                ans3 = new TreeNode(dBuilder.ans(3), dBuilder.optWithBrackets(4))
+                        .addChild(new TreeNode(dBuilder.ans(4), dBuilder.optWithBrackets(7))
+                                .addLeaf(dBuilder.optWithBrackets(5), (byte) 1));
+            }
+
+            root.addChild(ans1).addChild(ans2).addChild(ans3);
+
+            treeBuilder.setAnswerRoot(root);
+        }
+        if (!treeBuilder.isEmpty()) {
+            Minecraft.getInstance().setScreen(treeBuilder.build());
+        }
+    }
+
+    @Override
+    public void handleNpcInteraction(ServerPlayer serverPlayer, int code) {
+        if(code == 1) {
+            if(!PlayerDataManager.mapMarked.get(serverPlayer)) {
+                ItemUtil.addItem(serverPlayer, AquamiraeItems.SHELL_HORN.get(), 1);//给号角
+                //地图上标记位置
+                Vec2i cursed = WorldUtil.getNearbyStructurePos(serverPlayer, "aquamirae:ship");//船长
+                if(cursed != null) {
+                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(cursed.x, 64, cursed.y), WaypointColor.BLUE);
+                }
+                Vec2i desert = WorldUtil.getNearbyStructurePos(serverPlayer, "betteroceanmonuments:ocean_monument");//远古守卫者
+                if(desert != null) {
+                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(desert.x, 64, desert.y), WaypointColor.YELLOW);
+                }
+                Vec2i flame = WorldUtil.getNearbyStructurePos(serverPlayer, "lios_outlandish_villages:spiral_tower_village_sea");//螺旋塔村
+                if(flame != null) {
+                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(flame.x, 64, flame.y), WaypointColor.RED);
+                }
+
+                Vec2i abyss = WorldUtil.getNearbyStructurePos(serverPlayer, "trek:overworld/very_rare/coves");//隐秘水湾
+                if(abyss != null) {
+                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 64, abyss.y), WaypointColor.DARK_BLUE);
+                }
+
+                Vec2i storm = WorldUtil.getNearbyStructurePos(serverPlayer, "trek:overworld/very_rare/floating_farm_large");//天空岛
+                if(storm != null) {
+                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(storm.x, 230, storm.y), WaypointColor.AQUA);
+                }
+
+                serverPlayer.level().playSound(null, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), SoundEvents.END_PORTAL_SPAWN, serverPlayer.getSoundSource(), 1.0F, 1.0F);
+                PlayerDataManager.mapMarked.put(serverPlayer, true);
+            }
+
+            serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
+        }
+        this.setConversingPlayer(null);
+    }
+
+    @Override
+    public void setConversingPlayer(@Nullable Player player) {
+        this.conversingPlayer = player;
+    }
+
+    @Override
+    public @Nullable Player getConversingPlayer() {
+        return conversingPlayer;
+    }
+
+}

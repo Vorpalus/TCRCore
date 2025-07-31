@@ -1,6 +1,6 @@
 package com.p1nero.tcrcore.capability;
 
-import com.p1nero.dialog_lib.network.PacketRelay;
+import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PersistentBoolDataSyncPacket;
 import com.p1nero.tcrcore.network.packet.clientbound.PersistentDoubleDataSyncPacket;
@@ -14,9 +14,18 @@ import net.minecraft.world.entity.player.Player;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DataManager {
+public class PlayerDataManager {
     private final static Set<String> EXISTING_ID = new HashSet<>();
     public static BoolData firstJoint = new BoolData("first_joint", false);
+    public static BoolData dodged = new BoolData("dodged", false);
+    public static BoolData parried = new BoolData("parried", false);
+    public static BoolData pillagerKilled = new BoolData("pillager_killed", false);//初始任务
+    public static BoolData mapMarked = new BoolData("map_marked", false);//是否标记过地图了，省的二次搜索地图浪费
+    public static BoolData stormEyeTraded = new BoolData("storm_eye_traded", false);//是否与村民交易过眼睛
+    public static BoolData flameEyeTraded = new BoolData("flame_eye_traded", false);//是否与村民交易过眼睛
+    public static BoolData abyssEyeTraded = new BoolData("abyss_eye_traded", false);//是否与村民交易过眼睛
+    public static BoolData cursedEyeTraded = new BoolData("cursed_eye_traded", false);//是否与村民交易过眼睛
+    public static BoolData desertEyeTraded = new BoolData("desert_eye_traded", false);//是否与村民交易过眼睛
 
     public static void putData(Player player, String key, double value) {
         getSMCPlayer(player).putDouble(key, value);

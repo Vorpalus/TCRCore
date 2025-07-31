@@ -138,6 +138,17 @@ repositories {
         }
     }
 
+    maven {
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
+
     flatDir {
         dir 'libs'
     }
@@ -155,22 +166,31 @@ dependencies {
     implementation fg.deobf("libs:EpicFight-Nightfall:20.12.0.5")
     implementation fg.deobf("libs:p1nero_ec:20.12.0.0")
 
-    implementation fg.deobf("curse.maven:p1neros-dialogue-lib-1274526:6583713")
+    implementation fg.deobf("libs:p1nero_dl:1.3.0")
 
     implementation fg.deobf("curse.maven:hunger-strike-75334:5574481")
 
     implementation fg.deobf("curse.maven:ob-aquamirae-536254:4616373")
     implementation fg.deobf("curse.maven:obscure-api-638417:4616364")
 
-    implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6756271")
+    implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6818116")
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+
+    //钓鱼难度
+    implementation fg.deobf("curse.maven:stardew-fishing-1066037:6434447")
+
+    //人鱼
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.4.7")
 
     //结构类
     implementation fg.deobf("curse.maven:ati-structures-964608:6730813")
     implementation fg.deobf("libs:trek:B0.5")
     implementation fg.deobf("curse.maven:hopo-better-underwater-ruins-632622:6337946")
+    implementation fg.deobf("curse.maven:when-dungeons-arise-442508:4983862")
+    //螺旋塔村
+    implementation "curse.maven:spiral-tower-villages-1280127:6705885"
 
     implementation fg.deobf("curse.maven:travelers-titles-504908:5065825")
     implementation fg.deobf("curse.maven:yungs-better-ocean-monuments-689238:4883003")
@@ -179,17 +199,46 @@ dependencies {
     implementation fg.deobf("curse.maven:awesome-dungeon-edition-ocean-forge-556490:4601248")
     implementation fg.deobf("curse.maven:library-ferret-forge-532727:4601234")
 
+    //背包
+    implementation fg.deobf("curse.maven:sophisticated-core-618298:6266807")
+    implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:6246607")
+
     //地形群系
     implementation "curse.maven:terralith-513688:5512076"
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
     implementation fg.deobf("curse.maven:terrablender-563928:6290448")
     implementation fg.deobf("curse.maven:glitchcore-955399:5787839")
 
-    implementation fg.deobf("curse.maven:ecliptic-seasons-1118306:6544587")
+//    implementation fg.deobf("curse.maven:obscure-tooltips-715660:4686579")//FIXME runData时需注释掉
+//    implementation fg.deobf("curse.maven:upgrade-aquatic-326895:6393133")//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:blueprint-382216:6408581")
 
+    implementation fg.deobf("curse.maven:lootr-361276:6330326")
+
+    implementation fg.deobf("curse.maven:small-ships-450659:5566900")
+
+    //音效，脚步
+    implementation fg.deobf("curse.maven:sound-physics-remastered-535489:6352920")
+    implementation fg.deobf("curse.maven:presence-footsteps-forge-433068:5015286")
+    implementation fg.deobf("curse.maven:ambientsounds-254284:6570130")
+    implementation fg.deobf("curse.maven:creativecore-257814:6383884")
+
+    implementation fg.deobf("curse.maven:better-advancements-272515:5454907")
+
+    implementation fg.deobf("curse.maven:inventory-profiles-next-495267:6095062")
+    implementation fg.deobf("curse.maven:libipn-679177:5208511")
+    implementation fg.deobf("curse.maven:kotlin-for-forge-351264:5402061")
+
+    implementation fg.deobf("curse.maven:xaeros-world-map-317780:6212636")//大地图
+    implementation fg.deobf("curse.maven:xaeros-minimap-263420:6306152")//小地图
+
+    implementation fg.deobf("curse.maven:fast-tpa-1122207:6680358")
 
     implementation fg.deobf("curse.maven:embeddium-908741:5681725")
     implementation fg.deobf("curse.maven:oculus-581495:6020952")
+
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
+    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

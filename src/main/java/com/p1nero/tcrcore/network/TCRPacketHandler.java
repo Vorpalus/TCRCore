@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.network;
 import com.p1nero.dialog_lib.network.packet.BasePacket;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.packet.clientbound.*;
+import com.p1nero.tcrcore.network.packet.serverbound.ExecuteRiptidePacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
@@ -20,6 +21,8 @@ public class TCRPacketHandler {
     private static int index;
 
     public static synchronized void register() {
+        register(AddWaypointPacket.class, AddWaypointPacket::decode);
+
         register(PersistentBoolDataSyncPacket.class, PersistentBoolDataSyncPacket::decode);
         register(PersistentDoubleDataSyncPacket.class, PersistentDoubleDataSyncPacket::decode);
         register(PersistentStringDataSyncPacket.class, PersistentStringDataSyncPacket::decode);
@@ -27,6 +30,10 @@ public class TCRPacketHandler {
         register(SetTargetPacket.class, SetTargetPacket::decode);
         register(SyncTCRPlayerPacket.class, SyncTCRPlayerPacket::decode);
         register(AddAvlEntityAfterImageParticle.class, AddAvlEntityAfterImageParticle::decode);
+
+        register(ExecuteRiptidePacket.class, ExecuteRiptidePacket::decode);
+
+        register(OpenBanPortalScreenPacket.class, OpenBanPortalScreenPacket::decode);
     }
 
     private static <MSG extends BasePacket> void register(final Class<MSG> packet, Function<FriendlyByteBuf, MSG> decoder) {

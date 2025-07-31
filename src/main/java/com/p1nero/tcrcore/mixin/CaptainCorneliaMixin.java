@@ -1,15 +1,21 @@
 package com.p1nero.tcrcore.mixin;
 
+import com.obscuria.aquamirae.AquamiraeClient;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import com.obscuria.aquamirae.common.items.weapon.DividerItem;
 import com.obscuria.aquamirae.common.items.weapon.WhisperOfTheAbyssItem;
+import com.obscuria.aquamirae.registry.AquamiraeSounds;
+import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,8 +36,19 @@ public abstract class CaptainCorneliaMixin extends Monster {
     }
 
     @Redirect(method = "baseTick", at = @At(value = "INVOKE", target = "Lcom/obscuria/aquamirae/common/entities/CaptainCornelia;heal(F)V"))
-    private void tcr$baseTick(CaptainCornelia instance, float v) {
+    private void tcr$baseTick$heal(CaptainCornelia instance, float v) {
 
+    }
+
+    @Inject(method = "baseTick", at = @At("TAIL"))
+    private void tcr$baseTick(CallbackInfo ci) {
+        if (this.level().isClientSide) {
+            Vec3 center = this.position();
+            if(this.isAlive()) {
+                this.level().getEntitiesOfClass(Player.class, (new AABB(center, center)).inflate(32.0F)).forEach(player ->
+                        CorneliaMusicPlayer.playBossMusic(this, AquamiraeSounds.MUSIC_FORSAKEN_DROWNAGE.get(), 32));
+            }
+        }
     }
 
     @Inject(method = "doHurtTarget(Lnet/minecraft/world/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)

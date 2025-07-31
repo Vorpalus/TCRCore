@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.network.packet.clientbound;
 
 import com.p1nero.dialog_lib.network.packet.BasePacket;
-import com.p1nero.tcrcore.capability.DataManager;
+import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.network.packet.clientbound.helper.DistHelper;
 import com.p1nero.tcrcore.network.packet.clientbound.helper.TCRClientHandler;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,11 +27,11 @@ public record PersistentDoubleDataSyncPacket(String key, boolean isLocked, doubl
     public void execute(Player player) {
         if(player != null) {
             if (isLocked) {
-                DataManager.putData(player, key + "isLocked", true);
+                PlayerDataManager.putData(player, key + "isLocked", true);
                 return;
             }
-            DataManager.putData(player, key, value);
-            DataManager.putData(player, key + "isLocked", false);
+            PlayerDataManager.putData(player, key, value);
+            PlayerDataManager.putData(player, key + "isLocked", false);
         }
         DistHelper.runClient(() -> () -> {
             TCRClientHandler.syncDoubleData(key, isLocked, value);

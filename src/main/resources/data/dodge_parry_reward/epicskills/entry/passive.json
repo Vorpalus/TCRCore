@@ -3,12 +3,12 @@
 		{
 			"skill": "dodge_parry_reward:health_boost1",
 			"position_in_screen": [20, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:health_boost2",
 			"position_in_screen": [20, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:health_boost1"
@@ -18,7 +18,7 @@
 		{
 			"skill": "dodge_parry_reward:health_boost3",
 			"position_in_screen": [20, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:health_boost2"
@@ -28,7 +28,7 @@
 		{
 			"skill": "dodge_parry_reward:health_boost4",
 			"position_in_screen": [20, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:health_boost3"
@@ -40,12 +40,12 @@
 		{
 			"skill": "dodge_parry_reward:absorb1",
 			"position_in_screen": [90, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:absorb2",
 			"position_in_screen": [90, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:absorb1"
@@ -55,7 +55,7 @@
 		{
 			"skill": "dodge_parry_reward:absorb3",
 			"position_in_screen": [90, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:absorb2"
@@ -65,7 +65,7 @@
 		{
 			"skill": "dodge_parry_reward:absorb4",
 			"position_in_screen": [90, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:absorb3"
@@ -77,12 +77,12 @@
 		{
 			"skill": "dodge_parry_reward:heal1",
 			"position_in_screen": [160, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:heal2",
 			"position_in_screen": [160, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:heal1"
@@ -92,7 +92,7 @@
 		{
 			"skill": "dodge_parry_reward:heal3",
 			"position_in_screen": [160, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:heal2"
@@ -102,7 +102,7 @@
 		{
 			"skill": "dodge_parry_reward:heal4",
 			"position_in_screen": [160, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:heal3"
@@ -114,12 +114,12 @@
 		{
 			"skill": "dodge_parry_reward:resist1",
 			"position_in_screen": [230, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:resist2",
 			"position_in_screen": [230, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:resist1"
@@ -129,7 +129,7 @@
 		{
 			"skill": "dodge_parry_reward:resist3",
 			"position_in_screen": [230, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:resist2"
@@ -139,7 +139,7 @@
 		{
 			"skill": "dodge_parry_reward:resist4",
 			"position_in_screen": [230, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:resist3"
@@ -151,12 +151,12 @@
 		{
 			"skill": "dodge_parry_reward:stun_imm1",
 			"position_in_screen": [300, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:stun_imm2",
 			"position_in_screen": [300, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:stun_imm1"
@@ -166,7 +166,7 @@
 		{
 			"skill": "dodge_parry_reward:stun_imm3",
 			"position_in_screen": [300, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:stun_imm2"
@@ -176,7 +176,7 @@
 		{
 			"skill": "dodge_parry_reward:stun_imm4",
 			"position_in_screen": [300, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:stun_imm3"
@@ -188,12 +188,12 @@
 		{
 			"skill": "dodge_parry_reward:damage_boost1",
 			"position_in_screen": [370, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:damage_boost2",
 			"position_in_screen": [370, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:damage_boost1"
@@ -203,7 +203,7 @@
 		{
 			"skill": "dodge_parry_reward:damage_boost3",
 			"position_in_screen": [370, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:damage_boost2"
@@ -213,7 +213,7 @@
 		{
 			"skill": "dodge_parry_reward:damage_boost4",
 			"position_in_screen": [370, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:damage_boost3"
@@ -225,12 +225,12 @@
 		{
 			"skill": "dodge_parry_reward:speed1",
 			"position_in_screen": [440, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:speed2",
 			"position_in_screen": [440, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:speed1"
@@ -240,7 +240,7 @@
 		{
 			"skill": "dodge_parry_reward:speed3",
 			"position_in_screen": [440, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:speed2"
@@ -250,7 +250,7 @@
 		{
 			"skill": "dodge_parry_reward:speed4",
 			"position_in_screen": [440, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:speed3"
@@ -263,12 +263,12 @@
 		{
 			"skill": "dodge_parry_reward:stamina1",
 			"position_in_screen": [510, 30],
-			"ability_points": 1
+			"ability_points": 2
 		},
 		{
 			"skill": "dodge_parry_reward:stamina2",
 			"position_in_screen": [510, 90],
-			"ability_points": 1,
+			"ability_points": 4,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:stamina1"
@@ -278,7 +278,7 @@
 		{
 			"skill": "dodge_parry_reward:stamina3",
 			"position_in_screen": [510, 150],
-			"ability_points": 1,
+			"ability_points": 6,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:stamina2"
@@ -288,7 +288,7 @@
 		{
 			"skill": "dodge_parry_reward:stamina4",
 			"position_in_screen": [510, 210],
-			"ability_points": 1,
+			"ability_points": 8,
 			"parents": [
 				{
 					"skill": "dodge_parry_reward:stamina3"
