@@ -1,6 +1,7 @@
 package com.p1nero.tcrcore.datagen.lang;
 
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.client.KeyMappings;
 import com.p1nero.tcrcore.client.gui.BanPortalScreenHandler;
 import com.p1nero.tcrcore.entity.TCREntities;
@@ -14,8 +15,18 @@ public class TCRZHLangGenerator extends TCRLangProvider {
 
     @Override
     protected void addTranslations() {
+        this.add("itemGroup.tcr.items", "远梦之棺 —— 核心 物品");
         this.add("key.categories." + TCRCoreMod.MOD_ID, "远梦之棺 —— 核心");
         this.addKeyMapping(KeyMappings.RIPTIDE, "激流");
+
+        this.add(TCRBlocks.CURSED_ALTAR_BLOCK.get(), "诅咒祭坛");
+        this.add(TCRBlocks.ABYSS_ALTAR_BLOCK.get(), "深渊祭坛");
+        this.add(TCRBlocks.STORM_ALTAR_BLOCK.get(), "风暴祭坛");
+        this.add(TCRBlocks.FLAME_ALTAR_BLOCK.get(), "烈焰祭坛");
+        this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
+
+        this.addInfo("enter_dimension_tip", "潜行时右键以进入Boss幻境");
+        this.addInfo("use_true_eye_tip", "请使用正确的眼睛右键");
 
         this.addInfo("add_item_tip", "获得新物品：%s × %d！");
         this.addInfo("skill_point_lack", "释放该技能需 %d 技能点");
@@ -32,11 +43,11 @@ public class TCRZHLangGenerator extends TCRLangProvider {
 
         this.addAdvancement(TCRCoreMod.MOD_ID, "远梦之棺", "梦开始的地方");
         this.addAdvancement("kill_pillager", "投名状", "任务已经完成，该回去找守护神了。");
-        this.addAdvancement("storm_eye", "风暴的回响", "与[天空岛]的村民交易，夺回了风暴的回响。");//TODO 补全该地的故事
-        this.addAdvancement("abyss_eye", "深渊的回响", "与[隐秘水湾]的村民交易，夺回了深渊的回响。");
-        this.addAdvancement("flame_eye", "烈焰的回响", "与[螺旋塔村]的村民交易，夺回了烈焰的回响。");
-        this.addAdvancement("desert_eye", "沙漠的回响", "击败[海底神殿]的远古守卫者，夺回了烈焰的回响。");
-        this.addAdvancement("cursed_eye", "诅咒的回响", "击败可妮莉娅(Cornelia)船长的幽灵，夺回了诅咒的回响。");
+        this.addAdvancement("storm_eye", "风暴的回响", "与[天空岛]的村民交易，夺回了风暴的回响。§o当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土");
+        this.addAdvancement("abyss_eye", "深渊的回响", "与[隐秘水湾]的村民交易，夺回了深渊的回响。§o深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城");
+        this.addAdvancement("flame_eye", "烈焰的回响", "与[螺旋塔村]的村民交易，夺回了烈焰的回响。§o岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台");
+        this.addAdvancement("desert_eye", "沙漠的回响", "击败[海底神殿]的远古守卫者，夺回了烈焰的回响。§o守卫者不是怪物，它们是子民自愿化身的活体墓碑");
+        this.addAdvancement("cursed_eye", "诅咒的回响", "击败可妮莉娅(Cornelia)船长的幽灵，夺回了诅咒的回响。§o当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船");
 
         this.addAdvancement("flame_kill", "伊格尼斯(Ignis)之魂", "击败伊格尼斯(Ignis)");
         this.addAdvancement("storm_kill", "斯库拉(Scylla)之魂", "击败斯库拉(Scylla)");

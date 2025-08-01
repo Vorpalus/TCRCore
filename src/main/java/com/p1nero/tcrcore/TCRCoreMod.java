@@ -2,7 +2,11 @@ package com.p1nero.tcrcore;
 
 import com.mojang.logging.LogUtils;
 import com.p1nero.invincible.Config;
+import com.p1nero.tcrcore.block.TCRBlocks;
+import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
 import com.p1nero.tcrcore.entity.TCREntities;
+import com.p1nero.tcrcore.item.TCRItemTabs;
+import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -23,6 +27,10 @@ public class TCRCoreMod {
         IEventBus bus = context.getModEventBus();
         bus.addListener(this::commonSetup);
         TCREntities.REGISTRY.register(bus);
+        TCRBlocks.REGISTRY.register(bus);
+        TCRBlockEntities.REGISTRY.register(bus);
+        TCRItems.REGISTRY.register(bus);
+        TCRItemTabs.REGISTRY.register(bus);
         context.registerConfig(ModConfig.Type.COMMON, TCRConfig.SPEC);
     }
 

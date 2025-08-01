@@ -17,6 +17,7 @@ public class TCRBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+//        blockWithItem(TCRBlocks.STORM_ALTAR_BLOCK);
     }
 
     private void saplingBlock(RegistryObject<Block> blockRegistryObject) {
