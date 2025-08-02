@@ -141,7 +141,7 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
                 if(abstractAltarBlockEntity.isActivated) {
                     if(pLevel.getGameTime() % 10 == 0) {
                         double rx = pPos.getX() + pLevel.getRandom().nextFloat();
-                        double ry = pPos.getY() + 1 + pLevel.getRandom().nextFloat();
+                        double ry = pPos.getY() + pLevel.getRandom().nextFloat();
                         double rz = pPos.getZ() + pLevel.getRandom().nextFloat();
                         pLevel.addParticle(abstractAltarBlockEntity.getSpawnerParticle(), rx, ry, rz ,0.0D, 0.0D, 0.0D);
                     }

@@ -181,8 +181,7 @@ dependencies {
     //钓鱼难度
     implementation fg.deobf("curse.maven:stardew-fishing-1066037:6434447")
 
-    //人鱼
-    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.4.7")
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.7.3")
 
     //结构类
     implementation fg.deobf("curse.maven:ati-structures-964608:6730813")
@@ -216,6 +215,10 @@ dependencies {
     implementation fg.deobf("curse.maven:lootr-361276:6330326")
 
     implementation fg.deobf("curse.maven:small-ships-450659:5566900")
+
+    //传送石
+    implementation fg.deobf("curse.maven:waystones-245755:6270584")
+    implementation fg.deobf("curse.maven:balm-531761:6362504")
 
     //音效，脚步
     implementation fg.deobf("curse.maven:sound-physics-remastered-535489:6352920")

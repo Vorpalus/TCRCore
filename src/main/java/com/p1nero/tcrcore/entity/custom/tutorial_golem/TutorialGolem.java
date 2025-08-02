@@ -2,7 +2,8 @@ package com.p1nero.tcrcore.entity.custom.tutorial_golem;
 
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
-import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -40,7 +41,10 @@ public class TutorialGolem extends IronGolem {
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource source, float p_28849_) {
+    public boolean hurt(@NotNull DamageSource source, float value) {
+        if(source.getEntity() instanceof ServerPlayer serverPlayer) {
+            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("hurt_damage", value).withStyle(ChatFormatting.RED), false);
+        }
         return source.isCreativePlayer();
     }
 
@@ -65,21 +69,25 @@ public class TutorialGolem extends IronGolem {
      */
     private boolean shouldAttack(LivingEntity living) {
         if(living instanceof ServerPlayer serverPlayer) {
-            if(!PlayerDataManager.dodged.get(serverPlayer)) {
-                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("dodge_tutorial")));
-                serverPlayer.connection.send(new ClientboundSetSubtitleTextPacket(TCRCoreMod.getInfo("dodge_tutorial_sub_title")));//提示水下释放变为闪避
-                return true;
-            }
-            if(!PlayerDataManager.parried.get(serverPlayer)) {
-                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("parry_tutorial")));
-                serverPlayer.connection.send(new ClientboundSetSubtitleTextPacket(TCRCoreMod.getInfo("parry_tutorial_sub_title")));
-            }
+            return !PlayerDataManager.dodged.get(serverPlayer) || !PlayerDataManager.parried.get(serverPlayer);
         }
         return false;
     }
 
+    /**
+     * 没完成就不断生提示
+     */
     @Override
-    public boolean doHurtTarget(@NotNull Entity entity) {
-        return super.doHurtTarget(entity);
+    public void baseTick() {
+        super.baseTick();
+        if(this.getTarget() instanceof ServerPlayer serverPlayer && this.tickCount % 60 == 0) {
+            if(!PlayerDataManager.dodged.get(serverPlayer)) {
+                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("dodge_tutorial")));
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("perfect_dodge_tutorial"), true);
+            } else if(!PlayerDataManager.parried.get(serverPlayer)) {
+                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("parry_tutorial")));
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("perfect_parry_tutorial"), true);
+            }
+        }
     }
 }

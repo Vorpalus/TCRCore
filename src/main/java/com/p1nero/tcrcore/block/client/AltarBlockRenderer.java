@@ -27,17 +27,18 @@ public class AltarBlockRenderer <T extends AbstractAltarBlockEntity> implements 
                 stack = altarBlockEntity.getItemInnate().getDefaultInstance();
             }
             poseStack.pushPose();
-            poseStack.translate(0.5F, 1.5F, 0.5F);
+            poseStack.translate(0.5F, 0.35F, 0.5F);
             float time = (altarBlockEntity.getLevel().getGameTime() + partialTick) * 0.05F;
             float floatOffset = (float) Math.sin(time * 2.0F) * 0.1F;
             poseStack.translate(0.0F, floatOffset, 0.0F);
             poseStack.mulPose(Axis.YP.rotation(time));
-            float scale = 1.0F + (float) Math.sin(time * 3.0F) * 0.1F;
+            float scale = 1.4F + (float) Math.sin(time * 3.0F) * 0.1F;
             poseStack.scale(scale, scale, scale);
             BakedModel model = Minecraft.getInstance().getItemRenderer().getItemModelShaper().getItemModel(stack);
             Minecraft.getInstance().getItemRenderer().render(stack, ItemDisplayContext.GROUND,false,poseStack, bufferSource, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, model);
-
             poseStack.popPose();
+
+            //TODO 玩家击败boss则画信标
         }
     }
 

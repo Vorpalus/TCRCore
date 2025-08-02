@@ -30,7 +30,7 @@ public abstract class TCRLangProvider extends LanguageProvider {
     }
 
     public void addInfo(String key, String content) {
-        this.add("info.smc." + key, content);
+        this.add("info.tcr." + key, content);
     }
 
     public void addTask(String key, String task, String content) {
@@ -155,39 +155,39 @@ public abstract class TCRLangProvider extends LanguageProvider {
     }
 
     public void addScreenName(String key, String name) {
-        this.add("screen.smc." + key, name);
+        this.add("screen.tcr." + key, name);
     }
 
     public void addScreenAns(String key, int id, String text) {
-        this.add("screen.smc.ans." + key + "_" + id, text);
+        this.add("screen.tcr.ans." + key + "_" + id, text);
     }
 
     public void addScreenOpt(String key, int id, String text) {
-        this.add("screen.smc.opt." + key + "_" + id, text);
+        this.add("screen.tcr.opt." + key + "_" + id, text);
     }
 
     public void addVillagerName(String profession, String text) {
-        this.add("villager.smc." + profession.toLowerCase(Locale.ROOT) + ".key", text);
+        this.add("villager.tcr." + profession.toLowerCase(Locale.ROOT) + ".key", text);
     }
 
     public void addVillagerAns(String profession, int id, String text) {
-        this.add("villager.smc." + profession.toLowerCase(Locale.ROOT) + ".ans." + id, text);
+        this.add("villager.tcr." + profession.toLowerCase(Locale.ROOT) + ".ans." + id, text);
     }
 
     public void addVillagerOpt(String profession, int id, String text) {
-        this.add("villager.smc." + profession.toLowerCase(Locale.ROOT) + ".opt." + id, text);
+        this.add("villager.tcr." + profession.toLowerCase(Locale.ROOT) + ".opt." + id, text);
     }
 
     public void addVillagerName(VillagerProfession profession, String text) {
-        this.add("villager.smc." + profession.name().toLowerCase(Locale.ROOT) + ".key", text);
+        this.add("villager.tcr." + profession.name().toLowerCase(Locale.ROOT) + ".key", text);
     }
 
     public void addVillagerAns(VillagerProfession profession, int id, String text) {
-        this.add("villager.smc." + profession.name().toLowerCase(Locale.ROOT) + ".ans." + id, text);
+        this.add("villager.tcr." + profession.name().toLowerCase(Locale.ROOT) + ".ans." + id, text);
     }
 
     public void addVillagerOpt(VillagerProfession profession, int id, String text) {
-        this.add("villager.smc." + profession.name().toLowerCase(Locale.ROOT) + ".opt." + id, text);
+        this.add("villager.tcr." + profession.name().toLowerCase(Locale.ROOT) + ".opt." + id, text);
     }
 
     public void addDialogEntityName(EntityType<?> entity, String text) {

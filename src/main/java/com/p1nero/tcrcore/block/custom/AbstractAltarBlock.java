@@ -6,8 +6,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.AbstractGlassBlock;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -16,7 +16,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractAltarBlock extends BaseEntityBlock {
+public abstract class AbstractAltarBlock extends AbstractGlassBlock implements EntityBlock {
 
     public AbstractAltarBlock(Properties properties) {
         super(properties);
@@ -31,12 +31,6 @@ public abstract class AbstractAltarBlock extends BaseEntityBlock {
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
-
-
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
-        return RenderShape.MODEL;
-    }
-
 
     @Nullable
     @Override

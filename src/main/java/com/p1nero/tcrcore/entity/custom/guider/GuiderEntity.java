@@ -6,10 +6,8 @@ import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.api.component.TreeNode;
 import com.p1nero.dialog_lib.api.goal.LookAtConservingPlayerGoal;
 import com.p1nero.dialog_lib.client.screen.LinkListStreamDialogueScreenBuilder;
-import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
-import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
@@ -36,11 +34,21 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 import xaero.hud.minimap.waypoint.WaypointColor;
 import yesman.epicfight.api.utils.math.Vec2i;
 
-public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity {
+public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, GeoEntity {
 
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     @Nullable
     private Player conversingPlayer;
 
@@ -127,9 +135,10 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity {
                     .addChild(root);
 
             if(PlayerDataManager.pillagerKilled.get(localPlayer)) {
-                ans3 = new TreeNode(dBuilder.ans(3), dBuilder.optWithBrackets(4))
-                        .addChild(new TreeNode(dBuilder.ans(4), dBuilder.optWithBrackets(7))
-                                .addLeaf(dBuilder.optWithBrackets(5), (byte) 1));
+                ans3 = new TreeNode(dBuilder.ans(4), dBuilder.optWithBrackets(7))
+                        .addLeaf(dBuilder.optWithBrackets(5), (byte) 1);
+                root.addChild(new TreeNode(dBuilder.ans(6), dBuilder.optWithBrackets(8))
+                        .addChild(root));
             }
 
             root.addChild(ans1).addChild(ans2).addChild(ans3);
@@ -189,4 +198,17 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity {
         return conversingPlayer;
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, this::deployAnimController));
+    }
+
+    protected <E extends GuiderEntity> PlayState deployAnimController(final AnimationState<E> state) {
+        return state.setAndContinue(IDLE);
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
+    }
 }

@@ -39,15 +39,15 @@ public class TCRCoreMod {
     }
 
     public static MutableComponent getInfo(String key) {
-        return Component.translatable("info.smc." + key);
+        return Component.translatable("info.tcr." + key);
     }
 
     public static String getInfoKey(String key) {
-        return "info.smc." + key;
+        return "info.tcr." + key;
     }
 
     public static MutableComponent getInfo(String key, Object... objects) {
-        return Component.translatable("info.smc." + key, objects);
+        return Component.translatable("info.tcr." + key, objects);
     }
 
 }
