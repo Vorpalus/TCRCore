@@ -5,6 +5,7 @@ import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.cataclysm_dimension.worldgen.portal.CDNetherTeleporter;
 import com.p1nero.cataclysm_dimension.worldgen.portal.CDTeleporter;
 import com.p1nero.tcrcore.TCRCoreMod;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -128,10 +129,6 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PORTAL_TRAVEL), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 }
             }
-        } else if(this.isActivated) {
-            pPlayer.displayClientMessage(TCRCoreMod.getInfo("enter_dimension_tip"), true);
-        } else {
-            pPlayer.displayClientMessage(TCRCoreMod.getInfo("use_true_eye_tip"), true);
         }
     }
 
@@ -144,11 +141,17 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
                         double ry = pPos.getY() + pLevel.getRandom().nextFloat();
                         double rz = pPos.getZ() + pLevel.getRandom().nextFloat();
                         pLevel.addParticle(abstractAltarBlockEntity.getSpawnerParticle(), rx, ry, rz ,0.0D, 0.0D, 0.0D);
+
+                        Vec3 center = pPos.getCenter();
+                        pLevel.getEntitiesOfClass(Player.class, (new AABB(center, center)).inflate(5.0F)).forEach(player ->
+                                player.displayClientMessage(TCRCoreMod.getInfo("enter_dimension_tip"), true));
                     }
                 } else {
-                    Vec3 center = pPos.getCenter();
-                    pLevel.getEntitiesOfClass(Player.class, (new AABB(center, center)).inflate(5.0F)).forEach(player ->
-                            player.displayClientMessage(TCRCoreMod.getInfo("use_true_eye_tip"), true));
+                    if(pLevel.getGameTime() % 10 == 0) {
+                        Vec3 center = pPos.getCenter();
+                        pLevel.getEntitiesOfClass(Player.class, (new AABB(center, center)).inflate(5.0F)).forEach(player ->
+                                player.displayClientMessage(TCRCoreMod.getInfo("use_true_eye_tip", abstractAltarBlockEntity.itemInnate.getDescription().copy().withStyle(ChatFormatting.GOLD)), true));
+                    }
                 }
             } else if(pLevel.getGameTime() % 120 == 0 && abstractAltarBlockEntity.isActivated){
                 pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BEACON_AMBIENT, SoundSource.BLOCKS, 1.0F, 1.0F);

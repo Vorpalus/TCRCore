@@ -9,12 +9,17 @@ import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.monster.ElderGuardian;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingBreatheEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -63,6 +68,16 @@ public class LivingEntityEventListeners {
             if(player.tickCount % 2 == 0) {
                 event.setConsumeAirAmount(0);
             }
+        }
+    }
+
+    /**
+     * 出生地防刷怪
+     */
+    @SubscribeEvent
+    public static void onLivingSpawn(MobSpawnEvent.PositionCheck event){
+        if(event.getEntity().position().horizontalDistance() < 300 && event.getEntity() instanceof Enemy) {
+            event.setResult(Event.Result.DENY);
         }
     }
 }

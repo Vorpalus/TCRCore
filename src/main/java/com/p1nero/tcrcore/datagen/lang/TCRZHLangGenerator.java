@@ -26,7 +26,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
 
         this.addInfo("enter_dimension_tip", "潜行时右键以进入Boss幻境");
-        this.addInfo("use_true_eye_tip", "请使用对应的眼睛右键祭坛核心");
+        this.addInfo("use_true_eye_tip", "请使用 [%s] 右键祭坛核心");
 
         this.addInfo("add_item_tip", "获得新物品：%s × %d！");
         this.addInfo("skill_point_lack", "释放该技能需 %d 技能点");
@@ -37,6 +37,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addInfo("hurt_damage", "造成[ %.1f ]点伤害！");
         this.addInfo("parry_tutorial", "按下§6[右键]§f以进行格挡");
         this.addInfo("perfect_parry_tutorial", "§c抓住实机格挡以触发完美招架！");
+        this.addInfo("you_pass", "§6你过关！！");
 
         this.addInfo("press_to_open_map", "按下§6[M]键§f以查看地图");
 

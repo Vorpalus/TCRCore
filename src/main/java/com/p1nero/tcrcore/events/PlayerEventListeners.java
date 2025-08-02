@@ -66,6 +66,7 @@ public class PlayerEventListeners {
                 ItemUtil.addItem(serverPlayer, AquamiraeItems.FIN_CUTTER.get(), 1);
                 ItemUtil.addItem(serverPlayer, Items.OAK_BOAT, 1);
                 ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
+                ItemUtil.addItem(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone, 1);
                 ItemStack trident = Items.TRIDENT.getDefaultInstance();
                 trident.enchant(Enchantments.LOYALTY, 3);
                 ItemUtil.addItem(serverPlayer, trident);
