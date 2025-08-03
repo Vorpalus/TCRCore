@@ -240,6 +240,7 @@ dependencies {
     implementation fg.deobf("curse.maven:resourceful-config-714059:6231176")
     implementation fg.deobf("curse.maven:structure-layout-optimizer-1087831:6125412")
     implementation fg.deobf("curse.maven:noisium-930207:5650506")
+    implementation fg.deobf("curse.maven:async-locator-625069:4603343")
 
     implementation fg.deobf("curse.maven:embeddium-908741:5681725")
     implementation fg.deobf("curse.maven:oculus-581495:6020952")

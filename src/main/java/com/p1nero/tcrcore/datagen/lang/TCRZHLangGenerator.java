@@ -25,12 +25,13 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRBlocks.FLAME_ALTAR_BLOCK.get(), "烈焰祭坛");
         this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
 
-        this.addInfo("enter_dimension_tip", "潜行时右键以进入Boss幻境");
+        this.addInfo("enter_dimension_tip", "潜行时右键祭坛核心以进入Boss幻境");
         this.addInfo("use_true_eye_tip", "请使用 [%s] 右键祭坛核心");
 
         this.addInfo("add_item_tip", "获得新物品：%s × %d！");
         this.addInfo("skill_point_lack", "释放该技能需 %d 技能点");
         this.addInfo("press_to_show_progress", "按下§6[L]键§f以查看指引！");
+        this.addInfo("press_to_skill_tree", "按下§6[K]键§f以进行技能加点！");
         this.addInfo("riptide_tutorial", "在水中按下§6[闪避]键§f以释放§b激流");
         this.addInfo("dodge_tutorial", "按下§6[左ALT]§f以释放闪避技能");
         this.addInfo("perfect_dodge_tutorial", "§c抓住实机闪避以释放完美闪避！");
@@ -95,7 +96,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialog(TCREntities.GUIDER.get(), 1, "我是本岛的小神，那日天象异常，雷声四起，神庙崩裂，天有流星坠入海中，于是我在海底捞起了你们。神庙崩裂，封印的魔神回响已四散，神已不再回应，而随着神庙崩塌，我也失去了力量，无法离开此地。救你是有代价的，我想这世上只有你们能助我寻回散落的魔神回响。");
         this.addDialog(TCREntities.GUIDER.get(), 2, "上古时代，各大魔神为宣誓主权互相残杀，受苦的都是凡人。最终海洋之主利维坦为平息这场战役，化尽自身力量，将世界淹没。此时有位神明出手，将各大魔神封印。那位神明创造了我，令我守护此地。而那位神明此后再没出现，这世界得以处于一段时间的稳定，直到你的到来。");
         this.addDialog(TCREntities.GUIDER.get(), 3, "待你替我寻回失落的回响，我便给予你突破天界的力量！不过在这之前，先§6击杀一位灾厄村民§f让§f我看看你的实力。老夫先静养片刻。");
-        this.addDialog(TCREntities.GUIDER.get(), 4, "看来你已有了突破天穹的能力！§b斯库拉(Scylla)的回响§f散落在天空岛，使用§a[绿宝石]§f与[天空岛]的村民交易可换回。§6伊格尼斯(Ignis)的回响§f使用§c[岩浆块]§f与[螺旋塔村]的村民交易可换回。§3利维坦(Leviathan)的回响§f需前往[隐秘水湾]使用任意§a[鱼类]§f与村民交易可换回。§2玛莱迪克特斯(Maledictus)的回响§f需前往寒冰迷宫奏响§6[号角]§f询问可妮莉娅(Cornelia)船长的灵魂。§e远古遗魂(Ancient-Remnant)的回响§f需从海洋神殿的§6[远古守卫者]§f手中夺回！我已将他们散落的位置标注在地图之上了，小神便在此地静候佳音！");
+        this.addDialog(TCREntities.GUIDER.get(), 4, "看来你已有了突破天穹的资质！§b斯库拉(Scylla)的回响§f散落在天空岛，使用§a[绿宝石]§f与[天空岛]的村民交易可换回。§6伊格尼斯(Ignis)的回响§f使用§c[岩浆块]§f与[螺旋塔村]的村民交易可换回。§3利维坦(Leviathan)的回响§f需前往[隐秘水湾]使用任意§a[鱼类]§f与村民交易可换回。§2玛莱迪克特斯(Maledictus)的回响§f需前往寒冰迷宫奏响§6[号角]§f询问可妮莉娅(Cornelia)船长的灵魂。§e远古遗魂(Ancient-Remnant)的回响§f需从[海底神殿]的§6[远古守卫者]§f手中夺回！我已将他们散落的位置标注在地图之上了，小神便在此地静候佳音！");
         this.addDialog(TCREntities.GUIDER.get(), 5, "就凭你也想偷袭我！");
         this.addDialog(TCREntities.GUIDER.get(), 6, "既然你已经证明了你的实力，我便卸下伪装，以真面目相待。");
     }

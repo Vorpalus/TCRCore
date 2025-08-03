@@ -42,9 +42,7 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
 
     @Override
     public void load(@NotNull CompoundTag tag) {
-        if(tag.contains("isActivated")) {
-            isActivated = tag.getBoolean("isActivated");
-        }
+        isActivated = tag.getBoolean("isActivated");
         super.load(tag);
     }
 
@@ -78,6 +76,7 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
         if (this.level != null) {
             this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
         }
+        setChanged();
     }
 
     /**
@@ -86,13 +85,15 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
     public void onPlayerInteract(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         ItemStack mainHandItem = pPlayer.getItemInHand(pHand);
         MinecraftServer minecraftServer = pPlayer.getServer();
-        if(minecraftServer == null) {
+        if(pLevel.isClientSide || minecraftServer == null) {
             return;
         }
         if(mainHandItem.is(this.itemInnate) && !this.isActivated) {
             this.isActivated = true;
             this.sync();
-            mainHandItem.shrink(1);
+            if(!pPlayer.isCreative()) {
+                mainHandItem.shrink(1);
+            }
             pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
         } else if(pPlayer.isShiftKeyDown() && this.isActivated){
             ItemStack defaultInstance = this.itemInnate.getDefaultInstance();
