@@ -22,7 +22,9 @@
     "AquamiraeClientMixin",
     "BetterAdvancementsScreenMixin",
     "CataclysmClientEventMixin",
-    "LocalPlayerPatchAccessor"
+    "LocalPlayerPatchAccessor",
+    "LogoRendererMixin",
+    "PanoramaRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
