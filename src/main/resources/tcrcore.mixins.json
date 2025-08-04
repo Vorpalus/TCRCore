@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "tcrcore.refmap.json",
   "mixins": [
+    "Ancient_Remnant_EntityMixin",
     "AnimatedAttackGoalMixin",
     "BackpackConfigMixin",
     "CaptainCorneliaMixin",
