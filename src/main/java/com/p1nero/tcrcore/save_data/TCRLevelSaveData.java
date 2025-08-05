@@ -19,6 +19,46 @@ public class TCRLevelSaveData extends SavedData {
         return new TCRLevelSaveData();
     }
 
+    public boolean isStormKill() {
+        return stormKill;
+    }
+
+    public boolean isAbyssKill() {
+        return abyssKill;
+    }
+
+    public boolean isCursedKill() {
+        return cursedKill;
+    }
+
+    public boolean isDesertKill() {
+        return desertKill;
+    }
+
+    public boolean isFlameKill() {
+        return flameKill;
+    }
+
+    public void setAbyssKill(boolean abyssKill) {
+        this.abyssKill = abyssKill;
+    }
+
+    public void setCursedKill(boolean cursedKill) {
+        this.cursedKill = cursedKill;
+    }
+
+    public void setDesertKill(boolean desertKill) {
+        this.desertKill = desertKill;
+    }
+
+    public void setFlameKill(boolean flameKill) {
+        this.flameKill = flameKill;
+    }
+
+    public void setStormKill(boolean stormKill) {
+        this.stormKill = stormKill;
+    }
+
     @Override
     public @NotNull CompoundTag save(@NotNull CompoundTag pCompoundTag) {
         pCompoundTag.putBoolean("stormKill", stormKill);

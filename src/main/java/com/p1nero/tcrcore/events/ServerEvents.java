@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.events;
 
 import com.p1nero.tcrcore.TCRCoreMod;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
@@ -29,11 +30,10 @@ public class ServerEvents {
     }
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
-        copyDuelDirectory();
+        copyDuelDirectory(event.getServer());
     }
 
-
-    public static void copyDuelDirectory() {
+    public static void copyDuelDirectory(MinecraftServer server) {
         Path gameDir = FMLPaths.GAMEDIR.get();
         Path sourceDir = gameDir.resolve("mainland");
         Path savesDir = gameDir.resolve("saves");
@@ -43,11 +43,15 @@ public class ServerEvents {
             return;
         }
 
-        try (Stream<Path> saveFolders = Files.list(savesDir)) {
-            saveFolders.filter(Files::isDirectory)
-                    .forEach(saveFolder -> copyToDimensions(saveFolder, sourceDir));
-        } catch (IOException e) {
-            TCRCoreMod.LOGGER.error("TCR: Failed to copy dimension!", e);
+        if(server.isDedicatedServer()) {
+            copyToDimensions(gameDir.resolve(server.getWorldData().getLevelName()), sourceDir);
+        } else {
+            try (Stream<Path> saveFolders = Files.list(savesDir)) {
+                saveFolders.filter(Files::isDirectory)
+                        .forEach(saveFolder -> copyToDimensions(saveFolder, sourceDir));
+            } catch (IOException e) {
+                TCRCoreMod.LOGGER.error("TCR: Failed to copy dimension!", e);
+            }
         }
     }
 

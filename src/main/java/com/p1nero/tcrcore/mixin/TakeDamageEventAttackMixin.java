@@ -42,7 +42,9 @@ public abstract class TakeDamageEventAttackMixin extends PlayerEvent<ServerPlaye
             }
             if(!PECPlayer.isValidWeapon(this.getPlayerPatch().getOriginal().getMainHandItem())) {
                 SkillContainer weaponInnate = getPlayerPatch().getSkill(SkillSlots.WEAPON_INNATE);
-                weaponInnate.getSkill().setStackSynchronize(weaponInnate, weaponInnate.getStack() + 1);
+                if(weaponInnate.hasSkill()) {
+                    weaponInnate.getSkill().setStackSynchronize(weaponInnate, weaponInnate.getStack() + 1);
+                }
             }
         }
     }
