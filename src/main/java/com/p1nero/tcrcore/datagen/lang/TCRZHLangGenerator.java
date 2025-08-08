@@ -50,24 +50,24 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addInfo("abyss_pos", "深渊回响之所在：隐秘水湾");
 
         this.addAdvancement(TCRCoreMod.MOD_ID, "远梦之棺", "梦开始的地方，前往主城寻找守护者。");
-        this.addAdvancement(TCRCoreMod.MOD_ID + "_weapon", "王之宝库", "所有可获得的且进行过适配的武器或材料，可在[JEI]查看获取方式及详细信息");
+        this.addAdvancement(TCRCoreMod.MOD_ID + "_weapon", "王之宝库", "所有可获得的且进行过适配的武器或材料，可通过 [JEI] 查看获取方式及详细信息");
         this.addAdvancement("aquamirae_weapon", "海灵物语-武器", "");
         this.addAdvancement("cataclysm_weapon", "灾变-武器", "");
         this.addAdvancement("legend_weapon", "传奇武器", "");
         this.addAdvancement("ef_legacy", "史诗战斗-武器", "");
         this.addAdvancement("kill_pillager", "投名状", "任务已经完成，该回去找守护神了。");
-        this.addAdvancement("mark_map", "标记地点", "守护神帮你标出了神之眼散落的地方，现在动身去夺回他们吧！");
-        this.addAdvancement("storm_eye", "风暴之眼", "与[天空岛]的村民交易，夺回风暴之眼。§o当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土");
-        this.addAdvancement("abyss_eye", "深渊之眼", "与[隐秘水湾]的村民交易，夺回深渊之眼。§o深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城");
-        this.addAdvancement("flame_eye", "烈焰之眼", "与[螺旋塔村]的村民交易，夺回烈焰之眼。§o岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台");
-        this.addAdvancement("desert_eye", "沙漠之眼", "击败[海底神殿]的远古守卫者，夺回烈焰之眼。§o守卫者不是怪物，它们是子民自愿化身的活体墓碑");
-        this.addAdvancement("cursed_eye", "诅咒之眼", "击败可妮莉娅(Cornelia)船长的幽灵，夺回诅咒之眼。§o当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船");
+        this.addAdvancement("mark_map", "标记地点", "守护神帮你标出了神之眼散落的地方，现在动身去夺回它们吧！");
+        this.addAdvancement("storm_eye", "风暴之眼", "与[天空岛]的村民交易，夺回风暴之眼。§a§o当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土");
+        this.addAdvancement("abyss_eye", "深渊之眼", "与[隐秘水湾]的村民交易，夺回深渊之眼。§a§o深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城");
+        this.addAdvancement("flame_eye", "烈焰之眼", "与[螺旋塔村]的村民交易，夺回烈焰之眼。§a§o岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台");
+        this.addAdvancement("desert_eye", "沙漠之眼", "击败[海底神殿]的远古守卫者，夺回烈焰之眼。§a§o守卫者不是怪物，它们是子民自愿化身的活体墓碑");
+        this.addAdvancement("cursed_eye", "诅咒之眼", "击败可妮莉娅(Cornelia)船长的幽灵，夺回诅咒之眼。§a§o当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船");
 
-        this.addAdvancement("flame_kill", "伊格尼斯(Ignis)之魂", "击败伊格尼斯(Ignis)");
-        this.addAdvancement("storm_kill", "斯库拉(Scylla)之魂", "击败斯库拉(Scylla)");
-        this.addAdvancement("abyss_kill", "利维坦(Leviathan)之魂", "击败利维坦(Leviathan)");
-        this.addAdvancement("desert_kill", "远古遗魂(Ancient Remnant)之魂", "击败远古遗魂(Ancient Remnant)");
-        this.addAdvancement("cursed_kill", "玛莱迪克特斯(Maledictus)之魂", "击败玛莱迪克特斯(Maledictus)");
+        this.addAdvancement("flame_kill", "伊格尼斯(Ignis)之魂", "击败伊格尼斯(Ignis)，获得炎葬");
+        this.addAdvancement("storm_kill", "斯库拉(Scylla)之魂", "击败斯库拉(Scylla)，获得庭浪锚戟");
+        this.addAdvancement("abyss_kill", "利维坦(Leviathan)之魂", "击败利维坦(Leviathan)，获得潮汐利爪");
+        this.addAdvancement("desert_kill", "远古遗魂(Ancient Remnant)之魂", "击败远古遗魂(Ancient Remnant)，获得沙暴之怒");
+        this.addAdvancement("cursed_kill", "玛莱迪克特斯(Maledictus)之魂", "击败玛莱迪克特斯(Maledictus)，获得断魂战戟");
 
         this.add(TCREntities.GUIDER.get(), "守望者");
         this.add(TCREntities.TUTORIAL_GOLEM.get(), "训练傀儡");

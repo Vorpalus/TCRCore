@@ -71,7 +71,7 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             Advancement flame_kill = registerAdvancement(flame_eye, "flame_kill", FrameType.CHALLENGE, ModItems.THE_INCINERATOR.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.IGNIS.get())));
             Advancement abyss_kill = registerAdvancement(abyss_eye, "abyss_kill", FrameType.CHALLENGE, ModItems.TIDAL_CLAWS.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.THE_LEVIATHAN.get())));
             Advancement storm_kill = registerAdvancement(storm_eye, "storm_kill", FrameType.CHALLENGE, ModItems.CERAUNUS.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.SCYLLA.get())));
-            Advancement desert_kill = registerAdvancement(desert_eye, "desert_kill", FrameType.CHALLENGE, ModItems.ANCIENT_SPEAR.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.ANCIENT_REMNANT.get())));
+            Advancement desert_kill = registerAdvancement(desert_eye, "desert_kill", FrameType.CHALLENGE, ModItems.WRATH_OF_THE_DESERT.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.ANCIENT_REMNANT.get())));
             Advancement cursed_kill = registerAdvancement(cursed_eye, "cursed_kill", FrameType.CHALLENGE, ModItems.SOUL_RENDER.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALEDICTUS.get())));
 
 
