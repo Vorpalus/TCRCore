@@ -32,7 +32,7 @@ public class PlayerEventListeners {
      */
     @SubscribeEvent
     public static void onPlayerLevelUp(PlayerXpEvent.LevelChange event) {
-        if(event.getEntity().experienceLevel % 2 == 1) {
+        if(event.getEntity().experienceLevel % 2 == 1 && event.getLevels() > 0) {
             event.getEntity().displayClientMessage(TCRCoreMod.getInfo("press_to_skill_tree"), false);
         }
     }

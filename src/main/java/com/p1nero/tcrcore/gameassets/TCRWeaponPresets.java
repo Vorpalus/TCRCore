@@ -1,7 +1,6 @@
 package com.p1nero.tcrcore.gameassets;
 
-
-import com.p1nero.p1nero_ec.PECMod;
+import com.p1nero.tcrcore.TCRCoreMod;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,7 +15,7 @@ import yesman.epicfight.world.capabilities.item.TridentCapability;
 
 import java.util.function.Function;
 
-@Mod.EventBusSubscriber(modid = PECMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TCRWeaponPresets {
 
     public static final Function<Item, CapabilityItem.Builder> TRIDENT = (item) -> RangedWeaponCapability.builder().zoomInType(CapabilityItem.ZoomInType.USE_TICK)
@@ -30,6 +29,6 @@ public class TCRWeaponPresets {
 
     @SubscribeEvent
     public static void register(WeaponCapabilityPresetRegistryEvent event) {
-        event.getTypeEntry().put(ResourceLocation.fromNamespaceAndPath(PECMod.MOD_ID, "trident"), TRIDENT);
+        event.getTypeEntry().put(ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, "trident"), TRIDENT);
     }
 }

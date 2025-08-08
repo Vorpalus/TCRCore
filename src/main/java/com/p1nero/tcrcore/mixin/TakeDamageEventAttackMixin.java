@@ -1,30 +1,24 @@
 package com.p1nero.tcrcore.mixin;
 
 import com.p1nero.p1nero_ec.capability.PECPlayer;
-import com.p1nero.p1nero_ec.network.PECPacketHandler;
-import com.p1nero.p1nero_ec.network.PECPacketRelay;
-import com.p1nero.p1nero_ec.network.packet.clientbound.AddAvlEntityAfterImageParticle;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
-import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.SkillSlots;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
+import yesman.epicfight.world.entity.eventlistener.AbstractPlayerEvent;
 import yesman.epicfight.world.entity.eventlistener.TakeDamageEvent;
-import yesman.epicfight.world.entity.eventlistener.PlayerEvent;
 
 /**
  * 招架计数
  */
 @Mixin(value = TakeDamageEvent.Attack.class)
-public abstract class TakeDamageEventAttackMixin extends PlayerEvent<ServerPlayerPatch> {
+public abstract class TakeDamageEventAttackMixin extends AbstractPlayerEvent<ServerPlayerPatch> {
 
     @Shadow(remap = false)
     protected boolean parried;

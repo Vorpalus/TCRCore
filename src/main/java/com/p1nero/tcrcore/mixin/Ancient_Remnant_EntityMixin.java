@@ -20,9 +20,9 @@ public abstract class Ancient_Remnant_EntityMixin extends IABoss_monster {
         super(entity, world);
     }
 
-    @Shadow public abstract boolean getNecklace();
+    @Shadow(remap = false) public abstract boolean getNecklace();
 
-    @Shadow public abstract void setNecklace(boolean necklace);
+    @Shadow(remap = false) public abstract void setNecklace(boolean necklace);
 
     /**
      * 直接唤醒
