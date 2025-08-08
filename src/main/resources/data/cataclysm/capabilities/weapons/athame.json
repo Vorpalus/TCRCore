@@ -3,7 +3,8 @@
   "attributes": {
     "common": {
       "armor_negation":5.0,
-      "max_strikes":1
+      "max_strikes":1,
+      "speed_bonus": -0.4
     }
   }
 }

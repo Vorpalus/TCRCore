@@ -86,3 +86,10 @@ mandatory=true
 versionRange="[0,)"
 ordering="AFTER"
 side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="p1nero_ec"
+mandatory=true
+versionRange="[0,)"
+ordering="AFTER"
+side="BOTH"

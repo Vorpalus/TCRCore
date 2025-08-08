@@ -52,6 +52,9 @@ public class LivingEntityEventListeners {
                 CorneliaMusicPlayer.stopBossMusic(living);
             }
         }
+        if(living instanceof Player player) {
+            player.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
+        }
     }
 
     @SubscribeEvent

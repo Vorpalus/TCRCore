@@ -62,6 +62,7 @@ public class PlayerEventListeners {
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
             if(!PlayerDataManager.firstJoint.get(serverPlayer)) {
                 TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID, serverPlayer);
+                TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID + "_weapon", serverPlayer);
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule keepInventory true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule mobGriefing false");
@@ -72,7 +73,7 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge tcrcore:step");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
-                ItemUtil.addItem(serverPlayer, AquamiraeItems.FIN_CUTTER.get(), 1);
+                ItemUtil.addItem(serverPlayer, AquamiraeItems.REMNANTS_SABER.get(), 1);
                 ItemUtil.addItem(serverPlayer, Items.OAK_BOAT, 1);
                 ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
                 ItemUtil.addItem(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone, 1);

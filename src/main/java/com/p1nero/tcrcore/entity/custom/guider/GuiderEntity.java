@@ -8,6 +8,7 @@ import com.p1nero.dialog_lib.api.goal.LookAtConservingPlayerGoal;
 import com.p1nero.dialog_lib.client.screen.LinkListStreamDialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
@@ -182,6 +183,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
                 }
 
                 serverPlayer.level().playSound(null, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), SoundEvents.END_PORTAL_SPAWN, serverPlayer.getSoundSource(), 1.0F, 1.0F);
+                TCRAdvancementData.finishAdvancement("mark_map", serverPlayer);
                 PlayerDataManager.mapMarked.put(serverPlayer, true);
             }
 

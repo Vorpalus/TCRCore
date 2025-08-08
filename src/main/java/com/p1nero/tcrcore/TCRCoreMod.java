@@ -1,7 +1,6 @@
 package com.p1nero.tcrcore;
 
 import com.mojang.logging.LogUtils;
-import com.p1nero.invincible.Config;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
 import com.p1nero.tcrcore.entity.TCREntities;
@@ -10,12 +9,20 @@ import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.PathPackResources;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+
+import java.nio.file.Path;
 
 @Mod(TCRCoreMod.MOD_ID)
 public class TCRCoreMod {
@@ -26,6 +33,7 @@ public class TCRCoreMod {
     public TCRCoreMod(FMLJavaModLoadingContext context) {
         IEventBus bus = context.getModEventBus();
         bus.addListener(this::commonSetup);
+        bus.addListener(this::addPackFindersEvent);
         TCREntities.REGISTRY.register(bus);
         TCRBlocks.REGISTRY.register(bus);
         TCRBlockEntities.REGISTRY.register(bus);
@@ -36,6 +44,21 @@ public class TCRCoreMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         TCRPacketHandler.register();
+    }
+
+    private void addPackFindersEvent(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            Path resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/tcr_animation");
+            try(PathPackResources pack = new PathPackResources(ModList.get().getModFileById(MOD_ID).getFile().getFileName() + ":" + resourcePath, resourcePath, false)) {
+                Pack.ResourcesSupplier resourcesSupplier = (string) -> pack;
+                Pack.Info info = Pack.readPackInfo("tcr_animation", resourcesSupplier);
+
+                if (info != null) {
+                    event.addRepositorySource((source) ->
+                            source.accept(Pack.create("tcr_animation", Component.literal("The Casket of Reveries Animations"), true, resourcesSupplier, info, PackType.CLIENT_RESOURCES, Pack.Position.TOP, false, PackSource.BUILT_IN)));
+                }
+            }
+        }
     }
 
     public static MutableComponent getInfo(String key) {

@@ -6,12 +6,12 @@ enableStructureSpecificDatapack = true
 [scaling]
 	#Health factor per level
 	#Range: 0.0 ~ 1000.0
-	healthFactor = 0.01
+	healthFactor = 0.005
 	#Use exponential health
 	exponentialHealth = false
 	#Damage factor per level
 	#Range: 0.0 ~ 1000.0
-	damageFactor = 0.01
+	damageFactor = 0.001
 	#Use exponential damage
 	exponentialDamage = false
 	#Experience drop factor per level
@@ -30,7 +30,7 @@ enableStructureSpecificDatapack = true
 	dimensionFactor = 10
 	#Difficulty bonus per block from origin
 	#Range: 0.0 ~ 1000.0
-	distanceFactor = 0.003
+	distanceFactor = 0.01
 	#Chance for health/damage bonus and trait to apply
 	#Not applicable to mobs with minimum level.
 	#Range: 0.0 ~ 1.0
@@ -38,7 +38,7 @@ enableStructureSpecificDatapack = true
 	#Chance for trait to apply
 	#Not applicable to mobs with minimum level.
 	#Range: 0.0 ~ 1.0
-	globalTraitChance = 1.0
+	globalTraitChance = 0.5
 	#Chance to stop adding traits after adding a trait
 	#Not applicable to mobs with minimum level.
 	#Range: 0.0 ~ 1.0
@@ -53,10 +53,10 @@ enableStructureSpecificDatapack = true
 	allowExtraEnchantments = true
 	#Default dimension base difficulty for mod dimensions
 	#Range: 0 ~ 1000
-	defaultLevelBase = 20
+	defaultLevelBase = 10
 	#Default dimension difficulty variation for mod dimensions
 	#Range: 0.0 ~ 1000.0
-	defaultLevelVar = 16.0
+	defaultLevelVar = 2.0
 	#Default dimension difficulty scale for mod dimensions
 	#Range: 0.0 ~ 10.0
 	defaultLevelScale = 1.0
@@ -87,16 +87,16 @@ enableStructureSpecificDatapack = true
 [difficulty]
 	#Max player adaptive level
 	#Range: 100 ~ 100000
-	maxPlayerLevel = 2000
+	maxPlayerLevel = 200
 	#Max mob level
 	#Range: 100 ~ 100000
-	maxMobLevel = 3000
+	maxMobLevel = 300
 	#Difficulty increment takes this many kills of same level mob
 	#Range: 1 ~ 100000
-	killsPerLevel = 100
+	killsPerLevel = 5000
 	#Decay in player difficulty on death
 	#Range: 0.0 ~ 2.0
-	playerDeathDecay = 0.8
+	playerDeathDecay = 0.6
 	#Allow KeepInventory to keep difficulty as well
 	keepInventoryRuleKeepDifficulty = false
 	#On player death, clear dimension penalty
@@ -226,10 +226,10 @@ enableStructureSpecificDatapack = true
 	tankHealth = 0.1
 	#Armor bonus for Tank trait per level
 	#Range: 0.0 ~ 1000.0
-	tankArmor = 0.5
+	tankArmor = 0.1
 	#Toughness bonus for Tank trait per level
 	#Range: 0.0 ~ 1000.0
-	tankTough = 0.5
+	tankTough = 0.1
 	#Speed bonus for Speedy trait per level
 	#Range: 0.0 ~ 1000.0
 	speedy = 0.1

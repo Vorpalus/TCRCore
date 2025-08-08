@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.datagen;
 import com.github.L_Ender.cataclysm.Cataclysm;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModItems;
+import com.hm.efn.registries.EFNItem;
 import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import net.minecraft.advancements.Advancement;
@@ -19,10 +20,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
+import net.p1nero.ss.item.SwordSoaringItems;
 import org.jetbrains.annotations.NotNull;
+import yesman.epicfight.world.item.EpicFightItems;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -56,12 +60,13 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
                     .save(consumer, ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, TCRCoreMod.MOD_ID), existingFileHelper);
 
             Advancement kill_pillager = registerAdvancement(root, "kill_pillager", FrameType.CHALLENGE, Items.GOAT_HORN, true, true, true, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(EntityTypeTags.RAIDERS)));
+            Advancement mark_map = registerAdvancement(kill_pillager, "mark_map", FrameType.TASK, Items.MAP, true, true, true, new ImpossibleTrigger.TriggerInstance());
 
-            Advancement storm_eye = registerAdvancement(kill_pillager, "storm_eye", FrameType.CHALLENGE, ModItems.MUSIC_DISC_SCYLLA.get(), true, true, true, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STORM_EYE.get()));
-            Advancement abyss_eye = registerAdvancement(kill_pillager, "abyss_eye", FrameType.CHALLENGE, ModItems.ABYSS_EYE.get(), true, true, true, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ABYSS_EYE.get()));
-            Advancement flame_eye = registerAdvancement(kill_pillager, "flame_eye", FrameType.CHALLENGE, ModItems.FLAME_EYE.get(), true, true, true, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.FLAME_EYE.get()));
-            Advancement desert_eye = registerAdvancement(kill_pillager, "desert_eye", FrameType.CHALLENGE, ModItems.REMNANT_SKULL.get(), true, true, true, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.DESERT_EYE.get()));
-            Advancement cursed_eye = registerAdvancement(kill_pillager, "cursed_eye", FrameType.CHALLENGE, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get(), true, true, true, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CURSED_EYE.get()));
+            Advancement storm_eye = registerAdvancement(mark_map, "storm_eye", FrameType.CHALLENGE, ModItems.MUSIC_DISC_SCYLLA.get(), true, true, false, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.STORM_EYE.get()));
+            Advancement abyss_eye = registerAdvancement(mark_map, "abyss_eye", FrameType.CHALLENGE, ModItems.ABYSS_EYE.get(), true, true, false, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.ABYSS_EYE.get()));
+            Advancement flame_eye = registerAdvancement(mark_map, "flame_eye", FrameType.CHALLENGE, ModItems.FLAME_EYE.get(), true, true, false, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.FLAME_EYE.get()));
+            Advancement desert_eye = registerAdvancement(mark_map, "desert_eye", FrameType.CHALLENGE, ModItems.REMNANT_SKULL.get(), true, true, false, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.DESERT_EYE.get()));
+            Advancement cursed_eye = registerAdvancement(mark_map, "cursed_eye", FrameType.CHALLENGE, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get(), true, true, false, InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.CURSED_EYE.get()));
 
             Advancement flame_kill = registerAdvancement(flame_eye, "flame_kill", FrameType.CHALLENGE, ModItems.THE_INCINERATOR.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.IGNIS.get())));
             Advancement abyss_kill = registerAdvancement(abyss_eye, "abyss_kill", FrameType.CHALLENGE, ModItems.TIDAL_CLAWS.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.THE_LEVIATHAN.get())));
@@ -69,17 +74,73 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             Advancement desert_kill = registerAdvancement(desert_eye, "desert_kill", FrameType.CHALLENGE, ModItems.ANCIENT_SPEAR.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.ANCIENT_REMNANT.get())));
             Advancement cursed_kill = registerAdvancement(cursed_eye, "cursed_kill", FrameType.CHALLENGE, ModItems.SOUL_RENDER.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALEDICTUS.get())));
 
+
+            Advancement weaponRoot = Advancement.Builder.advancement()
+                    .display(ModItems.THE_INCINERATOR.get(),
+                            Component.translatable(PRE + TCRCoreMod.MOD_ID + "_weapon"),
+                            Component.translatable(PRE + TCRCoreMod.MOD_ID + "_weapon" + ".desc"),
+                            ResourceLocation.fromNamespaceAndPath(Cataclysm.MODID, "textures/block/obsidian_bricks.png"),
+                            FrameType.GOAL, false, false, false)
+                    .addCriterion(TCRCoreMod.MOD_ID, new ImpossibleTrigger.TriggerInstance())
+                    .save(consumer, ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, TCRCoreMod.MOD_ID + "_weapon"), existingFileHelper);
+
+            //海灵物语
+            Advancement ship = registerAdvancement(weaponRoot, "aquamirae_weapon", FrameType.GOAL, AquamiraeItems.RUNE_OF_THE_STORM.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
+
+            Advancement d = registerItemAdvancement(ship, AquamiraeItems.DIVIDER.get());
+            Advancement mz = registerItemAdvancement(d, AquamiraeItems.MAZE_ROSE.get());
+            Advancement pc = registerItemAdvancement(mz, AquamiraeItems.POISONED_CHAKRA.get());
+            Advancement ws = registerItemAdvancement(pc, AquamiraeItems.WHISPER_OF_THE_ABYSS.get());
+
+            Advancement dg = registerItemAdvancement(ship, AquamiraeItems.DAGGER_OF_GREED.get());
+            Advancement pb = registerItemAdvancement(dg, AquamiraeItems.POISONED_BLADE.get());
+            Advancement fc = registerItemAdvancement(pb, AquamiraeItems.FIN_CUTTER.get());
+            Advancement ts = registerItemAdvancement(fc, AquamiraeItems.TERRIBLE_SWORD.get());
+            Advancement cl = registerItemAdvancement(ts, AquamiraeItems.CORAL_LANCE.get());
+
+            //灾变
+            Advancement cataclysm_weapon = registerAdvancement(weaponRoot, "cataclysm_weapon", FrameType.GOAL, ModItems.STRANGE_KEY.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
+            Advancement athame = registerItemAdvancement(cataclysm_weapon, ModItems.ATHAME.get());
+            Advancement co = registerItemAdvancement(athame, ModItems.CORAL_SPEAR.get());
+            Advancement cob = registerItemAdvancement(co, ModItems.CORAL_BARDICHE.get());
+            Advancement bss = registerItemAdvancement(cob, ModItems.BLACK_STEEL_SWORD.get());
+            Advancement kh = registerItemAdvancement(bss, ModItems.KHOPESH.get());
+            Advancement as = registerItemAdvancement(kh, ModItems.ANCIENT_SPEAR.get());
+
+            //传说
+            Advancement legend_weapon = registerAdvancement(weaponRoot, "legend_weapon", FrameType.GOAL, ModItems.BURNING_ASHES.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
+
+            Advancement vt = registerItemAdvancement(legend_weapon, SwordSoaringItems.VATANSEVER.get());
+            Advancement nds = registerItemAdvancement(vt, EFNItem.Aetherial_Dusk_DualSword_MainHand.get());
+            Advancement ymd = registerItemAdvancement(nds, EFNItem.YAMATO_DMC4.get());
+
+            Advancement the = registerItemAdvancement(legend_weapon, ModItems.THE_INCINERATOR.get());
+            Advancement wt = registerItemAdvancement(the, ModItems.WRATH_OF_THE_DESERT.get());
+            Advancement sr = registerItemAdvancement(wt, ModItems.SOUL_RENDER.get());
+            Advancement cer = registerItemAdvancement(sr, ModItems.CERAUNUS.get());
+            Advancement tid = registerItemAdvancement(cer, ModItems.TIDAL_CLAWS.get());
+
+            //史诗战斗原版
+            Advancement ef_legacy = registerAdvancement(weaponRoot, "ef_legacy", FrameType.GOAL, EpicFightItems.UCHIGATANA.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
+
+            Advancement id = registerItemAdvancement(ef_legacy, EpicFightItems.IRON_DAGGER.get());
+            Advancement is = registerItemAdvancement(id, Items.IRON_SWORD);
+            Advancement il = registerItemAdvancement(is, EpicFightItems.IRON_LONGSWORD.get());
+            Advancement it = registerItemAdvancement(il, EpicFightItems.IRON_TACHI.get());
+            Advancement isp = registerItemAdvancement(it, EpicFightItems.IRON_SPEAR.get());
+            Advancement ig = registerItemAdvancement(isp, EpicFightItems.IRON_GREATSWORD.get());
+
         }
 
         public Advancement registerItemAdvancement(Advancement parent, ItemLike display) {
             String disc = "item." + display.asItem();
             ItemStack itemStack = display.asItem().getDefaultInstance();
-            MutableComponent desc = Component.translatable(PRE + disc + ".desc");
-//            List<Component> descList = new ArrayList<>();
-//            itemStack.getItem().appendHoverText(itemStack, null, descList, TooltipFlag.NORMAL);
-//            for(Component component : descList){
-//                desc.append("\n").append(component);
-//            }
+            MutableComponent desc = Component.empty();
+            List<Component> descList = new ArrayList<>();
+            itemStack.getItem().appendHoverText(itemStack, null, descList, TooltipFlag.NORMAL);
+            for(Component component : descList){
+                desc.append("\n").append(component);
+            }
             return Advancement.Builder.advancement()
                     .parent(parent)
                     .display(display,
