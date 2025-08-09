@@ -48,6 +48,11 @@ public class CustomColorItemEntity extends ItemEntity {
         tag.putInt("color_id", this.getTeamColor());
     }
 
+    @Override
+    public boolean isCurrentlyGlowing() {
+        return true;
+    }
+
     public void setTeamColor(int color){
         this.getEntityData().set(COLOR, color);
     }

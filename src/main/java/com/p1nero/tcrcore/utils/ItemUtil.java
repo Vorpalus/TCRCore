@@ -93,6 +93,12 @@ public class ItemUtil {
         }
     }
 
+    public static CustomColorItemEntity addItemEntity(Entity spawnOn, Item item, int count, int color){
+        CustomColorItemEntity itemEntity = addItemEntity(spawnOn, item, count);
+        itemEntity.setTeamColor(color);
+        return itemEntity;
+    }
+
     public static CustomColorItemEntity addItemEntity(Entity spawnOn, Item item, int count){
         CustomColorItemEntity itemEntity = new CustomColorItemEntity(spawnOn.level(), spawnOn.getX(), spawnOn.getY(), spawnOn.getZ(), item.getDefaultInstance().copyWithCount(count));
         itemEntity.setPickUpDelay(40);

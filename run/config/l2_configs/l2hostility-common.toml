@@ -6,17 +6,17 @@ enableStructureSpecificDatapack = true
 [scaling]
 	#Health factor per level
 	#Range: 0.0 ~ 1000.0
-	healthFactor = 0.005
+	healthFactor = 0.002
 	#Use exponential health
 	exponentialHealth = false
 	#Damage factor per level
 	#Range: 0.0 ~ 1000.0
-	damageFactor = 0.001
+	damageFactor = 1.0E-4
 	#Use exponential damage
 	exponentialDamage = false
 	#Experience drop factor per level
 	#Range: 0.0 ~ 1000.0
-	expDropFactor = 0.05
+	expDropFactor = 0.005
 	#Chance per level for drowned to hold trident
 	#Range: 0.0 ~ 1000.0
 	drownedTridentChancePerLevel = 0.005
@@ -374,12 +374,12 @@ enableStructureSpecificDatapack = true
 	arenaRange = 24
 
 ["Trait toggle"]
-	allow_tank = true
-	allow_speedy = true
-	allow_protection = true
+	allow_tank = false
+	allow_speedy = false
+	allow_protection = false
 	allow_invisible = false
 	allow_fiery = false
-	allow_regenerate = true
+	allow_regenerate = false
 	allow_adaptive = false
 	allow_reflect = false
 	allow_shulker = false

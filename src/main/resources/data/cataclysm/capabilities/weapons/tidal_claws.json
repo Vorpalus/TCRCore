@@ -1,0 +1,9 @@
+{
+  "type": "p1nero_ec:tidal_claw",
+  "attributes": {
+    "common": {
+      "armor_negation":40.0,
+      "max_strikes":2
+    }
+  }
+}
