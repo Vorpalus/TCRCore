@@ -6,6 +6,8 @@ import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.registries.EFNItem;
 import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.yesman.epicskills.registry.entry.EpicSkillsItems;
+import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -74,7 +76,6 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             Advancement desert_kill = registerAdvancement(desert_eye, "desert_kill", FrameType.CHALLENGE, ModItems.WRATH_OF_THE_DESERT.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.ANCIENT_REMNANT.get())));
             Advancement cursed_kill = registerAdvancement(cursed_eye, "cursed_kill", FrameType.CHALLENGE, ModItems.SOUL_RENDER.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALEDICTUS.get())));
 
-
             Advancement weaponRoot = Advancement.Builder.advancement()
                     .display(ModItems.THE_INCINERATOR.get(),
                             Component.translatable(PRE + TCRCoreMod.MOD_ID + "_weapon"),
@@ -87,25 +88,25 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             //海灵物语
             Advancement ship = registerAdvancement(weaponRoot, "aquamirae_weapon", FrameType.GOAL, AquamiraeItems.RUNE_OF_THE_STORM.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
 
-            Advancement d = registerItemAdvancement(ship, AquamiraeItems.DIVIDER.get());
-            Advancement mz = registerItemAdvancement(d, AquamiraeItems.MAZE_ROSE.get());
-            Advancement pc = registerItemAdvancement(mz, AquamiraeItems.POISONED_CHAKRA.get());
-            Advancement ws = registerItemAdvancement(pc, AquamiraeItems.WHISPER_OF_THE_ABYSS.get());
+            Advancement d = registerItemAdvancement(ship, AquamiraeItems.DIVIDER.get(), true);
+            Advancement mz = registerItemAdvancement(d, AquamiraeItems.MAZE_ROSE.get(), true);
+            Advancement pc = registerItemAdvancement(mz, AquamiraeItems.POISONED_CHAKRA.get(), true);
+            Advancement ws = registerItemAdvancement(pc, AquamiraeItems.WHISPER_OF_THE_ABYSS.get(), true);
 
-            Advancement dg = registerItemAdvancement(ship, AquamiraeItems.DAGGER_OF_GREED.get());
-            Advancement pb = registerItemAdvancement(dg, AquamiraeItems.POISONED_BLADE.get());
-            Advancement fc = registerItemAdvancement(pb, AquamiraeItems.FIN_CUTTER.get());
-            Advancement ts = registerItemAdvancement(fc, AquamiraeItems.TERRIBLE_SWORD.get());
-            Advancement cl = registerItemAdvancement(ts, AquamiraeItems.CORAL_LANCE.get());
+            Advancement dg = registerItemAdvancement(ship, AquamiraeItems.DAGGER_OF_GREED.get(), true);
+            Advancement pb = registerItemAdvancement(dg, AquamiraeItems.POISONED_BLADE.get(), true);
+            Advancement fc = registerItemAdvancement(pb, AquamiraeItems.FIN_CUTTER.get(), true);
+            Advancement ts = registerItemAdvancement(fc, AquamiraeItems.TERRIBLE_SWORD.get(), true);
+            Advancement cl = registerItemAdvancement(ts, AquamiraeItems.CORAL_LANCE.get(), true);
 
             //灾变
             Advancement cataclysm_weapon = registerAdvancement(weaponRoot, "cataclysm_weapon", FrameType.GOAL, ModItems.STRANGE_KEY.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
-            Advancement athame = registerItemAdvancement(cataclysm_weapon, ModItems.ATHAME.get());
-            Advancement co = registerItemAdvancement(athame, ModItems.CORAL_SPEAR.get());
-            Advancement cob = registerItemAdvancement(co, ModItems.CORAL_BARDICHE.get());
-            Advancement bss = registerItemAdvancement(cob, ModItems.BLACK_STEEL_SWORD.get());
-            Advancement kh = registerItemAdvancement(bss, ModItems.KHOPESH.get());
-            Advancement as = registerItemAdvancement(kh, ModItems.ANCIENT_SPEAR.get());
+            Advancement athame = registerItemAdvancement(cataclysm_weapon, ModItems.ATHAME.get(), true);
+            Advancement co = registerItemAdvancement(athame, ModItems.CORAL_SPEAR.get(), true);
+            Advancement cob = registerItemAdvancement(co, ModItems.CORAL_BARDICHE.get(), true);
+            Advancement bss = registerItemAdvancement(cob, ModItems.BLACK_STEEL_SWORD.get(), true);
+            Advancement kh = registerItemAdvancement(bss, ModItems.KHOPESH.get(), true);
+            Advancement as = registerItemAdvancement(kh, ModItems.ANCIENT_SPEAR.get(), true);
 
             //传说
             Advancement legend_weapon = registerAdvancement(weaponRoot, "legend_weapon", FrameType.GOAL, ModItems.BURNING_ASHES.get(), true, true, false, new ImpossibleTrigger.TriggerInstance());
@@ -130,6 +131,42 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             Advancement isp = registerItemAdvancement(it, EpicFightItems.IRON_SPEAR.get());
             Advancement ig = registerItemAdvancement(isp, EpicFightItems.IRON_GREATSWORD.get());
 
+            Advancement ingredient = Advancement.Builder.advancement()
+                    .display(Items.AMETHYST_SHARD,
+                            Component.translatable(PRE + TCRCoreMod.MOD_ID + "_ingredient"),
+                            Component.translatable(PRE + TCRCoreMod.MOD_ID + "_ingredient" + ".desc"),
+                            ResourceLocation.fromNamespaceAndPath(Cataclysm.MODID, "textures/block/purpur_tile_pillar.png"),
+                            FrameType.GOAL, false, false, false)
+                    .addCriterion(TCRCoreMod.MOD_ID, new ImpossibleTrigger.TriggerInstance())
+                    .save(consumer, ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, TCRCoreMod.MOD_ID + "_ingredient"), existingFileHelper);
+
+            Advancement skp = registerItemAdvancement(ingredient, EpicSkillsItems.ABILIITY_STONE.get(), true);
+            Advancement sga = registerItemAdvancement(ingredient, AquamiraeItems.SHIP_GRAVEYARD_ECHO.get(), true);
+            Advancement ash = registerItemAdvancement(ingredient, Items.AMETHYST_SHARD, true);
+            Advancement mc = registerItemAdvancement(ash, FAItems.MOON_CRYSTAL.get(), true);
+            Advancement abs = registerItemAdvancement(ash, AquamiraeItems.ABYSSAL_AMETHYST.get(), true);
+            Advancement ir = registerItemAdvancement(ingredient, Items.IRON_INGOT, true);
+            Advancement gi = registerItemAdvancement(ingredient, Items.GOLD_INGOT, true);
+            Advancement dim = registerItemAdvancement(ingredient, Items.DIAMOND, true);
+            Advancement ni = registerItemAdvancement(ingredient, Items.NETHERITE_INGOT, true);
+
+        }
+
+        public Advancement registerItemAdvancement(Advancement parent, ItemLike display, boolean specialDesc) {
+            if(!specialDesc) {
+                return registerItemAdvancement(parent, display);
+            }
+            String disc = "item." + display.asItem();
+            ItemStack itemStack = display.asItem().getDefaultInstance();
+            return Advancement.Builder.advancement()
+                    .parent(parent)
+                    .display(display,
+                            display.asItem().getName(itemStack),
+                            Component.translatable(itemStack.getDescriptionId() + ".adv_desc"),
+                            null,
+                            FrameType.GOAL, true, true, false)
+                    .addCriterion(disc, InventoryChangeTrigger.TriggerInstance.hasItems(itemStack.getItem()))
+                    .save(consumer, ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, disc), helper);
         }
 
         public Advancement registerItemAdvancement(Advancement parent, ItemLike display) {

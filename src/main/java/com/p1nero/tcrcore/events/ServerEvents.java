@@ -24,7 +24,7 @@ public class ServerEvents {
     @SubscribeEvent
     public static void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
         if (e.getLevel() instanceof ServerLevel serverLevel && serverLevel.dimension() == ServerLevel.OVERWORLD) {
-            serverLevel.setDefaultSpawnPos(new BlockPos(128, 223, -127), 1.0F);
+            serverLevel.setDefaultSpawnPos(new BlockPos(69, 180, -120), 1.0F);
             e.setCanceled(true);
         }
     }

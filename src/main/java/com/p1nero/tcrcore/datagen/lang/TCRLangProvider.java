@@ -296,4 +296,7 @@ public abstract class TCRLangProvider extends LanguageProvider {
         this.add(item.getDescriptionId() + ".usage" + index, name);
     }
 
+    public void addItemAdvDesc(Item item, String value) {
+        this.add(item.getDescriptionId() + ".adv_desc", value);
+    }
 }

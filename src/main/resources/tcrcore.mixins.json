@@ -16,6 +16,7 @@
     "ItemMixin",
     "PlayerAdvancementsMixin",
     "PlayerPatchMixin",
+    "SkillContainerMixin",
     "TakeDamageEventAttackMixin",
     "VillagerMixin",
     "Wrath_of_the_desertMixin"

@@ -23,6 +23,7 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
@@ -75,11 +76,23 @@ public class LivingEntityEventListeners {
                 ItemUtil.addItemEntity(entity, ModItems.WRATH_OF_THE_DESERT.get(), 1, 0xfff66d);
                 event.setCanceled(true);
             }
-            if(entity instanceof Enemy) {
-                if(entity.getRandom().nextFloat() < 0.01F) {
+            if(entity instanceof Pillager) {
+                if(entity.getRandom().nextFloat() < 0.2F) {
+                    ItemUtil.addItemEntity(entity, Items.GOLD_INGOT, 1, 0xc000ff);
+                }
+                if(entity.getRandom().nextFloat() < 0.1F) {
+                    ItemUtil.addItemEntity(entity, Items.DIAMOND, 1, 0xc000ff);
+                }
+                if(entity.getRandom().nextFloat() < 0.05F) {
                     ItemUtil.addItemEntity(entity, Items.NETHERITE_INGOT, 1, 0xc000ff);
                 }
-                if(entity.getRandom().nextFloat() < 0.01F) {
+            } else if(entity instanceof Enemy) {
+                if(entity.getRandom().nextFloat() < 0.1F) {
+                    ItemUtil.addItemEntity(entity, Items.IRON_INGOT, 1, 0xc000ff);
+                }
+                if(entity.getRandom().nextFloat() < 0.03F) {
+                    ItemUtil.addItemEntity(entity, Items.AMETHYST_SHARD, 1, 0xc000ff);
+                } else if(entity.getRandom().nextFloat() < 0.01F) {
                     ItemUtil.addItemEntity(entity, FAItems.MOON_CRYSTAL.get(), 1, 0xc000ff);
                 }
             }

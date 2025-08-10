@@ -1,12 +1,18 @@
 package com.p1nero.tcrcore.datagen.lang;
 
+import com.github.L_Ender.cataclysm.init.ModItems;
+import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.client.KeyMappings;
 import com.p1nero.tcrcore.client.gui.BanPortalScreenHandler;
 import com.p1nero.tcrcore.entity.TCREntities;
+import com.yesman.epicskills.EpicSkills;
+import com.yesman.epicskills.registry.entry.EpicSkillsItems;
+import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 
 public class TCRZHLangGenerator extends TCRLangProvider {
     public TCRZHLangGenerator(PackOutput output) {
@@ -35,6 +41,8 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addInfo("press_to_skill_tree", "按下§6[K]键§f以进行技能加点！");
         this.addInfo("riptide_tutorial", "在水中按下§6[闪避]键§f以释放§b激流");
         this.addInfo("dodge_tutorial", "按下§6[左ALT]§f以释放闪避技能");
+        this.addInfo("weapon_innate_tutorial", "按下§6[R]键§f以释放武器技能");
+        this.addInfo("weapon_innate_charge_tutorial", "§6[完美闪避]§c或§6[完美招架]§c可以对部分武器进行充能！");
         this.addInfo("perfect_dodge_tutorial", "§c抓住实机闪避以释放完美闪避！");
         this.addInfo("hurt_damage", "造成[ %.1f ]点伤害！");
         this.addInfo("parry_tutorial", "按下§6[右键]§f以进行格挡");
@@ -51,10 +59,35 @@ public class TCRZHLangGenerator extends TCRLangProvider {
 
         this.addAdvancement(TCRCoreMod.MOD_ID, "远梦之棺", "梦开始的地方，前往主城寻找守护者。");
         this.addAdvancement(TCRCoreMod.MOD_ID + "_weapon", "王之宝库", "所有可获得的且进行过适配的武器或材料，可通过 [JEI] 查看获取方式及详细信息");
+        this.addItemAdvDesc(ModItems.ATHAME.get(), "获取方式：[特定怪物掉落]    较高穿甲，匕首模板");
+        this.addItemAdvDesc(ModItems.CORAL_SPEAR.get(), "获取方式：[特定怪物掉落]    三叉戟模板，较高穿甲，可抛掷");
+        this.addItemAdvDesc(ModItems.CORAL_BARDICHE.get(), "获取方式：[特定怪物掉落]    三叉戟模板，较高穿甲，可附魔激流");
+        this.addItemAdvDesc(ModItems.BLACK_STEEL_SWORD.get(), "获取方式：[合成]    剑模板");
+        this.addItemAdvDesc(ModItems.KHOPESH.get(), "获取方式：[特定怪物掉落]    剑模板，较高穿甲");
+        this.addItemAdvDesc(ModItems.ANCIENT_SPEAR.get(), "获取方式：[合成]    长枪模板，击中敌人释放沙暴");
+        this.addItemAdvDesc(AquamiraeItems.DIVIDER.get(), "获取方式：[合成]    剑模板，减少目标5%的最大生命，可叠10层");
+        this.addItemAdvDesc(AquamiraeItems.MAZE_ROSE.get(), "获取方式：[合成]    剑模板，右键召唤脉轮");
+        this.addItemAdvDesc(AquamiraeItems.POISONED_CHAKRA.get(), "获取方式：[合成]    剑模板，右键召唤带毒脉轮");
+        this.addItemAdvDesc(AquamiraeItems.WHISPER_OF_THE_ABYSS.get(), "获取方式：[合成]    长枪模板，减少目标10%的护甲值，可叠5层");
+        this.addItemAdvDesc(AquamiraeItems.DAGGER_OF_GREED.get(), "获取方式：[战利品箱]    匕首模板，攻击村民概率获得绿宝石，且概率触发不祥征兆");
+        this.addItemAdvDesc(AquamiraeItems.POISONED_BLADE.get(), "获取方式：[合成]    匕首模板，攻击附带中毒效果");
+        this.addItemAdvDesc(AquamiraeItems.FIN_CUTTER.get(), "获取方式：[合成]    剑模板，每少一颗心增加15%伤害，最多增加150%");
+        this.addItemAdvDesc(AquamiraeItems.TERRIBLE_SWORD.get(), "获取方式：[合成]    剑模板，50%暴击率，400%暴击伤害。如果你的攻击没有杀死敌人，你会受到1点伤害");
+        this.addItemAdvDesc(AquamiraeItems.CORAL_LANCE.get(), "获取方式：[击败Cornelia概率掉落]    长枪模板，对海船墓地生物造成的伤害增加");
+        this.addAdvancement(TCRCoreMod.MOD_ID + "_ingredient", "材料图鉴", "一些重要的材料的获取方式");
+        this.addItemAdvDesc(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get(), "通过击杀该模组内除[金蛾]和[棘鱼]的生物概率掉落，其中只有击杀[鳗]可固定掉落，也可以通过打开[冰冻箱子]概率获得。");
+        this.addItemAdvDesc(EpicSkillsItems.ABILIITY_STONE.get(), "击杀敌对生物或战利品箱概率获得，按[K]以进行技能加点");
+        this.addItemAdvDesc(Items.AMETHYST_SHARD, "击杀敌对生物概率获得");
+        this.addItemAdvDesc(AquamiraeItems.ABYSSAL_AMETHYST.get(), "击杀[迷宫之母]或合成获得");
+        this.addItemAdvDesc(FAItems.MOON_CRYSTAL.get(), "击杀敌对生物概率获得，或合成获得");
+        this.addItemAdvDesc(Items.IRON_INGOT, "击杀敌对生物概率获得");
+        this.addItemAdvDesc(Items.GOLD_INGOT, "击杀掠夺者概率获得");
+        this.addItemAdvDesc(Items.DIAMOND, "击杀掠夺者概率获得");
+        this.addItemAdvDesc(Items.NETHERITE_INGOT, "击杀掠夺者概率获得");
         this.addAdvancement("aquamirae_weapon", "海灵物语-武器", "");
         this.addAdvancement("cataclysm_weapon", "灾变-武器", "");
         this.addAdvancement("legend_weapon", "传奇武器", "");
-        this.addAdvancement("ef_legacy", "史诗战斗-武器", "");
+        this.addAdvancement("ef_legacy", "史诗战斗-武器", "皆可通过合成获取，拥有不同的武器技能和不同的动作模板，可在JEI查看合成方式及技能信息");
         this.addAdvancement("kill_pillager", "投名状", "任务已经完成，该回去找守护神了。");
         this.addAdvancement("mark_map", "标记地点", "守护神帮你标出了神之眼散落的地方，现在动身去夺回它们吧！");
         this.addAdvancement("storm_eye", "风暴之眼", "与[天空岛]的村民交易，夺回风暴之眼。§a§o当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土");

@@ -63,14 +63,15 @@ public class PlayerEventListeners {
             if(!PlayerDataManager.firstJoint.get(serverPlayer)) {
                 TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID, serverPlayer);
                 TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID + "_weapon", serverPlayer);
+                TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID + "_ingredient", serverPlayer);
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule keepInventory true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule mobGriefing false");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn tcrcore:step true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn efn:efn_step true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn efn:efn_dodge true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn epicfight:parrying true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " dodge_parry_reward:passive dodge_parry_reward:stamina1 true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge tcrcore:step");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge efn:efn_step");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
                 ItemUtil.addItem(serverPlayer, AquamiraeItems.REMNANTS_SABER.get(), 1);
