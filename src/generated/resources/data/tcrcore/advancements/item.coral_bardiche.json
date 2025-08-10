@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.coral_spear",
+  "criteria": {
+    "item.coral_bardiche": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:coral_bardiche"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.cataclysm.coral_bardiche.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:coral_bardiche"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.coral_bardiche"
+    }
+  },
+  "requirements": [
+    [
+      "item.coral_bardiche"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

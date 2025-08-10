@@ -1,0 +1,58 @@
+{
+  "parent": "tcrcore:item.vatansever",
+  "criteria": {
+    "item.nf_dual_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "efn:nf_dual_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "translate": "tooltip.efn.welcome_message"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "translate": "item.efn.nf_dual_sword.description1"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "translate": "tooltip.efn.keybind_warning"
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "efn:nf_dual_sword"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.efn.nf_dual_sword"
+    }
+  },
+  "requirements": [
+    [
+      "item.nf_dual_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

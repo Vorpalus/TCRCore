@@ -1,0 +1,29 @@
+{
+  "parent": "tcrcore:tcrcore_weapon",
+  "criteria": {
+    "ef_legacy": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.tcrcore.ef_legacy.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "epicfight:uchigatana"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.tcrcore.ef_legacy"
+    }
+  },
+  "requirements": [
+    [
+      "ef_legacy"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

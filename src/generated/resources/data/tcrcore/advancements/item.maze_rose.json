@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.divider",
+  "criteria": {
+    "item.maze_rose": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:maze_rose"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.aquamirae.maze_rose.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:maze_rose"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.aquamirae.maze_rose"
+    }
+  },
+  "requirements": [
+    [
+      "item.maze_rose"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.iron_spear",
+  "criteria": {
+    "item.iron_greatsword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "epicfight:iron_greatsword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "epicfight:iron_greatsword"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.epicfight.iron_greatsword"
+    }
+  },
+  "requirements": [
+    [
+      "item.iron_greatsword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

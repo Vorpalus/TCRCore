@@ -1,0 +1,52 @@
+{
+  "parent": "tcrcore:legend_weapon",
+  "criteria": {
+    "item.vatansever": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sword_soaring:vatansever"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "translate": "item.sword_soaring.vatansever.description1"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "translate": "item.sword_soaring.vatansever.description2"
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "sword_soaring:vatansever"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.sword_soaring.vatansever"
+    }
+  },
+  "requirements": [
+    [
+      "item.vatansever"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "tcrcore:tcrcore_weapon",
+  "criteria": {
+    "aquamirae_weapon": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.tcrcore.aquamirae_weapon.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:rune_of_the_storm"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.tcrcore.aquamirae_weapon"
+    }
+  },
+  "requirements": [
+    [
+      "aquamirae_weapon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

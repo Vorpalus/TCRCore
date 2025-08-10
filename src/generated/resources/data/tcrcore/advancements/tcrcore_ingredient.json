@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "tcrcore": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "cataclysm:textures/block/purpur_tile_pillar.png",
+    "description": {
+      "translate": "advancement.tcrcore.tcrcore_ingredient.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.tcrcore.tcrcore_ingredient"
+    }
+  },
+  "requirements": [
+    [
+      "tcrcore"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,75 @@
+{
+  "parent": "tcrcore:legend_weapon",
+  "criteria": {
+    "item.the_incinerator": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:the_incinerator"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "color": "gray",
+          "translate": "skill.p1nero_ec.desc"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.the_incinerator.desc2",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.2"
+            },
+            "2"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.the_incinerator.desc3",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.3"
+            },
+            "3"
+          ]
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:the_incinerator"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.the_incinerator"
+    }
+  },
+  "requirements": [
+    [
+      "item.the_incinerator"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

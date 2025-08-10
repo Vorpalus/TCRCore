@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.iron_dagger",
+  "criteria": {
+    "item.iron_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:iron_sword"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.minecraft.iron_sword"
+    }
+  },
+  "requirements": [
+    [
+      "item.iron_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

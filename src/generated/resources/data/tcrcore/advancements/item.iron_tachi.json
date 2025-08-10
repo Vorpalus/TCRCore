@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.iron_longsword",
+  "criteria": {
+    "item.iron_tachi": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "epicfight:iron_tachi"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "epicfight:iron_tachi"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.epicfight.iron_tachi"
+    }
+  },
+  "requirements": [
+    [
+      "item.iron_tachi"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

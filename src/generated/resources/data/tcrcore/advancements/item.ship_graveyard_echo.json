@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:tcrcore_ingredient",
+  "criteria": {
+    "item.ship_graveyard_echo": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:ship_graveyard_echo"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.aquamirae.ship_graveyard_echo.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:ship_graveyard_echo"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.aquamirae.ship_graveyard_echo"
+    }
+  },
+  "requirements": [
+    [
+      "item.ship_graveyard_echo"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

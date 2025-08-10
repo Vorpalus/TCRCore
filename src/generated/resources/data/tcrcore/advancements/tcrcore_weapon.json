@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "tcrcore": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "cataclysm:textures/block/obsidian_bricks.png",
+    "description": {
+      "translate": "advancement.tcrcore.tcrcore_weapon.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:the_incinerator"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.tcrcore.tcrcore_weapon"
+    }
+  },
+  "requirements": [
+    [
+      "tcrcore"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

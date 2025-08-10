@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.black_steel_sword",
+  "criteria": {
+    "item.khopesh": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:khopesh"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.cataclysm.khopesh.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:khopesh"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.khopesh"
+    }
+  },
+  "requirements": [
+    [
+      "item.khopesh"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

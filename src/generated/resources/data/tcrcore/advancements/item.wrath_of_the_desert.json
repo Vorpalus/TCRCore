@@ -1,0 +1,89 @@
+{
+  "parent": "tcrcore:item.the_incinerator",
+  "criteria": {
+    "item.wrath_of_the_desert": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:wrath_of_the_desert"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "color": "gray",
+          "translate": "skill.p1nero_ec.desc"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "yellow",
+          "translate": "skill.p1nero_ec.wrath_of_the_desert.desc1",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.1"
+            },
+            "1"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "yellow",
+          "translate": "skill.p1nero_ec.wrath_of_the_desert.desc2",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.2"
+            },
+            "2"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "yellow",
+          "translate": "skill.p1nero_ec.wrath_of_the_desert.desc3",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.3"
+            },
+            "4"
+          ]
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:wrath_of_the_desert"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.wrath_of_the_desert"
+    }
+  },
+  "requirements": [
+    [
+      "item.wrath_of_the_desert"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,81 @@
+{
+  "parent": "tcrcore:item.ceraunus",
+  "criteria": {
+    "item.tidal_claws": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:tidal_claws"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "color": "gray",
+          "translate": "skill.p1nero_ec.desc"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.tidal_claw.desc2",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.2"
+            },
+            {
+              "translate": "entity.cataclysm.abyss_blast"
+            },
+            "2"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.tidal_claw.desc3",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.3"
+            },
+            {
+              "translate": "entity.cataclysm.abyss_blast_portal"
+            },
+            "3"
+          ]
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:tidal_claws"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.tidal_claws"
+    }
+  },
+  "requirements": [
+    [
+      "item.tidal_claws"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

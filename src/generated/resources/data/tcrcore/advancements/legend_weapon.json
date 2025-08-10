@@ -1,0 +1,29 @@
+{
+  "parent": "tcrcore:tcrcore_weapon",
+  "criteria": {
+    "legend_weapon": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.tcrcore.legend_weapon.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:burning_ashes"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.tcrcore.legend_weapon"
+    }
+  },
+  "requirements": [
+    [
+      "legend_weapon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

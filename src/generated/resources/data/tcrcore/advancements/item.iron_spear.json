@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.iron_tachi",
+  "criteria": {
+    "item.iron_spear": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "epicfight:iron_spear"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "epicfight:iron_spear"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.epicfight.iron_spear"
+    }
+  },
+  "requirements": [
+    [
+      "item.iron_spear"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

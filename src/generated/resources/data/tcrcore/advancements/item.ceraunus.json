@@ -1,0 +1,109 @@
+{
+  "parent": "tcrcore:item.soul_render",
+  "criteria": {
+    "item.ceraunus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:ceraunus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "color": "gray",
+          "translate": "skill.p1nero_ec.desc"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.ceraunus.desc1",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.1"
+            },
+            {
+              "color": "light_purple",
+              "hoverEvent": {
+                "action": "show_item",
+                "contents": {
+                  "id": "cataclysm:ceraunus"
+                }
+              },
+              "translate": "chat.square_brackets",
+              "with": [
+                {
+                  "extra": [
+                    {
+                      "translate": "item.cataclysm.ceraunus"
+                    }
+                  ],
+                  "text": ""
+                }
+              ]
+            },
+            "1"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.ceraunus.desc2",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.2"
+            },
+            "2"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "aqua",
+          "translate": "skill.p1nero_ec.ceraunus.desc3",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.3"
+            },
+            "3"
+          ]
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:ceraunus"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.ceraunus"
+    }
+  },
+  "requirements": [
+    [
+      "item.ceraunus"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

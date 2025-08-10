@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:tcrcore_ingredient",
+  "criteria": {
+    "item.ability_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "epicskills:ability_stone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.epicskills.ability_stone.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "epicskills:ability_stone"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.epicskills.ability_stone"
+    }
+  },
+  "requirements": [
+    [
+      "item.ability_stone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

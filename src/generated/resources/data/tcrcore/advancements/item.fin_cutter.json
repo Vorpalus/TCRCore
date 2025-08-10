@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.poisoned_blade",
+  "criteria": {
+    "item.fin_cutter": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:fin_cutter"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.aquamirae.fin_cutter.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:fin_cutter"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.aquamirae.fin_cutter"
+    }
+  },
+  "requirements": [
+    [
+      "item.fin_cutter"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

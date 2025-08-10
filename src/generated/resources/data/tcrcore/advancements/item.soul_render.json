@@ -1,0 +1,89 @@
+{
+  "parent": "tcrcore:item.wrath_of_the_desert",
+  "criteria": {
+    "item.soul_render": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:soul_render"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "extra": [
+        {
+          "text": "\n"
+        },
+        {
+          "color": "gray",
+          "translate": "skill.p1nero_ec.desc"
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "dark_green",
+          "translate": "skill.p1nero_ec.soul_render.desc1",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.1"
+            },
+            "2"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "dark_green",
+          "translate": "skill.p1nero_ec.soul_render.desc2",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.2"
+            },
+            "2"
+          ]
+        },
+        {
+          "text": "\n"
+        },
+        {
+          "color": "dark_green",
+          "translate": "skill.p1nero_ec.soul_render.desc3",
+          "with": [
+            {
+              "color": "gold",
+              "translate": "key.keyboard.3"
+            },
+            "3"
+          ]
+        }
+      ],
+      "text": ""
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:soul_render"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.soul_render"
+    }
+  },
+  "requirements": [
+    [
+      "item.soul_render"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

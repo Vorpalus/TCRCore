@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:tcrcore_ingredient",
+  "criteria": {
+    "item.diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.minecraft.diamond.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:diamond"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.minecraft.diamond"
+    }
+  },
+  "requirements": [
+    [
+      "item.diamond"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

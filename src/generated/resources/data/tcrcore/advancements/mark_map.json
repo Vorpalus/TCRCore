@@ -1,0 +1,29 @@
+{
+  "parent": "tcrcore:kill_pillager",
+  "criteria": {
+    "mark_map": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.tcrcore.mark_map.desc"
+    },
+    "frame": "task",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:map"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.tcrcore.mark_map"
+    }
+  },
+  "requirements": [
+    [
+      "mark_map"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

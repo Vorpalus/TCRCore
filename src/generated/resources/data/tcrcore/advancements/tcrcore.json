@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "tcrcore": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "cataclysm:textures/block/azure_seastone_bricks.png",
+    "description": {
+      "translate": "advancement.tcrcore.tcrcore.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:storm_eye"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.tcrcore.tcrcore"
+    }
+  },
+  "requirements": [
+    [
+      "tcrcore"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:item.dagger_of_greed",
+  "criteria": {
+    "item.poisoned_blade": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:poisoned_blade"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.aquamirae.poisoned_blade.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:poisoned_blade"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.aquamirae.poisoned_blade"
+    }
+  },
+  "requirements": [
+    [
+      "item.poisoned_blade"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

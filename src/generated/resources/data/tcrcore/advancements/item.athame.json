@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:cataclysm_weapon",
+  "criteria": {
+    "item.athame": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "cataclysm:athame"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.cataclysm.athame.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "cataclysm:athame"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.cataclysm.athame"
+    }
+  },
+  "requirements": [
+    [
+      "item.athame"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

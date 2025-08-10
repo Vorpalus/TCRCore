@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:aquamirae_weapon",
+  "criteria": {
+    "item.dagger_of_greed": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:dagger_of_greed"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.aquamirae.dagger_of_greed.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:dagger_of_greed"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.aquamirae.dagger_of_greed"
+    }
+  },
+  "requirements": [
+    [
+      "item.dagger_of_greed"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

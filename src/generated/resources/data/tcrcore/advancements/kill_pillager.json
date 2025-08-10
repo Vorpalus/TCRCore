@@ -1,0 +1,40 @@
+{
+  "parent": "tcrcore:tcrcore",
+  "criteria": {
+    "kill_pillager": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "#minecraft:raiders"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.tcrcore.kill_pillager.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "minecraft:goat_horn"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.tcrcore.kill_pillager"
+    }
+  },
+  "requirements": [
+    [
+      "kill_pillager"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "tcrcore:aquamirae_weapon",
+  "criteria": {
+    "item.divider": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "aquamirae:divider"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "item.aquamirae.divider.adv_desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "aquamirae:divider"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "item.aquamirae.divider"
+    }
+  },
+  "requirements": [
+    [
+      "item.divider"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
