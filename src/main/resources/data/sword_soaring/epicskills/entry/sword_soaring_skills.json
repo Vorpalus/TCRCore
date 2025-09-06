@@ -1,0 +1,172 @@
+{
+  "nodes": [
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        20,
+        30
+      ],
+      "skill": "sword_soaring:sword_soaring_apprentice"
+    },
+    {
+      "ability_points": 5,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "sword_soaring:sword_soaring_apprentice"
+        }
+      ],
+      "position_in_screen": [
+        20,
+        130
+      ],
+      "skill": "sword_soaring:sword_soaring_expert"
+    },
+    {
+      "ability_points": 10,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "sword_soaring:sword_soaring_apprentice"
+        }
+      ],
+      "position_in_screen": [
+        20,
+        230
+      ],
+      "skill": "sword_soaring:sword_soaring_master"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        120,
+        30
+      ],
+      "skill": "sword_soaring:sword_soaring_elytra_apprentice"
+    },
+    {
+      "ability_points": 5,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "sword_soaring:sword_soaring_elytra_apprentice"
+        }
+      ],
+      "position_in_screen": [
+        120,
+        130
+      ],
+      "skill": "sword_soaring:sword_soaring_elytra_expert"
+    },
+    {
+      "ability_points": 10,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "sword_soaring:sword_soaring_elytra_apprentice"
+        }
+      ],
+      "position_in_screen": [
+        120,
+        230
+      ],
+      "skill": "sword_soaring:sword_soaring_elytra_master"
+    },
+    {
+      "ability_points": 5,
+      "hidden": false,
+      "position_in_screen": [
+        220,
+        30
+      ],
+      "skill": "sword_soaring:kill_aura_1"
+    },
+    {
+      "ability_points": 5,
+      "hidden": false,
+      "position_in_screen": [
+        320,
+        30
+      ],
+      "skill": "sword_soaring:kill_aura_2"
+    },
+    {
+      "ability_points": 20,
+      "hidden": false,
+      "parents": [
+        {
+          "control_points": [
+            [
+              220,
+              80
+            ]
+          ],
+          "skill": "sword_soaring:kill_aura_1"
+        },
+        {
+          "control_points": [
+            [
+              320,
+              80
+            ]
+          ],
+          "skill": "sword_soaring:kill_aura_2"
+        }
+      ],
+      "position_in_screen": [
+        270,
+        130
+      ],
+      "skill": "sword_soaring:wan_jian_gui_zong"
+    },
+    {
+      "ability_points": 5,
+      "hidden": false,
+      "position_in_screen": [
+        220,
+        230
+      ],
+      "skill": "sword_soaring:screen_sword"
+    },
+    {
+      "ability_points": 5,
+      "hidden": false,
+      "position_in_screen": [
+        320,
+        230
+      ],
+      "skill": "sword_soaring:rain_sword"
+    },
+    {
+      "ability_points": 20,
+      "hidden": false,
+      "parents": [
+        {
+          "control_points": [
+            [
+              220,
+              280
+            ]
+          ],
+          "skill": "sword_soaring:screen_sword"
+        },
+        {
+          "control_points": [
+            [
+              320,
+              280
+            ]
+          ],
+          "skill": "sword_soaring:rain_sword"
+        }
+      ],
+      "position_in_screen": [
+        270,
+        330
+      ],
+      "skill": "sword_soaring:babylon"
+    }
+  ]
+}

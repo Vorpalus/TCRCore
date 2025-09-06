@@ -1,0 +1,116 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "chaptertcr1"
+	group: ""
+	hide_quest_details_until_startable: true
+	icon: "cataclysm:goddess_statue"
+	id: "2A319D3255FD3C6C"
+	order_index: 1
+	quest_links: [ ]
+	quests: [
+		{
+			description: ["“我已经将火种散落之地标记在地图&6（默认按下[M]键查看）&r上了，剩下的交给你了，天外的救世主！”"]
+			icon_scale: 2.0d
+			id: "5815BBDEE2362406"
+			invisible: true
+			shape: "square"
+			subtitle: "在少女的指引下，你踏上了寻找失落火种之旅,,,"
+			tasks: [{
+				advancement: "tcrcore:mark_map"
+				criterion: ""
+				icon: "minecraft:map"
+				id: "7159C4C4C1C35D49"
+				title: "逐火之旅，起航！"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["5815BBDEE2362406"]
+			description: ["通过&b[天空岛]铁傀儡&r的试炼，寻回风暴之眼。"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 2.0d
+			id: "28346EDF4258D751"
+			shape: "square"
+			subtitle: "“当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土”"
+			tasks: [{
+				id: "31BC2442C77FFB4A"
+				item: "cataclysm:storm_eye"
+				type: "item"
+			}]
+			x: -4.0d
+			y: -4.0d
+		}
+		{
+			dependencies: ["5815BBDEE2362406"]
+			description: ["击败潜伏在&6[隐秘水湾]的Bulldrogioth&r，夺回深渊之眼"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			hide_until_deps_visible: true
+			icon_scale: 2.0d
+			id: "3E4068880C2881A9"
+			subtitle: "“深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城”"
+			tasks: [{
+				id: "2806721BDF8285C2"
+				item: "cataclysm:abyss_eye"
+				type: "item"
+			}]
+			x: -6.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["5815BBDEE2362406"]
+			description: ["击败位于&6[龙之塔]&r的&c火龙&r，夺回烈焰之眼"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 2.0d
+			id: "032062CBCDEC3C85"
+			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”"
+			tasks: [{
+				id: "00F6FB2F90E7EC54"
+				item: "cataclysm:flame_eye"
+				type: "item"
+			}]
+			x: 0.0d
+			y: -13.0d
+		}
+		{
+			dependencies: ["5815BBDEE2362406"]
+			description: ["击败&6可妮莉娅(Cornelia)船长&r的幽灵，夺回诅咒之眼"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 2.0d
+			id: "35627351B56DBAC1"
+			shape: "square"
+			subtitle: "“当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船”"
+			tasks: [{
+				id: "3188F71E2882792F"
+				item: "cataclysm:cursed_eye"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -9.5d
+		}
+		{
+			dependencies: ["5815BBDEE2362406"]
+			description: ["击败&6[海底神殿]&r的&e远古守卫者&r，夺回沙漠之眼"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 2.0d
+			id: "720426084924F940"
+			shape: "square"
+			subtitle: "“守卫者不是怪物，它们是子民自愿化身的活体墓碑”"
+			tasks: [{
+				id: "1539B7BC0DD0556D"
+				item: "cataclysm:desert_eye"
+				type: "item"
+			}]
+			x: 3.5d
+			y: -4.0d
+		}
+	]
+	title: "远梦之棺"
+}

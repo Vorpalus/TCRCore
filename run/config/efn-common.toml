@@ -3,3 +3,38 @@
 	#Enable automatic dodge skill switching when equipping EFN weapons
 	autoSwitchDodgeSkill = false
 
+["Animation Settings"]
+	#Entities that won't play target animations (format: modid:entity_id)
+	#Example: ["minecraft:wither", "minecraft:ender_dragon"]
+	animationBlacklist = ["minecraft:wither", "minecraft:ender_dragon", "efn:sin_summoned_sword", "efn:doppelganger", "evil_thought:treeking"]
+	#Entities that can play target animations (format: modid:entity_id)
+	#Example: ["minecraft:player", "minecraft:zombie", "minecraft:skeleton"]
+	animationWhitelist = ["minecraft:creeper", "wom:evil_skeleton", "wom:hollow", "wom:saulomonk", "wom:lycanth"]
+
+["UI Settings"]
+
+	["UI Settings"."Lock-On UI Settings"]
+		#Lock-on icon base size
+		#Default: 0.6, Range: 0.1 to 2.0
+		#Range: 0.1 ~ 2.0
+		lockOnIconSize = 0.6
+		#Lock-on UI red color component (0.0 - 1.0)
+		#Default: 0.35
+		#Range: 0.0 ~ 1.0
+		lockOnRed = 0.35
+		#Lock-on UI green color component (0.0 - 1.0)
+		#Default: 0.35
+		#Range: 0.0 ~ 1.0
+		lockOnGreen = 0.35
+		#Lock-on UI blue color component (0.0 - 1.0)
+		#Default: 0.8
+		#Range: 0.0 ~ 1.0
+		lockOnBlue = 0.8
+		#Lock-on UI alpha (transparency) component (0.0 - 1.0)
+		#Default: 0.65
+		#Range: 0.0 ~ 1.0
+		lockOnAlpha = 0.65
+		#Enable automatic size scaling for large entities
+		#When enabled, lock-on UI will scale up for larger targets
+		lockOnSizeScaling = true
+

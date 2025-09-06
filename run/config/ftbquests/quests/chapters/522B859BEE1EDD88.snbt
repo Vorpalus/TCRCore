@@ -1,0 +1,107 @@
+{
+	default_hide_dependency_lines: false
+	default_quest_shape: ""
+	filename: "522B859BEE1EDD88"
+	group: ""
+	hide_quest_details_until_startable: true
+	icon: "armourers_workshop:skin-library-global"
+	id: "522B859BEE1EDD88"
+	order_index: 2
+	quest_links: [ ]
+	quests: [
+		{
+			description: [""]
+			icon: "minecraft:anvil"
+			id: "54060FC753C24428"
+			subtitle: "神谕揭示了古老的化形技术，现在该好好打扮自己了！"
+			tasks: [
+				{
+					id: "2668E6B52DB719A7"
+					title: "关于时装工坊..."
+					type: "checkmark"
+				}
+				{
+					advancement: "tcrcore:stage1"
+					criterion: ""
+					id: "784955FD1BECAA6E"
+					type: "advancement"
+				}
+			]
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			description: ["右键全球资源库方块可以从全球时装资源库中挑选自己喜欢的时装并下载时装文件到本地。"]
+			id: "48B0116CB9456155"
+			rewards: [{
+				id: "7B3A05A5D1A13AE6"
+				item: "armourers_workshop:skin-library-global"
+				type: "item"
+			}]
+			tasks: [{
+				id: "30FB9D706252752F"
+				title: "全球资源库"
+				type: "checkmark"
+			}]
+			x: 2.5d
+			y: -1.5d
+		}
+		{
+			description: [
+				"将时装模板放入时装资源库，可以下载我们喜欢的时装。"
+				""
+				"之后，可以使用&6时装镶嵌台&r，或默认按下&6[ctrl + p]&r打开时装栏，装饰自己。"
+			]
+			id: "04D5BC62BDACB780"
+			rewards: [{
+				id: "7EE07A7279708075"
+				item: "armourers_workshop:skin-library"
+				type: "item"
+			}]
+			tasks: [{
+				id: "2D46AE8E7CF9DCEB"
+				title: "时装资源库"
+				type: "checkmark"
+			}]
+			x: 7.5d
+			y: -1.5d
+		}
+		{
+			can_repeat: true
+			description: ["[ \"使用时装模板，可以将\", { \"text\": \"资源库\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"04D5BC62BDACB780\" } }, \"里的时装取出来\" ]"]
+			id: "7DF46FF0EC2E12A8"
+			rewards: [{
+				count: 4
+				id: "21F90D5EBFB0FAE5"
+				item: "armourers_workshop:skin-template"
+				type: "item"
+			}]
+			tasks: [{
+				id: "11458B0BBA4A1808"
+				item: "minecraft:diamond"
+				type: "item"
+			}]
+			title: "时装模板"
+			x: 5.0d
+			y: 0.0d
+		}
+		{
+			description: ["使用&6镶嵌工作台&r可以将时装和物品绑定在一起，使我们可以在不同的武器下使用不同的时装"]
+			id: "67A95DF66065465D"
+			rewards: [{
+				id: "5199C16A352910DC"
+				item: "armourers_workshop:skinning-table"
+				type: "item"
+			}]
+			tasks: [{
+				id: "09A28D13E65ACEEB"
+				title: "镶嵌工作台"
+				type: "checkmark"
+			}]
+			title: "镶嵌工作台"
+			x: 10.0d
+			y: 0.0d
+		}
+	]
+	title: "化形术！"
+}

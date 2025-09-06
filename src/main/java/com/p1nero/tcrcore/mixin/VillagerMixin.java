@@ -2,15 +2,23 @@ package com.p1nero.tcrcore.mixin;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.dialog_lib.DialogueLib;
+import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
+import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yungnickyoung.minecraft.yungsapi.criteria.SafeStructureLocationPredicate;
+import net.minecraft.ChatFormatting;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -30,6 +38,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Objects;
+
 @Mixin(Villager.class)
 public abstract class VillagerMixin extends AbstractVillager {
 
@@ -45,22 +55,13 @@ public abstract class VillagerMixin extends AbstractVillager {
             this.playAmbientSound();
             TCRCapabilityProvider.getTCRPlayer(serverPlayer).setCurrentTalkingEntity(this);
             ItemStack mainHand = player.getMainHandItem();
-            if (mainHand.is(Items.EMERALD) || mainHand.is(ItemTags.FISHES) || mainHand.is(Blocks.MAGMA_BLOCK.asItem())) {
-                if (!PlayerDataManager.stormEyeTraded.get(player) && mainHand.is(Items.EMERALD) && new SafeStructureLocationPredicate(ResourceKey.create(Registries.STRUCTURE, ResourceLocation.parse("trek:overworld/very_rare/floating_farm_large"))).matches(serverPlayer.serverLevel(), this.getX(), this.getY(), this.getZ())) {
-                    ItemUtil.addItem(player, ModItems.STORM_EYE.get(), 1, true);
-                    PlayerDataManager.stormEyeTraded.put(player, true);
-                } else if (!PlayerDataManager.flameEyeTraded.get(player) && mainHand.is(Blocks.MAGMA_BLOCK.asItem()) && new SafeStructureLocationPredicate(ResourceKey.create(Registries.STRUCTURE, ResourceLocation.parse("lios_outlandish_villages:spiral_tower_village_sea"))).matches(serverPlayer.serverLevel(), this.getX(), this.getY(), this.getZ())) {
-                    ItemUtil.addItem(player, ModItems.FLAME_EYE.get(), 1, true);
-                    PlayerDataManager.flameEyeTraded.put(player, true);
-                } else if (!PlayerDataManager.abyssEyeTraded.get(player) && mainHand.is(ItemTags.FISHES) && new SafeStructureLocationPredicate(ResourceKey.create(Registries.STRUCTURE, ResourceLocation.parse("trek:overworld/very_rare/coves"))).matches(serverPlayer.serverLevel(), this.getX(), this.getY(), this.getZ())) {
-                    ItemUtil.addItem(player, ModItems.ABYSS_EYE.get(), 1, true);
-                    PlayerDataManager.abyssEyeTraded.put(player, true);
-                } else {
-                    CompoundTag tag = new CompoundTag();
-                    tag.putBoolean("wrong_place", true);
-                    DialogueLib.sendDialog((Villager) (Object) this, tag, serverPlayer);
-                    cir.setReturnValue(InteractionResult.SUCCESS);
-                    return;
+            if (mainHand.is(Items.EMERALD)) {
+                CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
+                if(!PlayerDataManager.waterAvoidUnlocked.get(serverPlayer) && WorldUtil.isInStructure(serverPlayer, WorldUtil.COVES)) {
+                    Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn tcrcore:water_avoid true");
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("unlock_water_avoid", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
+                    level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    PlayerDataManager.waterAvoidUnlocked.put(serverPlayer, true);
                 }
                 mainHand.shrink(1);
                 CompoundTag tag = new CompoundTag();

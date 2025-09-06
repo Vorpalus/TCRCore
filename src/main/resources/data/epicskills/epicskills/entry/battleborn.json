@@ -20,6 +20,32 @@
 			"position_in_screen": [120, 30],
 			"ability_points": 1
 		},
+        {
+          "skill": "tcrcore:water_avoid",
+          "position_in_screen": [290, 230],
+          "custom_condition": true,
+          "unlock_tip": "unlock_tip.tcrcore.battleborn.water_avoid"
+        },
+        {
+          "skill": "tcrcore:fire_avoid",
+          "position_in_screen": [390, 230],
+          "conditions": {
+            "type_specific": {
+              "type": "player",
+              "stats": [
+                {
+                  "type": "minecraft:killed",
+                  "stat": "minecraft:ender_dragon",
+                  "value": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          },
+          "custom_condition": false,
+          "unlock_tip": "unlock_tip.tcrcore.battleborn.fire_avoid"
+        },
 		{
 			"skill": "epicfight:technician",
 			"position_in_screen": [120, 100],

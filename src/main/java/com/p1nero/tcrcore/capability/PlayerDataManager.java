@@ -16,7 +16,11 @@ import java.util.Set;
 
 public class PlayerDataManager {
     private final static Set<String> EXISTING_ID = new HashSet<>();
+    public static DoubleData stage = new DoubleData("stage", 0);
+    public static BoolData waterAvoidUnlocked = new BoolData("water_avoid_unlocked", false);
+    public static BoolData bllSummoned = new BoolData("bll_summoned", false);
     public static BoolData firstJoint = new BoolData("first_joint", false);
+    public static BoolData wayStoneInteracted = new BoolData("way_stone_interacted", false);
     public static BoolData dodged = new BoolData("dodged", false);
     public static BoolData parried = new BoolData("parried", false);
     public static BoolData weapon_innate_used = new BoolData("weapon_innate_used", false);
@@ -163,6 +167,10 @@ public class PlayerDataManager {
                     PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PersistentDoubleDataSyncPacket(key, isLocked, value), serverPlayer);
                 }
             }
+        }
+
+        public int getInt(Player player) {
+            return get(player).intValue();
         }
 
         @Override

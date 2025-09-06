@@ -1,11 +1,18 @@
 package com.p1nero.tcrcore.utils;
 
+import com.yungnickyoung.minecraft.yungsapi.criteria.SafeStructureLocationPredicate;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BaseCommandBlock;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec2;
@@ -19,10 +26,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WorldUtil {
-
+    public static final Vec3i START_POS = new Vec3i(78, 65, -193);
+    public static final Vec3 CENTER_POS = new Vec3(-19, 65, -79);
+    public static final String COVES = "trek:overworld/very_rare/coves";
     public static Vec2i storm, flame, abyss, cursed, desert;
 
     private static final Pattern LOCATE_PATTERN = Pattern.compile(".*?\\[\\s*(-?\\d+)\\s*,\\s*~\\s*,\\s*(-?\\d+)\\s*\\].*");
+
+    public static boolean inMainLand(Entity entity) {
+        return entity.position().subtract(CENTER_POS).horizontalDistance() < 250;
+    }
+
+    public static boolean isInStructure(LivingEntity entity, String structure) {
+        if(entity.level().isClientSide) {
+            return false;
+        }
+        return new SafeStructureLocationPredicate(ResourceKey.create(Registries.STRUCTURE, ResourceLocation.parse(structure))).matches(((ServerLevel) entity.level()), entity.getX(), entity.getY(), entity.getZ());
+    }
 
     /**
      * 获取结构位置

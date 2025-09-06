@@ -19,15 +19,15 @@ public abstract class BetterAdvancementsScreenMixin extends Screen {
         super(component);
     }
 
-    /**
-     * 只留自己的进度
-     */
-    @Inject(method = {"onAddAdvancementRoot", "m_5513_"}, at = @At("HEAD"), cancellable = true, remap = false)
-    private void tcr$onAddAdvancementRoot(Advancement advancement, CallbackInfo ci) {
-        if (!(advancement.getId().getNamespace().equals(TCRCoreMod.MOD_ID))) {
-            ci.cancel();
-        }
-    }
+//    /**
+//     * 只留自己的进度
+//     */
+//    @Inject(method = {"onAddAdvancementRoot", "m_5513_"}, at = @At("HEAD"), cancellable = true, remap = false)
+//    private void tcr$onAddAdvancementRoot(Advancement advancement, CallbackInfo ci) {
+//        if (!(advancement.getId().getNamespace().equals(TCRCoreMod.MOD_ID))) {
+//            ci.cancel();
+//        }
+//    }
 
     /**
      * 加个按钮音效

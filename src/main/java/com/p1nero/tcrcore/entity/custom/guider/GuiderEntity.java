@@ -12,6 +12,7 @@ import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
+import dev.ftb.mods.ftbquests.item.FTBQuestsItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -19,6 +20,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -154,40 +156,49 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
     }
 
     @Override
-    public void handleNpcInteraction(ServerPlayer serverPlayer, int code) {
+    public void handleNpcInteraction(ServerPlayer player, int code) {
+        if(code == 2) {
+            //揭示预言，即解锁新玩法。根据记录的id解锁，初始阶段0， 1解锁附魔和时装 2解锁武器和boss图鉴，3解锁地狱末地，具体在FTB看
+            int stage = PlayerDataManager.stage.getInt(player);
+            TCRAdvancementData.finishAdvancement("stage" + stage + 1, player);
+            PlayerDataManager.stage.put(player, stage + 1D);
+            player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_ftb_page"), false);
+            level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+        }
         if(code == 1) {
-            if(!PlayerDataManager.mapMarked.get(serverPlayer)) {
-                ItemUtil.addItem(serverPlayer, AquamiraeItems.SHELL_HORN.get(), 1);//给号角
+            if(!PlayerDataManager.mapMarked.get(player)) {
+                ItemUtil.addItem(player, FTBQuestsItems.BOOK.get(), 1);//给任务书
+                ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1);//给号角
                 //地图上标记位置
-                Vec2i cursed = WorldUtil.getNearbyStructurePos(serverPlayer, "aquamirae:ship");//船长
+                Vec2i cursed = WorldUtil.getNearbyStructurePos(player, "aquamirae:ship");//船长
                 if(cursed != null) {
-                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(cursed.x, 64, cursed.y), WaypointColor.BLUE);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(cursed.x, 64, cursed.y), WaypointColor.BLUE);
                 }
-                Vec2i desert = WorldUtil.getNearbyStructurePos(serverPlayer, "betteroceanmonuments:ocean_monument");//远古守卫者
+                Vec2i desert = WorldUtil.getNearbyStructurePos(player, "betteroceanmonuments:ocean_monument");//远古守卫者
                 if(desert != null) {
-                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(desert.x, 64, desert.y), WaypointColor.YELLOW);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(desert.x, 64, desert.y), WaypointColor.YELLOW);
                 }
-                Vec2i flame = WorldUtil.getNearbyStructurePos(serverPlayer, "lios_outlandish_villages:spiral_tower_village_sea");//螺旋塔村
+                Vec2i flame = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:dragon_tower");//龙之塔
                 if(flame != null) {
-                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(flame.x, 64, flame.y), WaypointColor.RED);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(flame.x, 256, flame.y), WaypointColor.RED);
                 }
 
-                Vec2i abyss = WorldUtil.getNearbyStructurePos(serverPlayer, "trek:overworld/very_rare/coves");//隐秘水湾
+                Vec2i abyss = WorldUtil.getNearbyStructurePos(player, WorldUtil.COVES);//隐秘水湾
                 if(abyss != null) {
-                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 64, abyss.y), WaypointColor.DARK_BLUE);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 64, abyss.y), WaypointColor.DARK_BLUE);
                 }
 
-                Vec2i storm = WorldUtil.getNearbyStructurePos(serverPlayer, "trek:overworld/very_rare/floating_farm_large");//天空岛
+                Vec2i storm = WorldUtil.getNearbyStructurePos(player, "trek:overworld/very_rare/floating_farm_large");//天空岛
                 if(storm != null) {
-                    WaypointUtil.sendWaypoint(serverPlayer, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(storm.x, 230, storm.y), WaypointColor.AQUA);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(storm.x, 230, storm.y), WaypointColor.AQUA);
                 }
 
-                serverPlayer.level().playSound(null, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), SoundEvents.END_PORTAL_SPAWN, serverPlayer.getSoundSource(), 1.0F, 1.0F);
-                TCRAdvancementData.finishAdvancement("mark_map", serverPlayer);
-                PlayerDataManager.mapMarked.put(serverPlayer, true);
+                player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.END_PORTAL_SPAWN, player.getSoundSource(), 1.0F, 1.0F);
+                TCRAdvancementData.finishAdvancement("mark_map", player);
+                PlayerDataManager.mapMarked.put(player, true);
             }
 
-            serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
+            player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
         }
         this.setConversingPlayer(null);
     }

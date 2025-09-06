@@ -1,6 +1,5 @@
 package com.p1nero.tcrcore.mixin;
 
-import com.obscuria.aquamirae.AquamiraeClient;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import com.obscuria.aquamirae.common.items.weapon.DividerItem;
 import com.obscuria.aquamirae.common.items.weapon.WhisperOfTheAbyssItem;

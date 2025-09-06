@@ -1,6 +1,7 @@
 package com.p1nero.tcrcore.events;
 
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.utils.WorldUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -15,6 +16,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.stream.Stream;
 
+
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class ServerEvents {
 
@@ -24,7 +26,7 @@ public class ServerEvents {
     @SubscribeEvent
     public static void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
         if (e.getLevel() instanceof ServerLevel serverLevel && serverLevel.dimension() == ServerLevel.OVERWORLD) {
-            serverLevel.setDefaultSpawnPos(new BlockPos(69, 180, -120), 1.0F);
+            serverLevel.setDefaultSpawnPos(new BlockPos(WorldUtil.START_POS), 1.0F);
             e.setCanceled(true);
         }
     }

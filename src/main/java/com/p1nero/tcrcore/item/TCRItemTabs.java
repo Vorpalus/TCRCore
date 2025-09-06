@@ -19,5 +19,6 @@ public class TCRItemTabs {
                 output.accept(TCRBlocks.DESERT_ALTAR_BLOCK.get());
                 output.accept(TCRBlocks.FLAME_ALTAR_BLOCK.get());
                 output.accept(TCRBlocks.STORM_ALTAR_BLOCK.get());
+                output.accept(TCRItems.ANCIENT_ORACLE_FRAGMENT.get());
             }).build());
 }

@@ -158,15 +158,18 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-//    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6854306")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6968125")
     implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
     implementation fg.deobf("curse.maven:epic-fight-invincible-1184379:6855750")
-    implementation fg.deobf("libs:epic_fight_avalon:20.12.1")
     implementation fg.deobf("curse.maven:epic-fight-dodge-parry-reward-1304607:6855180")
-    implementation fg.deobf("libs:epicfight:20.12.1.2")
+    implementation fg.deobf("libs:epic_fight_avalon:20.12.2.4.1")
     implementation fg.deobf("libs:EpicFight-Nightfall:20.12.1.0")
     implementation fg.deobf("libs:p1nero_ec:20.12.0.0")
-    implementation fg.deobf("curse.maven:sword-soaring-1011068:6860247")
+
+    implementation fg.deobf("curse.maven:armourers-workshop-229523:6965580")//唯一真神
+
+    implementation fg.deobf("curse.maven:p1neros-dialogue-lib-1274526:6860503")
+    implementation fg.deobf("curse.maven:sword-soaring-1011068:6968239")
 
     implementation fg.deobf("curse.maven:epic-fight-super-golem-1236331:6861276")
 
@@ -176,22 +179,32 @@ dependencies {
     implementation fg.deobf("curse.maven:official-epic-fight-x-parcool-1259252:6870242")
     implementation fg.deobf("curse.maven:epic-fight-impactful-945308:6855087")
 
-    implementation fg.deobf("libs:p1nero_dl:1.3.0")
+    implementation fg.deobf("curse.maven:clear-water-286098:4744630")
 
     implementation fg.deobf("curse.maven:enchanting-infuser-551151:5528724")
     implementation fg.deobf("curse.maven:puzzles-lib-495476:6387081")
 
     implementation fg.deobf("curse.maven:hunger-strike-75334:5574481")
 
-    implementation fg.deobf("curse.maven:l2hostility-909207:6808607")
-    implementation fg.deobf("curse.maven:l2-complements-758349:6774087")
-    implementation fg.deobf("curse.maven:l2library-620203:6806000")
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
 
     implementation fg.deobf("curse.maven:ob-aquamirae-536254:4616373")
     implementation fg.deobf("curse.maven:obscure-api-638417:4616364")
 
-    implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6818116")
+    //ftb
+    implementation fg.deobf("curse.maven:ftb-quests-forge-289412:6829212")
+    implementation fg.deobf("curse.maven:ftb-library-forge-404465:6807424")
+    implementation fg.deobf("curse.maven:ftb-teams-forge-404468:6130786")
+    implementation fg.deobf("curse.maven:ftb-xmod-compat-889915:6402486")
+
+    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
+
+    //主要boss
+//    implementation fg.deobf("curse.maven:bossesrise-1314084:6900933")
+    implementation fg.deobf("libs:bossesrise:1.0.9.1")
+    implementation fg.deobf("curse.maven:monster-expansion-1336105:6957501")
+    implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:6869933")
+    implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6944220")
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
@@ -221,13 +234,16 @@ dependencies {
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:6246607")
 
     //地形群系
+//    implementation fg.deobf("curse.maven:oh-the-biomes-weve-gone-1070751:6943503")
+//    implementation fg.deobf("curse.maven:oh-the-trees-youll-grow-962544:6608610")
+//    implementation fg.deobf("curse.maven:corgilib-693313:6616784")
     implementation "curse.maven:terralith-513688:5512076"
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
     implementation fg.deobf("curse.maven:terrablender-563928:6290448")
     implementation fg.deobf("curse.maven:glitchcore-955399:5787839")
 
-    implementation fg.deobf("curse.maven:obscure-tooltips-715660:4686579")//FIXME runData时需注释掉
-    implementation fg.deobf("curse.maven:upgrade-aquatic-326895:6393133")//FIXME runData时需注释掉
+//    implementation fg.deobf("curse.maven:obscure-tooltips-715660:4686579")//FIXME runData时需注释掉
+//    implementation fg.deobf("curse.maven:upgrade-aquatic-326895:6393133")//FIXME runData时需注释掉
     implementation fg.deobf("curse.maven:blueprint-382216:6408581")
 
     implementation fg.deobf("curse.maven:lootr-361276:6330326")
