@@ -6,6 +6,14 @@
 	hide_quest_details_until_startable: true
 	icon: "cataclysm:goddess_statue"
 	id: "2A319D3255FD3C6C"
+	images: [{
+		height: 20.0d
+		image: "tcrcore:textures/ftb/altar_bg.png"
+		rotation: 0.0d
+		width: 20.0d
+		x: 0.0d
+		y: -9.5d
+	}]
 	order_index: 1
 	quest_links: [ ]
 	quests: [
@@ -15,6 +23,7 @@
 			id: "5815BBDEE2362406"
 			invisible: true
 			shape: "square"
+			size: 2.0d
 			subtitle: "在少女的指引下，你踏上了寻找失落火种之旅,,,"
 			tasks: [{
 				advancement: "tcrcore:mark_map"
@@ -25,7 +34,7 @@
 				type: "advancement"
 			}]
 			x: 0.0d
-			y: -7.5d
+			y: -6.5d
 		}
 		{
 			dependencies: ["5815BBDEE2362406"]
@@ -34,40 +43,56 @@
 			hide_dependent_lines: true
 			icon_scale: 2.0d
 			id: "28346EDF4258D751"
+			rewards: [{
+				id: "007CDBF09CB5A9B8"
+				item: "tcrcore:ancient_oracle_fragment"
+				type: "item"
+			}]
 			shape: "square"
+			size: 1.0d
 			subtitle: "“当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土”"
 			tasks: [{
 				id: "31BC2442C77FFB4A"
 				item: "cataclysm:storm_eye"
 				type: "item"
 			}]
-			x: -4.0d
-			y: -4.0d
+			x: -4.5d
+			y: -11.0d
 		}
 		{
 			dependencies: ["5815BBDEE2362406"]
-			description: ["击败潜伏在&6[隐秘水湾]的Bulldrogioth&r，夺回深渊之眼"]
+			description: ["击败潜伏在&6[隐秘水湾]&r的&2蛮屠巨兽&r，夺回深渊之眼"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			hide_until_deps_visible: true
 			icon_scale: 2.0d
 			id: "3E4068880C2881A9"
+			rewards: [{
+				id: "08FE43E9F856082E"
+				item: "tcrcore:ancient_oracle_fragment"
+				type: "item"
+			}]
 			subtitle: "“深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城”"
 			tasks: [{
 				id: "2806721BDF8285C2"
 				item: "cataclysm:abyss_eye"
 				type: "item"
 			}]
-			x: -6.0d
-			y: -9.5d
+			x: -2.5d
+			y: -11.5d
 		}
 		{
 			dependencies: ["5815BBDEE2362406"]
-			description: ["击败位于&6[龙之塔]&r的&c火龙&r，夺回烈焰之眼"]
+			description: ["击败位于&6[龙之塔]&r的&c炼狱魔龙&r，夺回烈焰之眼"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon_scale: 2.0d
 			id: "032062CBCDEC3C85"
+			rewards: [{
+				id: "52CA9FCB8C223C7E"
+				item: "tcrcore:ancient_oracle_fragment"
+				type: "item"
+			}]
 			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”"
 			tasks: [{
 				id: "00F6FB2F90E7EC54"
@@ -79,11 +104,16 @@
 		}
 		{
 			dependencies: ["5815BBDEE2362406"]
-			description: ["击败&6可妮莉娅(Cornelia)船长&r的幽灵，夺回诅咒之眼"]
+			description: ["击败&3可妮莉娅(Cornelia)船长&r的幽灵，夺回诅咒之眼"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon_scale: 2.0d
 			id: "35627351B56DBAC1"
+			rewards: [{
+				id: "08431139D31E6752"
+				item: "tcrcore:ancient_oracle_fragment"
+				type: "item"
+			}]
 			shape: "square"
 			subtitle: "“当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船”"
 			tasks: [{
@@ -91,8 +121,8 @@
 				item: "cataclysm:cursed_eye"
 				type: "item"
 			}]
-			x: 6.0d
-			y: -9.5d
+			x: 4.5d
+			y: -11.0d
 		}
 		{
 			dependencies: ["5815BBDEE2362406"]
@@ -101,6 +131,11 @@
 			hide_dependent_lines: true
 			icon_scale: 2.0d
 			id: "720426084924F940"
+			rewards: [{
+				id: "4A0148F620743BF6"
+				item: "tcrcore:ancient_oracle_fragment"
+				type: "item"
+			}]
 			shape: "square"
 			subtitle: "“守卫者不是怪物，它们是子民自愿化身的活体墓碑”"
 			tasks: [{
@@ -108,8 +143,8 @@
 				item: "cataclysm:desert_eye"
 				type: "item"
 			}]
-			x: 3.5d
-			y: -4.0d
+			x: 2.5d
+			y: -11.5d
 		}
 	]
 	title: "远梦之棺"

@@ -7,6 +7,21 @@
 	id: "6F9A7DF2FD111443"
 	order_index: 4
 	quest_links: [ ]
-	quests: [ ]
-	title: "盔甲图鉴"
+	quests: [{
+		icon_scale: 2.0d
+		id: "6552F3D1C32E5C75"
+		invisible: true
+		shape: "square"
+		tasks: [{
+			advancement: "tcrcore:stage2"
+			criterion: ""
+			id: "46DA77E11452FCE7"
+			title: "神谕解锁"
+			type: "advancement"
+		}]
+		title: "天工护世玄甲谱"
+		x: 0.0d
+		y: 0.0d
+	}]
+	title: "天工护世玄甲谱"
 }

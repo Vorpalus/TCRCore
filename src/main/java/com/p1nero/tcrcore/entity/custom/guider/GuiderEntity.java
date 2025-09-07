@@ -9,6 +9,7 @@ import com.p1nero.dialog_lib.client.screen.LinkListStreamDialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
+import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
@@ -62,9 +63,9 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float value) {
-        if(source.getEntity() instanceof ServerPlayer serverPlayer) {
+        if (source.getEntity() instanceof ServerPlayer serverPlayer) {
             //彩蛋对话
-            if (this.getConversingPlayer() == null){
+            if (this.getConversingPlayer() == null) {
                 CompoundTag compoundTag = new CompoundTag();
                 compoundTag.putBoolean("from_hurt", true);
                 this.sendDialogTo(serverPlayer, compoundTag);
@@ -109,7 +110,11 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
     @Override
     protected @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         if (player instanceof ServerPlayer serverPlayer) {
-            this.sendDialogTo(serverPlayer);
+            CompoundTag tag = new CompoundTag();
+            if (player.getItemInHand(hand).is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())) {
+                tag.putBoolean("is_oracle", true);
+            }
+            this.sendDialogTo(serverPlayer, tag);
         }
         return InteractionResult.sidedSuccess(level().isClientSide);
     }
@@ -118,14 +123,16 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
     @OnlyIn(Dist.CLIENT)
     public void openDialogueScreen(CompoundTag compoundTag) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
-        if(localPlayer == null) {
+        if (localPlayer == null) {
             return;
         }
         LinkListStreamDialogueScreenBuilder treeBuilder = new LinkListStreamDialogueScreenBuilder(this);
         DialogueComponentBuilder dBuilder = new DialogueComponentBuilder(this);
 
-        if(compoundTag.getBoolean("from_hurt")) {
+        if (compoundTag.getBoolean("from_hurt")) {
             treeBuilder.start(5).addFinalChoice(6);
+        } else if (compoundTag.getBoolean("is_oracle")) {
+            treeBuilder.start(7).addFinalChoice(9, 2);
         } else {
             TreeNode root = new TreeNode(dBuilder.ans(0), dBuilder.optWithBrackets(0));//开场白 | 返回
 
@@ -139,7 +146,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
             TreeNode ans3 = new TreeNode(dBuilder.ans(3), dBuilder.optWithBrackets(4))
                     .addChild(root);
 
-            if(PlayerDataManager.pillagerKilled.get(localPlayer)) {
+            if (PlayerDataManager.pillagerKilled.get(localPlayer)) {
                 ans3 = new TreeNode(dBuilder.ans(4), dBuilder.optWithBrackets(7))
                         .addLeaf(dBuilder.optWithBrackets(5), (byte) 1);
                 root.addChild(new TreeNode(dBuilder.ans(6), dBuilder.optWithBrackets(8))
@@ -157,39 +164,41 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
 
     @Override
     public void handleNpcInteraction(ServerPlayer player, int code) {
-        if(code == 2) {
-            //揭示预言，即解锁新玩法。根据记录的id解锁，初始阶段0， 1解锁附魔和时装 2解锁武器和boss图鉴，3解锁地狱末地，具体在FTB看
+        if (code == 2) {
+            //揭示预言，即解锁新玩法。根据记录的id解锁，初始阶段0， 1解锁时装和武器 2解锁盔甲和boss图鉴，3解锁附魔地狱末地，具体在FTB看
             int stage = PlayerDataManager.stage.getInt(player);
             TCRAdvancementData.finishAdvancement("stage" + stage + 1, player);
             PlayerDataManager.stage.put(player, stage + 1D);
-            player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_ftb_page"), false);
+            if(stage + 1 <= 3) {
+                player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_ftb_page"), false);
+            }
             level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
         }
-        if(code == 1) {
-            if(!PlayerDataManager.mapMarked.get(player)) {
+        if (code == 1) {
+            if (!PlayerDataManager.mapMarked.get(player)) {
                 ItemUtil.addItem(player, FTBQuestsItems.BOOK.get(), 1);//给任务书
                 ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1);//给号角
                 //地图上标记位置
                 Vec2i cursed = WorldUtil.getNearbyStructurePos(player, "aquamirae:ship");//船长
-                if(cursed != null) {
+                if (cursed != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(cursed.x, 64, cursed.y), WaypointColor.BLUE);
                 }
                 Vec2i desert = WorldUtil.getNearbyStructurePos(player, "betteroceanmonuments:ocean_monument");//远古守卫者
-                if(desert != null) {
+                if (desert != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(desert.x, 64, desert.y), WaypointColor.YELLOW);
                 }
                 Vec2i flame = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:dragon_tower");//龙之塔
-                if(flame != null) {
+                if (flame != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(flame.x, 256, flame.y), WaypointColor.RED);
                 }
 
                 Vec2i abyss = WorldUtil.getNearbyStructurePos(player, WorldUtil.COVES);//隐秘水湾
-                if(abyss != null) {
+                if (abyss != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 64, abyss.y), WaypointColor.DARK_BLUE);
                 }
 
                 Vec2i storm = WorldUtil.getNearbyStructurePos(player, "trek:overworld/very_rare/floating_farm_large");//天空岛
-                if(storm != null) {
+                if (storm != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(storm.x, 230, storm.y), WaypointColor.AQUA);
                 }
 

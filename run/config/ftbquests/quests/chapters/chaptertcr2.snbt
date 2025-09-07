@@ -5,8 +5,956 @@
 	group: ""
 	icon: "cataclysm:ceraunus"
 	id: "2D391C2F48D42ABA"
+	images: [
+		{
+			height: 9.0d
+			image: "epicfight:item/golden_spear"
+			rotation: 0.0d
+			width: 9.0d
+			x: -17.5d
+			y: -10.0d
+		}
+		{
+			height: 7.0d
+			image: "epicfight:item/golden_dagger"
+			rotation: 0.0d
+			width: 7.0d
+			x: 7.5d
+			y: -9.5d
+		}
+		{
+			height: 7.0d
+			image: "minecraft:item/golden_sword"
+			rotation: 0.0d
+			width: 7.0d
+			x: -17.5d
+			y: 5.5d
+		}
+		{
+			height: 7.0d
+			image: "epicfight:item/golden_tachi"
+			rotation: 0.0d
+			width: 7.0d
+			x: 8.5d
+			y: 5.5d
+		}
+		{
+			height: 13.5d
+			image: "tcrcore:textures/ftb/weapon_shelf.png"
+			rotation: 0.0d
+			width: 24.0d
+			x: -3.0d
+			y: -1.5d
+		}
+	]
 	order_index: 3
 	quest_links: [ ]
-	quests: [ ]
-	title: "武器图鉴"
+	quests: [
+		{
+			icon_scale: 2.0d
+			id: "2F9F109962C8ADF4"
+			invisible: true
+			shape: "square"
+			size: 2.0d
+			subtitle: "神谕揭示了世界上所有存在的兵器，打造一把趁手的吧！"
+			tasks: [{
+				advancement: "tcrcore:stage1"
+				criterion: ""
+				id: "79001546914C8E0B"
+				title: "神谕解锁"
+				type: "advancement"
+			}]
+			title: "百兵玄冥谕章"
+			x: -3.0d
+			y: -8.0d
+		}
+		{
+			icon: "epicfight:iron_spear"
+			icon_scale: 2.0d
+			id: "1A6B3A6D5DB399E9"
+			rewards: [{
+				id: "0B3777B48FA3BE6F"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "049AF1A292A493AA"
+				item: "epicfight:iron_spear"
+				optional_task: true
+				type: "item"
+			}]
+			x: -15.0d
+			y: -10.5d
+		}
+		{
+			icon_scale: 2.0d
+			id: "1C68EB8187AB5709"
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "4B29272B514A56BE"
+				item: "epicfight:iron_dagger"
+				type: "item"
+			}]
+			x: 10.5d
+			y: -10.5d
+		}
+		{
+			icon: "cataclysm:ancient_spear"
+			icon_scale: 2.0d
+			id: "7F51A99C5DAAF8C3"
+			rewards: [{
+				id: "03B37D5E790FACB2"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "69E595EBA636B0C1"
+				item: "cataclysm:ancient_spear"
+				optional_task: true
+				type: "item"
+			}]
+			x: -13.5d
+			y: -10.5d
+		}
+		{
+			description: [""]
+			icon: "cataclysm:coral_spear"
+			icon_scale: 2.0d
+			id: "3E98CD970DA0A029"
+			rewards: [{
+				id: "3B06039AD5E3766A"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "击杀手持珊瑚长矛的渊灵有概率掉落。"
+			tasks: [{
+				id: "6F3D2257F9C26854"
+				item: "cataclysm:coral_spear"
+				optional_task: true
+				type: "item"
+			}]
+			x: -15.0d
+			y: -9.0d
+		}
+		{
+			description: [""]
+			icon: "cataclysm:coral_bardiche"
+			icon_scale: 2.0d
+			id: "47AFF3585C49F7A2"
+			rewards: [{
+				id: "0A9A8B6977A2F2CF"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "击杀手持珊瑚钺的渊灵蛮兵有概率掉落。"
+			tasks: [{
+				id: "3D8ED74412DEDF24"
+				item: "cataclysm:coral_bardiche"
+				optional_task: true
+				type: "item"
+			}]
+			x: -13.5d
+			y: -9.0d
+		}
+		{
+			description: [""]
+			icon: {
+				Count: 1
+				id: "aquamirae:coral_lance"
+				tag: {
+					Enchantments: [{
+						id: "minecraft:unbreaking"
+						lvl: 4s
+					}]
+				}
+			}
+			icon_scale: 2.0d
+			id: "40F08C807BEA3DAF"
+			rewards: [{
+				id: "2DD4C62019ACDBE9"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&6可妮莉亚（Cornelia）船长&r概率获得"
+			tasks: [{
+				id: "5615DD6DA75DE1B1"
+				item: {
+					Count: 1
+					id: "aquamirae:coral_lance"
+					tag: {
+						Enchantments: [{
+							id: "minecraft:unbreaking"
+							lvl: 4s
+						}]
+					}
+				}
+				optional_task: true
+				type: "item"
+			}]
+			x: -15.0d
+			y: -7.5d
+		}
+		{
+			icon: "fromtheshadows:thirst_for_blood"
+			icon_scale: 2.0d
+			id: "6B63BADC1AD47A2B"
+			rewards: [{
+				id: "60DF997FF72B8E45"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "67F99AFF3DDE1380"
+				item: "fromtheshadows:thirst_for_blood"
+				optional_task: true
+				type: "item"
+			}]
+			x: -13.5d
+			y: -7.5d
+		}
+		{
+			icon: "cataclysm:soul_render"
+			icon_scale: 2.0d
+			id: "0D76D92CF8D39AE7"
+			rewards: [{
+				id: "096BA839A8327E79"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&6玛莱迪克特斯&r获得"
+			tasks: [{
+				id: "6CFDD098517A11C9"
+				item: "cataclysm:soul_render"
+				optional_task: true
+				type: "item"
+			}]
+			x: -5.0d
+			y: -4.0d
+		}
+		{
+			icon: "efn:meen_spear"
+			icon_scale: 2.0d
+			id: "4BDA3978470D5E7A"
+			rewards: [{
+				id: "78779A109039FE2C"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "6EBE0D34093C08A1"
+				item: "efn:meen_spear"
+				optional_task: true
+				type: "item"
+			}]
+			x: -3.0d
+			y: -0.5d
+		}
+		{
+			icon_scale: 2.0d
+			id: "5D87FDB46CB5D26D"
+			rewards: [{
+				id: "6A0F76EE8D3CB5EC"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "渊灵祭司和渊灵术士100%概率掉落，可用于合成深渊祭品"
+			tasks: [{
+				id: "59C97526CB149D4F"
+				item: "cataclysm:athame"
+				type: "item"
+			}]
+			x: 10.5d
+			y: -9.0d
+		}
+		{
+			icon_scale: 2.0d
+			id: "36E248D1C96C59ED"
+			rewards: [{
+				id: "5AE8043C16CE60DA"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "4E1A08560E84851B"
+				item: "block_factorys_bosses:dagger"
+				type: "item"
+			}]
+			x: 12.0d
+			y: -9.0d
+		}
+		{
+			icon_scale: 2.0d
+			id: "733EFEA0B7DE9EFA"
+			rewards: [{
+				id: "2F603E7A1B1AE238"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "开寒冰迷宫处的战利品箱获得"
+			tasks: [{
+				id: "44C0883B531DC3C8"
+				item: "aquamirae:dagger_of_greed"
+				type: "item"
+			}]
+			x: 10.5d
+			y: -7.5d
+		}
+		{
+			icon_scale: 2.0d
+			id: "3289A6F03F4FA4CB"
+			rewards: [{
+				id: "30971D1A030D4906"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "45B58CC005BA1BF4"
+				item: "fromtheshadows:crystallized_dagger"
+				type: "item"
+			}]
+			x: 12.0d
+			y: -7.5d
+		}
+		{
+			icon_scale: 2.0d
+			id: "78E45E3D95EA9899"
+			rewards: [{
+				id: "14970E6B6C7B9569"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "44DE680769AA7A4B"
+				item: "aquamirae:poisoned_blade"
+				type: "item"
+			}]
+			x: 13.5d
+			y: -9.0d
+		}
+		{
+			icon_scale: 2.0d
+			id: "42B7E4648BDE15AD"
+			rewards: [{
+				id: "3B2DD449FC788EDC"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "&6???"
+			tasks: [{
+				id: "02BA280CFC4F0205"
+				item: "efn:nf_claw"
+				type: "item"
+			}]
+			x: 0.5d
+			y: 0.5d
+		}
+		{
+			icon_scale: 2.0d
+			id: "12C6899DBC971D90"
+			rewards: [{
+				id: "65ACE662A3AE43DB"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&6利维坦&r获得"
+			tasks: [{
+				id: "23D10CE650728621"
+				item: "cataclysm:tidal_claws"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -4.5d
+		}
+		{
+			icon: "cataclysm:khopesh"
+			icon_scale: 2.0d
+			id: "6A296B94B62519EB"
+			rewards: [{
+				id: "1E47D377DD2FEBDA"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "击杀手持镰形剑的骷髅狗头人概率掉落"
+			tasks: [{
+				id: "06DE2965B843E7EE"
+				item: "cataclysm:khopesh"
+				optional_task: true
+				type: "item"
+			}]
+			x: -15.0d
+			y: 4.5d
+		}
+		{
+			icon: "aquamirae:remnants_saber"
+			icon_scale: 2.0d
+			id: "455DFDD6BA4B2BC6"
+			rewards: [{
+				id: "6297F856F9F518EE"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "116B7E4CDDE96707"
+				item: "aquamirae:remnants_saber"
+				optional_task: true
+				type: "item"
+			}]
+			x: -15.0d
+			y: 6.0d
+		}
+		{
+			icon: "aquamirae:fin_cutter"
+			icon_scale: 2.0d
+			id: "4C3947B8DD5609A4"
+			rewards: [{
+				id: "5862286139109DA4"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "05E45B08D513A72B"
+				item: "aquamirae:fin_cutter"
+				optional_task: true
+				type: "item"
+			}]
+			x: -13.5d
+			y: 6.0d
+		}
+		{
+			icon: "aquamirae:terrible_sword"
+			icon_scale: 2.0d
+			id: "3DCAA74E3F1F738D"
+			rewards: [{
+				id: "50515CE2DC9FA9EF"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "7111C81B6E0513CA"
+				item: "aquamirae:terrible_sword"
+				optional_task: true
+				type: "item"
+			}]
+			x: -12.0d
+			y: 6.0d
+		}
+		{
+			icon: "aquamirae:divider"
+			icon_scale: 2.0d
+			id: "0118D4E469FE640F"
+			rewards: [{
+				id: "31DCE58C9B41C31F"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "4E06F15B26469E3D"
+				item: "aquamirae:divider"
+				optional_task: true
+				type: "item"
+			}]
+			x: -10.5d
+			y: 6.0d
+		}
+		{
+			icon: {
+				Count: 1
+				id: "aquamirae:maze_rose"
+				tag: {
+					Enchantments: [
+						{
+							id: "obscure_api:distance"
+							lvl: 3s
+						}
+						{
+							id: "obscure_api:fast_spin"
+							lvl: 5s
+						}
+					]
+				}
+			}
+			icon_scale: 2.0d
+			id: "5493BB23E47E16BA"
+			rewards: [{
+				id: "6074EDD1361C765C"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "0CC228538AD46E3E"
+				item: {
+					Count: 1
+					id: "aquamirae:maze_rose"
+					tag: {
+						Enchantments: [
+							{
+								id: "obscure_api:distance"
+								lvl: 3s
+							}
+							{
+								id: "obscure_api:fast_spin"
+								lvl: 5s
+							}
+						]
+					}
+				}
+				optional_task: true
+				type: "item"
+			}]
+			x: -15.0d
+			y: 7.5d
+		}
+		{
+			icon: {
+				Count: 1
+				id: "aquamirae:poisoned_chakra"
+				tag: {
+					Enchantments: [
+						{
+							id: "obscure_api:distance"
+							lvl: 3s
+						}
+						{
+							id: "obscure_api:fast_spin"
+							lvl: 5s
+						}
+					]
+				}
+			}
+			icon_scale: 2.0d
+			id: "7CC1978658AA87FA"
+			rewards: [{
+				id: "06269FDCC9236CCC"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "3886C33D6E565D95"
+				item: {
+					Count: 1
+					id: "aquamirae:poisoned_chakra"
+					tag: {
+						Enchantments: [
+							{
+								id: "obscure_api:distance"
+								lvl: 3s
+							}
+							{
+								id: "obscure_api:fast_spin"
+								lvl: 5s
+							}
+						]
+					}
+				}
+				optional_task: true
+				type: "item"
+			}]
+			x: -13.5d
+			y: 7.5d
+		}
+		{
+			icon: "block_factorys_bosses:warrior_sword"
+			icon_scale: 2.0d
+			id: "426F8284BCBE6337"
+			rewards: [{
+				id: "63FB73E322687D77"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "1A4A0B4BC7599613"
+				item: "block_factorys_bosses:warrior_sword"
+				optional_task: true
+				type: "item"
+			}]
+			x: -13.5d
+			y: 4.5d
+		}
+		{
+			icon: "block_factorys_bosses:knight_sword"
+			icon_scale: 2.0d
+			id: "387C944EDD8FA25B"
+			rewards: [{
+				id: "3755BEE32C9700D8"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "击败冥界骑士掉落"
+			tasks: [{
+				id: "6E982207A91FA39C"
+				item: "block_factorys_bosses:knight_sword"
+				optional_task: true
+				type: "item"
+			}]
+			x: 12.5d
+			y: 4.5d
+		}
+		{
+			icon: "epicfight:iron_tachi"
+			icon_scale: 2.0d
+			id: "56BAEF1C9A20C461"
+			rewards: [{
+				id: "42AF90647484835B"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "4913B5FAF754F834"
+				item: "epicfight:iron_tachi"
+				optional_task: true
+				type: "item"
+			}]
+			x: 11.0d
+			y: 6.0d
+		}
+		{
+			icon: "epicfight:iron_longsword"
+			icon_scale: 2.0d
+			id: "39EAF48D07B39EC9"
+			rewards: [{
+				id: "07BC8F464F2DAE3E"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "2925B180DE9B44F2"
+				item: "epicfight:iron_longsword"
+				optional_task: true
+				type: "item"
+			}]
+			x: 11.0d
+			y: 4.5d
+		}
+		{
+			icon: "epicfight:uchigatana"
+			icon_scale: 2.0d
+			id: "29DC1A6DF2495993"
+			rewards: [{
+				id: "44F98BC370A51F3D"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "576C5EC98F97AF37"
+				item: "epicfight:uchigatana"
+				optional_task: true
+				type: "item"
+			}]
+			x: 12.5d
+			y: 6.0d
+		}
+		{
+			icon: "efn:sword_of_pioneer"
+			icon_scale: 2.0d
+			id: "65DD573A1FE30624"
+			rewards: [{
+				id: "57FEAB6170ACD7BE"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "3C3BD883E127616F"
+				item: "efn:sword_of_pioneer"
+				optional_task: true
+				type: "item"
+			}]
+			x: 14.0d
+			y: 6.0d
+		}
+		{
+			icon: "epicfight:iron_greatsword"
+			icon_scale: 2.0d
+			id: "63F277CC9C01F80C"
+			rewards: [{
+				id: "67F5D257DBA3700D"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "7C067F05906E0115"
+				item: "epicfight:iron_greatsword"
+				optional_task: true
+				type: "item"
+			}]
+			x: 11.0d
+			y: 7.5d
+		}
+		{
+			icon: "block_factorys_bosses:large_sword"
+			icon_scale: 2.0d
+			id: "51EE809D276AF9E6"
+			rewards: [{
+				id: "525E0F3C61C52AAA"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "6DB0E8CC877CBD95"
+				item: "block_factorys_bosses:large_sword"
+				optional_task: true
+				type: "item"
+			}]
+			x: 12.5d
+			y: 7.5d
+		}
+		{
+			icon: "efn:sword_of_pioneer"
+			icon_scale: 2.0d
+			id: "7BB73DB8750B0014"
+			rewards: [{
+				id: "6DBF9DDE53507AAF"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "0D2544EF0404825B"
+				item: "fromtheshadows:devil_splitter"
+				optional_task: true
+				type: "item"
+			}]
+			x: 14.0d
+			y: 7.5d
+		}
+		{
+			icon: "cataclysm:the_incinerator"
+			icon_scale: 2.0d
+			id: "016F12E968740FBA"
+			rewards: [{
+				id: "7DB99A23A8ADC6E9"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&6伊格尼斯&r获得"
+			tasks: [{
+				id: "3B361D6AE7D721DD"
+				item: "cataclysm:the_incinerator"
+				optional_task: true
+				type: "item"
+			}]
+			x: 0.5d
+			y: -3.5d
+		}
+		{
+			icon: "cataclysm:wrath_of_the_desert"
+			icon_scale: 2.0d
+			id: "49526E12F56F14D0"
+			rewards: [{
+				id: "12083D8F9149829F"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&6远古遗魂&r获得"
+			tasks: [{
+				id: "413115A2E793D86F"
+				item: "cataclysm:wrath_of_the_desert"
+				optional_task: true
+				type: "item"
+			}]
+			x: -6.5d
+			y: -3.5d
+		}
+		{
+			icon: "cataclysm:ceraunus"
+			icon_scale: 2.0d
+			id: "40217A88C9D46BB1"
+			rewards: [{
+				id: "3929B514E5E14F60"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&6斯库拉&r获得"
+			tasks: [{
+				id: "0B6DBDCC389C2B9E"
+				item: "cataclysm:ceraunus"
+				optional_task: true
+				type: "item"
+			}]
+			x: -1.0d
+			y: -4.0d
+		}
+		{
+			icon: "efn:ruinsgreatsword"
+			icon_scale: 2.0d
+			id: "17897B4EE1A6C899"
+			rewards: [{
+				id: "2C940E17A09F0AF9"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "1CFDB3F5D53BE5B7"
+				item: "efn:ruinsgreatsword"
+				optional_task: true
+				type: "item"
+			}]
+			x: -6.5d
+			y: 0.5d
+		}
+		{
+			icon: "efn:air_tachi"
+			icon_scale: 2.0d
+			id: "753944133C41882B"
+			rewards: [{
+				id: "549AA14AA0A94E91"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "7A923418BBA02FF6"
+				item: "efn:air_tachi"
+				optional_task: true
+				type: "item"
+			}]
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			icon: "efn:co_tachi"
+			icon_scale: 2.0d
+			id: "306A129476DCC13B"
+			rewards: [{
+				id: "74C5361892F27A73"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "7F52A8B43AED91C3"
+				item: "efn:co_tachi"
+				optional_task: true
+				type: "item"
+			}]
+			x: -2.5d
+			y: 1.0d
+		}
+		{
+			icon: "efn:nf_dual_sword"
+			icon_scale: 2.0d
+			id: "606F5EBEBAB63DB6"
+			rewards: [{
+				id: "45F332AF16DC7CB5"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "607DE602F85D4F13"
+				item: "efn:nf_dual_sword"
+				optional_task: true
+				type: "item"
+			}]
+			x: -5.0d
+			y: -0.5d
+		}
+		{
+			icon_scale: 2.0d
+			id: "33FDECA5C88EB0E9"
+			rewards: [{
+				id: "37E0F55175CD9F9C"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [
+				{
+					id: "25B72AB677FC7EED"
+					item: "efn:exsiliumgladius"
+					optional_task: true
+					type: "item"
+				}
+				{
+					id: "3655DE83DBEDF238"
+					item: "efn:fire_exsiliumgladius"
+					type: "item"
+				}
+			]
+			title: "放逐之刃"
+			x: -1.0d
+			y: -0.5d
+		}
+		{
+			icon: "efn:yamato_dmc4_in_sheath"
+			icon_scale: 2.0d
+			id: "627E4A2C0428CC5A"
+			rewards: [{
+				id: "4BAEC4B392A573F7"
+				item: "efn:yamato_dmc_in_sheath"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "541CDD896754257A"
+				item: "efn:yamato_dmc4_in_sheath"
+				optional_task: true
+				type: "item"
+			}]
+			x: -3.0d
+			y: -2.0d
+		}
+	]
+	title: "百兵玄冥谕章"
 }

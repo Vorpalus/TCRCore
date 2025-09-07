@@ -5,6 +5,14 @@
 	group: ""
 	icon: "minecraft:paper"
 	id: "16AFC8ED236C979B"
+	images: [{
+		height: 9.0d
+		image: "tcrcore:textures/ftb/preface_bg.png"
+		rotation: 0.0d
+		width: 16.0d
+		x: 0.0d
+		y: -1.5d
+	}]
 	order_index: 0
 	quest_links: [ ]
 	quests: [{
@@ -30,6 +38,8 @@
 			""
 			"——P1nero"
 		]
+		icon: "cataclysm:strange_key"
+		icon_scale: 2.0d
 		id: "09DE1A548EA3F9BA"
 		subtitle: "“传说深海之中有一片废墟，守望着这个世界”"
 		tasks: [
@@ -45,7 +55,7 @@
 			}
 		]
 		title: "作者的话"
-		x: 0.0d
+		x: 2.0d
 		y: 0.0d
 	}]
 	title: "序章"

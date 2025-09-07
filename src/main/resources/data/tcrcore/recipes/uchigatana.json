@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "BBB",
+    "BSB",
+    "BBB"
+  ],
+  "key":
+  {
+    "B": { "item" : "minecraft:iron_ingot" },
+    "S": { "item" : "epicfight:iron_tachi" }
+  },
+  "result":
+  {
+    "item" : "epicfight:uchigatana",
+    "count" : 1
+  }
+}

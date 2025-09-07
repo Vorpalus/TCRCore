@@ -89,7 +89,7 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge efn:efn_step");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
-                ItemUtil.addItem(serverPlayer, AquamiraeItems.REMNANTS_SABER.get(), 1);
+                ItemUtil.addItem(serverPlayer, Items.IRON_SWORD, 1);
                 ItemUtil.addItem(serverPlayer, Items.OAK_BOAT, 1);
                 ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
                 ItemStack trident = Items.TRIDENT.getDefaultInstance();

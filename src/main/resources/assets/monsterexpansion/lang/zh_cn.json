@@ -1,0 +1,22 @@
+{
+  "entity.monsterexpansion.skrythe": "斯克里兹",
+  "block.monsterexpansion.foundry": "熔炉工坊",
+  "item.monsterexpansion.skrythe_fang": "斯克里兹尖牙",
+  "item.monsterexpansion.skrythe_armorplate": "斯克里兹甲壳板",
+  "item.monsterexpansion.skrythe_wing_membrane": "斯克里兹翼膜",
+  "item.monsterexpansion.vocal_resonance_fold": "声带共振褶",
+  "item.monsterexpansion.skrythe_frill": "斯克里兹颈褶",
+  "item.monsterexpansion.horn_of_the_shattercry": "碎啸之角",
+  "item.monsterexpansion.skrythe_chestplate": "斯克里兹胸甲",
+  "item.monsterexpansion.skrythe_helmet": "斯克里兹头盔",
+  "item.monsterexpansion.skrythe_leggings": "斯克里兹护腿",
+  "item.monsterexpansion.skrythe_boots": "斯克里兹靴子",
+
+  "enchantment.monsterexpansion.polyphony": "多重和声",
+  "enchantment.monsterexpansion.echoing_reach": "回荡延伸",
+
+  "screen.monsterexpansion.foundry": "熔炉工坊",
+
+  "creativetab.monsterexpansion_tab": "怪物扩展"
+}
+

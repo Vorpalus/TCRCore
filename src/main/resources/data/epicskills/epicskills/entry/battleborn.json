@@ -22,20 +22,20 @@
 		},
         {
           "skill": "tcrcore:water_avoid",
-          "position_in_screen": [290, 230],
+          "position_in_screen": [190, 30],
           "custom_condition": true,
           "unlock_tip": "unlock_tip.tcrcore.battleborn.water_avoid"
         },
         {
           "skill": "tcrcore:fire_avoid",
-          "position_in_screen": [390, 230],
+          "position_in_screen": [260, 30],
           "conditions": {
             "type_specific": {
               "type": "player",
               "stats": [
                 {
                   "type": "minecraft:killed",
-                  "stat": "minecraft:ender_dragon",
+                  "stat": "block_factorys_bosses:infernal_dragon",
                   "value": {
                     "min": 1
                   }

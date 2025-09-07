@@ -20,8 +20,10 @@ import com.p1nero.tcrcore.utils.WorldUtil;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.animal.IronGolem;
@@ -32,11 +34,14 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
@@ -44,6 +49,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.unusual.blockfactorysbosses.entity.InfernalDragonEntity;
+import net.unusual.blockfactorysbosses.entity.SwordWaveEntity;
+import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
+import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import yesman.epicfight.api.animation.AnimationPlayer;
 import yesman.epicfight.api.animation.Animator;
 import yesman.epicfight.gameasset.Animations;
@@ -55,8 +63,22 @@ import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 public class LivingEntityEventListeners {
 
     @SubscribeEvent
-    public static void onLivingTick(LivingEvent.LivingTickEvent event){
-
+    public static void onLivingAttack(LivingAttackEvent event){
+        if(event.getSource().getEntity() instanceof ServerPlayer serverPlayer) {
+            if(serverPlayer.getMainHandItem().is(BlockFactorysBossesModItems.KNIGHT_SWORD.get()) && !serverPlayer.getCooldowns().isOnCooldown(BlockFactorysBossesModItems.KNIGHT_SWORD.get())) {
+                ServerLevel serverLevel = serverPlayer.serverLevel();
+                AbstractArrow entityToSpawn = new SwordWaveEntity(BlockFactorysBossesModEntities.SWORD_WAVE.get(), serverLevel);
+                entityToSpawn.setOwner(serverPlayer);
+                entityToSpawn.setBaseDamage(5);
+                entityToSpawn.setKnockback(0);
+                entityToSpawn.setSilent(true);
+                entityToSpawn.setPierceLevel((byte) 8);
+                entityToSpawn.setPos(serverPlayer.getX(), serverPlayer.getEyeY() - 0.1, serverPlayer.getZ());
+                entityToSpawn.shoot(serverPlayer.getLookAngle().x, serverPlayer.getLookAngle().y, serverPlayer.getLookAngle().z, 2.0F, 0.0F);
+                serverLevel.addFreshEntity(entityToSpawn);
+                serverPlayer.getCooldowns().addCooldown(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), 80);
+            }
+        }
     }
 
     @SubscribeEvent
@@ -113,30 +135,25 @@ public class LivingEntityEventListeners {
 
             if(livingEntity instanceof IronGolem && !PlayerDataManager.stormEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, "trek:overworld/very_rare/floating_farm_large")) {
                 ItemUtil.addItem(player, ModItems.STORM_EYE.get(), 1, true);
-                ItemUtil.addItem(player, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
                 PlayerDataManager.stormEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof BulldrogiothEntity && !PlayerDataManager.abyssEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, WorldUtil.COVES)) {
                 ItemUtil.addItem(player, ModItems.ABYSS_EYE.get(), 1, true);
-                ItemUtil.addItem(player, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
                 PlayerDataManager.abyssEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof InfernalDragonEntity && !PlayerDataManager.abyssEyeTraded.get(player)) {
                 ItemUtil.addItem(player, ModItems.FLAME_EYE.get(), 1, true);
-                ItemUtil.addItem(player, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
                 PlayerDataManager.flameEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof CaptainCornelia && !PlayerDataManager.cursedEyeTraded.get(player)) {
                 ItemUtil.addItem(player, ModItems.CURSED_EYE.get(), 1, true);
-                ItemUtil.addItem(player, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
                 PlayerDataManager.cursedEyeTraded.put(player, true);
             }
             if(livingEntity instanceof ElderGuardian && !PlayerDataManager.desertEyeTraded.get(player)) {
                 ItemUtil.addItem(player, ModItems.DESERT_EYE.get(), 1, true);
-                ItemUtil.addItem(player, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
                 PlayerDataManager.desertEyeTraded.put(player, true);
             }
         }

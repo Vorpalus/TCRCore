@@ -1,8 +1,4 @@
 
-["Skill Settings"]
-	#Enable automatic dodge skill switching when equipping EFN weapons
-	autoSwitchDodgeSkill = false
-
 ["Animation Settings"]
 	#Entities that won't play target animations (format: modid:entity_id)
 	#Example: ["minecraft:wither", "minecraft:ender_dragon"]

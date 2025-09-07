@@ -14,10 +14,12 @@
     "DodgeLocationIndicatorMixin",
     "GuardSkillMixin",
     "ItemMixin",
+    "KnightSwordItemMixin",
     "PlayerAdvancementsMixin",
     "PlayerPatchMixin",
     "SkillContainerMixin",
     "TakeDamageEventAttackMixin",
+    "ThirstforBloodItemMixin",
     "VillagerMixin",
     "Wrath_of_the_desertMixin"
   ],
