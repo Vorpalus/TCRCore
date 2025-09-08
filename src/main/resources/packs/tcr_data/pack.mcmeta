@@ -1,6 +1,6 @@
 {
     "pack": {
-        "description": "内置数据包，确保100%覆盖其他模组",
+        "description": "内置数据包，确保100%覆盖其他模组，请勿移除",
         "pack_format": 15
     }
 }

@@ -7,14 +7,12 @@ import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
-import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
@@ -24,13 +22,14 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-import java.nio.file.Path;
+import java.util.List;
 
 @Mod(TCRCoreMod.MOD_ID)
 public class TCRCoreMod {
 
     public static final String MOD_ID = "tcrcore";
     public static final Logger LOGGER = LogUtils.getLogger();
+    private static boolean isCheatMod = false;
 
     public TCRCoreMod(FMLJavaModLoadingContext context) {
         IEventBus bus = context.getModEventBus();
@@ -46,20 +45,33 @@ public class TCRCoreMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         TCRPacketHandler.register();
+        List<String> cheatModList = List.of("tacz", "projecte");
+        cheatModList.forEach(s -> {
+            if(ModList.get().isLoaded(s)){
+                isCheatMod = true;
+            }
+        });
+    }
+
+    public static boolean isCheatMod() {
+        return isCheatMod;
     }
 
     private void addPackFindersEvent(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            Path resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/tcr_animation");
-            try(PathPackResources pack = new PathPackResources(ModList.get().getModFileById(MOD_ID).getFile().getFileName() + ":" + resourcePath, resourcePath, false)) {
-                Pack.ResourcesSupplier resourcesSupplier = (string) -> pack;
-                Pack.Info info = Pack.readPackInfo("tcr_animation", resourcesSupplier);
+            String name = "tcr_assets";
+            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
+            var pack = Pack.readMetaAndCreate(name, Component.literal("The Casket of Reveries Assets - Override"), true,
+                    (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
+            event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
+        }
+        if (event.getPackType() == PackType.SERVER_DATA) {
+            String name = "tcr_data";
+            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
+            var pack = Pack.readMetaAndCreate(name, Component.literal("The Casket of Reveries Data - Override"), true,
+                    (path) -> new PathPackResources(path, resourcePath, false), PackType.SERVER_DATA, Pack.Position.TOP, PackSource.WORLD);
+            event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
 
-                if (info != null) {
-                    event.addRepositorySource((source) ->
-                            source.accept(Pack.create("tcr_animation", Component.literal("The Casket of Reveries Animations"), true, resourcesSupplier, info, PackType.CLIENT_RESOURCES, Pack.Position.TOP, false, PackSource.BUILT_IN)));
-                }
-            }
         }
     }
 

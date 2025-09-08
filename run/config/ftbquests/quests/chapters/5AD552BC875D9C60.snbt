@@ -5,11 +5,15 @@
 	group: ""
 	icon: "enchantinginfuser:advanced_enchanting_infuser"
 	id: "5AD552BC875D9C60"
-	order_index: 5
+	order_index: 6
 	quest_links: [ ]
 	quests: [{
+		icon_scale: 2.0d
 		id: "5E973E2E4EEFAAA1"
 		invisible: true
+		shape: "square"
+		size: 2.0d
+		subtitle: "神谕揭示了强化神兵之秘法"
 		tasks: [{
 			advancement: "tcrcore:stage3"
 			criterion: ""

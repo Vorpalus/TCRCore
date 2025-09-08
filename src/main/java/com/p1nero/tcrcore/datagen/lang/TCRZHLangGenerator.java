@@ -39,6 +39,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRBlocks.FLAME_ALTAR_BLOCK.get(), "烈焰祭坛");
         this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
 
+        this.addInfo("on_full_set", "套装效果");
         this.addInfo("unlock_new_ftb_page", "解锁了新的任务界面，请打开§6[[任务书]§r查看");
         this.addInfo("unlock_new_skill_page", "解锁了新的技能书界面，按§6[K]§r查看");
         this.addInfo("unlock_water_avoid", "解锁了[%s]! 按§6[K]§r查看");

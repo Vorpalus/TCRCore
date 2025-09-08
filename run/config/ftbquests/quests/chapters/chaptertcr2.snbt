@@ -51,19 +51,27 @@
 	quest_links: [ ]
 	quests: [
 		{
+			icon: "minecraft:anvil"
 			icon_scale: 2.0d
 			id: "2F9F109962C8ADF4"
 			invisible: true
 			shape: "square"
 			size: 2.0d
 			subtitle: "神谕揭示了世界上所有存在的兵器，打造一把趁手的吧！"
-			tasks: [{
-				advancement: "tcrcore:stage1"
-				criterion: ""
-				id: "79001546914C8E0B"
-				title: "神谕解锁"
-				type: "advancement"
-			}]
+			tasks: [
+				{
+					advancement: "tcrcore:stage1"
+					criterion: ""
+					id: "79001546914C8E0B"
+					title: "神谕解锁"
+					type: "advancement"
+				}
+				{
+					id: "46F813E58A4A5C1A"
+					item: "minecraft:smithing_table"
+					type: "item"
+				}
+			]
 			title: "百兵玄冥谕章"
 			x: -3.0d
 			y: -8.0d
@@ -936,6 +944,7 @@
 			y: -0.5d
 		}
 		{
+			description: ["使用击败&5末影龙&r后掉落的&5龙蛋&r与打刀锻造而成"]
 			icon: "efn:yamato_dmc4_in_sheath"
 			icon_scale: 2.0d
 			id: "627E4A2C0428CC5A"
@@ -944,14 +953,23 @@
 				item: "efn:yamato_dmc_in_sheath"
 				type: "item"
 			}]
-			shape: "square"
+			shape: "rsquare"
+			size: 2.0d
 			subtitle: "点击物品查看合成"
-			tasks: [{
-				id: "541CDD896754257A"
-				item: "efn:yamato_dmc4_in_sheath"
-				optional_task: true
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "541CDD896754257A"
+					item: "efn:yamato_dmc4_in_sheath"
+					optional_task: true
+					type: "item"
+				}
+				{
+					entity: "minecraft:ender_dragon"
+					id: "17C3E6C10E425191"
+					type: "kill"
+					value: 1L
+				}
+			]
 			x: -3.0d
 			y: -2.0d
 		}

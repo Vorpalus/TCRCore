@@ -12,6 +12,7 @@
     "CeraunusMixin",
     "DodgeAnimationMixin",
     "DodgeLocationIndicatorMixin",
+    "FAArmorItemMixin",
     "GuardSkillMixin",
     "ItemMixin",
     "KnightSwordItemMixin",

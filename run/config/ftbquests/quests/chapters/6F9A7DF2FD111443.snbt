@@ -5,23 +5,603 @@
 	group: ""
 	icon: "fantasy_armor:dragonslayer_chestplate"
 	id: "6F9A7DF2FD111443"
+	images: [{
+		dependency: "6552F3D1C32E5C75"
+		height: 18.0d
+		image: "tcrcore:textures/ftb/armor_shelf.png"
+		rotation: 0.0d
+		width: 32.0d
+		x: 0.0d
+		y: -3.0d
+	}]
 	order_index: 4
 	quest_links: [ ]
-	quests: [{
-		icon_scale: 2.0d
-		id: "6552F3D1C32E5C75"
-		invisible: true
-		shape: "square"
-		tasks: [{
-			advancement: "tcrcore:stage2"
-			criterion: ""
-			id: "46DA77E11452FCE7"
-			title: "神谕解锁"
-			type: "advancement"
-		}]
-		title: "天工护世玄甲谱"
-		x: 0.0d
-		y: 0.0d
-	}]
+	quests: [
+		{
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon: "minecraft:anvil"
+			icon_scale: 2.0d
+			id: "6552F3D1C32E5C75"
+			invisible: true
+			rewards: [{
+				id: "594DDDFA7953D7E5"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			size: 2.0d
+			subtitle: "古籍有云，&6皎月水晶&r乃百胄之基"
+			tasks: [
+				{
+					advancement: "tcrcore:stage2"
+					criterion: ""
+					id: "46DA77E11452FCE7"
+					title: "神谕解锁"
+					type: "advancement"
+				}
+				{
+					id: "3AEF4378461083A3"
+					title: "其实盔甲更多地起一个装饰作用"
+					type: "checkmark"
+				}
+			]
+			title: "天工护世玄甲谱"
+			x: 0.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon_scale: 2.0d
+			id: "7B9624C198F07020"
+			rewards: [{
+				id: "30E35F3F8FAE4A06"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "侍奉光明之人，当享有光明之庇护"
+			tasks: [
+				{
+					id: "1FD49B33CBF8DA91"
+					item: "fantasy_armor:hero_helmet"
+					type: "item"
+				}
+				{
+					id: "72D73D6166E403BA"
+					item: "fantasy_armor:malenia_helmet"
+					type: "item"
+				}
+				{
+					id: "36F7828C57466CD1"
+					item: "fantasy_armor:chess_board_knight_helmet"
+					type: "item"
+				}
+				{
+					id: "16A7D2D7F3F28B50"
+					item: "fantasy_armor:gilded_hunt_helmet"
+					type: "item"
+				}
+				{
+					id: "365D94FBA274F212"
+					item: "fantasy_armor:dragonslayer_helmet"
+					type: "item"
+				}
+				{
+					id: "3C938F3915DDB18F"
+					item: "fantasy_armor:spark_of_dawn_helmet"
+					type: "item"
+				}
+				{
+					id: "584F3F0AF1189FFD"
+					item: "fantasy_armor:redeemer_helmet"
+					type: "item"
+				}
+				{
+					id: "40C29CC4BBC8BA69"
+					item: "fantasy_armor:golden_horns_helmet"
+					type: "item"
+				}
+			]
+			title: "光明眷属"
+			x: -6.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon_scale: 2.0d
+			id: "4AB65A5955823F0D"
+			rewards: [{
+				id: "203FF9EBF99D0C37"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "流浪之人，当享有自由之庇护"
+			tasks: [
+				{
+					id: "7567149FA5516BB9"
+					item: "fantasy_armor:wind_worshipper_helmet"
+					type: "item"
+				}
+				{
+					id: "2A515360AA14FF22"
+					item: "fantasy_armor:lady_maria_helmet"
+					type: "item"
+				}
+				{
+					id: "52C1E219F37CDA41"
+					item: "fantasy_armor:wandering_wizard_helmet"
+					type: "item"
+				}
+				{
+					id: "5258BB7ED9A0B134"
+					item: "fantasy_armor:thief_helmet"
+					type: "item"
+				}
+			]
+			title: "流浪乐章"
+			x: 6.0d
+			y: -7.5d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon_scale: 2.0d
+			id: "05DFD02A3AC11DE8"
+			rewards: [{
+				id: "3E31656CDA57D1DC"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "躬耕于黑暗之人，当享有黑暗之庇护"
+			tasks: [
+				{
+					id: "1281FC7F70B4E6B7"
+					item: "fantasy_armor:sunset_wings_helmet"
+					type: "item"
+				}
+				{
+					id: "5ADBB2F818392AD5"
+					item: "fantasy_armor:dark_cover_helmet"
+					type: "item"
+				}
+				{
+					id: "76CBA5C174D1A3DF"
+					item: "fantasy_armor:golden_execution_helmet"
+					type: "item"
+				}
+				{
+					id: "0B118E9313DEF311"
+					item: "fantasy_armor:flesh_of_the_feaster_helmet"
+					type: "item"
+				}
+				{
+					id: "785950D3DC474E2C"
+					item: "fantasy_armor:evening_ghost_helmet"
+					type: "item"
+				}
+				{
+					id: "7E322A257BA7714C"
+					item: "fantasy_armor:crucible_knight_helmet"
+					type: "item"
+				}
+				{
+					id: "40DCDCA4C0879ED3"
+					item: "fantasy_armor:ronin_helmet"
+					type: "item"
+				}
+				{
+					id: "35B0FE156872192D"
+					item: "fantasy_armor:fog_guard_helmet"
+					type: "item"
+				}
+			]
+			title: "黑暗之魂"
+			x: 0.0d
+			y: -9.75d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "aquamirae:three_bolt_helmet"
+			icon_scale: 2.0d
+			id: "5433D8210E45724B"
+			rewards: [{
+				id: "7635BF37E8DC8E79"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			subtitle: "击败&6可妮莉亚&r概率掉落头盔"
+			tasks: [
+				{
+					id: "15E38B29E15B1684"
+					item: "aquamirae:three_bolt_helmet"
+					type: "item"
+				}
+				{
+					id: "0918BA29A2CC5960"
+					item: "aquamirae:three_bolt_suit"
+					type: "item"
+				}
+				{
+					id: "07C866732B5EBBB8"
+					item: "aquamirae:three_bolt_boots"
+					type: "item"
+				}
+				{
+					id: "49829D98ED8EF190"
+					item: "aquamirae:three_bolt_leggings"
+					type: "item"
+				}
+			]
+			title: "潜水套装"
+			x: -1.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "fromtheshadows:diabolium_helmet"
+			icon_scale: 2.0d
+			id: "1779FEDC1CD752E9"
+			rewards: [{
+				id: "7CF15E7C0866731A"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "554A5A2845ABD3FA"
+					item: "fromtheshadows:diabolium_chest"
+					type: "item"
+				}
+				{
+					id: "7CA52384A2948395"
+					item: "fromtheshadows:diabolium_helmet"
+					type: "item"
+				}
+				{
+					id: "1CC2A5D78D2328D5"
+					item: "fromtheshadows:diabolium_leggings"
+					type: "item"
+				}
+			]
+			title: "魔金套装"
+			x: -1.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "fromtheshadows:crust_helmet"
+			icon_scale: 2.0d
+			id: "17F1EC5A58E17BD3"
+			rewards: [{
+				id: "5E29FE89C5F38369"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "18AD35A7F0CA77E8"
+					item: "fromtheshadows:crust_chest"
+					type: "item"
+				}
+				{
+					id: "786B2CCB8E28EBA8"
+					item: "fromtheshadows:crust_helmet"
+					type: "item"
+				}
+				{
+					id: "7479B77E6EFB2443"
+					item: "fromtheshadows:crust_leggings"
+					type: "item"
+				}
+			]
+			title: "岩壳套装"
+			x: 1.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "cataclysm:bone_reptile_chestplate"
+			icon_scale: 2.0d
+			id: "3CB062BCA9BD0FEC"
+			rewards: [{
+				id: "67F6375E1C6965ED"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "击败&6远古遗魂"
+			tasks: [
+				{
+					id: "0CA15BC3816C2B49"
+					item: "cataclysm:bone_reptile_helmet"
+					type: "item"
+				}
+				{
+					id: "024CBBE9E541FCD9"
+					item: "cataclysm:bone_reptile_chestplate"
+					type: "item"
+				}
+			]
+			title: "骸龙套装"
+			x: -3.75d
+			y: 2.25d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon_scale: 2.0d
+			id: "7587A089143BA6FA"
+			rewards: [{
+				id: "5E08F1BB3905181F"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.2d
+			subtitle: "击败&6炼狱魔龙&r"
+			tasks: [
+				{
+					id: "1A076DE083C7B8D2"
+					item: "block_factorys_bosses:dragon_skull"
+					type: "item"
+				}
+				{
+					id: "58C4C16D05E7B880"
+					item: "block_factorys_bosses:dragon_bones_chestplate"
+					type: "item"
+				}
+				{
+					id: "385349F8358256BE"
+					item: "block_factorys_bosses:dragon_bones_leggings"
+					type: "item"
+				}
+				{
+					id: "2B896F597055AE23"
+					item: "block_factorys_bosses:dragon_bones_boots"
+					type: "item"
+				}
+			]
+			title: "古龙套——龙裔套装"
+			x: -8.4d
+			y: -2.4d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "cataclysm:ignitium_elytra_chestplate"
+			icon_scale: 2.0d
+			id: "66B95BDCAFA07D10"
+			shape: "square"
+			size: 1.5d
+			subtitle: "击败&6伊格尼斯"
+			tasks: [
+				{
+					id: "54AB2623AF09B530"
+					item: "cataclysm:ignitium_helmet"
+					type: "item"
+				}
+				{
+					id: "59A4FEFE2F3CEFCA"
+					item: "cataclysm:ignitium_elytra_chestplate"
+					type: "item"
+				}
+				{
+					id: "3F76E254E137165C"
+					item: "cataclysm:ignitium_leggings"
+					type: "item"
+				}
+				{
+					id: "37E2F83440331CB7"
+					item: "cataclysm:ignitium_boots"
+					type: "item"
+				}
+			]
+			title: "腾炎套装"
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "cataclysm:cursium_chestplate"
+			icon_scale: 2.0d
+			id: "54C39AAE680800C8"
+			rewards: [{
+				id: "6E2B89BC984681E7"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "击败&6玛莱迪克特斯&r"
+			tasks: [
+				{
+					id: "063FF3ADA25F3176"
+					item: "cataclysm:cursium_helmet"
+					type: "item"
+				}
+				{
+					id: "6D211B98C9FC15C2"
+					item: "cataclysm:cursium_chestplate"
+					type: "item"
+				}
+				{
+					id: "38A122705B16CFDB"
+					item: "cataclysm:cursium_leggings"
+					type: "item"
+				}
+				{
+					id: "11B217EAD6490AF1"
+					item: "cataclysm:cursium_boots"
+					type: "item"
+				}
+			]
+			title: "咒魂套装"
+			x: 3.75d
+			y: 2.25d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon_scale: 2.0d
+			id: "083E31035AB51591"
+			rewards: [{
+				id: "75FAC95E2EDE910B"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			size: 1.2d
+			subtitle: "击败&6斯克利兹&r"
+			tasks: [
+				{
+					id: "70CF4BD036E613E0"
+					item: "monsterexpansion:skrythe_chestplate"
+					type: "item"
+				}
+				{
+					id: "0C4B82D4296CD742"
+					item: "monsterexpansion:skrythe_helmet"
+					type: "item"
+				}
+				{
+					id: "2CEFE8214EE01EE2"
+					item: "monsterexpansion:skrythe_leggings"
+					type: "item"
+				}
+				{
+					id: "4C71B2882106DC90"
+					item: "monsterexpansion:skrythe_boots"
+					type: "item"
+				}
+			]
+			title: "古龙套——斯克里兹套装"
+			x: 8.4d
+			y: -2.4d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "aquamirae:abyssal_tiara"
+			icon_scale: 2.0d
+			id: "374137744E10EF8C"
+			rewards: [{
+				id: "4FE4FD3C7E8B0CDE"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			subtitle: "寒冰迷宫探索"
+			tasks: [
+				{
+					id: "5501F1611A85B204"
+					item: "aquamirae:abyssal_heaume"
+					type: "item"
+				}
+				{
+					id: "2264063B067FB694"
+					item: "aquamirae:abyssal_brigantine"
+					type: "item"
+				}
+				{
+					id: "18881AEE2C316748"
+					item: "aquamirae:abyssal_leggings"
+					type: "item"
+				}
+				{
+					id: "5156B6ECFE9E9968"
+					item: "aquamirae:abyssal_boots"
+					type: "item"
+				}
+				{
+					id: "0F71C6903E78E59B"
+					item: "aquamirae:abyssal_tiara"
+					type: "item"
+				}
+			]
+			title: "晦暗深海套装"
+			x: 0.0d
+			y: -5.0d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "aquamirae:terrible_helmet"
+			icon_scale: 2.0d
+			id: "2FEA17DDB5B78674"
+			rewards: [{
+				id: "7ACC9817E6EBF321"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			subtitle: "寒冰迷宫探索"
+			tasks: [
+				{
+					id: "29F882141AA57A7F"
+					item: "aquamirae:terrible_helmet"
+					type: "item"
+				}
+				{
+					id: "0692A036CA0857D7"
+					item: "aquamirae:terrible_chestplate"
+					type: "item"
+				}
+				{
+					id: "5CA224CFFED2D367"
+					item: "aquamirae:terrible_leggings"
+					type: "item"
+				}
+				{
+					id: "582F0313994E6899"
+					item: "aquamirae:terrible_boots"
+					type: "item"
+				}
+			]
+			title: "可怖套装"
+			x: 1.5d
+			y: -5.0d
+		}
+		{
+			dependencies: ["6552F3D1C32E5C75"]
+			icon: "efn:ruinfighter_helmet"
+			icon_scale: 2.0d
+			id: "1567B2B30EBDF46F"
+			rewards: [{
+				id: "46E66164A395189C"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			tasks: [
+				{
+					id: "1B91ACC186AB3267"
+					item: "efn:ruinfighter_helmet"
+					type: "item"
+				}
+				{
+					id: "6753ECDD81113048"
+					item: "efn:ruinfighter_chestplate"
+					type: "item"
+				}
+				{
+					id: "70AF39EFF6F51AA3"
+					item: "efn:ruinfighter_leggings"
+					type: "item"
+				}
+				{
+					id: "711CC61A70016CEC"
+					item: "efn:ruinfighter_boots"
+					type: "item"
+				}
+			]
+			title: "墟骸战士套装"
+			x: 0.0d
+			y: -2.0d
+		}
+	]
 	title: "天工护世玄甲谱"
 }

@@ -5,20 +5,401 @@
 	group: ""
 	icon: "cataclysm:altar_of_fire"
 	id: "6E911C0C47606679"
-	order_index: 6
+	images: [
+		{
+			height: 4.0d
+			image: "tcrcore:textures/ftb/blue_dragon.png"
+			rotation: 0.0d
+			width: 7.0d
+			x: -4.0d
+			y: 0.0d
+		}
+		{
+			height: 4.4d
+			image: "tcrcore:textures/ftb/red_dragon.png"
+			rotation: 0.0d
+			width: 8.0d
+			x: 5.5d
+			y: 0.0d
+		}
+		{
+			height: 10.0d
+			image: "tcrcore:textures/ftb/ghost.png"
+			rotation: 0.0d
+			width: 18.0d
+			x: -8.5d
+			y: 7.5d
+		}
+		{
+			height: 9.0d
+			image: "tcrcore:textures/ftb/leviathan.png"
+			rotation: 0.0d
+			width: 16.0d
+			x: -14.0d
+			y: -4.5d
+		}
+		{
+			height: 10.0d
+			image: "tcrcore:textures/ftb/ignis.png"
+			rotation: 0.0d
+			width: 18.0d
+			x: 0.5d
+			y: -11.0d
+		}
+		{
+			height: 12.0d
+			image: "tcrcore:textures/ftb/dinosaur.png"
+			rotation: 0.0d
+			width: 12.0d
+			x: 15.5d
+			y: -5.5d
+		}
+		{
+			height: 16.0d
+			image: "tcrcore:textures/ftb/syclla.png"
+			rotation: 0.0d
+			width: 16.0d
+			x: 11.5d
+			y: 9.0d
+		}
+		{
+			height: 18.0d
+			image: "tcrcore:textures/ftb/monster_home.png"
+			order: -1
+			rotation: 0.0d
+			width: 32.0d
+			x: 0.0d
+			y: -1.5d
+		}
+	]
+	order_index: 5
 	quest_links: [ ]
-	quests: [{
-		id: "68EDC89BB022788B"
-		invisible: true
-		tasks: [{
-			advancement: "tcrcore:stage3"
-			criterion: ""
-			id: "18A4D4525511C684"
-			title: "神谕解锁"
-			type: "advancement"
-		}]
-		x: 0.0d
-		y: 0.0d
-	}]
+	quests: [
+		{
+			icon_scale: 2.0d
+			id: "68EDC89BB022788B"
+			invisible: true
+			rewards: [
+				{
+					count: 4
+					id: "713D03823208510A"
+					item: "minecraft:ender_eye"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "6D71971051F07049"
+					item: "minecraft:wither_skeleton_skull"
+					type: "item"
+				}
+			]
+			shape: "square"
+			size: 2.0d
+			subtitle: "神谕揭示了世界上的所有巨型魔物，现在你可以前往&6地狱&r和&3末地&r了！"
+			tasks: [{
+				advancement: "tcrcore:stage2"
+				criterion: ""
+				id: "18A4D4525511C684"
+				title: "神谕解锁"
+				type: "advancement"
+			}]
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			id: "6FD4134465F4B80A"
+			rewards: [{
+				id: "33F7F3DB93C195CE"
+				item: "cataclysm:music_disc_the_leviathan"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			tasks: [{
+				entity: "cataclysm:the_leviathan"
+				icon: "cataclysm:abyssal_sacrifice"
+				id: "31F81725804DBD7A"
+				type: "kill"
+				value: 1L
+			}]
+			title: "利维坦"
+			x: -12.0d
+			y: -4.0d
+		}
+		{
+			id: "460AD9F2064DC761"
+			rewards: [{
+				id: "7B4F9FCDF7CF600F"
+				item: "cataclysm:music_disc_maledictus"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			tasks: [{
+				entity: "cataclysm:maledictus"
+				icon: "cataclysm:cursed_tombstone"
+				id: "0672B910E28C9389"
+				type: "kill"
+				value: 1L
+			}]
+			title: "咒翼灵骸"
+			x: -8.0d
+			y: 8.0d
+		}
+		{
+			id: "588584D95F9A501F"
+			rewards: [{
+				id: "16E7BEA1F0909A4F"
+				item: "cataclysm:music_disc_scylla"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			tasks: [{
+				entity: "cataclysm:scylla"
+				icon: "cataclysm:goddess_statue"
+				id: "2D1A10B1F70903F7"
+				type: "kill"
+				value: 1L
+			}]
+			title: "斯库拉"
+			x: 9.0d
+			y: 8.0d
+		}
+		{
+			id: "3B4BBA5C2B7507EB"
+			rewards: [{
+				id: "6F3F90AF6A082B1E"
+				item: "cataclysm:music_disc_ancient_remnant"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			tasks: [{
+				entity: "cataclysm:ancient_remnant"
+				icon: "cataclysm:remnant_skull"
+				id: "7A40C0DB2D45F3F3"
+				type: "kill"
+				value: 1L
+			}]
+			title: "远古遗魂"
+			x: 15.0d
+			y: -5.0d
+		}
+		{
+			id: "0C0A726EABBAB2E8"
+			rewards: [{
+				id: "786ED5571C1BD1E7"
+				item: "cataclysm:music_disc_ignis"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			tasks: [{
+				entity: "cataclysm:ignis"
+				icon: "cataclysm:burning_ashes"
+				id: "74DADD5A7C11C5F2"
+				type: "kill"
+				value: 1L
+			}]
+			title: "伊格尼斯"
+			x: 1.0d
+			y: -11.0d
+		}
+		{
+			id: "3460F65A23FDA799"
+			rewards: [{
+				count: 2
+				id: "1B26981A9BBD9863"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "minecraft:warden"
+				icon: "efn:deepdark_heart"
+				id: "0D2A0E0DCC3F302F"
+				type: "kill"
+				value: 1L
+			}]
+			x: -0.5d
+			y: -4.0d
+		}
+		{
+			id: "2BF1F71D59A76031"
+			rewards: [{
+				count: 8
+				id: "30E993F6BD2BC374"
+				item: "fromtheshadows:diabolium_ingot"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "fromtheshadows:nehemoth"
+				icon: "fromtheshadows:horn_of_apocalypse"
+				id: "07C3F9FAB82A74B4"
+				type: "kill"
+				value: 1L
+			}]
+			x: 2.5d
+			y: -4.0d
+		}
+		{
+			id: "2C89A1EDBADA8DB5"
+			rewards: [{
+				id: "38EB09C8A7EF6657"
+				item: "monsterexpansion:foundry"
+				type: "item"
+			}]
+			shape: "rsquare"
+			tasks: [{
+				entity: "monsterexpansion:skrythe"
+				icon: "monsterexpansion:skrythe_frill"
+				id: "1FA8DD758BB3E887"
+				type: "kill"
+				value: 1L
+			}]
+			x: -3.5d
+			y: 1.0d
+		}
+		{
+			id: "3AF2C36C369D5820"
+			rewards: [{
+				count: 16
+				id: "0FC9E2E092FC8950"
+				item: "block_factorys_bosses:ancient_iron_ingot"
+				type: "item"
+			}]
+			shape: "rsquare"
+			tasks: [{
+				entity: "block_factorys_bosses:infernal_dragon"
+				icon: "block_factorys_bosses:dragon_skull"
+				id: "48FF437429146C9A"
+				type: "kill"
+				value: 1L
+			}]
+			x: 5.5d
+			y: 1.0d
+		}
+		{
+			id: "065DE571BE00BCAE"
+			rewards: [{
+				count: 4
+				id: "60284850DAC56723"
+				item: "block_factorys_bosses:sandworm_dart"
+				type: "item"
+			}]
+			tasks: [{
+				entity: "block_factorys_bosses:sandworm"
+				icon: "block_factorys_bosses:sandworm_spawn_egg"
+				id: "02D2B89EE972D2C6"
+				type: "kill"
+				value: 1L
+			}]
+			x: 3.5d
+			y: -2.5d
+		}
+		{
+			id: "2E3DFA7D59FD06D4"
+			rewards: [{
+				id: "0D5FD72AE44EFE15"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				entity: "block_factorys_bosses:yeti"
+				icon: "block_factorys_bosses:yeti_spawn_egg"
+				id: "3A5F56B41325A69C"
+				type: "kill"
+				value: 1L
+			}]
+			x: -1.5d
+			y: -2.5d
+		}
+		{
+			id: "697EB87B461228FE"
+			rewards: [{
+				id: "2026110E68FF67E3"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			tasks: [{
+				entity: "block_factorys_bosses:underworld_knight"
+				icon: "block_factorys_bosses:underworld_knight_spawn_egg"
+				id: "424210C6D8BB4252"
+				type: "kill"
+				value: 1L
+			}]
+			x: 1.0d
+			y: -4.5d
+		}
+		{
+			id: "43AD812F245AB09F"
+			rewards: [{
+				id: "648AA1E1A2279C80"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				entity: "cataclysm:clawdian"
+				icon: "cataclysm:chitin_claw"
+				id: "2FA346342FA5D32F"
+				type: "kill"
+				value: 1L
+			}]
+			x: 9.0d
+			y: 10.0d
+		}
+		{
+			id: "57F7684B5A28119F"
+			rewards: [{
+				id: "017BBE4536481F10"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				entity: "cataclysm:aptrgangr"
+				icon: "cataclysm:aptrgangr_spawn_egg"
+				id: "276AF42DD7B2A226"
+				type: "kill"
+				value: 1L
+			}]
+			x: -8.0d
+			y: 10.0d
+		}
+		{
+			id: "006AB3CE281779A8"
+			rewards: [{
+				id: "7B621DDAF22D7741"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				entity: "cataclysm:coralssus"
+				icon: "cataclysm:coralssus_spawn_egg"
+				id: "4FE758CFA6529E00"
+				type: "kill"
+				value: 1L
+			}]
+			x: -12.0d
+			y: -2.0d
+		}
+		{
+			id: "2774145CF1848544"
+			rewards: [{
+				id: "19002AA3C5940A63"
+				type: "xp"
+				xp: 100
+			}]
+			tasks: [{
+				entity: "cataclysm:kobolediator"
+				icon: "cataclysm:kobolediator_skull"
+				id: "2DC31AC8D68BC73A"
+				type: "kill"
+				value: 1L
+			}]
+			x: 15.0d
+			y: -3.0d
+		}
+	]
 	title: "神魔渊薮"
 }
