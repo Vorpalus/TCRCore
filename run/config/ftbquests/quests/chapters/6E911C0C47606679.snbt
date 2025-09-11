@@ -95,7 +95,7 @@
 			]
 			shape: "square"
 			size: 2.0d
-			subtitle: "神谕揭示了世界上的所有巨型魔物，现在你可以前往&6地狱&r和&3末地&r了！"
+			subtitle: "神谕揭示了世界上的所有巨型魔物\\n现在你可以前往&6地狱&r和&3末地&r了！"
 			tasks: [{
 				advancement: "tcrcore:stage2"
 				criterion: ""
@@ -115,6 +115,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:the_leviathan"
 				icon: "cataclysm:abyssal_sacrifice"
@@ -135,6 +136,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:maledictus"
 				icon: "cataclysm:cursed_tombstone"
@@ -155,6 +157,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:scylla"
 				icon: "cataclysm:goddess_statue"
@@ -175,6 +178,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:ancient_remnant"
 				icon: "cataclysm:remnant_skull"
@@ -195,6 +199,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:ignis"
 				icon: "cataclysm:burning_ashes"
@@ -214,6 +219,7 @@
 				item: "minecraft:netherite_ingot"
 				type: "item"
 			}]
+			subtitle: "锻造&6远古幽匿对刀&r之必备，深藏于深暗之域"
 			tasks: [{
 				entity: "minecraft:warden"
 				icon: "efn:deepdark_heart"
@@ -232,6 +238,7 @@
 				item: "fromtheshadows:diabolium_ingot"
 				type: "item"
 			}]
+			subtitle: "&6晶化血髓&r和&6腐化之心&r"
 			tasks: [{
 				entity: "fromtheshadows:nehemoth"
 				icon: "fromtheshadows:horn_of_apocalypse"
@@ -243,6 +250,7 @@
 			y: -4.0d
 		}
 		{
+			description: ["[ \"掉落物可锻造\", { \"text\": \"斯克利兹套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"083E31035AB51591\" } } ]"]
 			id: "2C89A1EDBADA8DB5"
 			rewards: [{
 				id: "38EB09C8A7EF6657"
@@ -250,6 +258,7 @@
 				type: "item"
 			}]
 			shape: "rsquare"
+			subtitle: "栖息于高海拔地区"
 			tasks: [{
 				entity: "monsterexpansion:skrythe"
 				icon: "monsterexpansion:skrythe_frill"
@@ -265,7 +274,7 @@
 			rewards: [{
 				count: 16
 				id: "0FC9E2E092FC8950"
-				item: "block_factorys_bosses:ancient_iron_ingot"
+				item: "block_factorys_bosses:dragon_bone"
 				type: "item"
 			}]
 			shape: "rsquare"
@@ -300,9 +309,9 @@
 		{
 			id: "2E3DFA7D59FD06D4"
 			rewards: [{
-				id: "0D5FD72AE44EFE15"
-				type: "xp"
-				xp: 100
+				id: "3787DC16641703F0"
+				item: "block_factorys_bosses:frozen_fist"
+				type: "item"
 			}]
 			tasks: [{
 				entity: "block_factorys_bosses:yeti"
@@ -317,11 +326,13 @@
 		{
 			id: "697EB87B461228FE"
 			rewards: [{
-				id: "2026110E68FF67E3"
-				type: "xp"
-				xp: 100
+				count: 8
+				id: "592E27D0B78415CB"
+				item: "block_factorys_bosses:ancient_iron_ingot"
+				type: "item"
 			}]
 			shape: "rsquare"
+			subtitle: "深藏&6地狱&r之中"
 			tasks: [{
 				entity: "block_factorys_bosses:underworld_knight"
 				icon: "block_factorys_bosses:underworld_knight_spawn_egg"
@@ -330,7 +341,7 @@
 				value: 1L
 			}]
 			x: 1.0d
-			y: -4.5d
+			y: -2.0d
 		}
 		{
 			id: "43AD812F245AB09F"
@@ -339,6 +350,7 @@
 				type: "xp"
 				xp: 100
 			}]
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:clawdian"
 				icon: "cataclysm:chitin_claw"
@@ -356,6 +368,7 @@
 				type: "xp"
 				xp: 100
 			}]
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:aptrgangr"
 				icon: "cataclysm:aptrgangr_spawn_egg"
@@ -373,6 +386,7 @@
 				type: "xp"
 				xp: 100
 			}]
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:coralssus"
 				icon: "cataclysm:coralssus_spawn_egg"
@@ -390,6 +404,7 @@
 				type: "xp"
 				xp: 100
 			}]
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:kobolediator"
 				icon: "cataclysm:kobolediator_skull"
@@ -399,6 +414,18 @@
 			}]
 			x: 15.0d
 			y: -3.0d
+		}
+		{
+			id: "7EB7C9446377B769"
+			tasks: [{
+				entity: "minecraft:wither"
+				icon: "minecraft:wither_rose"
+				id: "306DADBC7A51E380"
+				type: "kill"
+				value: 1L
+			}]
+			x: 1.0d
+			y: 6.5d
 		}
 	]
 	title: "神魔渊薮"

@@ -183,7 +183,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
                 if (cursed != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(cursed.x, 64, cursed.y), WaypointColor.BLUE);
                 }
-                Vec2i desert = WorldUtil.getNearbyStructurePos(player, "betteroceanmonuments:ocean_monument");//远古守卫者
+                Vec2i desert = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:sandworm_nest");//沙漠蠕虫巢穴
                 if (desert != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(desert.x, 64, desert.y), WaypointColor.YELLOW);
                 }

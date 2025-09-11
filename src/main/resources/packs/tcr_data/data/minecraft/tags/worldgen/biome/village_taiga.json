@@ -1,0 +1,100 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:taiga",
+    "minecraft:old_growth_pine_taiga",
+    "minecraft:old_growth_spruce_taiga",
+    {
+      "id": "biomesoplenty:coniferous_forest",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:redwood_forest",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:maple_taiga",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:pine_taiga",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:subzero_taiga",
+      "required": false
+    },
+    {
+      "id": "biomeswevegone:dead_pine_taiga",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:cold_deciduous_forest",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:blackwood_taiga",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:cold_boreal_taiga",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:fen",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:redwoods",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:sparse_redwoods",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:golden_boreal_taiga",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:old_growth_bayou",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:pine_taiga",
+      "required": false
+    },
+    {
+      "id": "regions_unexplored:pine_slopes",
+      "required": false
+    },
+    {
+      "id": "terralith:highlands_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:ancient_taiga", 
+      "required": false
+    },
+    {
+      "id": "wythers:boreal_forest", 
+      "required": false
+    },
+    {
+      "id": "wythers:crimson_tundra", 
+      "required": false
+    },
+    {
+      "id": "wythers:larch_taiga", 
+      "required": false
+    },
+    {
+      "id": "#forge:is_taiga",
+      "required": false
+    },
+    {
+      "id": "#c:forest",
+      "required": false
+    }
+  ]
+}

@@ -206,10 +206,13 @@ dependencies {
     implementation fg.deobf("libs:bossesrise:1.0.9.1")
     implementation fg.deobf("curse.maven:monster-expansion-1336105:6957501")
     implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:6869933")
-    implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6944220")
+    implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6978373")
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+
+    //小动物
+    implementation fg.deobf("curse.maven:more-critters-1322511:6955615")
 
     //钓鱼难度
     implementation fg.deobf("curse.maven:stardew-fishing-1066037:6434447")
@@ -225,6 +228,7 @@ dependencies {
     implementation "curse.maven:spiral-tower-villages-1280127:6705885"
 
     implementation fg.deobf("curse.maven:travelers-titles-504908:5065825")
+    implementation fg.deobf("curse.maven:yungs-better-end-island-901344:5193815")
     implementation fg.deobf("curse.maven:yungs-better-ocean-monuments-689238:4883003")
     implementation fg.deobf("curse.maven:yungs-api-421850:5769971")
 
@@ -278,11 +282,15 @@ dependencies {
     implementation fg.deobf("curse.maven:noisium-930207:5650506")
     implementation fg.deobf("curse.maven:async-locator-625069:4603343")
 
+    implementation fg.deobf("curse.maven:fancy-toasts-1326436:6932752")//优化进度贴图
+
     implementation fg.deobf("curse.maven:embeddium-908741:5681725")
     implementation fg.deobf("curse.maven:oculus-581495:6020952")
 
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+
+    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:5057220")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
