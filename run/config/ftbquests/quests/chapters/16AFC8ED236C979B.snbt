@@ -41,6 +41,11 @@
 		icon: "cataclysm:strange_key"
 		icon_scale: 2.0d
 		id: "09DE1A548EA3F9BA"
+		rewards: [{
+			id: "146096142779186D"
+			item: "minecraft:enchanted_golden_apple"
+			type: "item"
+		}]
 		subtitle: "“传说深海之中有一片废墟，守望着这个世界”"
 		tasks: [
 			{
@@ -49,8 +54,8 @@
 				type: "checkmark"
 			}
 			{
-				id: "445A1649F42FD181"
-				title: "任务书里的教程在世界交互中都会再现，无需担心漏了什么小作文就玩不懂了"
+				id: "0485138C7C9054EA"
+				title: "本整合包处于测试阶段，主城仍未完善，部分区域未解锁（真的没有藏宝箱！）"
 				type: "checkmark"
 			}
 		]

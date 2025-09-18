@@ -14,6 +14,7 @@
     "DodgeLocationIndicatorMixin",
     "FAArmorItemMixin",
     "GuardSkillMixin",
+    "HornOfTheShattercryMixin",
     "ItemMixin",
     "KnightSwordItemMixin",
     "PlayerAdvancementsMixin",
@@ -21,16 +22,17 @@
     "SkillContainerMixin",
     "TakeDamageEventAttackMixin",
     "ThirstforBloodItemMixin",
-    "VillagerMixin",
-    "Wrath_of_the_desertMixin"
+    "VillagerMixin"
   ],
   "client": [
     "AquamiraeClientMixin",
     "BetterAdvancementsScreenMixin",
     "CataclysmClientEventMixin",
     "LocalPlayerPatchAccessor",
+    "LocalPlayerPatchMixin",
     "LogoRendererMixin",
-    "PanoramaRendererMixin"
+    "PanoramaRendererMixin",
+    "SyncResourceKeysMixin"
   ],
   "injectors": {
     "defaultRequire": 1

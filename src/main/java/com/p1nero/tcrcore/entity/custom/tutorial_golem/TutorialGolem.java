@@ -85,6 +85,9 @@ public class TutorialGolem extends IronGolem {
             } else if(!PlayerDataManager.weapon_innate_used.get(serverPlayer)) {
                 serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("weapon_innate_tutorial")));
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("weapon_innate_charge_tutorial"), true);
+            } else if(!PlayerDataManager.locked.get(serverPlayer)) {
+                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("lock_tutorial")));
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("lock_tutorial_sub"), true);
             } else {
                 serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("you_pass")));
                 serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));

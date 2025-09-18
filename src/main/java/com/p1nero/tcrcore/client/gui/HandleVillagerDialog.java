@@ -1,6 +1,6 @@
 package com.p1nero.tcrcore.client.gui;
 
-import com.p1nero.dialog_lib.client.screen.LinkListStreamDialogueScreenBuilder;
+import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
@@ -12,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class HandleVillagerDialog {
 
     public static void openDialogScreen(Villager self, LocalPlayer player, CompoundTag serverData) {
-        LinkListStreamDialogueScreenBuilder treeBuilder = new LinkListStreamDialogueScreenBuilder(self);
+        DialogueScreenBuilder treeBuilder = new DialogueScreenBuilder(self);
         if (serverData.getBoolean("from_trade")) {
             treeBuilder.start(-1)
                     .addFinalChoice(-1);

@@ -17,12 +17,15 @@ import java.util.Set;
 public class PlayerDataManager {
     private final static Set<String> EXISTING_ID = new HashSet<>();
     public static DoubleData stage = new DoubleData("stage", 0);
+    public static BoolData swordSoaringUnlocked = new BoolData("sword_soaring_avoid_unlocked", false);
+    public static BoolData fireAvoidUnlocked = new BoolData("fire_avoid_unlocked", false);
     public static BoolData waterAvoidUnlocked = new BoolData("water_avoid_unlocked", false);
     public static BoolData bllSummoned = new BoolData("bll_summoned", false);
     public static BoolData firstJoint = new BoolData("first_joint", false);
     public static BoolData wayStoneInteracted = new BoolData("way_stone_interacted", false);
     public static BoolData dodged = new BoolData("dodged", false);
     public static BoolData parried = new BoolData("parried", false);
+    public static BoolData locked = new BoolData("locked", false);
     public static BoolData weapon_innate_used = new BoolData("weapon_innate_used", false);
     public static BoolData pillagerKilled = new BoolData("pillager_killed", false);//初始任务
     public static BoolData mapMarked = new BoolData("map_marked", false);//是否标记过地图了，省的二次搜索地图浪费

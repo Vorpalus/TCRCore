@@ -10,18 +10,18 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
+//@Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class BlockEvents {
-    @SubscribeEvent
-    public static void onPortalBlock(BlockEvent.PortalSpawnEvent event) {
-        event.setCanceled(true);
-        if (!event.getLevel().isClientSide()) {
-            for (Player player : event.getLevel().players()) {
-                if(player.distanceToSqr(event.getPos().getCenter()) < 25) {
-                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new OpenBanPortalScreenPacket(), ((ServerPlayer) player));
-                }
-            }
-        }
-    }
+//    @SubscribeEvent
+//    public static void onPortalBlock(BlockEvent.PortalSpawnEvent event) {
+////        event.setCanceled(true);
+////        if (!event.getLevel().isClientSide()) {
+////            for (Player player : event.getLevel().players()) {
+////                if(player.distanceToSqr(event.getPos().getCenter()) < 25) {
+////                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new OpenBanPortalScreenPacket(), ((ServerPlayer) player));
+////                }
+////            }
+////        }
+//    }
 
 }

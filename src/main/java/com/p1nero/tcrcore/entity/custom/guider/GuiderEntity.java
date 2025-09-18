@@ -5,11 +5,12 @@ import com.p1nero.dialog_lib.api.NpcDialogueEntity;
 import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.api.component.TreeNode;
 import com.p1nero.dialog_lib.api.goal.LookAtConservingPlayerGoal;
-import com.p1nero.dialog_lib.client.screen.LinkListStreamDialogueScreenBuilder;
+import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.item.TCRItems;
+import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
@@ -111,6 +112,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
     protected @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         if (player instanceof ServerPlayer serverPlayer) {
             CompoundTag tag = new CompoundTag();
+            tag.putBoolean("finished", TCRLevelSaveData.get(serverPlayer.serverLevel()).isAllFinish());
             if (player.getItemInHand(hand).is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())) {
                 tag.putBoolean("is_oracle", true);
             }
@@ -121,24 +123,50 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void openDialogueScreen(CompoundTag compoundTag) {
+    public DialogueScreenBuilder getDialogueBuilder(CompoundTag compoundTag) {
         LocalPlayer localPlayer = Minecraft.getInstance().player;
         if (localPlayer == null) {
-            return;
+            return null;
         }
-        LinkListStreamDialogueScreenBuilder treeBuilder = new LinkListStreamDialogueScreenBuilder(this);
+        DialogueScreenBuilder treeBuilder = new DialogueScreenBuilder(this);
         DialogueComponentBuilder dBuilder = new DialogueComponentBuilder(this);
-
         if (compoundTag.getBoolean("from_hurt")) {
             treeBuilder.start(5).addFinalChoice(6);
-        } else if (compoundTag.getBoolean("is_oracle")) {
+            return treeBuilder;
+        }
+        if(compoundTag.getBoolean("finished")) {
+            treeBuilder.start(8)
+                    .addChoice(12, 11)
+                    .addChoice(13, 12)
+                    .addChoice(14, 13)
+                    .addFinalChoice(15, 3, (dialogueScreen -> {
+                        //TODO 渲染黑屏+字幕
+                    }));
+            return treeBuilder;
+        }
+
+        //正式起航，改变一下对话
+        if(PlayerDataManager.mapMarked.get(localPlayer)) {
+            TreeNode root = new TreeNode(dBuilder.ans(8), dBuilder.optWithBrackets(0));//开场白 | 返回
+
+            TreeNode ans1 = new TreeNode(dBuilder.ans(9), dBuilder.optWithBrackets(10))
+                    .addChild(root);
+
+            TreeNode ans2 = new TreeNode(dBuilder.ans(10), dBuilder.optWithBrackets(11))
+                    .addChild(root);
+
+            root.addChild(ans1).addChild(ans2);
+
+            treeBuilder.setAnswerRoot(root);
+            return treeBuilder;
+        }
+         if (compoundTag.getBoolean("is_oracle")) {
             treeBuilder.start(7).addFinalChoice(9, 2);
         } else {
             TreeNode root = new TreeNode(dBuilder.ans(0), dBuilder.optWithBrackets(0));//开场白 | 返回
 
             TreeNode ans1 = new TreeNode(dBuilder.ans(1), dBuilder.optWithBrackets(1))
-                    .addChild(root)
-                    .addLeaf(dBuilder.optWithBrackets(2));
+                    .addChild(root);
 
             TreeNode ans2 = new TreeNode(dBuilder.ans(2), dBuilder.optWithBrackets(3))
                     .addChild(root);
@@ -157,27 +185,33 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
 
             treeBuilder.setAnswerRoot(root);
         }
-        if (!treeBuilder.isEmpty()) {
-            Minecraft.getInstance().setScreen(treeBuilder.build());
-        }
+        return treeBuilder;
     }
 
     @Override
     public void handleNpcInteraction(ServerPlayer player, int code) {
+        if (code == 3) {
+            //TODO 进入战灵维度
+        }
         if (code == 2) {
             //揭示预言，即解锁新玩法。根据记录的id解锁，初始阶段0， 1解锁时装和武器 2解锁盔甲和boss图鉴，3解锁附魔地狱末地，具体在FTB看
             int stage = PlayerDataManager.stage.getInt(player);
-            TCRAdvancementData.finishAdvancement("stage" + stage + 1, player);
+            TCRAdvancementData.finishAdvancement("stage" + (stage + 1), player);
             PlayerDataManager.stage.put(player, stage + 1D);
             if(stage + 1 <= 3) {
                 player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_ftb_page"), false);
             }
             level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+            if (player.getMainHandItem().is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())) {
+                player.getMainHandItem().shrink(1);
+            } else if (player.getOffhandItem().is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())){
+                player.getOffhandItem().shrink(1);
+            }
         }
         if (code == 1) {
             if (!PlayerDataManager.mapMarked.get(player)) {
-                ItemUtil.addItem(player, FTBQuestsItems.BOOK.get(), 1);//给任务书
-                ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1);//给号角
+                ItemUtil.addItem(player, FTBQuestsItems.BOOK.get(), 1, true);//给任务书
+                ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1, true);//给号角
                 //地图上标记位置
                 Vec2i cursed = WorldUtil.getNearbyStructurePos(player, "aquamirae:ship");//船长
                 if (cursed != null) {
@@ -197,7 +231,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 64, abyss.y), WaypointColor.DARK_BLUE);
                 }
 
-                Vec2i storm = WorldUtil.getNearbyStructurePos(player, "trek:overworld/very_rare/floating_farm_large");//天空岛
+                Vec2i storm = WorldUtil.getNearbyStructurePos(player, WorldUtil.SKY_ISLAND);//天空岛
                 if (storm != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(storm.x, 230, storm.y), WaypointColor.AQUA);
                 }
@@ -208,6 +242,10 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
             }
 
             player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
+        }
+        if(!PlayerDataManager.pillagerKilled.get(player)) {
+            DialogueComponentBuilder dBuilder = new DialogueComponentBuilder(this);
+            player.displayClientMessage(dBuilder.buildDialogue(this, dBuilder.ans(3)), false);
         }
         this.setConversingPlayer(null);
     }

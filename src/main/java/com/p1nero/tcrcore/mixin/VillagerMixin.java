@@ -8,6 +8,8 @@ import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
+import com.yesman.epicskills.skilltree.SkillTree;
+import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.yungsapi.criteria.SafeStructureLocationPredicate;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -58,10 +60,17 @@ public abstract class VillagerMixin extends AbstractVillager {
             if (mainHand.is(Items.EMERALD)) {
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 if(!PlayerDataManager.waterAvoidUnlocked.get(serverPlayer) && WorldUtil.isInStructure(serverPlayer, WorldUtil.COVES)) {
-                    Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn tcrcore:water_avoid true");
-                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("unlock_water_avoid", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
+                    Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn tcrcore:water_avoid true");
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
                     level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
                     PlayerDataManager.waterAvoidUnlocked.put(serverPlayer, true);
+                } else if(!PlayerDataManager.swordSoaringUnlocked.get(serverPlayer) && WorldUtil.isInStructure(serverPlayer, WorldUtil.SKY_ISLAND)) {
+                    Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s sword_soaring:sword_soaring_skills");
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill_page").withStyle(ChatFormatting.AQUA), false);
+                    level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    PlayerDataManager.swordSoaringUnlocked.put(serverPlayer, true);
+                } else {
+                    return;
                 }
                 mainHand.shrink(1);
                 CompoundTag tag = new CompoundTag();

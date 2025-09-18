@@ -1,12 +1,12 @@
 {
-	default_hide_dependency_lines: false
+	default_hide_dependency_lines: true
 	default_quest_shape: ""
 	filename: "6F9A7DF2FD111443"
 	group: ""
 	icon: "fantasy_armor:dragonslayer_chestplate"
 	id: "6F9A7DF2FD111443"
 	images: [{
-		dependency: "6552F3D1C32E5C75"
+		alpha: 64
 		height: 18.0d
 		image: "tcrcore:textures/ftb/armor_shelf.png"
 		rotation: 0.0d
@@ -14,10 +14,15 @@
 		x: 0.0d
 		y: -3.0d
 	}]
-	order_index: 4
+	order_index: 5
 	quest_links: [ ]
 	quests: [
 		{
+			description: [
+				"其实盔甲更多地起一个装饰作用，但是我们可以选择时装工坊"
+				""
+				"本章节主要展示本整合包携带的各种盔甲，可以查看各盔甲的特性，并选择一套心仪的盔甲！"
+			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon: "fantasy_armor:moon_crystal"
@@ -32,26 +37,20 @@
 			shape: "square"
 			size: 2.0d
 			subtitle: "古籍有云，&6皎月水晶&r乃百胄之基"
-			tasks: [
-				{
-					advancement: "tcrcore:stage2"
-					criterion: ""
-					id: "46DA77E11452FCE7"
-					title: "神谕解锁"
-					type: "advancement"
-				}
-				{
-					id: "3AEF4378461083A3"
-					title: "其实盔甲更多地起一个装饰作用"
-					type: "checkmark"
-				}
-			]
+			tasks: [{
+				advancement: "tcrcore:stage2"
+				criterion: ""
+				id: "46DA77E11452FCE7"
+				title: "神谕解锁"
+				type: "advancement"
+			}]
 			title: "天工护世玄甲谱"
 			x: 0.0d
 			y: 0.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
+			description: ["&d皎月水晶&r锻造"]
 			icon_scale: 2.0d
 			id: "7B9624C198F07020"
 			rewards: [{
@@ -110,6 +109,7 @@
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
+			description: ["&d皎月水晶&r锻造"]
 			icon_scale: 2.0d
 			id: "4AB65A5955823F0D"
 			rewards: [{
@@ -148,6 +148,7 @@
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
+			description: ["&d皎月水晶&r锻造"]
 			icon_scale: 2.0d
 			id: "05DFD02A3AC11DE8"
 			rewards: [{
@@ -244,6 +245,7 @@
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
+			description: ["击败&d尼赫莫斯魔像&r掉落物锻造"]
 			icon: "fromtheshadows:diabolium_helmet"
 			icon_scale: 2.0d
 			id: "1779FEDC1CD752E9"
@@ -320,7 +322,7 @@
 			}]
 			shape: "rsquare"
 			size: 1.5d
-			subtitle: "击败&6远古遗魂&r掉落物锻造"
+			subtitle: "&6远古遗魂幻境&r内掉落物锻造"
 			tasks: [
 				{
 					id: "0CA15BC3816C2B49"
@@ -382,7 +384,7 @@
 			id: "66B95BDCAFA07D10"
 			shape: "square"
 			size: 1.5d
-			subtitle: "击败&6伊格尼斯&r掉落物锻造"
+			subtitle: "&6伊格尼斯幻境&r内掉落物锻造"
 			tasks: [
 				{
 					id: "54AB2623AF09B530"
@@ -421,7 +423,7 @@
 			}]
 			shape: "rsquare"
 			size: 1.5d
-			subtitle: "击败&6玛莱迪克特斯&r掉落物锻造"
+			subtitle: "&6玛莱迪克特斯幻境&r内掉落物锻造"
 			tasks: [
 				{
 					id: "063FF3ADA25F3176"
@@ -605,5 +607,6 @@
 			y: -2.0d
 		}
 	]
-	title: "天工护世玄甲谱"
+	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
+	title: "&6天工护世玄甲谱"
 }

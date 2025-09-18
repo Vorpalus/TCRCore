@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "cataclysm:athame"
+        },
+        {
+            "item": "cataclysm:coral_chunk"
+        },
+        {
+            "item": "minecraft:heart_of_the_sea"
+        }
+    ],
+    "result": {
+        "item": "cataclysm:abyssal_sacrifice",
+        "count": 1
+    }
+}

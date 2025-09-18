@@ -29,6 +29,7 @@ public class WorldUtil {
     public static final Vec3i START_POS = new Vec3i(78, 65, -193);
     public static final Vec3 CENTER_POS = new Vec3(-19, 65, -79);
     public static final String COVES = "trek:overworld/very_rare/coves";
+    public static final String SKY_ISLAND = "trek:overworld/very_rare/floating_farm_large";
     public static Vec2i storm, flame, abyss, cursed, desert;
 
     private static final Pattern LOCATE_PATTERN = Pattern.compile(".*?\\[\\s*(-?\\d+)\\s*,\\s*~\\s*,\\s*(-?\\d+)\\s*\\].*");

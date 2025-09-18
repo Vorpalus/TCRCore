@@ -5,6 +5,7 @@ import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.cataclysm_dimension.worldgen.portal.CDNetherTeleporter;
 import com.p1nero.cataclysm_dimension.worldgen.portal.CDTeleporter;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -83,18 +84,17 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
      * 玩家右键，即激活或者准备进入
      */
     public void onPlayerInteract(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+        if(pLevel.isClientSide) {
+            return;
+        }
+        ServerLevel serverLevel = (ServerLevel) level;
         ItemStack mainHandItem = pPlayer.getItemInHand(pHand);
         MinecraftServer minecraftServer = pPlayer.getServer();
-        if(pLevel.isClientSide || minecraftServer == null) {
+        if(minecraftServer == null) {
             return;
         }
         if(mainHandItem.is(this.itemInnate) && !this.isActivated) {
-            this.isActivated = true;
-            this.sync();
-            if(!pPlayer.isCreative()) {
-                mainHandItem.shrink(1);
-            }
-            pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            onActive(pPlayer, mainHandItem, serverLevel, pPos);
         } else if(pPlayer.isShiftKeyDown() && this.isActivated){
             ItemStack defaultInstance = this.itemInnate.getDefaultInstance();
             boolean flag = true;
@@ -159,6 +159,15 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
                 pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BEACON_AMBIENT, SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
+    }
+
+    protected void onActive(Player pPlayer, ItemStack mainHandItem, ServerLevel pLevel, BlockPos pPos) {
+        this.isActivated = true;
+        this.sync();
+        if(!pPlayer.isCreative()) {
+            mainHandItem.shrink(1);
+        }
+        pLevel.playSound(null, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     protected ParticleOptions getSpawnerParticle(){

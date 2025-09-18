@@ -1,8 +1,9 @@
 {
-	default_hide_dependency_lines: false
+	default_hide_dependency_lines: true
 	default_quest_shape: ""
 	filename: "chaptertcr2"
 	group: ""
+	hide_quest_until_deps_visible: true
 	icon: "cataclysm:ceraunus"
 	id: "2D391C2F48D42ABA"
 	images: [
@@ -47,36 +48,37 @@
 			y: -1.5d
 		}
 	]
-	order_index: 3
+	order_index: 4
 	quest_links: [ ]
 	quests: [
 		{
+			hide_dependency_lines: true
+			hide_dependent_lines: true
 			icon: "minecraft:anvil"
 			icon_scale: 2.0d
 			id: "2F9F109962C8ADF4"
 			invisible: true
+			rewards: [{
+				id: "5F3BFBAB9DE60A3A"
+				item: "minecraft:smithing_table"
+				type: "item"
+			}]
 			shape: "square"
 			size: 2.0d
-			subtitle: "神谕揭示了世界上所有存在的兵器，打造一把趁手的吧！"
-			tasks: [
-				{
-					advancement: "tcrcore:stage1"
-					criterion: ""
-					id: "79001546914C8E0B"
-					title: "神谕解锁"
-					type: "advancement"
-				}
-				{
-					id: "46F813E58A4A5C1A"
-					item: "minecraft:smithing_table"
-					type: "item"
-				}
-			]
+			subtitle: "神谕揭示了世界上所有存在的兵器，打造一把趁手的吧！&6部分神兵待解锁魔神图谱方可知晓&r"
+			tasks: [{
+				advancement: "tcrcore:stage2"
+				criterion: ""
+				id: "79001546914C8E0B"
+				title: "神谕解锁"
+				type: "advancement"
+			}]
 			title: "百兵玄冥谕章"
 			x: -3.0d
 			y: -8.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "epicfight:iron_spear"
 			icon_scale: 2.0d
 			id: "1A6B3A6D5DB399E9"
@@ -97,6 +99,7 @@
 			y: -10.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon_scale: 2.0d
 			id: "1C68EB8187AB5709"
 			shape: "square"
@@ -110,6 +113,7 @@
 			y: -10.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "cataclysm:ancient_spear"
 			icon_scale: 2.0d
 			id: "7F51A99C5DAAF8C3"
@@ -130,6 +134,7 @@
 			y: -10.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			description: [""]
 			icon: "cataclysm:coral_spear"
 			icon_scale: 2.0d
@@ -151,6 +156,7 @@
 			y: -9.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			description: [""]
 			icon: "cataclysm:coral_bardiche"
 			icon_scale: 2.0d
@@ -172,6 +178,7 @@
 			y: -9.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			description: [""]
 			icon: {
 				Count: 1
@@ -211,6 +218,8 @@
 			y: -7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [""]
 			icon: "fromtheshadows:thirst_for_blood"
 			icon_scale: 2.0d
 			id: "6B63BADC1AD47A2B"
@@ -231,6 +240,12 @@
 			y: -7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"&b*定制武器&r"
+				""
+				"获得&6咒魂&r的力量，可释放咒魂终结技，召唤&2战戟&r击退附近魔物"
+			]
 			icon: "cataclysm:soul_render"
 			icon_scale: 2.0d
 			id: "0D76D92CF8D39AE7"
@@ -251,6 +266,12 @@
 			y: -4.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"点击物品查看合成"
+				""
+				"掌控&c火焰之力&r，沉重而帅气的武器"
+			]
 			icon: "efn:meen_spear"
 			icon_scale: 2.0d
 			id: "4BDA3978470D5E7A"
@@ -260,7 +281,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "点击物品查看合成"
+			subtitle: "召唤并击败&d凋灵&r以获取&b下界之星&r合成"
 			tasks: [{
 				id: "6EBE0D34093C08A1"
 				item: "efn:meen_spear"
@@ -271,6 +292,7 @@
 			y: -0.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon_scale: 2.0d
 			id: "5D87FDB46CB5D26D"
 			rewards: [{
@@ -289,6 +311,7 @@
 			y: -9.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon_scale: 2.0d
 			id: "36E248D1C96C59ED"
 			rewards: [{
@@ -307,6 +330,7 @@
 			y: -9.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon_scale: 2.0d
 			id: "733EFEA0B7DE9EFA"
 			rewards: [{
@@ -325,6 +349,7 @@
 			y: -7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon_scale: 2.0d
 			id: "3289A6F03F4FA4CB"
 			rewards: [{
@@ -343,6 +368,7 @@
 			y: -7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon_scale: 2.0d
 			id: "78E45E3D95EA9899"
 			rewards: [{
@@ -361,6 +387,8 @@
 			y: -9.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: ["点击物品查看合成"]
 			icon_scale: 2.0d
 			id: "42B7E4648BDE15AD"
 			rewards: [{
@@ -369,7 +397,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "&6???"
+			subtitle: "于&5利维坦幻境&r中击败&6珊瑚巨像&r获得&d珊瑚碎块&r合成"
 			tasks: [{
 				id: "02BA280CFC4F0205"
 				item: "efn:nf_claw"
@@ -379,6 +407,14 @@
 			y: 0.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"&b*定制武器&r"
+				""
+				"获得&6利维坦&r的力量，可释放利维坦终结技，发射&5激光&r击退附近魔物"
+				""
+				"同时钩爪功能保留，并添加适配动画"
+			]
 			icon_scale: 2.0d
 			id: "12C6899DBC971D90"
 			rewards: [{
@@ -397,6 +433,7 @@
 			y: -4.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "cataclysm:khopesh"
 			icon_scale: 2.0d
 			id: "6A296B94B62519EB"
@@ -417,6 +454,7 @@
 			y: 4.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "aquamirae:remnants_saber"
 			icon_scale: 2.0d
 			id: "455DFDD6BA4B2BC6"
@@ -437,6 +475,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "aquamirae:fin_cutter"
 			icon_scale: 2.0d
 			id: "4C3947B8DD5609A4"
@@ -457,6 +496,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "aquamirae:terrible_sword"
 			icon_scale: 2.0d
 			id: "3DCAA74E3F1F738D"
@@ -477,6 +517,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "aquamirae:divider"
 			icon_scale: 2.0d
 			id: "0118D4E469FE640F"
@@ -497,6 +538,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: {
 				Count: 1
 				id: "aquamirae:maze_rose"
@@ -547,6 +589,7 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: {
 				Count: 1
 				id: "aquamirae:poisoned_chakra"
@@ -597,6 +640,7 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "block_factorys_bosses:warrior_sword"
 			icon_scale: 2.0d
 			id: "426F8284BCBE6337"
@@ -617,6 +661,7 @@
 			y: 4.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "block_factorys_bosses:knight_sword"
 			icon_scale: 2.0d
 			id: "387C944EDD8FA25B"
@@ -626,7 +671,7 @@
 				xp: 100
 			}]
 			shape: "square"
-			subtitle: "击败冥界骑士掉落"
+			subtitle: "击败&d冥界骑士&r掉落"
 			tasks: [{
 				id: "6E982207A91FA39C"
 				item: "block_factorys_bosses:knight_sword"
@@ -637,6 +682,7 @@
 			y: 4.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "epicfight:iron_tachi"
 			icon_scale: 2.0d
 			id: "56BAEF1C9A20C461"
@@ -657,6 +703,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "epicfight:iron_longsword"
 			icon_scale: 2.0d
 			id: "39EAF48D07B39EC9"
@@ -677,6 +724,7 @@
 			y: 4.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "epicfight:uchigatana"
 			icon_scale: 2.0d
 			id: "29DC1A6DF2495993"
@@ -697,6 +745,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "efn:sword_of_pioneer"
 			icon_scale: 2.0d
 			id: "65DD573A1FE30624"
@@ -717,6 +766,7 @@
 			y: 6.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "epicfight:iron_greatsword"
 			icon_scale: 2.0d
 			id: "63F277CC9C01F80C"
@@ -737,6 +787,7 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "block_factorys_bosses:large_sword"
 			icon_scale: 2.0d
 			id: "51EE809D276AF9E6"
@@ -757,6 +808,7 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
 			icon: "efn:sword_of_pioneer"
 			icon_scale: 2.0d
 			id: "7BB73DB8750B0014"
@@ -777,6 +829,12 @@
 			y: 7.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"&b*定制武器&r"
+				""
+				"获得&6伊格尼斯&r的力量，可释放伊格尼斯终结技，释放&c炎魂斩&r击退附近魔物"
+			]
 			icon: "cataclysm:the_incinerator"
 			icon_scale: 2.0d
 			id: "016F12E968740FBA"
@@ -797,6 +855,12 @@
 			y: -3.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"&b*定制武器&r"
+				""
+				"获得&6远古遗魂&r的力量，可释放远古遗魂终结技，下落&e方碑&r击退附近魔物"
+			]
 			icon: "cataclysm:wrath_of_the_desert"
 			icon_scale: 2.0d
 			id: "49526E12F56F14D0"
@@ -817,6 +881,12 @@
 			y: -3.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"&b*定制武器&r"
+				""
+				"获得&6斯库拉&r的力量，可释放斯库拉终结技，召唤&3巨浪闪电&r击退附近魔物"
+			]
 			icon: "cataclysm:ceraunus"
 			icon_scale: 2.0d
 			id: "40217A88C9D46BB1"
@@ -837,6 +907,8 @@
 			y: -4.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: ["点击物品查看合成"]
 			icon: "efn:ruinsgreatsword"
 			icon_scale: 2.0d
 			id: "17897B4EE1A6C899"
@@ -846,7 +918,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "点击物品查看合成"
+			subtitle: "召唤并击败&d凋灵&r以获取&b下界之星&r合成"
 			tasks: [{
 				id: "1CFDB3F5D53BE5B7"
 				item: "efn:ruinsgreatsword"
@@ -857,6 +929,14 @@
 			y: 0.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"点击物品查看合成"
+				""
+				"可释放&c血气&r远程攻击"
+				""
+				"[ \"点击查看\", { \"text\": \"来源\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"032062CBCDEC3C85\" } } ]"
+			]
 			icon: "efn:air_tachi"
 			icon_scale: 2.0d
 			id: "753944133C41882B"
@@ -866,7 +946,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "点击物品查看合成"
+			subtitle: "&4炼狱魔龙&r之骨锻造而成"
 			tasks: [{
 				id: "7A923418BBA02FF6"
 				item: "efn:air_tachi"
@@ -877,6 +957,14 @@
 			y: 1.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"点击物品查看合成"
+				""
+				"可释放&c血气&r远程攻击"
+				""
+				"[ \"点击查看\", { \"text\": \"来源\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"032062CBCDEC3C85\" } } ]"
+			]
 			icon: "efn:co_tachi"
 			icon_scale: 2.0d
 			id: "306A129476DCC13B"
@@ -886,7 +974,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "点击物品查看合成"
+			subtitle: "&4炼狱魔龙&r之骨锻造而成"
 			tasks: [{
 				id: "7F52A8B43AED91C3"
 				item: "efn:co_tachi"
@@ -897,6 +985,12 @@
 			y: 1.0d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"点击物品查看合成"
+				""
+				"有着&a撕裂空间，刺破幽匿之力量&r，极其赏心悦目"
+			]
 			icon: "efn:nf_dual_sword"
 			icon_scale: 2.0d
 			id: "606F5EBEBAB63DB6"
@@ -906,7 +1000,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "点击物品查看合成"
+			subtitle: "前往&6远古城市&r击败&2监守者&r获取&d深暗之心&r合成"
 			tasks: [{
 				id: "607DE602F85D4F13"
 				item: "efn:nf_dual_sword"
@@ -917,6 +1011,12 @@
 			y: -0.5d
 		}
 		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"点击物品查看合成"
+				""
+				"拥有&6复杂的连招组合&r，造成巨大伤害"
+			]
 			icon_scale: 2.0d
 			id: "33FDECA5C88EB0E9"
 			rewards: [{
@@ -925,7 +1025,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "点击物品查看合成"
+			subtitle: "众多&d英灵幻镜&r战利品所锻造之物"
 			tasks: [
 				{
 					id: "25B72AB677FC7EED"
@@ -944,7 +1044,14 @@
 			y: -0.5d
 		}
 		{
-			description: ["使用击败&5末影龙&r后掉落的&5龙蛋&r与打刀锻造而成"]
+			dependencies: ["2F9F109962C8ADF4"]
+			description: [
+				"点击物品查看合成"
+				""
+				"奖励为同分异构体"
+				""
+				"&d阎魔刀&r拥有&6极其复杂而帅气的连招组合&r，虽然它有着极强的力量，但&a能掌握这份力量的人极其少见&r"
+			]
 			icon: "efn:yamato_dmc4_in_sheath"
 			icon_scale: 2.0d
 			id: "627E4A2C0428CC5A"
@@ -955,24 +1062,79 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
-			subtitle: "点击物品查看合成"
-			tasks: [
-				{
-					id: "541CDD896754257A"
-					item: "efn:yamato_dmc4_in_sheath"
-					optional_task: true
-					type: "item"
-				}
-				{
-					entity: "minecraft:ender_dragon"
-					id: "17C3E6C10E425191"
-					type: "kill"
-					value: 1L
-				}
-			]
+			subtitle: "击败&d&l末影龙&r后掉落的&d&l龙蛋&r与打刀锻造而成"
+			tasks: [{
+				id: "541CDD896754257A"
+				item: "efn:yamato_dmc4_in_sheath"
+				optional_task: true
+				type: "item"
+			}]
 			x: -3.0d
 			y: -2.0d
 		}
+		{
+			dependencies: ["2F9F109962C8ADF4"]
+			id: "3FCE96611927F97A"
+			rewards: [{
+				id: "44BB3138139A94BE"
+				type: "xp"
+				xp: 259
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "上古淬灵秘术，今已揭晓"
+			tasks: [{
+				id: "2807B78FE75D4E72"
+				item: "enchantinginfuser:advanced_enchanting_infuser"
+				type: "item"
+			}]
+			x: -3.0d
+			y: -9.75d
+		}
+		{
+			dependencies: ["2F9F109962C8ADF4"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 2.0d
+			id: "62A7543531E3B076"
+			rewards: [{
+				id: "1EC40CFCC6EC1BC4"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "点击物品查看合成"
+			tasks: [{
+				id: "470119E4E3F79002"
+				item: "efn:nf_shortsword"
+				type: "item"
+			}]
+			x: 14.0d
+			y: 4.5d
+		}
+		{
+			dependencies: ["2F9F109962C8ADF4"]
+			description: ["点击物品查看合成"]
+			icon: "monsterexpansion:horn_of_the_shattercry"
+			icon_scale: 1.5d
+			id: "58E6403A5CBAA08B"
+			rewards: [{
+				id: "3A2ED76647F690CD"
+				item: "fantasy_armor:moon_crystal"
+				type: "item"
+			}]
+			shape: "square"
+			subtitle: "击败&d斯克利兹&r掉落物合成，右键蓄力释放音爆弹"
+			tasks: [{
+				id: "06DD5F37FC3A32D9"
+				item: "monsterexpansion:horn_of_the_shattercry"
+				optional_task: true
+				type: "item"
+			}]
+			x: -12.0d
+			y: -7.5d
+		}
 	]
-	title: "百兵玄冥谕章"
+	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
+	title: "&6百兵玄冥谕章"
 }

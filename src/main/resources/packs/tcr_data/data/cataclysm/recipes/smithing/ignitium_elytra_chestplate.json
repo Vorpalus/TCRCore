@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "cataclysm:ignitium_chestplate"
+  },
+  "addition": {
+    "item" : "minecraft:elytra"
+  },
+  "result": {
+    "item": "cataclysm:ignitium_elytra_chestplate"
+  },
+  "template": {
+    "item": "minecraft:blaze_powder"
+  }
+}

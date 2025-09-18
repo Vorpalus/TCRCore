@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:smithing_transform",
+    "addition": {
+        "item": "minecraft:blaze_powder"
+    },
+    "base": {
+        "item": "minecraft:netherite_boots"
+    },
+    "result": {
+        "item": "cataclysm:ignitium_boots"
+    },
+    "template": {
+        "item": "cataclysm:cursium_ingot"
+    }
+}

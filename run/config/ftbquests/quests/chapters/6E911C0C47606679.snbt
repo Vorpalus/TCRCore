@@ -1,8 +1,9 @@
 {
-	default_hide_dependency_lines: false
+	default_hide_dependency_lines: true
 	default_quest_shape: ""
 	filename: "6E911C0C47606679"
 	group: ""
+	hide_quest_until_deps_visible: true
 	icon: "cataclysm:altar_of_fire"
 	id: "6E911C0C47606679"
 	images: [
@@ -23,44 +24,44 @@
 			y: 0.0d
 		}
 		{
-			height: 10.0d
+			height: 9.0d
 			image: "tcrcore:textures/ftb/ghost.png"
 			rotation: 0.0d
-			width: 18.0d
-			x: -8.5d
-			y: 7.5d
+			width: 16.0d
+			x: -10.0d
+			y: 7.0d
 		}
 		{
 			height: 9.0d
 			image: "tcrcore:textures/ftb/leviathan.png"
 			rotation: 0.0d
 			width: 16.0d
-			x: -14.0d
-			y: -4.5d
+			x: -12.5d
+			y: -3.5d
 		}
 		{
 			height: 10.0d
 			image: "tcrcore:textures/ftb/ignis.png"
 			rotation: 0.0d
-			width: 18.0d
-			x: 0.5d
+			width: 10.0d
+			x: -1.5d
 			y: -11.0d
 		}
 		{
-			height: 12.0d
+			height: 10.0d
 			image: "tcrcore:textures/ftb/dinosaur.png"
 			rotation: 0.0d
 			width: 12.0d
-			x: 15.5d
-			y: -5.5d
+			x: 13.5d
+			y: -4.0d
 		}
 		{
-			height: 16.0d
+			height: 10.0d
 			image: "tcrcore:textures/ftb/syclla.png"
 			rotation: 0.0d
-			width: 16.0d
-			x: 11.5d
-			y: 9.0d
+			width: 10.0d
+			x: 8.5d
+			y: 6.5d
 		}
 		{
 			height: 18.0d
@@ -72,10 +73,19 @@
 			y: -1.5d
 		}
 	]
-	order_index: 5
+	order_index: 6
 	quest_links: [ ]
 	quests: [
 		{
+			description: [
+				"\\n当不知如何寻找魔物时，可以请教&6土地公"
+				"\\n进入末地和地狱的方法无需多言，想必你已知晓"
+			]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			hide_until_deps_complete: false
+			hide_until_deps_visible: true
+			icon: "tudigong:tudi_temple"
 			icon_scale: 2.0d
 			id: "68EDC89BB022788B"
 			invisible: true
@@ -92,21 +102,38 @@
 					item: "minecraft:wither_skeleton_skull"
 					type: "item"
 				}
+				{
+					id: "4B50245D1763A8CF"
+					item: "tudigong:tudi_command_spell"
+					type: "item"
+				}
+				{
+					count: 8
+					id: "52673A4ECC9B6C07"
+					item: "minecraft:obsidian"
+					type: "item"
+				}
 			]
 			shape: "square"
 			size: 2.0d
 			subtitle: "神谕揭示了世界上的所有巨型魔物\\n现在你可以前往&6地狱&r和&3末地&r了！"
 			tasks: [{
-				advancement: "tcrcore:stage2"
+				advancement: "tcrcore:stage3"
 				criterion: ""
 				id: "18A4D4525511C684"
 				title: "神谕解锁"
 				type: "advancement"
 			}]
 			x: 1.0d
-			y: 0.0d
+			y: 2.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				"&c&l推荐：习得&b【避水咒】&c&l后再进行挑战！&r"
+				""
+				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"12C6899DBC971D90\" } } ]"
+			]
 			id: "6FD4134465F4B80A"
 			rewards: [{
 				id: "33F7F3DB93C195CE"
@@ -123,11 +150,17 @@
 				type: "kill"
 				value: 1L
 			}]
-			title: "利维坦"
+			title: "利维坦&6[难度☆☆☆☆☆]&r"
 			x: -12.0d
 			y: -4.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				"[ \"点击查看\", { \"text\": \"掉落护甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"54C39AAE680800C8\" } } ]"
+				""
+				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"0D76D92CF8D39AE7\" } } ]"
+			]
 			id: "460AD9F2064DC761"
 			rewards: [{
 				id: "7B4F9FCDF7CF600F"
@@ -144,11 +177,16 @@
 				type: "kill"
 				value: 1L
 			}]
-			title: "咒翼灵骸"
+			title: "玛莱迪克特斯&6[难度☆☆☆☆☆]&r"
 			x: -8.0d
 			y: 8.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				""
+				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"40217A88C9D46BB1\" } } ]"
+			]
 			id: "588584D95F9A501F"
 			rewards: [{
 				id: "16E7BEA1F0909A4F"
@@ -165,11 +203,18 @@
 				type: "kill"
 				value: 1L
 			}]
-			title: "斯库拉"
+			title: "斯库拉&6[难度☆☆☆☆☆]&r"
 			x: 9.0d
 			y: 8.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				""
+				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"49526E12F56F14D0\" } } ]"
+				""
+				"[ \"点击查看\", { \"text\": \"掉落护甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"3CB062BCA9BD0FEC\" } } ]"
+			]
 			id: "3B4BBA5C2B7507EB"
 			rewards: [{
 				id: "6F3F90AF6A082B1E"
@@ -186,11 +231,20 @@
 				type: "kill"
 				value: 1L
 			}]
-			title: "远古遗魂"
+			title: "远古遗魂&6[难度☆☆☆☆☆]&r"
 			x: 15.0d
 			y: -5.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				"&c&l推荐：习得&6【避火咒】&c&l后再进行挑战！&r"
+				""
+				""
+				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"016F12E968740FBA\" } } ]"
+				""
+				"[ \"点击查看\", { \"text\": \"掉落护甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"66B95BDCAFA07D10\" } } ]"
+			]
 			id: "0C0A726EABBAB2E8"
 			rewards: [{
 				id: "786ED5571C1BD1E7"
@@ -207,11 +261,19 @@
 				type: "kill"
 				value: 1L
 			}]
-			title: "伊格尼斯"
+			title: "伊格尼斯&6[难度☆☆☆☆☆]&r"
 			x: 1.0d
 			y: -11.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				"锻造&6远古幽匿对刀&r之必备"
+				""
+				""
+				"{ \"text\": \"点击查看远古幽匿对刀\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"606F5EBEBAB63DB6\" } }"
+			]
+			icon: "efn:deepdark_heart"
 			id: "3460F65A23FDA799"
 			rewards: [{
 				count: 2
@@ -219,18 +281,35 @@
 				item: "minecraft:netherite_ingot"
 				type: "item"
 			}]
-			subtitle: "锻造&6远古幽匿对刀&r之必备，深藏于深暗之域"
-			tasks: [{
-				entity: "minecraft:warden"
-				icon: "efn:deepdark_heart"
-				id: "0D2A0E0DCC3F302F"
-				type: "kill"
-				value: 1L
-			}]
-			x: -0.5d
-			y: -4.0d
+			shape: "rsquare"
+			subtitle: "深藏于深暗之域，亦可现身于受到诅咒之船"
+			tasks: [
+				{
+					entity: "minecraft:warden"
+					icon: "efn:deepdark_heart"
+					id: "0D2A0E0DCC3F302F"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "3E0EA04E3F2FFC8C"
+					structure: "minecraft:ancient_city"
+					type: "structure"
+				}
+			]
+			title: "监守者&d[难度☆☆☆]&r"
+			x: -1.0d
+			y: -2.5d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				"获取&6晶化血髓&r和&6腐化之心&r之途径"
+				""
+				"[ \"锻造\", { \"text\": \"点击查看嗜血渴求\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"6B63BADC1AD47A2B\" } } ]"
+				""
+				"[ \"锻造\", { \"text\": \"点击查看魔金套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"1779FEDC1CD752E9\" } } ]"
+			]
 			id: "2BF1F71D59A76031"
 			rewards: [{
 				count: 8
@@ -238,7 +317,7 @@
 				item: "fromtheshadows:diabolium_ingot"
 				type: "item"
 			}]
-			subtitle: "&6晶化血髓&r和&6腐化之心&r"
+			subtitle: "位于各种洞穴之中，在下界存在变种，较难遇到的三级魔物"
 			tasks: [{
 				entity: "fromtheshadows:nehemoth"
 				icon: "fromtheshadows:horn_of_apocalypse"
@@ -246,11 +325,20 @@
 				type: "kill"
 				value: 1L
 			}]
+			title: "尼赫莫斯&d[难度☆☆☆]&r"
 			x: 2.5d
 			y: -4.0d
 		}
 		{
-			description: ["[ \"掉落物可锻造\", { \"text\": \"斯克利兹套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"083E31035AB51591\" } } ]"]
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				""
+				""
+				"可用下界之星驯服，掉落物可锻造&d斯克利兹套装&r"
+				""
+				"[ \"点击查看\", { \"text\": \"斯克利兹套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"083E31035AB51591\" } } ]"
+			]
+			icon: "monsterexpansion:skrythe_frill"
 			id: "2C89A1EDBADA8DB5"
 			rewards: [{
 				id: "38EB09C8A7EF6657"
@@ -259,71 +347,56 @@
 			}]
 			shape: "rsquare"
 			subtitle: "栖息于高海拔地区"
-			tasks: [{
-				entity: "monsterexpansion:skrythe"
-				icon: "monsterexpansion:skrythe_frill"
-				id: "1FA8DD758BB3E887"
-				type: "kill"
-				value: 1L
-			}]
+			tasks: [
+				{
+					entity: "monsterexpansion:skrythe"
+					icon: "monsterexpansion:skrythe_frill"
+					id: "1FA8DD758BB3E887"
+					type: "kill"
+					value: 1L
+				}
+				{
+					biome: "minecraft:windswept_gravelly_hills"
+					id: "56D8D8254C1A17A7"
+					type: "biome"
+				}
+			]
+			title: "斯克利兹&4[难度☆☆☆☆]&r"
 			x: -3.5d
 			y: 1.0d
 		}
 		{
-			id: "3AF2C36C369D5820"
-			rewards: [{
-				count: 16
-				id: "0FC9E2E092FC8950"
-				item: "block_factorys_bosses:dragon_bone"
-				type: "item"
-			}]
-			shape: "rsquare"
-			tasks: [{
-				entity: "block_factorys_bosses:infernal_dragon"
-				icon: "block_factorys_bosses:dragon_skull"
-				id: "48FF437429146C9A"
-				type: "kill"
-				value: 1L
-			}]
-			x: 5.5d
-			y: 1.0d
-		}
-		{
-			id: "065DE571BE00BCAE"
-			rewards: [{
-				count: 4
-				id: "60284850DAC56723"
-				item: "block_factorys_bosses:sandworm_dart"
-				type: "item"
-			}]
-			tasks: [{
-				entity: "block_factorys_bosses:sandworm"
-				icon: "block_factorys_bosses:sandworm_spawn_egg"
-				id: "02D2B89EE972D2C6"
-				type: "kill"
-				value: 1L
-			}]
-			x: 3.5d
-			y: -2.5d
-		}
-		{
+			dependencies: ["68EDC89BB022788B"]
+			icon: "block_factorys_bosses:yeti_spawn_egg"
 			id: "2E3DFA7D59FD06D4"
 			rewards: [{
 				id: "3787DC16641703F0"
 				item: "block_factorys_bosses:frozen_fist"
 				type: "item"
 			}]
-			tasks: [{
-				entity: "block_factorys_bosses:yeti"
-				icon: "block_factorys_bosses:yeti_spawn_egg"
-				id: "3A5F56B41325A69C"
-				type: "kill"
-				value: 1L
-			}]
-			x: -1.5d
-			y: -2.5d
+			subtitle: "位于雪原特定巢穴之中"
+			tasks: [
+				{
+					entity: "block_factorys_bosses:yeti"
+					icon: "block_factorys_bosses:yeti_spawn_egg"
+					id: "3A5F56B41325A69C"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "19A68D959B716189"
+					structure: "block_factorys_bosses:yeti_hideout"
+					type: "structure"
+				}
+			]
+			title: "雪巨人&d[难度☆☆☆]&r"
+			x: 0.0d
+			y: -4.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: ["[ \"点击查看\", { \"text\": \"战利品武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"387C944EDD8FA25B\" } } ]"]
+			icon: "block_factorys_bosses:underworld_knight_spawn_egg"
 			id: "697EB87B461228FE"
 			rewards: [{
 				count: 8
@@ -333,17 +406,26 @@
 			}]
 			shape: "rsquare"
 			subtitle: "深藏&6地狱&r之中"
-			tasks: [{
-				entity: "block_factorys_bosses:underworld_knight"
-				icon: "block_factorys_bosses:underworld_knight_spawn_egg"
-				id: "424210C6D8BB4252"
-				type: "kill"
-				value: 1L
-			}]
-			x: 1.0d
-			y: -2.0d
+			tasks: [
+				{
+					entity: "block_factorys_bosses:underworld_knight"
+					icon: "block_factorys_bosses:underworld_knight_spawn_egg"
+					id: "424210C6D8BB4252"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "2E38402EB6613F66"
+					structure: "block_factorys_bosses:underworld_arena"
+					type: "structure"
+				}
+			]
+			title: "冥界骑士&4[难度☆☆☆☆]&r"
+			x: 3.5d
+			y: -2.5d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
 			id: "43AD812F245AB09F"
 			rewards: [{
 				id: "648AA1E1A2279C80"
@@ -362,6 +444,8 @@
 			y: 10.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: ["击败获得进入主殿之钥"]
 			id: "57F7684B5A28119F"
 			rewards: [{
 				id: "017BBE4536481F10"
@@ -380,6 +464,8 @@
 			y: 10.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: ["[ \"点击查看\", { \"text\": \"合成狂野爪\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"42B7E4648BDE15AD\" } } ]"]
 			id: "006AB3CE281779A8"
 			rewards: [{
 				id: "7B621DDAF22D7741"
@@ -389,7 +475,7 @@
 			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
 			tasks: [{
 				entity: "cataclysm:coralssus"
-				icon: "cataclysm:coralssus_spawn_egg"
+				icon: "cataclysm:coral_chunk"
 				id: "4FE758CFA6529E00"
 				type: "kill"
 				value: 1L
@@ -398,6 +484,7 @@
 			y: -2.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
 			id: "2774145CF1848544"
 			rewards: [{
 				id: "19002AA3C5940A63"
@@ -416,7 +503,26 @@
 			y: -3.0d
 		}
 		{
+			dependencies: ["68EDC89BB022788B"]
+			description: ["先用&6灵魂沙&r或&6灵魂土&r摆成T形，下面的灵魂沙两侧必须是空气，然后在3块灵魂沙上方各放置一个&6凋灵骷髅头颅&r即可召唤出凋灵"]
+			icon_scale: 1.5d
 			id: "7EB7C9446377B769"
+			rewards: [
+				{
+					count: 2
+					id: "1DB32CC3D669C6D0"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "305F67287A3D5872"
+					item: "minecraft:nether_star"
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "需以秘法召唤之"
 			tasks: [{
 				entity: "minecraft:wither"
 				icon: "minecraft:wither_rose"
@@ -424,9 +530,36 @@
 				type: "kill"
 				value: 1L
 			}]
+			title: "凋灵&4[难度☆☆☆☆]&r"
 			x: 1.0d
-			y: 6.5d
+			y: -0.5d
+		}
+		{
+			dependencies: ["68EDC89BB022788B"]
+			description: ["{ \"text\": \"点击查看阎魔刀\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"627E4A2C0428CC5A\" } }"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 1.5d
+			id: "0A406BFD18A36EC1"
+			rewards: [{
+				count: 2
+				id: "3FFC98A10CE86EA4"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
+			shape: "rsquare"
+			subtitle: "异空间之魔龙，夺其子祠，以铸&3阎魔之刃"
+			tasks: [{
+				entity: "minecraft:ender_dragon"
+				icon: "minecraft:ender_eye"
+				id: "10A8B6DE432B127E"
+				type: "kill"
+				value: 1L
+			}]
+			title: "末影龙&4[难度☆☆☆☆]&r"
+			x: 5.5d
+			y: 1.0d
 		}
 	]
-	title: "神魔渊薮"
+	title: "&d神魔渊薮"
 }

@@ -1,0 +1,241 @@
+{
+	default_hide_dependency_lines: true
+	default_quest_shape: ""
+	filename: "5A7C68B10CEA5C38"
+	group: ""
+	hide_quest_details_until_startable: true
+	hide_quest_until_deps_visible: true
+	icon: "ribbits:giant_lilypad"
+	id: "5A7C68B10CEA5C38"
+	images: [{
+		height: 6.0d
+		image: "tcrcore:textures/ftb/ribbites.png"
+		rotation: 0.0d
+		width: 15.4d
+		x: 0.0d
+		y: -1.5d
+	}]
+	order_index: 3
+	quest_links: [ ]
+	quests: [
+		{
+			description: [
+				"&a呱呱&r是一种很可爱的生物，但是除了可爱以外它并没有什么用。"
+				""
+				"当然，世界上除了呱呱，还有很多&e奇珍异兽&r，它们的掉落物可以制作成各种各样的&d法宝&r！"
+			]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			hide_until_deps_complete: true
+			hide_until_deps_visible: true
+			id: "7221EEC023D3C7D8"
+			invisible: true
+			rewards: [{
+				id: "7D6A65A022DEC3EA"
+				item: "more_critters:critter_atlas"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 2.0d
+			subtitle: "神谕揭示了世界上残存的，尚未被黑潮侵蚀之生灵"
+			tasks: [{
+				advancement: "tcrcore:stage1"
+				criterion: ""
+				icon: "ribbits:giant_lilypad"
+				id: "765769321FA247F9"
+				title: "神谕解锁"
+				type: "advancement"
+			}]
+			x: 0.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			id: "59798FCA29E7219C"
+			rewards: [{
+				id: "01E1707879698B21"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "[猛菇]掉落物制作"
+			tasks: [{
+				id: "43AF18FF03C7BB2C"
+				item: "more_critters:fungal_staff"
+				type: "item"
+			}]
+			x: 6.0d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			id: "1A8821AD4E702689"
+			rewards: [{
+				id: "2A0FB986926F3A33"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "[避鱼]掉落物制作"
+			tasks: [{
+				id: "72CF0C6A03B19AB2"
+				item: "more_critters:booster_pump"
+				type: "item"
+			}]
+			x: -4.5d
+			y: -4.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			id: "4AC983040F848723"
+			rewards: [{
+				id: "3783F42DAF88B6E9"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "[雪花蜘蛛]掉落物制作"
+			tasks: [{
+				id: "4CCB0960219EC247"
+				item: "more_critters:web_sack"
+				type: "item"
+			}]
+			x: -1.5d
+			y: -3.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			id: "428A4623246C7459"
+			rewards: [{
+				id: "6883C22456938E8E"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "[尖啸蝙蝠]掉落物制作"
+			tasks: [{
+				id: "405D488CC8A67A14"
+				item: "more_critters:shriek_bomb"
+				type: "item"
+			}]
+			x: 2.0d
+			y: -3.5d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			description: [
+				"在&a大部分村庄&r之中你将找到&6土地庙&r，它可以为你指引方向。"
+				""
+				"古籍有云："
+				""
+				"&6土地庙&r和&d土地公令咒&r皆可合成"
+				""
+				"在&6土地庙&r边上&3潜行三次&r即可召唤土地"
+				""
+				"在&6土地庙&r边上&3插上火把&r即可祈福"
+			]
+			id: "2FC8D0A969FBC1CE"
+			rewards: [{
+				id: "2932CDC2E923659E"
+				item: "tudigong:tudi_command_spell"
+				type: "item"
+			}]
+			shape: "rsquare"
+			size: 1.5d
+			subtitle: "心诚则灵"
+			tasks: [{
+				advancement: "tudigong:sincerity"
+				criterion: ""
+				icon: "tudigong:tudi_temple"
+				id: "307DE1524B2097F6"
+				type: "advancement"
+			}]
+			title: "土地庙"
+			x: 0.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			description: [
+				"&b御剑飞行&r乃本整合包的主要跑图方式"
+				""
+				"习得&b御剑术&r即可释放飞行技能，自由御剑飞行。"
+				""
+				"默认按&6[K]&r查看技能"
+			]
+			icon: "sword_soaring:vatansever"
+			id: "14688D903F3D7050"
+			rewards: [{
+				id: "0901E56FD9C3CDD6"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "炁引八荒，劍禦六合"
+			tasks: [{
+				id: "3B59E0C7195CEE97"
+				title: "御剑凌虚"
+				type: "checkmark"
+			}]
+			title: "御剑凌虚！"
+			x: 3.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			description: [
+				"&b跑酷&r是一项很酷的运动，让我们可以轻松爬上三格高的地方，翻越障碍等，移动更加地灵活。"
+				""
+				"在本整合包中你将体会到&b跑酷&r与&6史诗战斗&r兼容的魅力！"
+				""
+				"&b常用的跑酷手法有：&r"
+				""
+				"起跳时按住&6[右键]&r以扳住更高的位置"
+				""
+				"即将落地时按&6[R]&r键以缓冲"
+				""
+				"更多精彩可在跑酷手册中学习，&c本整合包禁用了部分跑酷按键以免冲突&r"
+			]
+			icon: {
+				Count: 1
+				id: "patchouli:guide_book"
+				tag: {
+					"patchouli:book": "parcool:parcool_guide"
+				}
+			}
+			id: "4A7915DC854C5C44"
+			rewards: [{
+				id: "0577662FF99B07A4"
+				item: {
+					Count: 1
+					id: "patchouli:guide_book"
+					tag: {
+						"patchouli:book": "parcool:parcool_guide"
+					}
+				}
+				type: "item"
+			}]
+			tasks: [{
+				id: "3DF19071D1E7D6CE"
+				title: "跑酷！"
+				type: "checkmark"
+			}]
+			x: -3.0d
+			y: 5.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			id: "7B86731A7B61055D"
+			rewards: [{
+				id: "539249425FF755F0"
+				type: "xp"
+				xp: 100
+			}]
+			subtitle: "在神的指引下，世人习得如何编织鞘翅，无需再前往终界"
+			tasks: [{
+				id: "6D6C3A42A449DD81"
+				item: "minecraft:elytra"
+				type: "item"
+			}]
+			x: 0.0d
+			y: 7.5d
+		}
+	]
+	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
+	title: "&a大千世界"
+}

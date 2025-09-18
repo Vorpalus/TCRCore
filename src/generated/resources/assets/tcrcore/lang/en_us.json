@@ -3,7 +3,7 @@
   "info.tcr.skill_point_lack": "%d skill points are required",
   "key.categories.tcrcore": "The Casket of Reveries - Core",
   "key.tcrcore.riptide": "Riptide",
-  "screen.tcr.ans.ban_portal_0": "(The portal did not appear as expected. It seems the author doesn't require you to enter these two dimensions.)",
+  "screen.tcr.ans.ban_portal_0": "(The portal did not appear as expected. It seems that your game stage is not enough.",
   "screen.tcr.ban_portal": "A voice from an unknown source",
   "screen.tcr.opt.ban_portal_0": "Alright"
 }

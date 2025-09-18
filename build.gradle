@@ -97,11 +97,11 @@ minecraft {
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
+            args '-Xms6G -Xmx8G'
         }
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
         }
 
         // This run config launches GameTestServer and runs all registered gametests, then exits.
@@ -159,8 +159,9 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:6968125")
-    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
-    implementation fg.deobf("curse.maven:epic-fight-invincible-1184379:6967852")
+//    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
+    implementation fg.deobf("libs:epicskills:20.1.3")
+    implementation fg.deobf("curse.maven:epic-fight-invincible-1184379:6992153")
     implementation fg.deobf("curse.maven:p1neros-epic-bow-1338443:6964978")
 //    implementation fg.deobf("curse.maven:sword-soaring-1011068:6968239")
     implementation fg.deobf("libs:sword_soaring:20.12.0.4")
@@ -168,12 +169,19 @@ dependencies {
     implementation fg.deobf("libs:epic_fight_avalon:20.12.2.4.1")
     implementation fg.deobf("libs:EpicFight-Nightfall:20.12.1")
     implementation fg.deobf("libs:p1nero_ec:20.12.0.0")
+    implementation fg.deobf("libs:p1nero_dl:1.4.1")
 
-    implementation fg.deobf("curse.maven:armourers-workshop-229523:6965580")//唯一真神
+    implementation fg.deobf("curse.maven:better-lock-on-1339577:6998595")
 
-    implementation fg.deobf("curse.maven:p1neros-dialogue-lib-1274526:6971469")
+    implementation fg.deobf("libs:tudigong:1.0.0")
+    implementation fg.deobf("curse.maven:lithostitched-936015:6742615")//村庄插入
+
+    implementation fg.deobf("curse.maven:global-shaderpack-properties-1344473:6982618")//全局光影包配置，添加灾变维度用。
+
+//    implementation fg.deobf("curse.maven:p1neros-dialogue-lib-1274526:6971469")
 
     implementation fg.deobf("curse.maven:epic-fight-super-golem-1236331:6861276")
+    implementation fg.deobf("curse.maven:epic-fight-super-warden-1272352:6640554")
 
     implementation fg.deobf("curse.maven:fantasy-armor-1083998:6385161")
 
@@ -207,12 +215,15 @@ dependencies {
     implementation fg.deobf("curse.maven:monster-expansion-1336105:6957501")
     implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:6869933")
     implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6978373")
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:6729683")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:6906993")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
 
     //小动物
     implementation fg.deobf("curse.maven:more-critters-1322511:6955615")
+
+    implementation fg.deobf("curse.maven:useful-ribbits-1328119:6919387")
+    implementation fg.deobf("curse.maven:ribbits-622967:6182692")
 
     //钓鱼难度
     implementation fg.deobf("curse.maven:stardew-fishing-1066037:6434447")
@@ -222,8 +233,15 @@ dependencies {
     //结构类
     implementation fg.deobf("curse.maven:ati-structures-964608:6730813")
     implementation fg.deobf("libs:trek:B0.5")
-    implementation fg.deobf("curse.maven:hopo-better-underwater-ruins-632622:6337946")
     implementation fg.deobf("curse.maven:when-dungeons-arise-442508:4983862")
+    implementation fg.deobf("curse.maven:hopo-better-mineshaft-623723:6631774")
+    implementation fg.deobf("curse.maven:towns-and-towers-626761:4923828")
+    implementation fg.deobf("curse.maven:cristel-lib-856996:5869180")
+    implementation fg.deobf("curse.maven:moogs-end-structures-892382:6915265")
+    implementation fg.deobf("curse.maven:mns-moogs-nether-structures-967466:5850727")
+    implementation fg.deobf("curse.maven:mss-moogs-soaring-structures-1040210:6079893")
+    implementation fg.deobf("curse.maven:abridged-948999:6745463")
+
     //螺旋塔村
     implementation "curse.maven:spiral-tower-villages-1280127:6705885"
 
@@ -239,22 +257,27 @@ dependencies {
     implementation fg.deobf("curse.maven:sophisticated-core-618298:6266807")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:6246607")
 
-    //地形群系
-//    implementation fg.deobf("curse.maven:oh-the-biomes-weve-gone-1070751:6943503")
-//    implementation fg.deobf("curse.maven:oh-the-trees-youll-grow-962544:6608610")
-//    implementation fg.deobf("curse.maven:corgilib-693313:6616784")
-    implementation "curse.maven:terralith-513688:5512076"
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
     implementation fg.deobf("curse.maven:terrablender-563928:6290448")
     implementation fg.deobf("curse.maven:glitchcore-955399:5787839")
 
-//    implementation fg.deobf("curse.maven:obscure-tooltips-715660:4686579")//FIXME runData时需注释掉
-//    implementation fg.deobf("curse.maven:upgrade-aquatic-326895:6393133")//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:armourers-workshop-229523:6965580")//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:obscure-tooltips-715660:4686579")//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:upgrade-aquatic-326895:6393133")//FIXME runData时需注释掉
     implementation fg.deobf("curse.maven:blueprint-382216:6408581")
 
     implementation fg.deobf("curse.maven:lootr-361276:6330326")
 
     implementation fg.deobf("curse.maven:small-ships-450659:5566900")
+
+    //饰品
+    implementation fg.deobf("curse.maven:artifacts-312353:6399828")
+    implementation fg.deobf("curse.maven:unique-accessories-1336987:7003544")
+    implementation fg.deobf("curse.maven:apothic-attributes-898963:5634071")
+    implementation fg.deobf("curse.maven:placebo-283644:6274231")
+
+    implementation fg.deobf("curse.maven:expandability-465066:5301414")
+    implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
 
     //传送石
     implementation fg.deobf("curse.maven:waystones-245755:6270584")

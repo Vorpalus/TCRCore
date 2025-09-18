@@ -1,9 +1,8 @@
 {
-	default_hide_dependency_lines: false
+	default_hide_dependency_lines: true
 	default_quest_shape: ""
 	filename: "chaptertcr1"
 	group: ""
-	hide_quest_details_until_startable: true
 	icon: "cataclysm:goddess_statue"
 	id: "2A319D3255FD3C6C"
 	images: [{
@@ -19,6 +18,8 @@
 	quests: [
 		{
 			description: ["“我已经将火种散落之地标记在地图&6（默认按下[M]键查看）&r上了，剩下的交给你了，天外的救世主！”"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
 			icon_scale: 2.0d
 			id: "5815BBDEE2362406"
 			invisible: true
@@ -41,6 +42,7 @@
 			description: ["通过&b[天空岛]铁傀儡&r的试炼，寻回风暴之眼。"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
+			icon: "cataclysm:storm_eye"
 			icon_scale: 2.0d
 			id: "28346EDF4258D751"
 			rewards: [{
@@ -51,11 +53,20 @@
 			shape: "square"
 			size: 1.0d
 			subtitle: "“当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土”"
-			tasks: [{
-				id: "31BC2442C77FFB4A"
-				item: "cataclysm:storm_eye"
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "31BC2442C77FFB4A"
+					item: "cataclysm:storm_eye"
+					title: "风暴之火种"
+					type: "item"
+				}
+				{
+					id: "3CA6FDAEBD6CA2B3"
+					structure: "trek:overworld/very_rare/floating_farm_large"
+					type: "structure"
+				}
+			]
+			title: "风暴之眼&a[难度☆]&r"
 			x: 2.0d
 			y: -8.5d
 		}
@@ -65,6 +76,7 @@
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			hide_until_deps_visible: true
+			icon: "cataclysm:abyss_eye"
 			icon_scale: 2.0d
 			id: "3E4068880C2881A9"
 			rewards: [{
@@ -73,19 +85,39 @@
 				type: "item"
 			}]
 			subtitle: "“深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城”"
-			tasks: [{
-				id: "2806721BDF8285C2"
-				item: "cataclysm:abyss_eye"
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "2806721BDF8285C2"
+					item: "cataclysm:abyss_eye"
+					title: "深渊之火种"
+					type: "item"
+				}
+				{
+					id: "3E10BC550ED279AB"
+					structure: "trek:overworld/very_rare/coves"
+					type: "structure"
+				}
+			]
+			title: "深渊之火种&a[难度☆]&r"
 			x: -2.5d
 			y: -11.5d
 		}
 		{
 			dependencies: ["5815BBDEE2362406"]
-			description: ["击败位于&6[龙之塔]&r的&c炼狱魔龙&r，夺回烈焰之眼"]
+			description: [
+				"击败位于&6[龙之塔]&r的&c炼狱魔龙&r，夺回烈焰之眼"
+				""
+				""
+				"[ \"点击查看\", { \"text\": \"战利品可锻造盔甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"7587A089143BA6FA\" } } ]"
+				""
+				""
+				"[ \"点击查看\", { \"text\": \"战利品可锻造武器其一\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"306A129476DCC13B\" } } ]"
+				""
+				"[ \"点击查看\", { \"text\": \"战利品可锻造武器其二\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"753944133C41882B\" } } ]"
+			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
+			icon: "cataclysm:flame_eye"
 			icon_scale: 2.0d
 			id: "032062CBCDEC3C85"
 			rewards: [{
@@ -94,11 +126,20 @@
 				type: "item"
 			}]
 			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”"
-			tasks: [{
-				id: "00F6FB2F90E7EC54"
-				item: "cataclysm:flame_eye"
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "00F6FB2F90E7EC54"
+					item: "cataclysm:flame_eye"
+					title: "烈焰之火种"
+					type: "item"
+				}
+				{
+					id: "00002C777E2A3F11"
+					structure: "block_factorys_bosses:dragon_tower"
+					type: "structure"
+				}
+			]
+			title: "烈焰之火种&4[难度☆☆☆☆]&r"
 			x: 0.0d
 			y: -13.0d
 		}
@@ -107,6 +148,7 @@
 			description: ["击败&3可妮莉娅(Cornelia)船长&r的幽灵，夺回诅咒之眼"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
+			icon: "cataclysm:cursed_eye"
 			icon_scale: 2.0d
 			id: "35627351B56DBAC1"
 			rewards: [{
@@ -116,11 +158,20 @@
 			}]
 			shape: "square"
 			subtitle: "“当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船”"
-			tasks: [{
-				id: "3188F71E2882792F"
-				item: "cataclysm:cursed_eye"
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "3188F71E2882792F"
+					item: "cataclysm:cursed_eye"
+					title: "诅咒之火种"
+					type: "item"
+				}
+				{
+					biome: "#aquamirae:ice_maze"
+					id: "50078FB4BE180141"
+					type: "biome"
+				}
+			]
+			title: "&3诅咒之火种&r&4[难度☆☆☆☆]&r"
 			x: -2.0d
 			y: -8.5d
 		}
@@ -129,6 +180,7 @@
 			description: ["击败&6[沙海蠕虫巢穴]&r的&e远古沙海蠕虫&r，夺回沙漠之眼"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
+			icon: "cataclysm:desert_eye"
 			icon_scale: 2.0d
 			id: "720426084924F940"
 			rewards: [{
@@ -138,14 +190,24 @@
 			}]
 			shape: "square"
 			subtitle: "“守卫者不是怪物，它们是子民自愿化身的活体墓碑”"
-			tasks: [{
-				id: "1539B7BC0DD0556D"
-				item: "cataclysm:desert_eye"
-				type: "item"
-			}]
+			tasks: [
+				{
+					id: "1539B7BC0DD0556D"
+					item: "cataclysm:desert_eye"
+					title: "沙漠之火种"
+					type: "item"
+				}
+				{
+					id: "47E5D3CE0630C817"
+					structure: "block_factorys_bosses:sandworm_nest"
+					type: "structure"
+				}
+			]
+			title: "沙漠之火种&d[难度☆☆☆]&r"
 			x: 2.5d
 			y: -11.5d
 		}
 	]
-	title: "远梦之棺"
+	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
+	title: "&3远梦之棺"
 }

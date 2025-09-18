@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:add",
+  "argument1": "tcrcore:overworld/continents/2",
+  "argument2": 0
+}

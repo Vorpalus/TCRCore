@@ -37,7 +37,7 @@
 		}
 		{
 			dependencies: ["54060FC753C24428"]
-			description: ["右键全球资源库方块可以从全球时装资源库中挑选自己喜欢的时装并下载时装文件到本地。"]
+			description: ["右键&d全球资源库&r方块可以从&b全球时装资源库&r中挑选自己喜欢的时装并下载时装文件到&a本地&r。"]
 			icon: "armourers_workshop:skin-library-global"
 			icon_scale: 2.0d
 			id: "48B0116CB9456155"
@@ -58,7 +58,7 @@
 		{
 			dependencies: ["7DF46FF0EC2E12A8"]
 			description: [
-				"将时装模板放入时装资源库，可以下载我们喜欢的时装。"
+				"将&b时装模板&r放入&d时装资源库&r，可以取出我们喜欢的时装。"
 				""
 				"之后，可以使用&6时装镶嵌台&r，或默认按下&6[ctrl + p]&r打开时装栏，装饰自己。"
 			]
@@ -124,5 +124,6 @@
 			y: -5.5d
 		}
 	]
-	title: "化形秘术"
+	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
+	title: "&a化形秘术"
 }

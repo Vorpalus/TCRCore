@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:flat_cache",
+  "argument": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "tcrcore:overworld/continents/1",
+      "points": [
+        {
+          "location": -1.1,
+          "derivative": 0,
+          "value": -1.1
+        },
+        {
+          "location": -0.5,
+          "derivative": 0,
+          "value": -1
+        },
+        {
+          "location": 1.2,
+          "derivative": 0,
+          "value": 1.2
+        }
+      ]
+    }
+  }
+}

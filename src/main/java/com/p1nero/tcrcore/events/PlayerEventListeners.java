@@ -1,7 +1,6 @@
 package com.p1nero.tcrcore.events;
 
 
-import com.obscuria.aquamirae.registry.AquamiraeItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
@@ -9,30 +8,30 @@ import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
+import com.yesman.epicskills.world.capability.AbilityPoints;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.shapes.BooleanOp;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
 
@@ -45,10 +44,12 @@ public class PlayerEventListeners {
      * 提示加点
      */
     @SubscribeEvent
-    public static void onPlayerLevelUp(PlayerXpEvent.LevelChange event) {
-        if(event.getEntity().experienceLevel % 2 == 1 && event.getLevels() > 0) {
-            event.getEntity().displayClientMessage(TCRCoreMod.getInfo("press_to_skill_tree"), false);
-        }
+    public static void onPlayerLevelUp(PlayerXpEvent.XpChange event) {
+        event.getEntity().getCapability(AbilityPoints.ABILITY_POINTS).ifPresent(abilityPoints -> {
+            if(event.getEntity().totalExperience < abilityPoints.getRequiredExp() && event.getEntity().totalExperience + event.getAmount() > abilityPoints.getRequiredExp()) {
+                event.getEntity().displayClientMessage(TCRCoreMod.getInfo("press_to_skill_tree"), false);
+            }
+        });
     }
 
     @SubscribeEvent
@@ -57,9 +58,9 @@ public class PlayerEventListeners {
             String path = event.getAdvancement().getId().getPath();
             String namespace = event.getAdvancement().getId().getNamespace();
             if(namespace.equals(TCRCoreMod.MOD_ID)) {
-                if(path.equals("kill_pillager")) {
+                if(path.equals("kill_pillager") && !PlayerDataManager.pillagerKilled.get(serverPlayer)) {
                     PlayerDataManager.pillagerKilled.put(serverPlayer, true);
-                    ItemUtil.addItemEntity(serverPlayer, TCRItems.ANCIENT_ORACLE_FRAGMENT.get().getDefaultInstance());
+                    ItemUtil.addItem(serverPlayer, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
                 }
 //                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_show_progress"), false);
             }
@@ -82,23 +83,17 @@ public class PlayerEventListeners {
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule keepInventory true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule mobGriefing false");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn efn:efn_step true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn efn:efn_dodge true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " epicskills:battleborn epicfight:parrying true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock " + player.getGameProfile().getName() + " dodge_parry_reward:passive dodge_parry_reward:stamina1 true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " dodge efn:efn_step");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " guard epicfight:parrying");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add " + player.getGameProfile().getName() + " passive1 dodge_parry_reward:stamina1");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_step true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_dodge true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn epicfight:parrying true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s dodge_parry_reward:passive dodge_parry_reward:stamina1 true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s dodge efn:efn_step");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s guard epicfight:parrying");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s passive1 dodge_parry_reward:stamina1");
                 ItemUtil.addItem(serverPlayer, Items.IRON_SWORD, 1);
-                ItemUtil.addItem(serverPlayer, Items.OAK_BOAT, 1);
                 ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
-                ItemStack trident = Items.TRIDENT.getDefaultInstance();
-                trident.enchant(Enchantments.LOYALTY, 3);
-                ItemUtil.addItem(serverPlayer, trident);
-                ItemStack fishingRod = Items.FISHING_ROD.getDefaultInstance();
-                fishingRod.enchant(Enchantments.FISHING_LUCK, 3);
-                fishingRod.enchant(Enchantments.FISHING_SPEED, 3);
-                ItemUtil.addItem(serverPlayer, fishingRod);
+                ItemUtil.addItem(serverPlayer, ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("smallships:oak_cog")).getDefaultInstance());
+                ItemUtil.addItem(serverPlayer, Items.BREAD, 16);
                 PlayerDataManager.firstJoint.put(serverPlayer, true);
             }
         }
@@ -111,7 +106,7 @@ public class PlayerEventListeners {
             if(event.getEntity() instanceof ServerPlayer serverPlayer) {
                 if(!PlayerDataManager.wayStoneInteracted.get(serverPlayer)) {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_open_portal_screen"), true);
-                    ItemUtil.addItem(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone, 1);
+                    ItemUtil.addItem(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone, 1, true);
                     PlayerDataManager.wayStoneInteracted.put(serverPlayer, true);
                 }
             }
@@ -153,6 +148,16 @@ public class PlayerEventListeners {
         Level level = player.level();
         if(player instanceof ServerPlayer serverPlayer) {
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerEnterDim(EntityTravelToDimensionEvent event) {
+        if(event.getEntity() instanceof ServerPlayer serverPlayer && (event.getDimension() == Level.END || event.getDimension() == Level.NETHER)) {
+            if(PlayerDataManager.stage.getInt(serverPlayer) < 3) {
+                event.setCanceled(true);
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_enter_dim"), true);
+            }
         }
     }
 
