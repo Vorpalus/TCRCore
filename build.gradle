@@ -92,12 +92,13 @@ minecraft {
                     source sourceSets.main
                 }
             }
+
+            jvmArgs '-Xms7G'
         }
 
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
-            args '-Xms6G -Xmx8G'
         }
 
         server {
@@ -219,6 +220,9 @@ dependencies {
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
 
+    implementation fg.deobf("curse.maven:qliphoth-awakening-1271707:7008606")
+    implementation fg.deobf("curse.maven:fdlib-1271749:7008599")
+
     //小动物
     implementation fg.deobf("curse.maven:more-critters-1322511:6955615")
 
@@ -232,7 +236,7 @@ dependencies {
 
     //结构类
     implementation fg.deobf("curse.maven:ati-structures-964608:6730813")
-    implementation fg.deobf("libs:trek:B0.5")
+//    implementation fg.deobf("libs:trek:B0.5") //内置为数据包，curse forge用数据包形式下载
     implementation fg.deobf("curse.maven:when-dungeons-arise-442508:4983862")
     implementation fg.deobf("curse.maven:hopo-better-mineshaft-623723:6631774")
     implementation fg.deobf("curse.maven:towns-and-towers-626761:4923828")
@@ -241,6 +245,7 @@ dependencies {
     implementation fg.deobf("curse.maven:mns-moogs-nether-structures-967466:5850727")
     implementation fg.deobf("curse.maven:mss-moogs-soaring-structures-1040210:6079893")
     implementation fg.deobf("curse.maven:abridged-948999:6745463")
+    implementation "curse.maven:lukis-grand-capitals-1003666:6786014"
 
     //螺旋塔村
     implementation "curse.maven:spiral-tower-villages-1280127:6705885"
@@ -264,6 +269,7 @@ dependencies {
     implementation fg.deobf("curse.maven:armourers-workshop-229523:6965580")//FIXME runData时需注释掉
     implementation fg.deobf("curse.maven:obscure-tooltips-715660:4686579")//FIXME runData时需注释掉
     implementation fg.deobf("curse.maven:upgrade-aquatic-326895:6393133")//FIXME runData时需注释掉
+
     implementation fg.deobf("curse.maven:blueprint-382216:6408581")
 
     implementation fg.deobf("curse.maven:lootr-361276:6330326")

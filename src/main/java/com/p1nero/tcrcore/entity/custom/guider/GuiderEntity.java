@@ -8,6 +8,7 @@ import com.p1nero.dialog_lib.api.goal.LookAtConservingPlayerGoal;
 import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.client.gui.TCREndScreen;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
@@ -53,7 +54,7 @@ import yesman.epicfight.api.utils.math.Vec2i;
 
 public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, GeoEntity {
 
-    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
+    protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.god_girl.idle2");
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     @Nullable
     private Player conversingPlayer;
@@ -141,6 +142,10 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
                     .addChoice(14, 13)
                     .addFinalChoice(15, 3, (dialogueScreen -> {
                         //TODO 渲染黑屏+字幕
+                        Minecraft.getInstance().setScreen(new TCREndScreen(true, ()->{
+                            Minecraft.getInstance().setScreen(null);
+                            Minecraft.getInstance().player.displayClientMessage(TCRCoreMod.getInfo("to_be_continue"), false);
+                        }));
                     }));
             return treeBuilder;
         }
@@ -155,7 +160,10 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
             TreeNode ans2 = new TreeNode(dBuilder.ans(10), dBuilder.optWithBrackets(11))
                     .addChild(root);
 
-            root.addChild(ans1).addChild(ans2);
+            TreeNode ans3 = new TreeNode(dBuilder.ans(14), dBuilder.optWithBrackets(16))
+                    .addChild(root);
+
+            root.addChild(ans1).addChild(ans2).addChild(ans3);
 
             treeBuilder.setAnswerRoot(root);
             return treeBuilder;
@@ -228,7 +236,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
 
                 Vec2i abyss = WorldUtil.getNearbyStructurePos(player, WorldUtil.COVES);//隐秘水湾
                 if (abyss != null) {
-                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 64, abyss.y), WaypointColor.DARK_BLUE);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 156, abyss.y), WaypointColor.DARK_BLUE);
                 }
 
                 Vec2i storm = WorldUtil.getNearbyStructurePos(player, WorldUtil.SKY_ISLAND);//天空岛

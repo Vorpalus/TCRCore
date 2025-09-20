@@ -3,12 +3,14 @@ package com.p1nero.tcrcore;
 import com.mojang.logging.LogUtils;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
+import com.p1nero.tcrcore.client.sound.TCRSounds;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
@@ -23,6 +25,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
 import java.util.List;
+import java.util.Locale;
 
 @Mod(TCRCoreMod.MOD_ID)
 public class TCRCoreMod {
@@ -35,6 +38,7 @@ public class TCRCoreMod {
         IEventBus bus = context.getModEventBus();
         bus.addListener(this::commonSetup);
         bus.addListener(this::addPackFindersEvent);
+        TCRSounds.REGISTRY.register(bus);
         TCREntities.REGISTRY.register(bus);
         TCRBlocks.REGISTRY.register(bus);
         TCRBlockEntities.REGISTRY.register(bus);
@@ -85,6 +89,10 @@ public class TCRCoreMod {
 
     public static MutableComponent getInfo(String key, Object... objects) {
         return Component.translatable("info.tcr." + key, objects);
+    }
+
+    public static ResourceLocation prefix(String name) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name.toLowerCase(Locale.ROOT));
     }
 
 }

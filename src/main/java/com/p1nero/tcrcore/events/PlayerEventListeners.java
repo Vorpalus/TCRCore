@@ -1,6 +1,7 @@
 package com.p1nero.tcrcore.events;
 
 
+import com.hm.efn.registries.EFNItem;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
@@ -16,6 +17,7 @@ import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
@@ -33,6 +35,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
+import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
 
 import java.util.Objects;
@@ -94,6 +97,7 @@ public class PlayerEventListeners {
                 ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
                 ItemUtil.addItem(serverPlayer, ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("smallships:oak_cog")).getDefaultInstance());
                 ItemUtil.addItem(serverPlayer, Items.BREAD, 16);
+                serverPlayer.setItemSlot(EquipmentSlot.CHEST, EFNItem.RUINFIGHTER_CHESTPLATE.get().getDefaultInstance());
                 PlayerDataManager.firstJoint.put(serverPlayer, true);
             }
         }
@@ -122,7 +126,8 @@ public class PlayerEventListeners {
                 }
             }
             if(event.player.level() instanceof ServerLevel serverLevel && !PlayerDataManager.bllSummoned.get(event.player) && WorldUtil.isInStructure(event.player, WorldUtil.COVES)) {
-                EntityRegistry.BULLDROGIOTH.get().spawn(serverLevel, event.player.getOnPos().above(5), MobSpawnType.SPAWNER);
+                BulldrogiothEntity entity = EntityRegistry.BULLDROGIOTH.get().spawn(serverLevel, event.player.getOnPos().atY(156), MobSpawnType.SPAWNER);
+                entity.setGlowingTag(true);
                 PlayerDataManager.bllSummoned.put(event.player, true);
             }
         }

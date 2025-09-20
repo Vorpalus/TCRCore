@@ -35,7 +35,15 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRBlocks.FLAME_ALTAR_BLOCK.get(), "烈焰祭坛");
         this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
 
+        this.addInfo("to_be_continue", "[P1nero]: §6感谢游玩！恭喜你体验完测试版的全部内容，最终boss仍在制作中，未完待续！");
+
         this.addInfo("iron_golem_name", "天空岛之守卫");
+
+        this.addInfo("kill_boss1", "§d[不知何处的声音]：§r捍卫…天空岛…扫除…黑潮…");
+        this.addInfo("kill_boss2", "§c[不知何处的声音]：§r捍卫…龙裔…扫除…黑潮…");
+        this.addInfo("kill_boss3", "§3[不知何处的声音]：§r…快逃…");
+        this.addInfo("kill_boss4", "§a[不知何处的声音]：§r…还…给我…我还要…");
+        this.addInfo("kill_boss5", "§e[不知何处的声音]：§r哈哈哈，吾自由矣！");
 
         this.addInfo("finish_all_eye", "§d众祭坛已点亮！§r");
         this.addInfo("time_to_altar", "失散火种已寻，该回去点亮祭坛了...");
@@ -147,15 +155,20 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialog(TCREntities.GUIDER.get(), 8, "预言中的救世主啊，有何困惑？");
         this.addDialogChoice(TCREntities.GUIDER.get(), 10, "我该如何获得这世界最强的力量？");
         this.addDialogChoice(TCREntities.GUIDER.get(), 11, "我们接下来要做什么？");
+
+        this.addDialogChoice(TCREntities.GUIDER.get(), 16, "长廊其他几个损坏的祭坛是怎么回事？");
+
         this.addDialogChoice(TCREntities.GUIDER.get(), 12, "我已点亮所有祭坛，启动仪式吧！");
         this.addDialogChoice(TCREntities.GUIDER.get(), 13, "我不明白...我一路上也清扫了不少灾厄村民...");
         this.addDialogChoice(TCREntities.GUIDER.get(), 14, "你到底是谁？");
         this.addDialogChoice(TCREntities.GUIDER.get(), 15, "继续");//拉入结界
-        this.addDialog(TCREntities.GUIDER.get(), 9, "位于终界异空间内的§d魔龙§f，它与§d「黑潮」§f颇有渊源。击败它后，它诞下的精华可铸成阎魔刀，乃来自异世之力，不可估量。但阁下需留意的是，异界魔龙消散之后，世间受到§d「黑潮」§f影响，魔物的生命将翻倍！");
-        this.addDialog(TCREntities.GUIDER.get(), 10, "阁下当前往吾在地图上标注之处，击败魔物，夺回火种，并将它们供奉在长廊之祭坛之上。待集齐所有火种即可启动仪式，净化§d「黑潮」§f！");
+        this.addDialog(TCREntities.GUIDER.get(), 9, "位于终界异空间内的§d终界龙§f，它与§d「黑潮」§f颇有渊源。击败它后，它诞下的精华可铸成阎魔刀，乃来自异世之力，不可估量。但阁下需留意的是，异界魔龙消散之后，世间受到§d「黑潮」§f影响，魔物的生命将翻倍！");
+        this.addDialog(TCREntities.GUIDER.get(), 10, "阁下当前往吾在地图上标注之处，击败魔物，夺回火种，§6并将它们供奉在长廊之祭坛之上§f。待集齐所有火种即可启动仪式，净化§d「黑潮」§f！");
         this.addDialog(TCREntities.GUIDER.get(), 11, "外来之人...你不会真以为自己是什么救世主吧...哈哈哈哈哈，你不过是孤的夺回力量的傀儡罢了！");
         this.addDialog(TCREntities.GUIDER.get(), 12, "你所击败的炼狱魔龙，天空岛的傀儡等，它们才是守护世界的神明眷属，正是他们阻碍了孤的大业！只要他们消失，损失几个灾厄村民对孤来说不算什么，更何况，你所带回的魔神火种可助孤重铸肉身。");
         this.addDialog(TCREntities.GUIDER.get(), 13, "我是谁？你作为祭品无权得知！哪有什么愚蠢的仪式，吸收了你的力量，世界将为姑所统治！受死吧！");
+
+        this.addDialog(TCREntities.GUIDER.get(), 14, "这...吾曾与黑潮军团在此地大战，损坏祭坛封印的英灵永远不会再回来了...但残存的英灵，已足以启动驱魔仪式。");
 
     }
 }

@@ -26,6 +26,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -96,6 +97,11 @@ public class LivingEntityEventListeners {
                 serverPlayer.getCooldowns().addCooldown(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), 80);
             }
         }
+
+        //防止摔死
+        if(event.getEntity() instanceof BulldrogiothEntity && event.getSource().is(DamageTypes.FALL)) {
+            event.setCanceled(true);
+        }
     }
 
     @SubscribeEvent
@@ -152,29 +158,34 @@ public class LivingEntityEventListeners {
 
             if(livingEntity instanceof IronGolem && !PlayerDataManager.stormEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, "trek:overworld/very_rare/floating_farm_large")) {
                 ItemUtil.addItem(player, ModItems.STORM_EYE.get(), 1, true);
+                player.displayClientMessage(TCRCoreMod.getInfo("kill_boss1"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
                 PlayerDataManager.stormEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof BulldrogiothEntity && !PlayerDataManager.abyssEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, WorldUtil.COVES)) {
                 ItemUtil.addItem(player, ModItems.ABYSS_EYE.get(), 1, true);
+                player.displayClientMessage(TCRCoreMod.getInfo("kill_boss3"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
                 PlayerDataManager.abyssEyeTraded.put(player, true);
             }
 
-            if(livingEntity instanceof InfernalDragonEntity && !PlayerDataManager.abyssEyeTraded.get(player)) {
+            if(livingEntity instanceof InfernalDragonEntity && !PlayerDataManager.flameEyeTraded.get(player)) {
                 ItemUtil.addItem(player, ModItems.FLAME_EYE.get(), 1, true);
+                player.displayClientMessage(TCRCoreMod.getInfo("kill_boss2"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
                 PlayerDataManager.flameEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof CaptainCornelia && !PlayerDataManager.cursedEyeTraded.get(player)) {
                 ItemUtil.addItem(player, ModItems.CURSED_EYE.get(), 1, true);
+                player.displayClientMessage(TCRCoreMod.getInfo("kill_boss4"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
                 PlayerDataManager.cursedEyeTraded.put(player, true);
             }
             if(livingEntity instanceof SandwormEntity && !PlayerDataManager.desertEyeTraded.get(player)) {
                 ItemUtil.addItem(player, ModItems.DESERT_EYE.get(), 1, true);
+                player.displayClientMessage(TCRCoreMod.getInfo("kill_boss5"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
                 PlayerDataManager.desertEyeTraded.put(player, true);
             }

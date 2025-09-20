@@ -1,5 +1,6 @@
 package com.p1nero.tcrcore.datagen.sound;
 
+import com.p1nero.tcrcore.client.sound.TCRSounds;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -11,5 +12,6 @@ public class TCRSoundGenerator extends TCRSoundProvider {
 
     @Override
     public void registerSounds() {
+        generateNewSoundWithSubtitle(TCRSounds.WIN_BGM, "bgm/win_bgm", 1);
     }
 }
