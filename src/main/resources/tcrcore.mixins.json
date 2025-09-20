@@ -15,7 +15,7 @@
     "FAArmorItemMixin",
     "GuardSkillMixin",
     "HornOfTheShattercryMixin",
-    "ItemMixin",
+    "ItemStackMixin",
     "KnightSwordItemMixin",
     "PlayerAdvancementsMixin",
     "PlayerPatchMixin",

@@ -214,7 +214,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:bossesrise-1314084:6900933")
     implementation fg.deobf("libs:bossesrise:1.0.9.1")
     implementation fg.deobf("curse.maven:monster-expansion-1336105:6957501")
-    implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:6869933")
+    implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:7009542")
     implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:6978373")
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6906993")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
