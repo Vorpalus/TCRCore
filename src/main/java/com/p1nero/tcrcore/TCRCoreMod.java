@@ -1,10 +1,15 @@
 package com.p1nero.tcrcore;
 
+import com.github.L_Ender.cataclysm.init.ModEntities;
+import com.github.L_Ender.cataclysm.init.ModItems;
+import com.hm.efn.registries.EFNItem;
 import com.mojang.logging.LogUtils;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
 import com.p1nero.tcrcore.client.sound.TCRSounds;
 import com.p1nero.tcrcore.entity.TCREntities;
+import com.p1nero.tcrcore.events.ItemEvents;
+import com.p1nero.tcrcore.events.LivingEntityEventListeners;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
@@ -15,6 +20,7 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
@@ -22,6 +28,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
+import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.slf4j.Logger;
 
 import java.util.List;
@@ -55,9 +63,30 @@ public class TCRCoreMod {
                 isCheatMod = true;
             }
         });
+        LivingEntityEventListeners.entityTypes.addAll(List.of(
+                ModEntities.URCHINKIN.get(),
+                ModEntities.KOBOLETON.get(),
+                ModEntities.ELITE_DRAUGR.get(),
+                ModEntities.ROYAL_DRAUGR.get(),
+                ModEntities.DRAUGR.get(),
+                ModEntities.LIONFISH.get(),
+                ModEntities.DEEPLING_BRUTE.get(),
+                ModEntities.DEEPLING.get(),
+                BlockFactorysBossesModEntities.FLAMING_SKELETON_GUARD_FIREBALL.get()
+        ));
+        ItemEvents.items.addAll(List.of(
+                BlockFactorysBossesModItems.DRAGON_SKULL.get(),
+                BlockFactorysBossesModItems.DRAGON_BONE.get(),
+                BlockFactorysBossesModItems.SANDWORM_DART.get(),
+                ModItems.CHITIN_CLAW.get(),
+                ModItems.CORAL_CHUNK.get(),
+                Items.DRAGON_EGG,
+                BlockFactorysBossesModItems.KNIGHT_SWORD.get(),
+                EFNItem.DEEPDARK_HEART.get()
+        ));
     }
 
-    public static boolean isCheatMod() {
+    public static boolean hasCheatMod() {
         return isCheatMod;
     }
 

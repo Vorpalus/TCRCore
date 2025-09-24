@@ -23,7 +23,7 @@
 			icon_scale: 2.0d
 			id: "5815BBDEE2362406"
 			invisible: true
-			shape: "square"
+			shape: "none"
 			size: 1.5d
 			subtitle: "在少女的指引下，你踏上了寻找失落火种之旅,,,"
 			tasks: [{
@@ -38,20 +38,35 @@
 			y: -6.5d
 		}
 		{
-			dependencies: ["5815BBDEE2362406"]
-			description: ["通过&b[天空岛]铁傀儡&r的试炼，寻回风暴之眼。"]
+			description: [
+				"通过&b[天空岛]铁傀儡&r的试炼，寻回风暴之眼。"
+				""
+				"&l&c战利品：傀儡之心&6"
+				"可在摆渡人处兑换&6短剑&r或&6先锋军配刀&r"
+				""
+				"&l&c额外奖励：使用绿宝石与天空岛村民交易"
+				"解锁&r&6【御剑术】&r&r"
+			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon: "cataclysm:storm_eye"
-			icon_scale: 2.0d
 			id: "28346EDF4258D751"
+			invisible: true
+			invisible_until_tasks: 1
 			rewards: [{
-				id: "007CDBF09CB5A9B8"
-				item: "tcrcore:ancient_oracle_fragment"
+				id: "16BD4B61B573A722"
+				item: {
+					Count: 1
+					id: "super_golem:golem_heart"
+					tag: {
+						Damage: 0
+						fdbosses: { }
+					}
+				}
 				type: "item"
 			}]
-			shape: "square"
-			size: 1.0d
+			shape: "none"
+			size: 2.0d
 			subtitle: "“当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土”"
 			tasks: [
 				{
@@ -61,9 +76,10 @@
 					type: "item"
 				}
 				{
-					id: "3CA6FDAEBD6CA2B3"
-					structure: "trek:overworld/very_rare/floating_farm_large"
-					type: "structure"
+					advancement: "tcrcore:stage1"
+					criterion: ""
+					id: "1FD065E2AF6B96F1"
+					type: "advancement"
 				}
 			]
 			title: "风暴之眼&a[难度☆]&r"
@@ -71,19 +87,37 @@
 			y: -8.5d
 		}
 		{
-			dependencies: ["5815BBDEE2362406"]
-			description: ["击败潜伏在&6[隐秘水湾]&r的&2蛮屠巨兽&r，夺回深渊之眼"]
+			description: [
+				"击败潜伏在&6[隐秘水湾]&r的&2蛮屠巨兽&r，夺回深渊之眼"
+				""
+				""
+				"&l&c战利品：猩红甲壳&6"
+				"可在摆渡人处兑换&6岩壳套装&r"
+				""
+				""
+				"&l&c额外奖励：使用绿宝石与当地村民交易解锁&r&6【避水咒】&r&r"
+			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			hide_until_deps_visible: true
 			icon: "cataclysm:abyss_eye"
-			icon_scale: 2.0d
 			id: "3E4068880C2881A9"
+			invisible: true
+			invisible_until_tasks: 1
 			rewards: [{
-				id: "08FE43E9F856082E"
-				item: "tcrcore:ancient_oracle_fragment"
+				count: 4
+				id: "65648736A3477913"
+				item: {
+					Count: 1
+					id: "fromtheshadows:crimson_shell"
+					tag: {
+						fdbosses: { }
+					}
+				}
 				type: "item"
 			}]
+			shape: "none"
+			size: 2.0d
 			subtitle: "“深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城”"
 			tasks: [
 				{
@@ -93,9 +127,10 @@
 					type: "item"
 				}
 				{
-					id: "3E10BC550ED279AB"
-					structure: "trek:overworld/very_rare/coves"
-					type: "structure"
+					advancement: "tcrcore:stage2"
+					criterion: ""
+					id: "1EDBE68E3C402222"
+					type: "advancement"
 				}
 			]
 			title: "深渊之火种&a[难度☆]&r"
@@ -103,29 +138,62 @@
 			y: -11.5d
 		}
 		{
-			dependencies: ["5815BBDEE2362406"]
 			description: [
 				"击败位于&6[龙之塔]&r的&c炼狱魔龙&r，夺回烈焰之眼"
 				""
 				""
+				"&l&c战利品：魔龙之骨&6"
+				"可在摆渡人处兑换&c血癫狂&r &c嗜血狂癫&r"
+				""
+				""
 				"[ \"点击查看\", { \"text\": \"战利品可锻造盔甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"7587A089143BA6FA\" } } ]"
-				""
-				""
-				"[ \"点击查看\", { \"text\": \"战利品可锻造武器其一\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"306A129476DCC13B\" } } ]"
-				""
-				"[ \"点击查看\", { \"text\": \"战利品可锻造武器其二\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"753944133C41882B\" } } ]"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon: "cataclysm:flame_eye"
-			icon_scale: 2.0d
 			id: "032062CBCDEC3C85"
-			rewards: [{
-				id: "52CA9FCB8C223C7E"
-				item: "tcrcore:ancient_oracle_fragment"
-				type: "item"
-			}]
-			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”"
+			invisible: true
+			invisible_until_tasks: 1
+			rewards: [
+				{
+					id: "2AC73061AD3361F8"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_skull"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "331642B1977C0113"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bone"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "573A79F15D9C6CB2"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bones_chestplate"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "none"
+			size: 2.0d
+			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”\\n&c&l推荐：习得&6【避火咒】&c&l后再进行挑战！&r"
 			tasks: [
 				{
 					id: "00F6FB2F90E7EC54"
@@ -134,9 +202,10 @@
 					type: "item"
 				}
 				{
-					id: "00002C777E2A3F11"
-					structure: "block_factorys_bosses:dragon_tower"
-					type: "structure"
+					advancement: "tcrcore:stage5"
+					criterion: ""
+					id: "2C6345AD6627624E"
+					type: "advancement"
 				}
 			]
 			title: "烈焰之火种&4[难度☆☆☆☆]&r"
@@ -144,19 +213,88 @@
 			y: -13.0d
 		}
 		{
-			dependencies: ["5815BBDEE2362406"]
-			description: ["击败&3可妮莉娅(Cornelia)船长&r的幽灵，夺回诅咒之眼"]
+			description: [
+				"击败&3可妮莉娅(Cornelia)船长&r的幽灵，夺回诅咒之眼"
+				""
+				""
+				"&l&c战利品：深暗之心&6"
+				"可在摆渡人处兑换&6远古幽匿对刀&r"
+			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon: "cataclysm:cursed_eye"
-			icon_scale: 2.0d
 			id: "35627351B56DBAC1"
-			rewards: [{
-				id: "08431139D31E6752"
-				item: "tcrcore:ancient_oracle_fragment"
-				type: "item"
-			}]
-			shape: "square"
+			invisible: true
+			invisible_until_tasks: 1
+			rewards: [
+				{
+					id: "08431139D31E6752"
+					item: "tcrcore:ancient_oracle_fragment"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "7E0F45C687F137DC"
+					item: {
+						Count: 1
+						id: "aquamirae:ship_graveyard_echo"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "43792D0799C3D12C"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_suit"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "7E3F9083132BDEE9"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_leggings"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "70CEAF78379BFD46"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_boots"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "32840B289D44BB1E"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_helmet"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "none"
+			size: 2.0d
 			subtitle: "“当背叛者刺穿她的脊柱，冻泪瞬间冰封三千幽灵船”"
 			tasks: [
 				{
@@ -166,9 +304,10 @@
 					type: "item"
 				}
 				{
-					biome: "#aquamirae:ice_maze"
-					id: "50078FB4BE180141"
-					type: "biome"
+					advancement: "tcrcore:stage3"
+					criterion: ""
+					id: "4F92F23FAC985303"
+					type: "advancement"
 				}
 			]
 			title: "&3诅咒之火种&r&4[难度☆☆☆☆]&r"
@@ -176,19 +315,35 @@
 			y: -8.5d
 		}
 		{
-			dependencies: ["5815BBDEE2362406"]
-			description: ["击败&6[沙海蠕虫巢穴]&r的&e远古沙海蠕虫&r，夺回沙漠之眼"]
+			description: [
+				"击败&6[沙海蠕虫巢穴]&r的&e远古沙海蠕虫&r，夺回沙漠之眼"
+				""
+				""
+				"&l&c战利品：沙海毒刺&6"
+				"可在摆渡人处兑换&6放逐之刃-左&r"
+				""
+				"&l&c额外奖励：解锁&r&6【避火咒】&r&r"
+			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon: "cataclysm:desert_eye"
-			icon_scale: 2.0d
 			id: "720426084924F940"
+			invisible: true
+			invisible_until_tasks: 1
 			rewards: [{
-				id: "4A0148F620743BF6"
-				item: "tcrcore:ancient_oracle_fragment"
+				id: "25CC9E5D5B1DC248"
+				item: {
+					Count: 1
+					id: "block_factorys_bosses:sandworm_dart"
+					tag: {
+						Damage: 0
+						fdbosses: { }
+					}
+				}
 				type: "item"
 			}]
-			shape: "square"
+			shape: "none"
+			size: 2.0d
 			subtitle: "“守卫者不是怪物，它们是子民自愿化身的活体墓碑”"
 			tasks: [
 				{
@@ -198,9 +353,10 @@
 					type: "item"
 				}
 				{
-					id: "47E5D3CE0630C817"
-					structure: "block_factorys_bosses:sandworm_nest"
-					type: "structure"
+					advancement: "tcrcore:stage4"
+					criterion: ""
+					id: "59BE6E311BF5B10D"
+					type: "advancement"
 				}
 			]
 			title: "沙漠之火种&d[难度☆☆☆]&r"

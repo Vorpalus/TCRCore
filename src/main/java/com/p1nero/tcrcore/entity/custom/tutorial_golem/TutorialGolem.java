@@ -2,6 +2,8 @@ package com.p1nero.tcrcore.entity.custom.tutorial_golem;
 
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tudigong.entity.XianQiEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
@@ -64,7 +66,10 @@ public class TutorialGolem extends IronGolem {
      */
     private boolean shouldAttack(LivingEntity living) {
         if(living instanceof ServerPlayer serverPlayer) {
-            return !PlayerDataManager.dodged.get(serverPlayer) || !PlayerDataManager.parried.get(serverPlayer) || !PlayerDataManager.weapon_innate_used.get(serverPlayer);
+            return !PlayerDataManager.dodged.get(serverPlayer) ||
+                    !PlayerDataManager.parried.get(serverPlayer) ||
+//                    !PlayerDataManager.weapon_innate_used.get(serverPlayer)||
+                    !PlayerDataManager.locked.get(serverPlayer);
         }
         return false;
     }
@@ -82,9 +87,9 @@ public class TutorialGolem extends IronGolem {
             } else if(!PlayerDataManager.parried.get(serverPlayer)) {
                 serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("parry_tutorial")));
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("perfect_parry_tutorial"), true);
-            } else if(!PlayerDataManager.weapon_innate_used.get(serverPlayer)) {
-                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("weapon_innate_tutorial")));
-                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("weapon_innate_charge_tutorial"), true);
+//            } else if(!PlayerDataManager.weapon_innate_used.get(serverPlayer)) {
+//                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("weapon_innate_tutorial")));
+//                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("weapon_innate_charge_tutorial"), true);
             } else if(!PlayerDataManager.locked.get(serverPlayer)) {
                 serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("lock_tutorial")));
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("lock_tutorial_sub"), true);
@@ -92,6 +97,9 @@ public class TutorialGolem extends IronGolem {
                 serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("you_pass")));
                 serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                 this.setTarget(null);
+                //引导玩家去守望者处
+                XianQiEntity xianQiEntity = new XianQiEntity(level(), WorldUtil.GUIDER_POS, serverPlayer);
+                level().addFreshEntity(xianQiEntity);
             }
         }
     }

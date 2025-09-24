@@ -52,10 +52,6 @@ public class TCRPlayer {
         data.putString(k, v);
     }
 
-    public void setData(Consumer<CompoundTag> consumer) {
-        consumer.accept(data);
-    }
-
     public CompoundTag getData() {
         return data;
     }

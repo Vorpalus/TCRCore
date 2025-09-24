@@ -6,56 +6,50 @@ import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonste
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Maledictus.Maledictus_Entity;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Scylla.Scylla_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
-import com.github.L_Ender.cataclysm.items.The_Incinerator;
+import com.hm.efn.registries.EFNItem;
+import com.merlin204.sg.item.SGItems;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
 import com.p1nero.dialog_lib.events.ServerNpcEntityInteractEvent;
+import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
 import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
+import com.p1nero.tcrcore.network.TCRPacketHandler;
+import com.p1nero.tcrcore.network.packet.clientbound.PlayItemPickupParticlePacket;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.Vec3i;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.monster.ElderGuardian;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Pillager;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -63,18 +57,17 @@ import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.unusual.blockfactorysbosses.entity.InfernalDragonEntity;
 import net.unusual.blockfactorysbosses.entity.SandwormEntity;
 import net.unusual.blockfactorysbosses.entity.SwordWaveEntity;
-import net.unusual.blockfactorysbosses.entity.UnderworldKnightEntity;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
-import org.anti_ad.a.b.a.a.a.E;
 import yesman.epicfight.api.animation.AnimationPlayer;
-import yesman.epicfight.api.animation.Animator;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
@@ -115,7 +108,6 @@ public class LivingEntityEventListeners {
             }
 
             if (entity instanceof Ignis_Entity) {
-                event.getDrops().clear();
                 event.getDrops().add(ItemUtil.addItemEntity(entity, ModItems.THE_INCINERATOR.get(), 1, 0xfff66d));
             }
             if (entity instanceof The_Leviathan_Entity) {
@@ -151,58 +143,76 @@ public class LivingEntityEventListeners {
         }
     }
 
+    public static void giveOracle(ServerPlayer player) {
+        ItemUtil.addItemEntity(player, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+        PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayItemPickupParticlePacket(TCRItems.ANCIENT_ORACLE_FRAGMENT.get().getDefaultInstance()), player);
+        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.TOTEM_USE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
+        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
+    }
+
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event){
         LivingEntity livingEntity = event.getEntity();
-        if(event.getSource().getEntity() instanceof Player player) {
 
-            if(livingEntity instanceof IronGolem && !PlayerDataManager.stormEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, "trek:overworld/very_rare/floating_farm_large")) {
-                ItemUtil.addItem(player, ModItems.STORM_EYE.get(), 1, true);
+        Vec3 center = livingEntity.position();
+        livingEntity.level().getEntitiesOfClass(ServerPlayer.class, (new AABB(center, center)).inflate(30)).forEach(player ->{
+
+            if(livingEntity instanceof IronGolem && !PlayerDataManager.stormEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, WorldUtil.SKY_ISLAND)) {
+                ItemUtil.addItemEntity(player, ModItems.STORM_EYE.get(), 1, ChatFormatting.AQUA.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss1"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
+                giveOracle(player);
                 PlayerDataManager.stormEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof BulldrogiothEntity && !PlayerDataManager.abyssEyeTraded.get(player) && WorldUtil.isInStructure(livingEntity, WorldUtil.COVES)) {
-                ItemUtil.addItem(player, ModItems.ABYSS_EYE.get(), 1, true);
+                ItemUtil.addItemEntity(player, ModItems.ABYSS_EYE.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss3"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
+                giveOracle(player);
                 PlayerDataManager.abyssEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof InfernalDragonEntity && !PlayerDataManager.flameEyeTraded.get(player)) {
-                ItemUtil.addItem(player, ModItems.FLAME_EYE.get(), 1, true);
+                ItemUtil.addItemEntity(player, ModItems.FLAME_EYE.get(), 1, ChatFormatting.RED.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss2"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
                 PlayerDataManager.flameEyeTraded.put(player, true);
             }
 
             if(livingEntity instanceof CaptainCornelia && !PlayerDataManager.cursedEyeTraded.get(player)) {
-                ItemUtil.addItem(player, ModItems.CURSED_EYE.get(), 1, true);
+                ItemUtil.addItemEntity(player, ModItems.CURSED_EYE.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss4"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
+                giveOracle(player);
                 PlayerDataManager.cursedEyeTraded.put(player, true);
             }
             if(livingEntity instanceof SandwormEntity && !PlayerDataManager.desertEyeTraded.get(player)) {
-                ItemUtil.addItem(player, ModItems.DESERT_EYE.get(), 1, true);
+                ItemUtil.addItemEntity(player, ModItems.DESERT_EYE.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss5"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
+                giveOracle(player);
                 PlayerDataManager.desertEyeTraded.put(player, true);
-            }
 
-            if(livingEntity instanceof UnderworldKnightEntity) {
                 CommandSourceStack commandSourceStack = player.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 if(!PlayerDataManager.fireAvoidUnlocked.get(player) && WorldUtil.isInStructure(player, WorldUtil.COVES)) {
-                    Objects.requireNonNull(player.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn tcrcore:water_avoid true");
+                    Objects.requireNonNull(player.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn tcrcore:fire_avoid true");
                     player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
                     PlayerDataManager.fireAvoidUnlocked.put(player, true);
                 }
             }
+        });
+
+        if(livingEntity instanceof IronGolem && WorldUtil.isInStructure(livingEntity, WorldUtil.SKY_ISLAND)) {
+            ItemUtil.addItemEntity(livingEntity, SGItems.GOLEM_HEART.get(), 1, ChatFormatting.GOLD.getColor().intValue());
         }
+
         if(livingEntity instanceof CaptainCornelia) {
             if(livingEntity.level().isClientSide) {
                 CorneliaMusicPlayer.stopBossMusic(livingEntity);
+            } else {
+                ItemUtil.addItemEntity(livingEntity, EFNItem.DEEPDARK_HEART.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
             }
         }
         if(livingEntity instanceof Player player) {
@@ -212,6 +222,9 @@ public class LivingEntityEventListeners {
 
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
+        if(TCRCoreMod.hasCheatMod()) {
+            event.getEntity().setHealth(0);
+        }
         if(event.getEntity() instanceof ServerPlayer serverPlayer) {
             EpicFightCapabilities.getUnparameterizedEntityPatch(serverPlayer, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {
                 AnimationPlayer player = serverPlayerPatch.getAnimator().getPlayerFor(null);
@@ -257,29 +270,35 @@ public class LivingEntityEventListeners {
         }
     }
 
+    public static Set<EntityType<?>> entityTypes = new HashSet<>();
+
     @SubscribeEvent
     public static void onLivingJoin(EntityJoinLevelEvent event){
         if(event.getEntity().level().isClientSide) {
             return;
+        }
+        if(entityTypes.contains(event.getEntity().getType())) {
+            event.setCanceled(true);
         }
         UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");
         if(event.getEntity() instanceof IronGolem ironGolem) {
             if(WorldUtil.isInStructure(ironGolem, WorldUtil.SKY_ISLAND)){
                 ironGolem.setCustomName(TCRCoreMod.getInfo("iron_golem_name"));
                 ironGolem.setCustomNameVisible(true);
+                ironGolem.setGlowingTag(true);
             }
         }
 
         if(event.getEntity() instanceof EnderDragon enderDragon) {
             enderDragon.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);
-            AttributeModifier healthBoost = new AttributeModifier(uuid, "Dragon Health Boost", 11, AttributeModifier.Operation.MULTIPLY_BASE);
+            AttributeModifier healthBoost = new AttributeModifier(uuid, "Dragon Health Boost", 4, AttributeModifier.Operation.MULTIPLY_BASE);
             enderDragon.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
             enderDragon.setHealth(enderDragon.getMaxHealth());
         }
 
         if(event.getEntity() instanceof WitherBoss witherBoss) {
             witherBoss.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);
-            AttributeModifier healthBoost = new AttributeModifier(uuid, "Wither Health Boost", 2.0, AttributeModifier.Operation.MULTIPLY_BASE);
+            AttributeModifier healthBoost = new AttributeModifier(uuid, "Wither Health Boost", 1, AttributeModifier.Operation.MULTIPLY_BASE);
             witherBoss.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
             witherBoss.setHealth(witherBoss.getMaxHealth());
         }
@@ -288,19 +307,15 @@ public class LivingEntityEventListeners {
             ServerLevel end = serverLevel.getServer().getLevel(Level.END);
             if(end != null && end.getDragonFight() != null && end.getDragonFight().hasPreviouslyKilledDragon()) {
                 livingEntity.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);
-                AttributeModifier healthBoost = new AttributeModifier(uuid, "Health Boost After Dragon Killed", 1.2, AttributeModifier.Operation.MULTIPLY_BASE);
+                AttributeModifier healthBoost = new AttributeModifier(uuid, "Health Boost After Dragon Killed", 1, AttributeModifier.Operation.MULTIPLY_BASE);
                 livingEntity.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthBoost);
                 livingEntity.setHealth(livingEntity.getMaxHealth());
             }
         }
     }
 
-    @SubscribeEvent
-    public static void onPlayerPickupItem(EntityItemPickupEvent event) {
-        if(event.getItem().getItem().is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())) {
-            if(event.getItem().getOwner() != event.getEntity()) {
-                event.setCanceled(true);
-            }
-        }
-    }
+//    @SubscribeEvent
+//    public static void onPlayerPickupItem(EntityItemPickupEvent event) {
+//
+//    }
 }

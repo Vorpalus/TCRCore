@@ -11,9 +11,9 @@ import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerP
 @Mixin(LocalPlayerPatch.class)
 public class LocalPlayerPatchMixin {
 
-    @Inject(method = "setLockOn", at = @At("HEAD"), remap = false)
-    private void tcr$setLockOn(boolean targetLockedOn, CallbackInfo ci) {
-        if(targetLockedOn && Minecraft.getInstance().player != null) {
+    @Inject(method = "toggleLockOn", at = @At("HEAD"), remap = false)
+    private void tcr$setLockOn(CallbackInfo ci) {
+        if(Minecraft.getInstance().player != null) {
             PlayerDataManager.locked.put(Minecraft.getInstance().player, true);
         }
     }

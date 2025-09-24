@@ -17,6 +17,7 @@ import java.util.Set;
 public class PlayerDataManager {
     private final static Set<String> EXISTING_ID = new HashSet<>();
     public static DoubleData stage = new DoubleData("stage", 0);
+    public static BoolData boatGet = new BoolData("boat_get", false);
     public static BoolData swordSoaringUnlocked = new BoolData("sword_soaring_avoid_unlocked", false);
     public static BoolData fireAvoidUnlocked = new BoolData("fire_avoid_unlocked", false);
     public static BoolData waterAvoidUnlocked = new BoolData("water_avoid_unlocked", false);
@@ -36,31 +37,31 @@ public class PlayerDataManager {
     public static BoolData desertEyeTraded = new BoolData("desert_eye_traded", false);//是否与村民交易过眼睛
 
     public static void putData(Player player, String key, double value) {
-        getSMCPlayer(player).putDouble(key, value);
+        getTCRPlayer(player).putDouble(key, value);
     }
 
     public static void putData(Player player, String key, String value) {
-        getSMCPlayer(player).putString(key, value);
+        getTCRPlayer(player).putString(key, value);
     }
 
     public static void putData(Player player, String key, boolean value) {
-        getSMCPlayer(player).putBoolean(key, value);
+        getTCRPlayer(player).putBoolean(key, value);
     }
 
     public static boolean getBool(Player player, String key) {
-        return getSMCPlayer(player).getBoolean(key);
+        return getTCRPlayer(player).getBoolean(key);
     }
 
     public static double getDouble(Player player, String key) {
-        return getSMCPlayer(player).getDouble(key);
+        return getTCRPlayer(player).getDouble(key);
     }
 
     public static String getString(Player player, String key) {
-        return getSMCPlayer(player).getString(key);
+        return getTCRPlayer(player).getString(key);
     }
 
-    public static TCRPlayer getSMCPlayer(Player player) {
-        return player.getCapability(TCRCapabilityProvider.TCR_PLAYER).orElse(new TCRPlayer());
+    public static TCRPlayer getTCRPlayer(Player player) {
+        return TCRCapabilityProvider.getTCRPlayer(player);
     }
 
 
@@ -83,12 +84,12 @@ public class PlayerDataManager {
         }
 
         public void init(Player player) {
-            isLocked = getSMCPlayer(player).getBoolean(key + "isLocked");
+            isLocked = getTCRPlayer(player).getBoolean(key + "isLocked");
 
         }
 
         public boolean isLocked(Player player) {
-            return getSMCPlayer(player).getBoolean(key + "isLocked");
+            return getTCRPlayer(player).getBoolean(key + "isLocked");
         }
 
         public boolean isLocked(CompoundTag playerData) {
@@ -96,12 +97,12 @@ public class PlayerDataManager {
         }
 
         public void lock(Player player) {
-            getSMCPlayer(player).putBoolean(key + "isLocked", true);
+            getTCRPlayer(player).putBoolean(key + "isLocked", true);
             isLocked = true;
         }
 
         public void unLock(Player player) {
-            getSMCPlayer(player).putBoolean(key + "isLocked", false);
+            getTCRPlayer(player).putBoolean(key + "isLocked", false);
             LocalPlayer localPlayer = Minecraft.getInstance().player;
             isLocked = false;
         }
@@ -130,7 +131,7 @@ public class PlayerDataManager {
         @Override
         public void put(Player player, String value) {
             if (!isLocked(player)) {
-                getSMCPlayer(player).putString(key, value);
+                getTCRPlayer(player).putString(key, value);
                 if (player instanceof ServerPlayer serverPlayer) {
                     PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PersistentStringDataSyncPacket(key, isLocked, value), serverPlayer);
                 }
@@ -139,7 +140,7 @@ public class PlayerDataManager {
 
         @Override
         public String get(Player player) {
-            return getSMCPlayer(player).getString(key);
+            return getTCRPlayer(player).getString(key);
         }
 
         public String get(CompoundTag playerData) {
@@ -158,14 +159,14 @@ public class PlayerDataManager {
         }
 
         public void init(Player player) {
-            isLocked = getSMCPlayer(player).getBoolean(key + "isLocked");
+            isLocked = getTCRPlayer(player).getBoolean(key + "isLocked");
             put(player, defaultValue);
         }
 
         @Override
         public void put(Player player, Double value) {
             if (!isLocked(player)) {
-                getSMCPlayer(player).putDouble(key, value);
+                getTCRPlayer(player).putDouble(key, value);
                 if (player instanceof ServerPlayer serverPlayer) {
                     PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PersistentDoubleDataSyncPacket(key, isLocked, value), serverPlayer);
                 }
@@ -178,7 +179,7 @@ public class PlayerDataManager {
 
         @Override
         public Double get(Player player) {
-            return getSMCPlayer(player).getDouble(key);
+            return getTCRPlayer(player).getDouble(key);
         }
 
         public double get(CompoundTag playerData) {
@@ -197,7 +198,7 @@ public class PlayerDataManager {
         }
 
         public void init(Player player) {
-            isLocked = getSMCPlayer(player).getBoolean(key + "isLocked");
+            isLocked = getTCRPlayer(player).getBoolean(key + "isLocked");
             put(player, defaultBool);
         }
 
@@ -206,7 +207,7 @@ public class PlayerDataManager {
             if (isLocked(player))
                 return;
 
-            getSMCPlayer(player).putBoolean(key, value);
+            getTCRPlayer(player).putBoolean(key, value);
             if (player instanceof ServerPlayer serverPlayer) {
                 PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PersistentBoolDataSyncPacket(key, isLocked, value), serverPlayer);
             } else {
@@ -216,7 +217,7 @@ public class PlayerDataManager {
 
         @Override
         public Boolean get(Player player) {
-            return getSMCPlayer(player).getBoolean(key);
+            return getTCRPlayer(player).getBoolean(key);
         }
 
         public boolean get(CompoundTag playerData) {

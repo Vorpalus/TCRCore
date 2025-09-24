@@ -69,9 +69,9 @@
 	#Enable rotation of camera by Backward Wall-Jump
 	enable_camera_rotation_back_wall_jump = true
 	#Enable rotation of camera by Roll
-	enable_camera_rotation_roll = true
+	enable_camera_rotation_roll = false
 	#Enable rotation of camera by Flipping
-	enable_camera_rotation_flipping = true
+	enable_camera_rotation_flipping = false
 	#Enable animation of camera by Vault
 	enable_camera_animation_vault = false
 	#Enable animation of camera by Horizontal-WallRun

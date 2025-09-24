@@ -1,0 +1,8 @@
+{
+  "type":"super_golem:golem_heart",
+  "attributes": {
+    "one_hand": {
+      "damage_bonus": -8
+    }
+  }
+}

@@ -26,7 +26,7 @@ public abstract class AbstractAltarBlock extends AbstractGlassBlock implements E
     @SuppressWarnings("deprecation")
     public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         BlockEntity entity = pLevel.getBlockEntity(pPos);
-        if(entity instanceof AbstractAltarBlockEntity blockEntity && !pLevel.isClientSide){
+        if(entity instanceof AbstractAltarBlockEntity blockEntity){
             blockEntity.onPlayerInteract(pState, pLevel, pPos, pPlayer, pHand, pHit);
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide);

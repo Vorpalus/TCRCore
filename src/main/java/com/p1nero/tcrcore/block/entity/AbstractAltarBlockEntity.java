@@ -5,7 +5,6 @@ import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.cataclysm_dimension.worldgen.portal.CDNetherTeleporter;
 import com.p1nero.cataclysm_dimension.worldgen.portal.CDTeleporter;
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -88,14 +87,11 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
             return;
         }
         ServerLevel serverLevel = (ServerLevel) level;
-        ItemStack mainHandItem = pPlayer.getItemInHand(pHand);
         MinecraftServer minecraftServer = pPlayer.getServer();
         if(minecraftServer == null) {
             return;
         }
-        if(mainHandItem.is(this.itemInnate) && !this.isActivated) {
-            onActive(pPlayer, mainHandItem, serverLevel, pPos);
-        } else if(pPlayer.isShiftKeyDown() && this.isActivated){
+        if(this.isActivated){
             ItemStack defaultInstance = this.itemInnate.getDefaultInstance();
             boolean flag = true;
             if(defaultInstance.is(ModItems.ABYSS_EYE.get())) {
@@ -130,7 +126,14 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PORTAL_TRAVEL), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     player.displayClientMessage(TCRCoreMod.getInfo("reset_when_no_player").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
                 }
+                return;
             }
+        }
+
+        ItemStack mainHandItem = pPlayer.getItemInHand(pHand);
+        //激活
+        if(mainHandItem.is(this.itemInnate) && !this.isActivated) {
+            onActive(pPlayer, mainHandItem, serverLevel, pPos);
         }
     }
 

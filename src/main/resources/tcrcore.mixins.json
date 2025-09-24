@@ -15,6 +15,7 @@
     "FAArmorItemMixin",
     "GuardSkillMixin",
     "HornOfTheShattercryMixin",
+    "Ignited_Revenant_EntityMixin",
     "ItemStackMixin",
     "KnightSwordItemMixin",
     "PlayerAdvancementsMixin",

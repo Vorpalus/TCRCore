@@ -41,6 +41,9 @@ public abstract class DodgeLocationIndicatorMixin extends LivingEntity {
 
     @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
     private void tcr$hurt(DamageSource damageSource, float amount, CallbackInfoReturnable<Boolean> cir){
+        if(this.entitypatch == null) {
+            return;
+        }
         if(!this.entitypatch.isLogicalClient()) {
             if(this.entitypatch instanceof ServerPlayerPatch serverPlayerPatch) {
                 ServerPlayer serverPlayer = serverPlayerPatch.getOriginal();

@@ -1,12 +1,18 @@
 package com.p1nero.tcrcore.events;
 
-import com.merlin204.avalon.entity.client.renderer.EmptyRenderer;
+import com.github.L_Ender.cataclysm.init.ModEntities;
+import com.github.L_Ender.cataclysm.init.ModItems;
+import com.hm.efn.registries.EFNItem;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.client.AltarBlockRenderer;
 import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
+import com.p1nero.tcrcore.client.gui.BlockTooltipHandler;
 import com.p1nero.tcrcore.entity.TCREntities;
+import com.p1nero.tcrcore.entity.custom.girl.GirlGeoRenderer;
 import com.p1nero.tcrcore.entity.custom.guider.GuiderGeoRenderer;
 import com.p1nero.tcrcore.entity.custom.tutorial_golem.TutorialGolemRenderer;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemEntityRenderer;
@@ -26,7 +32,26 @@ public class ClientModEvents {
     public static void onClientSetup(FMLClientSetupEvent event) {
         EntityRenderers.register(TCREntities.CUSTOM_COLOR_ITEM.get(), ItemEntityRenderer::new);
         EntityRenderers.register(TCREntities.GUIDER.get(), GuiderGeoRenderer::new);
+        EntityRenderers.register(TCREntities.GIRL.get(), GirlGeoRenderer::new);
         EntityRenderers.register(TCREntities.TUTORIAL_GOLEM.get(), TutorialGolemRenderer::new);
+
+        BlockTooltipHandler.registerBlockTooltip(TCRBlocks.ABYSS_ALTAR_BLOCK,
+                TCRCoreMod.getInfo("altar_dim_info"),
+                TCRCoreMod.getInfo("related_loot", ModEntities.THE_LEVIATHAN.get().getDescription().copy().withStyle(ChatFormatting.BLUE), ModItems.TIDAL_CLAWS.get().getDescription().copy().withStyle(ChatFormatting.GOLD)),
+                TCRCoreMod.getInfo("related_loot", ModEntities.CORALSSUS.get().getDescription(), EFNItem.NF_CLAW.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE)));
+        BlockTooltipHandler.registerBlockTooltip(TCRBlocks.CURSED_ALTAR_BLOCK,
+                TCRCoreMod.getInfo("altar_dim_info"),
+                TCRCoreMod.getInfo("related_loot", ModEntities.MALEDICTUS.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN), ModItems.SOUL_RENDER.get().getDescription().copy().withStyle(ChatFormatting.GOLD)));
+        BlockTooltipHandler.registerBlockTooltip(TCRBlocks.DESERT_ALTAR_BLOCK,
+                TCRCoreMod.getInfo("altar_dim_info"),
+                TCRCoreMod.getInfo("related_loot", ModEntities.ANCIENT_REMNANT.get().getDescription().copy().withStyle(ChatFormatting.YELLOW), ModItems.WRATH_OF_THE_DESERT.get().getDescription().copy().withStyle(ChatFormatting.GOLD)),
+                TCRCoreMod.getInfo("related_loot", ModEntities.KOBOLEDIATOR.get().getDescription(), EFNItem.EXSILIUMGLADIUS.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE)));
+        BlockTooltipHandler.registerBlockTooltip(TCRBlocks.FLAME_ALTAR_BLOCK,
+                TCRCoreMod.getInfo("altar_dim_info"),
+                TCRCoreMod.getInfo("related_loot", ModEntities.IGNIS.get().getDescription().copy().withStyle(ChatFormatting.RED), ModItems.THE_INCINERATOR.get().getDescription().copy().withStyle(ChatFormatting.GOLD)));
+        BlockTooltipHandler.registerBlockTooltip(TCRBlocks.STORM_ALTAR_BLOCK,
+                TCRCoreMod.getInfo("altar_dim_info"),
+                TCRCoreMod.getInfo("related_loot", ModEntities.SCYLLA.get().getDescription().copy().withStyle(ChatFormatting.AQUA), ModItems.CERAUNUS.get().getDescription().copy().withStyle(ChatFormatting.GOLD)));
     }
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)

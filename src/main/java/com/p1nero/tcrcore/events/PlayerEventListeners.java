@@ -2,21 +2,28 @@ package com.p1nero.tcrcore.events;
 
 
 import com.hm.efn.registries.EFNItem;
+import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
-import com.p1nero.tcrcore.item.TCRItems;
+import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
+import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.world.capability.AbilityPoints;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +31,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
@@ -33,10 +41,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
+import yesman.epicfight.world.item.EpicFightItems;
 
 import java.util.Objects;
 
@@ -57,35 +65,37 @@ public class PlayerEventListeners {
 
     @SubscribeEvent
     public static void onPlayerAdvancementEarn(AdvancementEvent.AdvancementEarnEvent event) {
-        if(event.getEntity() instanceof ServerPlayer serverPlayer) {
+        if(event.getEntity() instanceof ServerPlayer player) {
             String path = event.getAdvancement().getId().getPath();
             String namespace = event.getAdvancement().getId().getNamespace();
             if(namespace.equals(TCRCoreMod.MOD_ID)) {
-                if(path.equals("kill_pillager") && !PlayerDataManager.pillagerKilled.get(serverPlayer)) {
-                    PlayerDataManager.pillagerKilled.put(serverPlayer, true);
-                    ItemUtil.addItem(serverPlayer, TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), 1, true);
+                if(path.equals("kill_pillager") && !PlayerDataManager.pillagerKilled.get(player)) {
+                    LivingEntityEventListeners.giveOracle(player);
+                    PlayerDataManager.pillagerKilled.put(player, true);
                 }
-//                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_show_progress"), false);
+                if(path.equals("stage3")) {
+                    player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_dim_girl"), false);
+                    player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("unlock_new_dim")));
+                    player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
+                }
+//                player.displayClientMessage(TCRCoreMod.getInfo("press_to_show_progress"), false);
             }
             if(namespace.equals("minecraft") && path.equals("recipes/transportation/oak_boat")) {
-                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("riptide_tutorial")));
+                player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("riptide_tutorial")));
             }
+
         }
     }
 
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
-        Level level = player.level();
         if(player instanceof ServerPlayer serverPlayer) {
-            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
             if(!PlayerDataManager.firstJoint.get(serverPlayer)) {
                 TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID, serverPlayer);
-//                TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID + "_weapon", serverPlayer);
-//                TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID + "_ingredient", serverPlayer);
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule keepInventory true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "gamerule mobGriefing false");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/gamerule keepInventory true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/gamerule mobGriefing false");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_step true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_dodge true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn epicfight:parrying true");
@@ -95,26 +105,38 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s passive1 dodge_parry_reward:stamina1");
                 ItemUtil.addItem(serverPlayer, Items.IRON_SWORD, 1);
                 ItemUtil.addItem(serverPlayer, ModItems.BACKPACK.get(), 1);
-                ItemUtil.addItem(serverPlayer, ForgeRegistries.ITEMS.getValue(ResourceLocation.parse("smallships:oak_cog")).getDefaultInstance());
-                ItemUtil.addItem(serverPlayer, Items.BREAD, 16);
+                ItemUtil.addItem(serverPlayer, Items.BREAD, 32);
                 serverPlayer.setItemSlot(EquipmentSlot.CHEST, EFNItem.RUINFIGHTER_CHESTPLATE.get().getDefaultInstance());
+
                 PlayerDataManager.firstJoint.put(serverPlayer, true);
             }
+
+            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
         }
     }
 
     @SubscribeEvent
     public static void onPlayerInteractBlock(PlayerInteractEvent.RightClickBlock event) {
-        //第一次交互给传送石和提示
-        if (event.getLevel().getBlockState(event.getPos()).is(ModBlocks.waystone)) {
-            if(event.getEntity() instanceof ServerPlayer serverPlayer) {
+
+        if(event.getEntity() instanceof ServerPlayer serverPlayer) {
+
+            //第一次交互给传送石和提示
+            if (event.getLevel().getBlockState(event.getPos()).is(ModBlocks.waystone)) {
                 if(!PlayerDataManager.wayStoneInteracted.get(serverPlayer)) {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_open_portal_screen"), true);
                     ItemUtil.addItem(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone, 1, true);
                     PlayerDataManager.wayStoneInteracted.put(serverPlayer, true);
                 }
             }
+
+            if(CataclysmDimensions.LEVELS.contains(serverPlayer.serverLevel().dimension())) {
+                if(event.getLevel().getBlockState(event.getPos()).is(Blocks.CHEST)) {
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_block_no_interact"), true);
+                    event.setCanceled(true);
+                }
+            }
         }
+
     }
 
     @SubscribeEvent
@@ -125,11 +147,25 @@ public class PlayerEventListeners {
                     event.player.displayClientMessage(TCRCoreMod.getInfo("hit_barrier"), true);
                 }
             }
-            if(event.player.level() instanceof ServerLevel serverLevel && !PlayerDataManager.bllSummoned.get(event.player) && WorldUtil.isInStructure(event.player, WorldUtil.COVES)) {
-                BulldrogiothEntity entity = EntityRegistry.BULLDROGIOTH.get().spawn(serverLevel, event.player.getOnPos().atY(156), MobSpawnType.SPAWNER);
-                entity.setGlowingTag(true);
-                PlayerDataManager.bllSummoned.put(event.player, true);
+            if(event.player instanceof ServerPlayer serverPlayer) {
+                if(!PlayerDataManager.bllSummoned.get(event.player) && WorldUtil.isInStructure(event.player, WorldUtil.COVES)) {
+                    //定点生
+                    BlockPos pos = TCRLevelSaveData.get(serverPlayer.serverLevel()).getCoversPos();
+                    if(pos.equals(BlockPos.ZERO)) {
+                        pos = event.player.getOnPos();
+                    }
+                    //保险措施
+                    if(EntityUtil.getNearByEntities(serverPlayer.serverLevel(), pos.getCenter(), 20, BulldrogiothEntity.class).isEmpty()) {
+                        BulldrogiothEntity entity = EntityRegistry.BULLDROGIOTH.get().spawn(serverPlayer.serverLevel(), pos, MobSpawnType.SPAWNER);
+                        entity.setGlowingTag(true);
+                        PlayerDataManager.bllSummoned.put(event.player, true);
+                    }
+                }
+                if(WorldUtil.inMainLand(serverPlayer) && serverPlayer.isSprinting()) {
+                    serverPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 10, 2, false, false, true));
+                }
             }
+
         }
 
     }

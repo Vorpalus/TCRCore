@@ -60,7 +60,13 @@
 			subtitle: "[猛菇]掉落物制作"
 			tasks: [{
 				id: "43AF18FF03C7BB2C"
-				item: "more_critters:fungal_staff"
+				item: {
+					Count: 1
+					id: "more_critters:fungal_staff"
+					tag: {
+						Damage: 0
+					}
+				}
 				type: "item"
 			}]
 			x: 6.0d
@@ -77,7 +83,13 @@
 			subtitle: "[避鱼]掉落物制作"
 			tasks: [{
 				id: "72CF0C6A03B19AB2"
-				item: "more_critters:booster_pump"
+				item: {
+					Count: 1
+					id: "more_critters:booster_pump"
+					tag: {
+						Damage: 0
+					}
+				}
 				type: "item"
 			}]
 			x: -4.5d
@@ -136,8 +148,8 @@
 				item: "tudigong:tudi_command_spell"
 				type: "item"
 			}]
-			shape: "rsquare"
-			size: 1.5d
+			shape: "none"
+			size: 2.0d
 			subtitle: "心诚则灵"
 			tasks: [{
 				advancement: "tudigong:sincerity"
@@ -159,7 +171,13 @@
 				""
 				"默认按&6[K]&r查看技能"
 			]
-			icon: "sword_soaring:vatansever"
+			icon: {
+				Count: 1
+				id: "sword_soaring:vatansever"
+				tag: {
+					Damage: 0
+				}
+			}
 			id: "14688D903F3D7050"
 			rewards: [{
 				id: "0901E56FD9C3CDD6"
@@ -221,19 +239,141 @@
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			id: "7B86731A7B61055D"
-			rewards: [{
-				id: "539249425FF755F0"
-				type: "xp"
-				xp: 100
-			}]
+			rewards: [
+				{
+					count: 32
+					id: "71C50C57B79B05B7"
+					item: {
+						Count: 1
+						id: "minecraft:firework_rocket"
+						tag: {
+							Fireworks: {
+								Flight: 3b
+							}
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 32
+					id: "31D57959CB9FD934"
+					item: {
+						Count: 1
+						id: "minecraft:firework_rocket"
+						tag: {
+							Fireworks: {
+								Flight: 2b
+							}
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 32
+					id: "1E43C2B3ABA9663A"
+					item: {
+						Count: 1
+						id: "minecraft:firework_rocket"
+						tag: {
+							Fireworks: {
+								Flight: 1b
+							}
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			subtitle: "在神的指引下，世人习得如何编织鞘翅，无需再前往终界"
 			tasks: [{
 				id: "6D6C3A42A449DD81"
-				item: "minecraft:elytra"
+				item: {
+					Count: 1
+					id: "minecraft:elytra"
+					tag: {
+						Damage: 0
+					}
+				}
 				type: "item"
 			}]
 			x: 0.0d
 			y: 7.5d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			description: [
+				"本整合包矿物来源主要来自击败魔物"
+				""
+				"&d掠夺者：概率掉落金锭、钻石锭、下界合金锭&r"
+				""
+				"&b所有Enemy：概率掉落铁锭、紫水晶、皎月水晶&r"
+			]
+			icon: {
+				Count: 1
+				id: "minecraft:iron_ore"
+				tag: {
+					fdbosses: { }
+				}
+			}
+			id: "1A41E3F83FF6546D"
+			rewards: [{
+				id: "63864E5C13928197"
+				item: {
+					Count: 1
+					id: "minecraft:diamond"
+					tag: {
+						fdbosses: { }
+					}
+				}
+				type: "item"
+			}]
+			shape: "rsquare"
+			tasks: [{
+				id: "09FB67DEA3FDE0C3"
+				title: "冒险包何须挖矿"
+				type: "checkmark"
+			}]
+			title: "矿物说明"
+			x: 2.0d
+			y: 2.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			description: [
+				"本整合包安装了&b“我来助你”&r模组，丰富多人游玩体验！"
+				""
+				"默认按下&6[右ALT]&r即可发射救难信号！"
+				""
+				""
+				"可自定义救难信号文本，以及前去支援时的文本"
+			]
+			icon: {
+				Count: 1
+				id: "minecraft:firework_rocket"
+				tag: {
+					Fireworks: {
+						Flight: 3b
+					}
+					fdbosses: { }
+				}
+			}
+			id: "67E822F4B51CE749"
+			rewards: [{
+				id: "33E3EFC36260F10F"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			subtitle: "“我来助你！”"
+			tasks: [{
+				id: "5293E10F1D65A447"
+				title: "我来助你！"
+				type: "checkmark"
+			}]
+			x: -2.0d
+			y: 2.0d
 		}
 	]
 	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]

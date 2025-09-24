@@ -1,0 +1,10 @@
+{
+  "type": "efn:shortsword",
+  "attributes": {
+    "common": {
+      "impact": 2.0,
+      "armor_negation":20.0,
+      "max_strikes":5
+    }
+  }
+}

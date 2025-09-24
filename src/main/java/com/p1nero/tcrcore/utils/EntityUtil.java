@@ -7,11 +7,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class EntityUtil {
     /**
@@ -66,6 +68,10 @@ public class EntityUtil {
         return self.level().getEntities(self, getPlayerAABB(self.getOnPos(), offset), entity -> entity.distanceTo(self) < offset);
     }
 
+    public static <T extends Entity> List<T> getNearByEntities(Level level, Vec3 center, int radius, Class<T> entityClass){
+        return level.getEntitiesOfClass(entityClass, (new AABB(center, center)).inflate(radius));
+    }
+
     /**
      * 获取附近的玩家
      */
@@ -75,6 +81,11 @@ public class EntityUtil {
 
     public static <T extends LivingEntity> List<T> getNearByEntities(Class<T> aClass, LivingEntity self, int offset){
         return self.level().getNearbyEntities(aClass, TargetingConditions.forNonCombat(), self, getPlayerAABB(self.getOnPos(), offset));
+    }
+
+    public static void nearPlayerDo(LivingEntity self, int radius, Consumer<Player> consumer) {
+        Vec3 center = self.position();
+        self.level().getEntitiesOfClass(Player.class, (new AABB(center, center)).inflate(radius)).forEach(consumer);
     }
 
 }

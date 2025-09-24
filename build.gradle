@@ -159,18 +159,18 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6968125")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7025236")
 //    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
     implementation fg.deobf("libs:epicskills:20.1.3")
     implementation fg.deobf("curse.maven:epic-fight-invincible-1184379:6992153")
     implementation fg.deobf("curse.maven:p1neros-epic-bow-1338443:6964978")
 //    implementation fg.deobf("curse.maven:sword-soaring-1011068:6968239")
     implementation fg.deobf("libs:sword_soaring:20.12.0.4")
-    implementation fg.deobf("curse.maven:epic-fight-dodge-parry-reward-1304607:6855180")
+    implementation fg.deobf("libs:dodge_parry_reward:20.12.1")
     implementation fg.deobf("libs:epic_fight_avalon:20.12.2.4.1")
-    implementation fg.deobf("libs:EpicFight-Nightfall:20.12.1")
-    implementation fg.deobf("libs:p1nero_ec:20.12.0.0")
-    implementation fg.deobf("libs:p1nero_dl:1.4.1")
+    implementation fg.deobf("libs:EpicFightNightfall:2.0")
+    implementation fg.deobf("libs:p1nero_ec:20.12.0.1")
+    implementation fg.deobf("libs:p1nero_dl:1.6.0")
 
     implementation fg.deobf("curse.maven:better-lock-on-1339577:6998595")
 
@@ -226,11 +226,7 @@ dependencies {
     //小动物
     implementation fg.deobf("curse.maven:more-critters-1322511:6955615")
 
-    implementation fg.deobf("curse.maven:useful-ribbits-1328119:6919387")
     implementation fg.deobf("curse.maven:ribbits-622967:6182692")
-
-    //钓鱼难度
-    implementation fg.deobf("curse.maven:stardew-fishing-1066037:6434447")
 
     implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.7.3")
 

@@ -86,31 +86,37 @@
 			hide_until_deps_complete: false
 			hide_until_deps_visible: true
 			icon: "tudigong:tudi_temple"
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "68EDC89BB022788B"
 			invisible: true
 			rewards: [
-				{
-					count: 4
-					id: "713D03823208510A"
-					item: "minecraft:ender_eye"
-					type: "item"
-				}
-				{
-					count: 3
-					id: "6D71971051F07049"
-					item: "minecraft:wither_skeleton_skull"
-					type: "item"
-				}
 				{
 					id: "4B50245D1763A8CF"
 					item: "tudigong:tudi_command_spell"
 					type: "item"
 				}
 				{
-					count: 8
+					count: 10
 					id: "52673A4ECC9B6C07"
-					item: "minecraft:obsidian"
+					item: {
+						Count: 1
+						id: "minecraft:obsidian"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0D8DEB36D9982906"
+					item: {
+						Count: 1
+						id: "minecraft:flint_and_steel"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
 					type: "item"
 				}
 			]
@@ -130,10 +136,17 @@
 		{
 			dependencies: ["68EDC89BB022788B"]
 			description: [
-				"&c&l推荐：习得&b【避水咒】&c&l后再进行挑战！&r"
+				""
 				""
 				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"12C6899DBC971D90\" } } ]"
 			]
+			icon: {
+				Count: 1
+				id: "cataclysm:abyssal_sacrifice"
+				tag: {
+					fdbosses: { }
+				}
+			}
 			id: "6FD4134465F4B80A"
 			rewards: [{
 				id: "33F7F3DB93C195CE"
@@ -142,14 +155,33 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
-			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
-			tasks: [{
-				entity: "cataclysm:the_leviathan"
-				icon: "cataclysm:abyssal_sacrifice"
-				id: "31F81725804DBD7A"
-				type: "kill"
-				value: 1L
-			}]
+			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启 \\n&c&l推荐：习得&b【避水咒】&c&l后再进行挑战！&r"
+			tasks: [
+				{
+					entity: "cataclysm:the_leviathan"
+					icon: {
+						Count: 1
+						id: "cataclysm:tidal_claws"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					id: "31F81725804DBD7A"
+					type: "kill"
+					value: 1L
+				}
+				{
+					id: "0D15D4B2351D8886"
+					item: {
+						Count: 1
+						id: "cataclysm:abyssal_sacrifice"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			title: "利维坦&6[难度☆☆☆☆☆]&r"
 			x: -12.0d
 			y: -4.0d
@@ -162,11 +194,25 @@
 				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"0D76D92CF8D39AE7\" } } ]"
 			]
 			id: "460AD9F2064DC761"
-			rewards: [{
-				id: "7B4F9FCDF7CF600F"
-				item: "cataclysm:music_disc_maledictus"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "7B4F9FCDF7CF600F"
+					item: "cataclysm:music_disc_maledictus"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "1C52C7A4136CD1F1"
+					item: {
+						Count: 1
+						id: "cataclysm:cursium_block"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 2.0d
 			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
@@ -216,11 +262,37 @@
 				"[ \"点击查看\", { \"text\": \"掉落护甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"3CB062BCA9BD0FEC\" } } ]"
 			]
 			id: "3B4BBA5C2B7507EB"
-			rewards: [{
-				id: "6F3F90AF6A082B1E"
-				item: "cataclysm:music_disc_ancient_remnant"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "6F3F90AF6A082B1E"
+					item: "cataclysm:music_disc_ancient_remnant"
+					type: "item"
+				}
+				{
+					count: 16
+					id: "7BA312860ED61B0A"
+					item: {
+						Count: 1
+						id: "cataclysm:koboleton_bone"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "1AEA122B1B851312"
+					item: {
+						Count: 1
+						id: "cataclysm:ancient_metal_block"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 2.0d
 			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
@@ -246,11 +318,48 @@
 				"[ \"点击查看\", { \"text\": \"掉落护甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"66B95BDCAFA07D10\" } } ]"
 			]
 			id: "0C0A726EABBAB2E8"
-			rewards: [{
-				id: "786ED5571C1BD1E7"
-				item: "cataclysm:music_disc_ignis"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "786ED5571C1BD1E7"
+					item: "cataclysm:music_disc_ignis"
+					type: "item"
+				}
+				{
+					count: 3
+					id: "35DA541CA12E8C21"
+					item: {
+						Count: 1
+						id: "cataclysm:burning_ashes"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "607D3F4C4E42FF1B"
+					item: {
+						Count: 1
+						id: "cataclysm:ignitium_ingot"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 16
+					id: "2BA47757BC896998"
+					item: {
+						Count: 1
+						id: "minecraft:blaze_powder"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 2.0d
 			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
@@ -275,12 +384,26 @@
 			]
 			icon: "efn:deepdark_heart"
 			id: "3460F65A23FDA799"
-			rewards: [{
-				count: 2
-				id: "1B26981A9BBD9863"
-				item: "minecraft:netherite_ingot"
-				type: "item"
-			}]
+			rewards: [
+				{
+					count: 2
+					id: "1B26981A9BBD9863"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					count: 2
+					id: "1CC3021BE8CC73A9"
+					item: {
+						Count: 1
+						id: "efn:deepdark_heart"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			subtitle: "深藏于深暗之域，亦可现身于受到诅咒之船"
 			tasks: [
@@ -311,12 +434,56 @@
 				"[ \"锻造\", { \"text\": \"点击查看魔金套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"1779FEDC1CD752E9\" } } ]"
 			]
 			id: "2BF1F71D59A76031"
-			rewards: [{
-				count: 8
-				id: "30E993F6BD2BC374"
-				item: "fromtheshadows:diabolium_ingot"
-				type: "item"
-			}]
+			rewards: [
+				{
+					count: 8
+					id: "4C64C8986C35BE18"
+					item: {
+						Count: 1
+						id: "fromtheshadows:corrupted_heart"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "17803419C60F83D4"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_helmet"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2545CA663FD240EC"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_chest"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "2A3AC603464825ED"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_leggings"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			subtitle: "位于各种洞穴之中，在下界存在变种，较难遇到的三级魔物"
 			tasks: [{
 				entity: "fromtheshadows:nehemoth"
@@ -340,11 +507,57 @@
 			]
 			icon: "monsterexpansion:skrythe_frill"
 			id: "2C89A1EDBADA8DB5"
-			rewards: [{
-				id: "38EB09C8A7EF6657"
-				item: "monsterexpansion:foundry"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "38EB09C8A7EF6657"
+					item: "monsterexpansion:foundry"
+					type: "item"
+				}
+				{
+					id: "24C47DD78015E5C3"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_fang"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "1E3473D62B72A55E"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_wing_membrane"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "79960E05215CF92C"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_frill"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "53AFB88D909F34EA"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_armorplate"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			subtitle: "栖息于高海拔地区"
 			tasks: [
@@ -371,7 +584,13 @@
 			id: "2E3DFA7D59FD06D4"
 			rewards: [{
 				id: "3787DC16641703F0"
-				item: "block_factorys_bosses:frozen_fist"
+				item: {
+					Count: 1
+					id: "block_factorys_bosses:frozen_fist"
+					tag: {
+						Damage: 0
+					}
+				}
 				type: "item"
 			}]
 			subtitle: "位于雪原特定巢穴之中"
@@ -398,12 +617,26 @@
 			description: ["[ \"点击查看\", { \"text\": \"战利品武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"387C944EDD8FA25B\" } } ]"]
 			icon: "block_factorys_bosses:underworld_knight_spawn_egg"
 			id: "697EB87B461228FE"
-			rewards: [{
-				count: 8
-				id: "592E27D0B78415CB"
-				item: "block_factorys_bosses:ancient_iron_ingot"
-				type: "item"
-			}]
+			rewards: [
+				{
+					count: 8
+					id: "592E27D0B78415CB"
+					item: "block_factorys_bosses:ancient_iron_ingot"
+					type: "item"
+				}
+				{
+					id: "15E0C19A8FD0AF40"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:knight_sword"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			subtitle: "深藏&6地狱&r之中"
 			tasks: [

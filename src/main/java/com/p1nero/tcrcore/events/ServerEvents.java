@@ -1,10 +1,20 @@
 package com.p1nero.tcrcore.events;
 
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.entity.TCREntities;
+import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import com.p1nero.tcrcore.utils.WorldUtil;
+import net.blay09.mods.waystones.block.ModBlocks;
+import net.blay09.mods.waystones.block.WaystoneBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,6 +24,7 @@ import net.minecraftforge.fml.loading.FMLPaths;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Random;
 import java.util.stream.Stream;
 
 
@@ -30,6 +41,44 @@ public class ServerEvents {
             e.setCanceled(true);
         }
     }
+
+    @SubscribeEvent
+    public static void onLevelLoad(LevelEvent.Load event) {
+        if(event.getLevel() instanceof ServerLevel serverLevel && serverLevel.dimension() == Level.OVERWORLD) {
+            //懒得重新搞地图了
+            TCRLevelSaveData tcrLevelSaveData = TCRLevelSaveData.get(serverLevel);
+            if(!tcrLevelSaveData.isGirlPlaced()) {
+                TCREntities.GIRL.get().spawn(serverLevel, new BlockPos(WorldUtil.GIRL_POS), MobSpawnType.SPAWNER);
+                serverLevel.setBlock(new BlockPos(WorldUtil.GIRL_PORTAL_POS), ModBlocks.waystone.defaultBlockState(), 3);
+                serverLevel.setBlock(new BlockPos(WorldUtil.GIRL_PORTAL_POS).above(), ModBlocks.waystone.defaultBlockState().setValue(WaystoneBlock.HALF, DoubleBlockHalf.UPPER), 3);
+                tryHandleLight(serverLevel);
+                tcrLevelSaveData.setGirlPlaced(true);
+            }
+        }
+    }
+
+    private static void tryHandleLight(ServerLevel level) {
+        int minX = -204;
+        int maxX = -40;
+        int minZ = -208;
+        int maxZ = -174;
+        Random random = new Random();
+        random.setSeed(level.getSeed());
+        for(int y = 79; y < 82; y++) {
+            for (int x = minX; x <= maxX; x++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    BlockState state = level.getBlockState(pos);
+                    if(state.is(Blocks.LIGHT)){
+                        if(random.nextFloat() < 0.99) {
+                            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
         copyDuelDirectory(event.getServer());

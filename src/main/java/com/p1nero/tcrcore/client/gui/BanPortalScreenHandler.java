@@ -1,6 +1,6 @@
 package com.p1nero.tcrcore.client.gui;
 
-import com.p1nero.dialog_lib.api.component.TreeNode;
+import com.p1nero.dialog_lib.api.component.DialogNode;
 import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import com.p1nero.dialog_lib.client.screen.ScreenDialogueBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
@@ -19,12 +19,12 @@ public class BanPortalScreenHandler {
     public static void addScreen() {
         ScreenDialogueBuilder builder = new ScreenDialogueBuilder(TCRCoreMod.MOD_ID, name);
 
-        DialogueScreenBuilder screenBuilder = new DialogueScreenBuilder(null, Component.literal("").append(builder.name().copy().withStyle(ChatFormatting.AQUA)).append(": \n"));
+        DialogueScreenBuilder screenBuilder = new DialogueScreenBuilder(Component.literal("").append(builder.name().copy().withStyle(ChatFormatting.AQUA)).append(": \n"));
 
-        TreeNode root = new TreeNode(builder.ans(0))
+        DialogNode root = new DialogNode(builder.ans(0))
                 .addLeaf(builder.opt(0));
 
-        screenBuilder.setAnswerRoot(root);
+        screenBuilder.setRoot(root);
         Minecraft.getInstance().setScreen(screenBuilder.build());
     }
 

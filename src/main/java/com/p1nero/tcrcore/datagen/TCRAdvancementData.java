@@ -78,6 +78,7 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             Advancement stage2 = registerAdvancement(root, "stage2", FrameType.CHALLENGE, Items.ANVIL, false, false, true);
             Advancement stage3 = registerAdvancement(root, "stage3", FrameType.CHALLENGE, Items.ANVIL, false, false, true);
             Advancement stage4 = registerAdvancement(root, "stage4", FrameType.CHALLENGE, Items.ANVIL, false, false, true);
+            Advancement stage5 = registerAdvancement(root, "stage5", FrameType.CHALLENGE, Items.ANVIL, false, false, true);
 //            Advancement weaponRoot = Advancement.Builder.advancement()
 //                    .display(ModItems.THE_INCINERATOR.get(),
 //                            Component.translatable(PRE + TCRCoreMod.MOD_ID + "_weapon"),

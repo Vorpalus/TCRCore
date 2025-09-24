@@ -21,6 +21,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class GuiderGeoRenderer extends GeoEntityRenderer<GuiderEntity> {
+    public static boolean useRedModel;
     private final GuiderRenderer renderer;
     public GuiderGeoRenderer(EntityRendererProvider.Context context) {
         super(context, new DefaultedEntityGeoModel<>(ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, "guider")) {
@@ -34,6 +35,14 @@ public class GuiderGeoRenderer extends GeoEntityRenderer<GuiderEntity> {
                     head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
                     head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
                 }
+            }
+
+            @Override
+            public ResourceLocation getTextureResource(GuiderEntity animatable) {
+                if(useRedModel) {
+                    return ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, "textures/entity/guider_red.png");
+                }
+                return super.getTextureResource(animatable);
             }
         });
         this.renderer = new GuiderRenderer(context);

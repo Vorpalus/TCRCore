@@ -1,0 +1,20 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  #",
+    " X ",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "item": "block_factorys_bosses:dragon_bone"
+    },
+    "X": {
+      "item": "minecraft:bow",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "p1nero_bow:mortis"
+  }
+}

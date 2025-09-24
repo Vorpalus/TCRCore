@@ -1,13 +1,17 @@
 package com.p1nero.tcrcore.entity.custom.guider;
 
+import com.hm.efn.registries.EFNItem;
+import com.merlin204.sg.item.SGItems;
+import com.obscuria.aquamirae.registry.AquamiraeEntities;
 import com.obscuria.aquamirae.registry.AquamiraeItems;
-import com.p1nero.dialog_lib.api.NpcDialogueEntity;
+import com.p1nero.dialog_lib.api.IEntityNpc;
 import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
-import com.p1nero.dialog_lib.api.component.TreeNode;
+import com.p1nero.dialog_lib.api.component.DialogNode;
 import com.p1nero.dialog_lib.api.goal.LookAtConservingPlayerGoal;
 import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.client.gui.TCREndScreen;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.item.TCRItems;
@@ -16,11 +20,15 @@ import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import dev.ftb.mods.ftbquests.item.FTBQuestsItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -37,8 +45,13 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
+import net.sonmok14.fromtheshadows.server.utils.registry.ItemRegistry;
+import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
+import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -52,15 +65,47 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import xaero.hud.minimap.waypoint.WaypointColor;
 import yesman.epicfight.api.utils.math.Vec2i;
 
-public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, GeoEntity {
+public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity {
 
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("animation.god_girl.idle2");
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private Vec3 from = Vec3.ZERO;
+    private Vec3 dir = Vec3.ZERO;
+    private int startTick = 0;
     @Nullable
     private Player conversingPlayer;
 
     public GuiderEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
         super(entityType, level);
+    }
+
+    @Override
+    public void startSeenByPlayer(@NotNull ServerPlayer serverPlayer) {
+        super.startSeenByPlayer(serverPlayer);
+        TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);//保险
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if(level() instanceof ServerLevel serverLevel) {
+            int particleCount = 20;
+            double step = 5.0 / particleCount;
+            for (int i = tickCount - startTick; i <= particleCount; i++) {
+                ParticleOptions particle = ParticleTypes.END_ROD;
+                double distance = i * step;
+                Vec3 particlePos = from.add(dir.scale(distance).add(0, i * 0.1, 0));
+                serverLevel.sendParticles(
+                        particle,
+                        particlePos.x,
+                        particlePos.y,
+                        particlePos.z,
+                        0,
+                        dir.x, dir.y, dir.z,
+                        0.1f
+                );
+            }
+        }
     }
 
     @Override
@@ -113,7 +158,10 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
     protected @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
         if (player instanceof ServerPlayer serverPlayer) {
             CompoundTag tag = new CompoundTag();
+            tag.putInt("stage", PlayerDataManager.stage.getInt(player));
             tag.putBoolean("finished", TCRLevelSaveData.get(serverPlayer.serverLevel()).isAllFinish());
+            tag.putBoolean("map_mark", PlayerDataManager.mapMarked.get(serverPlayer));
+            tag.putBoolean("pillager_kill", PlayerDataManager.pillagerKilled.get(serverPlayer));
             if (player.getItemInHand(hand).is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())) {
                 tag.putBoolean("is_oracle", true);
             }
@@ -125,10 +173,7 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
     @Override
     @OnlyIn(Dist.CLIENT)
     public DialogueScreenBuilder getDialogueBuilder(CompoundTag compoundTag) {
-        LocalPlayer localPlayer = Minecraft.getInstance().player;
-        if (localPlayer == null) {
-            return null;
-        }
+        int stage = compoundTag.getInt("stage");
         DialogueScreenBuilder treeBuilder = new DialogueScreenBuilder(this);
         DialogueComponentBuilder dBuilder = new DialogueComponentBuilder(this);
         if (compoundTag.getBoolean("from_hurt")) {
@@ -138,6 +183,8 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
         if(compoundTag.getBoolean("finished")) {
             treeBuilder.start(8)
                     .addChoice(12, 11)
+                    .thenExecute(4)
+                    .thenExecute((dialogueScreen -> GuiderGeoRenderer.useRedModel = true))
                     .addChoice(13, 12)
                     .addChoice(14, 13)
                     .addFinalChoice(15, 3, (dialogueScreen -> {
@@ -150,107 +197,193 @@ public class GuiderEntity extends PathfinderMob implements NpcDialogueEntity, Ge
             return treeBuilder;
         }
 
+        if (compoundTag.getBoolean("is_oracle")) {
+            switch (stage) {
+                case 0 -> treeBuilder.start(7)
+                        .addChoice(dBuilder.optWithBrackets(9),
+                                dBuilder.ans(15,
+                                        Component.translatable("structure.trek.overworld.very_rare.floating_farm_large").withStyle(ChatFormatting.AQUA),
+                                        TCRCoreMod.getInfo("iron_golem_name").withStyle(ChatFormatting.GOLD),
+                                        Component.translatable("structure.trek.overworld.very_rare.floating_farm_large").withStyle(ChatFormatting.AQUA),
+                                        SGItems.GOLEM_HEART.get().getDescription().copy().withStyle(ChatFormatting.RED)))
+                        .thenExecute(2)
+                        .addFinalChoice(dBuilder.optWithBrackets(5), 1);
+
+                case 1 -> treeBuilder.start(7)
+                        .addChoice(dBuilder.optWithBrackets(9),
+                                dBuilder.ans(16,
+                                        Component.translatable("structure.trek.overworld.very_rare.coves").withStyle(ChatFormatting.BLUE),
+                                        EntityRegistry.BULLDROGIOTH.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
+                                        Component.translatable("structure.trek.overworld.very_rare.coves").withStyle(ChatFormatting.BLUE),
+                                        ItemRegistry.CRIMSON_SHELL.get().getDescription().copy().withStyle(ChatFormatting.RED)))
+                        .thenExecute(2)
+                        .addFinalChoice(dBuilder.optWithBrackets(5), 1);
+
+                case 2 -> treeBuilder.start(7)
+                        .addChoice(dBuilder.optWithBrackets(9),
+                                dBuilder.ans(17,
+                                        Component.translatable("structure.aquamirae.ice_maze").withStyle(ChatFormatting.DARK_GREEN),
+                                        AquamiraeEntities.CAPTAIN_CORNELIA.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
+                                        Component.translatable("structure.aquamirae.ice_maze").withStyle(ChatFormatting.DARK_GREEN),
+                                        EFNItem.DEEPDARK_HEART.get().getDescription().copy().withStyle(ChatFormatting.RED)))
+                        .thenExecute(2)
+                        .addFinalChoice(dBuilder.optWithBrackets(5), 1);
+
+                case 3 -> treeBuilder.start(7)
+                        .addChoice(dBuilder.optWithBrackets(9),
+                                dBuilder.ans(18,
+                                        Component.translatable("structure.block_factorys_bosses.sandworm_nest").withStyle(ChatFormatting.YELLOW),
+                                        BlockFactorysBossesModEntities.SANDWORM.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
+                                        Component.translatable("structure.block_factorys_bosses.sandworm_nest").withStyle(ChatFormatting.YELLOW),
+                                        BlockFactorysBossesModItems.SANDWORM_DART.get().getDescription().copy().withStyle(ChatFormatting.RED)))
+                        .thenExecute(2)
+                        .addFinalChoice(dBuilder.optWithBrackets(5), 1);
+
+                case 4 -> treeBuilder.start(7)
+                        .addChoice(dBuilder.optWithBrackets(9),
+                                dBuilder.ans(18,
+                                        Component.translatable("structure.block_factorys_bosses.dragon_tower").withStyle(ChatFormatting.RED),
+                                        BlockFactorysBossesModEntities.INFERNAL_DRAGON.get().getDescription().copy().withStyle(ChatFormatting.RED),
+                                        Component.translatable("structure.block_factorys_bosses.dragon_tower").withStyle(ChatFormatting.RED),
+                                        BlockFactorysBossesModItems.DRAGON_BONE.get().getDescription().copy().withStyle(ChatFormatting.GOLD)))
+                        .thenExecute(2)
+                        .addFinalChoice(dBuilder.optWithBrackets(5), 1);
+            }
+        }
         //正式起航，改变一下对话
-        if(PlayerDataManager.mapMarked.get(localPlayer)) {
-            TreeNode root = new TreeNode(dBuilder.ans(8), dBuilder.optWithBrackets(0));//开场白 | 返回
+        else if(compoundTag.getBoolean("map_mark")) {
+            DialogNode root = new DialogNode(dBuilder.ans(8), dBuilder.optWithBrackets(0));//开场白 | 返回
 
-            TreeNode ans1 = new TreeNode(dBuilder.ans(9), dBuilder.optWithBrackets(10))
+            DialogNode ans1 = new DialogNode(dBuilder.ans(9), dBuilder.optWithBrackets(10))
                     .addChild(root);
 
-            TreeNode ans2 = new TreeNode(dBuilder.ans(10), dBuilder.optWithBrackets(11))
+            DialogNode ans2 = new DialogNode(dBuilder.ans(10), dBuilder.optWithBrackets(11))
                     .addChild(root);
 
-            TreeNode ans3 = new TreeNode(dBuilder.ans(14), dBuilder.optWithBrackets(16))
+            DialogNode ans3 = new DialogNode(dBuilder.ans(14), dBuilder.optWithBrackets(16))
                     .addChild(root);
 
             root.addChild(ans1).addChild(ans2).addChild(ans3);
 
-            treeBuilder.setAnswerRoot(root);
+            treeBuilder.setRoot(root);
             return treeBuilder;
-        }
-         if (compoundTag.getBoolean("is_oracle")) {
-            treeBuilder.start(7).addFinalChoice(9, 2);
         } else {
-            TreeNode root = new TreeNode(dBuilder.ans(0), dBuilder.optWithBrackets(0));//开场白 | 返回
+            DialogNode root = new DialogNode(dBuilder.ans(0), dBuilder.optWithBrackets(0));//开场白 | 返回
 
-            TreeNode ans1 = new TreeNode(dBuilder.ans(1), dBuilder.optWithBrackets(1))
+            DialogNode ans1 = new DialogNode(dBuilder.ans(1), dBuilder.optWithBrackets(1))
                     .addChild(root);
 
-            TreeNode ans2 = new TreeNode(dBuilder.ans(2), dBuilder.optWithBrackets(3))
+            DialogNode ans2 = new DialogNode(dBuilder.ans(2), dBuilder.optWithBrackets(3))
                     .addChild(root);
 
-            TreeNode ans3 = new TreeNode(dBuilder.ans(3), dBuilder.optWithBrackets(4))
+            DialogNode ans3 = new DialogNode(dBuilder.ans(3), dBuilder.optWithBrackets(4))
                     .addChild(root);
 
-            if (PlayerDataManager.pillagerKilled.get(localPlayer)) {
-                ans3 = new TreeNode(dBuilder.ans(4), dBuilder.optWithBrackets(7))
-                        .addLeaf(dBuilder.optWithBrackets(5), (byte) 1);
-                root.addChild(new TreeNode(dBuilder.ans(6), dBuilder.optWithBrackets(8))
+            if (compoundTag.getBoolean("pillager_kill")) {
+                ans3 = new DialogNode(dBuilder.ans(4), dBuilder.optWithBrackets(7))
+                        .addChild(root);
+                root.addChild(new DialogNode(dBuilder.ans(6), dBuilder.optWithBrackets(8))
                         .addChild(root));
             }
 
             root.addChild(ans1).addChild(ans2).addChild(ans3);
 
-            treeBuilder.setAnswerRoot(root);
+            treeBuilder.setRoot(root);
         }
         return treeBuilder;
     }
 
     @Override
     public void handleNpcInteraction(ServerPlayer player, int code) {
+        if(code == 4) {
+            level().playSound(null, getX(), getY(), getZ(), SoundEvents.WITCH_AMBIENT, SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
         if (code == 3) {
             //TODO 进入战灵维度
+
         }
-        if (code == 2) {
-            //揭示预言，即解锁新玩法。根据记录的id解锁，初始阶段0， 1解锁时装和武器 2解锁盔甲和boss图鉴，3解锁附魔地狱末地，具体在FTB看
+
+        //对下面的补充，对话结束再说
+        if(code == 1) {
+            TCRAdvancementData.finishAdvancement("mark_map", player);
             int stage = PlayerDataManager.stage.getInt(player);
-            TCRAdvancementData.finishAdvancement("stage" + (stage + 1), player);
-            PlayerDataManager.stage.put(player, stage + 1D);
-            if(stage + 1 <= 3) {
+            if(stage <= 3) {
                 player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_ftb_page"), false);
             }
+            if(stage <= 5) {
+                player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
+            }
+            startTick = tickCount;
+        }
+
+        if (code == 2) {
+            //揭示预言，即解锁新玩法。根据记录的id解锁，初始阶段0， 1解锁时装和武器 2解锁盔甲和boss图鉴，3解锁附魔地狱末地，具体在FTB看
+            //同时按阶段来解锁boss提示
+            int stage = PlayerDataManager.stage.getInt(player);
+            int newStage = stage + 1;
+            if(newStage > 5) {
+                return;
+            }
+            TCRAdvancementData.finishAdvancement("stage" + (newStage), player);
+            PlayerDataManager.stage.put(player, ((double) newStage));
             level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
             if (player.getMainHandItem().is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())) {
                 player.getMainHandItem().shrink(1);
             } else if (player.getOffhandItem().is(TCRItems.ANCIENT_ORACLE_FRAGMENT.get())){
                 player.getOffhandItem().shrink(1);
             }
-        }
-        if (code == 1) {
-            if (!PlayerDataManager.mapMarked.get(player)) {
-                ItemUtil.addItem(player, FTBQuestsItems.BOOK.get(), 1, true);//给任务书
-                ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1, true);//给号角
-                //地图上标记位置
-                Vec2i cursed = WorldUtil.getNearbyStructurePos(player, "aquamirae:ship");//船长
-                if (cursed != null) {
-                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(cursed.x, 64, cursed.y), WaypointColor.BLUE);
-                }
-                Vec2i desert = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:sandworm_nest");//沙漠蠕虫巢穴
-                if (desert != null) {
-                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(desert.x, 64, desert.y), WaypointColor.YELLOW);
-                }
-                Vec2i flame = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:dragon_tower");//龙之塔
-                if (flame != null) {
-                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(flame.x, 256, flame.y), WaypointColor.RED);
-                }
 
-                Vec2i abyss = WorldUtil.getNearbyStructurePos(player, WorldUtil.COVES);//隐秘水湾
-                if (abyss != null) {
-                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), new BlockPos(abyss.x, 156, abyss.y), WaypointColor.DARK_BLUE);
-                }
-
-                Vec2i storm = WorldUtil.getNearbyStructurePos(player, WorldUtil.SKY_ISLAND);//天空岛
-                if (storm != null) {
-                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(storm.x, 230, storm.y), WaypointColor.AQUA);
-                }
-
-                player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.END_PORTAL_SPAWN, player.getSoundSource(), 1.0F, 1.0F);
-                TCRAdvancementData.finishAdvancement("mark_map", player);
+            if(!PlayerDataManager.mapMarked.get(player)){
+                ItemUtil.addItem(player, FTBQuestsItems.BOOK.get(), 1);
                 PlayerDataManager.mapMarked.put(player, true);
             }
+            Vec2i pos = null;
+            if(newStage == 1) {
+                pos = WorldUtil.getNearbyStructurePos(player, WorldUtil.SKY_ISLAND);//天空岛
+                if (pos != null) {
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("storm_pos"), new BlockPos(pos.x, 230, pos.y), WaypointColor.AQUA);
+                }
+            }
 
-            player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
+            if(newStage == 2) {
+                pos = WorldUtil.getNearbyStructurePos(player, WorldUtil.COVES);//隐秘水湾
+                if (pos != null) {
+                    BlockPos covesPos = new BlockPos(pos.x, 156, pos.y);
+                    TCRLevelSaveData.get(player.serverLevel()).setCoversPos(covesPos);
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("abyss_pos"), covesPos, WaypointColor.DARK_BLUE);
+                }
+            }
+
+            if(newStage == 3) {
+                ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1, true);//给号角
+                pos = WorldUtil.getNearbyStructurePos(player, "aquamirae:ship");//船长
+                if (pos != null) {
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("cursed_pos"), new BlockPos(pos.x, 64, pos.y), WaypointColor.BLUE);
+                }
+            }
+
+            if(newStage == 4) {
+                pos = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:sandworm_nest");//沙漠蠕虫巢穴
+                if (pos != null) {
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(pos.x, 64, pos.y), WaypointColor.YELLOW);
+                }
+            }
+
+            if(newStage == 5) {
+                pos = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:dragon_tower");//龙之塔
+                if (pos != null) {
+                    WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(pos.x, 256, pos.y), WaypointColor.RED);
+                }
+            }
+
+            if(pos != null) {
+                from = player.getEyePosition();
+                Vec3 target = new Vec3(pos.x, player.getEyeY(), pos.y);
+                dir = target.subtract(from).normalize();
+            }
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.END_PORTAL_SPAWN, player.getSoundSource(), 1.0F, 1.0F);
         }
+
         if(!PlayerDataManager.pillagerKilled.get(player)) {
             DialogueComponentBuilder dBuilder = new DialogueComponentBuilder(this);
             player.displayClientMessage(dBuilder.buildDialogue(this, dBuilder.ans(3)), false);

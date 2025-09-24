@@ -26,8 +26,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WorldUtil {
+    public static final Vec3i GIRL_POS = new Vec3i(80, 74, -133);
+    public static final Vec3i GIRL_PORTAL_POS = new Vec3i(80, 73, -138);
     public static final Vec3i START_POS = new Vec3i(78, 65, -193);
     public static final Vec3 CENTER_POS = new Vec3(-19, 65, -79);
+    public static final Vec3 GUIDER_POS = new Vec3(-186, 85, -191);
     public static final String COVES = "trek:overworld/very_rare/coves";
     public static final String SKY_ISLAND = "trek:overworld/very_rare/floating_farm_large";
     public static Vec2i storm, flame, abyss, cursed, desert;
@@ -35,7 +38,7 @@ public class WorldUtil {
     private static final Pattern LOCATE_PATTERN = Pattern.compile(".*?\\[\\s*(-?\\d+)\\s*,\\s*~\\s*,\\s*(-?\\d+)\\s*\\].*");
 
     public static boolean inMainLand(Entity entity) {
-        return entity.position().subtract(CENTER_POS).horizontalDistance() < 250;
+        return entity.level().dimension() == Level.OVERWORLD && entity.position().subtract(CENTER_POS).horizontalDistance() < 250;
     }
 
     public static boolean isInStructure(LivingEntity entity, String structure) {

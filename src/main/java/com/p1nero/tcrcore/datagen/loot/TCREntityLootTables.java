@@ -24,6 +24,7 @@ public class TCREntityLootTables extends EntityLootSubProvider {
     @Override
     public void generate() {
         this.add(TCREntities.GUIDER.get(), emptyLootTable());
+        this.add(TCREntities.GIRL.get(), emptyLootTable());
         this.add(TCREntities.TUTORIAL_GOLEM.get(), emptyLootTable());
     }
 

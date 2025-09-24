@@ -36,7 +36,6 @@
 			y: -5.5d
 		}
 		{
-			dependencies: ["54060FC753C24428"]
 			description: ["右键&d全球资源库&r方块可以从&b全球时装资源库&r中挑选自己喜欢的时装并下载时装文件到&a本地&r。"]
 			icon: "armourers_workshop:skin-library-global"
 			icon_scale: 2.0d
@@ -56,7 +55,7 @@
 			y: -5.5d
 		}
 		{
-			dependencies: ["7DF46FF0EC2E12A8"]
+			dependency_requirement: "one_started"
 			description: [
 				"将&b时装模板&r放入&d时装资源库&r，可以取出我们喜欢的时装。"
 				""
@@ -81,29 +80,34 @@
 		}
 		{
 			can_repeat: true
-			dependencies: ["48B0116CB9456155"]
+			dependency_requirement: "one_started"
 			description: ["[ \"使用时装模板，可以将\", { \"text\": \"资源库\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"04D5BC62BDACB780\" } }, \"里的时装取出来\" ]"]
 			icon: "armourers_workshop:skin-template"
-			icon_scale: 2.0d
 			id: "7DF46FF0EC2E12A8"
+			optional: true
 			rewards: [{
-				count: 4
+				count: 64
 				id: "21F90D5EBFB0FAE5"
-				item: "armourers_workshop:skin-template"
+				item: {
+					Count: 1
+					id: "armourers_workshop:skin-template"
+					tag: {
+						fdbosses: { }
+					}
+				}
 				type: "item"
 			}]
 			shape: "square"
 			tasks: [{
-				id: "11458B0BBA4A1808"
-				item: "minecraft:diamond"
-				type: "item"
+				id: "39738DABD258242F"
+				title: "64个足够了吧"
+				type: "checkmark"
 			}]
 			title: "时装模板"
 			x: 5.0d
 			y: -5.5d
 		}
 		{
-			dependencies: ["04D5BC62BDACB780"]
 			description: ["使用&6镶嵌工作台&r可以将时装和物品绑定在一起，使我们可以在不同的武器下使用不同的时装"]
 			icon: "armourers_workshop:skinning-table"
 			icon_scale: 2.0d

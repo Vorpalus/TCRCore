@@ -1,6 +1,7 @@
 package com.p1nero.tcrcore.save_data;
 
 import com.p1nero.tcrcore.TCRCoreMod;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
@@ -11,9 +12,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.storage.DimensionDataStorage;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class TCRLevelSaveData extends SavedData {
+    private BlockPos coversPos = BlockPos.ZERO;
+    private boolean girlPlaced;
     private boolean stormFinish;
     private boolean desertFinish;
     private boolean cursedFinish;
@@ -55,6 +59,23 @@ public class TCRLevelSaveData extends SavedData {
 
     public static TCRLevelSaveData create() {
         return new TCRLevelSaveData();
+    }
+
+    public void setCoversPos(BlockPos coversPos) {
+        this.coversPos = coversPos;
+    }
+
+    public BlockPos getCoversPos() {
+        return coversPos;
+    }
+
+    public boolean isGirlPlaced() {
+        return girlPlaced;
+    }
+
+    public void setGirlPlaced(boolean girlPlaced) {
+        this.girlPlaced = girlPlaced;
+        setDirty();
     }
 
     public boolean isStormFinish() {
@@ -109,6 +130,10 @@ public class TCRLevelSaveData extends SavedData {
 
     @Override
     public @NotNull CompoundTag save(@NotNull CompoundTag pCompoundTag) {
+        pCompoundTag.putInt("covesPosX", coversPos.getX());
+        pCompoundTag.putInt("covesPosY", coversPos.getY());
+        pCompoundTag.putInt("covesPosZ", coversPos.getZ());
+        pCompoundTag.putBoolean("girlPlaced", girlPlaced);
         pCompoundTag.putBoolean("stormFinish", stormFinish);
         pCompoundTag.putBoolean("desertFinish", desertFinish);
         pCompoundTag.putBoolean("cursedFinish", cursedFinish);
@@ -119,6 +144,8 @@ public class TCRLevelSaveData extends SavedData {
     }
 
     public void load(CompoundTag nbt) {
+        this.coversPos = new BlockPos(nbt.getInt("covesPosX"), nbt.getInt("covesPosY"), nbt.getInt("covesPosZ"));
+        this.girlPlaced = nbt.getBoolean("girlPlaced");
         this.stormFinish = nbt.getBoolean("stormFinish");
         this.desertFinish = nbt.getBoolean("desertFinish");
         this.cursedFinish = nbt.getBoolean("cursedFinish");

@@ -42,6 +42,10 @@ public abstract class TCRLangProvider extends LanguageProvider {
         this.add("biome." + TCRCoreMod.MOD_ID + "." + biome.location().getPath(), name);
     }
 
+    public void addTCRItemInfo(Item item, String info) {
+        this.add(item.getDescriptionId() + ".tcr_info", info);
+    }
+
     /**
      * Skill 此时未注册不能run
      */

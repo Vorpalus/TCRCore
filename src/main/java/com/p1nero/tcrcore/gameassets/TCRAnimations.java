@@ -2,6 +2,7 @@ package com.p1nero.tcrcore.gameassets;
 import com.p1nero.tcrcore.TCRCoreMod;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -71,7 +72,14 @@ public class TCRAnimations {
                             .addProperty(AnimationProperty.ActionAnimationProperty.NO_GRAVITY_TIME, TimePairList.create(0.15F, 0.85F))
                             .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE)
                             .addProperty(AnimationProperty.StaticAnimationProperty.POSE_MODIFIER, Animations.ReusableSources.ROOT_X_MODIFIER)
-                            .addEvents(AnimationProperty.StaticAnimationProperty.ON_END_EVENTS, AnimationEvent.SimpleEvent.create(Animations.ReusableSources.RESTORE_BOUNDING_BOX, AnimationEvent.Side.BOTH))
+                            .addEvents(AnimationProperty.StaticAnimationProperty.ON_END_EVENTS, AnimationEvent.SimpleEvent.create(Animations.ReusableSources.RESTORE_BOUNDING_BOX, AnimationEvent.Side.BOTH), AnimationEvent.SimpleEvent.create(((livingEntityPatch, assetAccessor, animationParameters) -> {
+                                if(livingEntityPatch.getOriginal() instanceof Player player) {
+                                    if(player.isInWater()) {
+                                        player.setSwimming(true);
+                                        player.setSprinting(true);
+                                    }
+                                }
+                            }), AnimationEvent.Side.BOTH))
                             .addEvents(AnimationProperty.StaticAnimationProperty.TICK_EVENTS, AnimationEvent.SimpleEvent.create(Animations.ReusableSources.RESIZE_BOUNDING_BOX, AnimationEvent.Side.BOTH)
                                     .params(EntityDimensions.scalable(0.6F, 1.0F)))
                             .newTimePair(0.0F, 0.8F)

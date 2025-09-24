@@ -1,301 +1,425 @@
 {
-	"nodes": [
-		{
-			"skill": "dodge_parry_reward:health_boost1",
-			"position_in_screen": [20, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:health_boost2",
-			"position_in_screen": [20, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:health_boost1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:health_boost3",
-			"position_in_screen": [20, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:health_boost2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:health_boost4",
-			"position_in_screen": [20, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:health_boost3"
-				}
-			]
-		},
+  "nodes": [
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        330,
+        250
+      ],
+      "skill": "dodge_parry_reward:health_boost1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:health_boost1"
+        }
+      ],
+      "position_in_screen": [
+        380,
+        250
+      ],
+      "skill": "dodge_parry_reward:health_boost2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:health_boost2"
+        }
+      ],
+      "position_in_screen": [
+        430,
+        250
+      ],
+      "skill": "dodge_parry_reward:health_boost3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:health_boost3"
+        }
+      ],
+      "position_in_screen": [
+        480,
+        250
+      ],
+      "skill": "dodge_parry_reward:health_boost4"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        306,
+        306
+      ],
+      "skill": "dodge_parry_reward:absorb1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:absorb1"
+        }
+      ],
+      "position_in_screen": [
+        341,
+        341
+      ],
+      "skill": "dodge_parry_reward:absorb2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:absorb2"
+        }
+      ],
+      "position_in_screen": [
+        377,
+        377
+      ],
+      "skill": "dodge_parry_reward:absorb3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:absorb3"
+        }
+      ],
+      "position_in_screen": [
+        412,
+        412
+      ],
+      "skill": "dodge_parry_reward:absorb4"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        250,
+        330
+      ],
+      "skill": "dodge_parry_reward:heal1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:heal1"
+        }
+      ],
+      "position_in_screen": [
+        250,
+        380
+      ],
+      "skill": "dodge_parry_reward:heal2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:heal2"
+        }
+      ],
+      "position_in_screen": [
+        250,
+        430
+      ],
+      "skill": "dodge_parry_reward:heal3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:heal3"
+        }
+      ],
+      "position_in_screen": [
+        250,
+        480
+      ],
+      "skill": "dodge_parry_reward:heal4"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        194,
+        306
+      ],
+      "skill": "dodge_parry_reward:resist1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:resist1"
+        }
+      ],
+      "position_in_screen": [
+        159,
+        341
+      ],
+      "skill": "dodge_parry_reward:resist2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:resist2"
+        }
+      ],
+      "position_in_screen": [
+        123,
+        377
+      ],
+      "skill": "dodge_parry_reward:resist3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:resist3"
+        }
+      ],
+      "position_in_screen": [
+        88,
+        412
+      ],
+      "skill": "dodge_parry_reward:resist4"
+    },
 
-
-		{
-			"skill": "dodge_parry_reward:absorb1",
-			"position_in_screen": [90, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:absorb2",
-			"position_in_screen": [90, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:absorb1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:absorb3",
-			"position_in_screen": [90, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:absorb2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:absorb4",
-			"position_in_screen": [90, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:absorb3"
-				}
-			]
-		},
-
-
-		{
-			"skill": "dodge_parry_reward:heal1",
-			"position_in_screen": [160, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:heal2",
-			"position_in_screen": [160, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:heal1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:heal3",
-			"position_in_screen": [160, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:heal2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:heal4",
-			"position_in_screen": [160, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:heal3"
-				}
-			]
-		},
-
-
-		{
-			"skill": "dodge_parry_reward:resist1",
-			"position_in_screen": [230, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:resist2",
-			"position_in_screen": [230, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:resist1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:resist3",
-			"position_in_screen": [230, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:resist2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:resist4",
-			"position_in_screen": [230, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:resist3"
-				}
-			]
-		},
-
-
-		{
-			"skill": "dodge_parry_reward:stun_imm1",
-			"position_in_screen": [300, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:stun_imm2",
-			"position_in_screen": [300, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:stun_imm1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:stun_imm3",
-			"position_in_screen": [300, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:stun_imm2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:stun_imm4",
-			"position_in_screen": [300, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:stun_imm3"
-				}
-			]
-		},
-
-
-		{
-			"skill": "dodge_parry_reward:damage_boost1",
-			"position_in_screen": [370, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:damage_boost2",
-			"position_in_screen": [370, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:damage_boost1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:damage_boost3",
-			"position_in_screen": [370, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:damage_boost2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:damage_boost4",
-			"position_in_screen": [370, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:damage_boost3"
-				}
-			]
-		},
-
-
-		{
-			"skill": "dodge_parry_reward:speed1",
-			"position_in_screen": [440, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:speed2",
-			"position_in_screen": [440, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:speed1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:speed3",
-			"position_in_screen": [440, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:speed2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:speed4",
-			"position_in_screen": [440, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:speed3"
-				}
-			]
-		},
-
-
-
-		{
-			"skill": "dodge_parry_reward:stamina1",
-			"position_in_screen": [510, 30],
-			"ability_points": 2
-		},
-		{
-			"skill": "dodge_parry_reward:stamina2",
-			"position_in_screen": [510, 90],
-			"ability_points": 4,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:stamina1"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:stamina3",
-			"position_in_screen": [510, 150],
-			"ability_points": 6,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:stamina2"
-				}
-			]
-		},
-		{
-			"skill": "dodge_parry_reward:stamina4",
-			"position_in_screen": [510, 210],
-			"ability_points": 8,
-			"parents": [
-				{
-					"skill": "dodge_parry_reward:stamina3"
-				}
-			]
-		}
-
-	],
-	"priority": 0
+    {
+      "skill": "tcrcore:water_avoid",
+      "position_in_screen": [223, 250],
+      "custom_condition": true,
+      "unlock_tip": "unlock_tip.tcrcore.battleborn.water_avoid"
+    },
+    {
+      "skill": "tcrcore:fire_avoid",
+      "position_in_screen": [276, 250],
+      "custom_condition": true,
+      "unlock_tip": "unlock_tip.tcrcore.battleborn.fire_avoid"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        170,
+        250
+      ],
+      "skill": "dodge_parry_reward:stun_imm1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:stun_imm1"
+        }
+      ],
+      "position_in_screen": [
+        120,
+        250
+      ],
+      "skill": "dodge_parry_reward:stun_imm2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:stun_imm2"
+        }
+      ],
+      "position_in_screen": [
+        70,
+        250
+      ],
+      "skill": "dodge_parry_reward:stun_imm3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:stun_imm3"
+        }
+      ],
+      "position_in_screen": [
+        20,
+        250
+      ],
+      "skill": "dodge_parry_reward:stun_imm4"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        194,
+        194
+      ],
+      "skill": "dodge_parry_reward:damage_boost1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:damage_boost1"
+        }
+      ],
+      "position_in_screen": [
+        159,
+        159
+      ],
+      "skill": "dodge_parry_reward:damage_boost2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:damage_boost2"
+        }
+      ],
+      "position_in_screen": [
+        123,
+        123
+      ],
+      "skill": "dodge_parry_reward:damage_boost3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:damage_boost3"
+        }
+      ],
+      "position_in_screen": [
+        88,
+        88
+      ],
+      "skill": "dodge_parry_reward:damage_boost4"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        250,
+        170
+      ],
+      "skill": "dodge_parry_reward:speed1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:speed1"
+        }
+      ],
+      "position_in_screen": [
+        250,
+        120
+      ],
+      "skill": "dodge_parry_reward:speed2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:speed2"
+        }
+      ],
+      "position_in_screen": [
+        250,
+        70
+      ],
+      "skill": "dodge_parry_reward:speed3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:speed3"
+        }
+      ],
+      "position_in_screen": [
+        250,
+        20
+      ],
+      "skill": "dodge_parry_reward:speed4"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "position_in_screen": [
+        306,
+        194
+      ],
+      "skill": "dodge_parry_reward:stamina1"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:stamina1"
+        }
+      ],
+      "position_in_screen": [
+        341,
+        159
+      ],
+      "skill": "dodge_parry_reward:stamina2"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:stamina2"
+        }
+      ],
+      "position_in_screen": [
+        377,
+        123
+      ],
+      "skill": "dodge_parry_reward:stamina3"
+    },
+    {
+      "ability_points": 1,
+      "hidden": false,
+      "parents": [
+        {
+          "skill": "dodge_parry_reward:stamina3"
+        }
+      ],
+      "position_in_screen": [
+        412,
+        88
+      ],
+      "skill": "dodge_parry_reward:stamina4"
+    }
+  ]
 }

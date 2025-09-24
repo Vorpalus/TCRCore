@@ -3,7 +3,13 @@
 	default_quest_shape: ""
 	filename: "6F9A7DF2FD111443"
 	group: ""
-	icon: "fantasy_armor:dragonslayer_chestplate"
+	icon: {
+		Count: 1
+		id: "fantasy_armor:dragonslayer_chestplate"
+		tag: {
+			Damage: 0
+		}
+	}
 	id: "6F9A7DF2FD111443"
 	images: [{
 		alpha: 64
@@ -26,7 +32,7 @@
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon: "fantasy_armor:moon_crystal"
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "6552F3D1C32E5C75"
 			invisible: true
 			rewards: [{
@@ -46,12 +52,12 @@
 			}]
 			title: "天工护世玄甲谱"
 			x: 0.0d
-			y: 0.0d
+			y: 2.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["&d皎月水晶&r锻造"]
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "7B9624C198F07020"
 			rewards: [{
 				id: "30E35F3F8FAE4A06"
@@ -64,42 +70,90 @@
 			tasks: [
 				{
 					id: "1FD49B33CBF8DA91"
-					item: "fantasy_armor:hero_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:hero_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "72D73D6166E403BA"
-					item: "fantasy_armor:malenia_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:malenia_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "36F7828C57466CD1"
-					item: "fantasy_armor:chess_board_knight_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:chess_board_knight_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "16A7D2D7F3F28B50"
-					item: "fantasy_armor:gilded_hunt_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:gilded_hunt_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "365D94FBA274F212"
-					item: "fantasy_armor:dragonslayer_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:dragonslayer_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "3C938F3915DDB18F"
-					item: "fantasy_armor:spark_of_dawn_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:spark_of_dawn_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "584F3F0AF1189FFD"
-					item: "fantasy_armor:redeemer_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:redeemer_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "40C29CC4BBC8BA69"
-					item: "fantasy_armor:golden_horns_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:golden_horns_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
@@ -110,7 +164,7 @@
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["&d皎月水晶&r锻造"]
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "4AB65A5955823F0D"
 			rewards: [{
 				id: "203FF9EBF99D0C37"
@@ -123,22 +177,46 @@
 			tasks: [
 				{
 					id: "7567149FA5516BB9"
-					item: "fantasy_armor:wind_worshipper_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:wind_worshipper_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "2A515360AA14FF22"
-					item: "fantasy_armor:lady_maria_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:lady_maria_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "52C1E219F37CDA41"
-					item: "fantasy_armor:wandering_wizard_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:wandering_wizard_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "5258BB7ED9A0B134"
-					item: "fantasy_armor:thief_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:thief_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
@@ -149,7 +227,7 @@
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["&d皎月水晶&r锻造"]
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "05DFD02A3AC11DE8"
 			rewards: [{
 				id: "3E31656CDA57D1DC"
@@ -162,42 +240,90 @@
 			tasks: [
 				{
 					id: "1281FC7F70B4E6B7"
-					item: "fantasy_armor:sunset_wings_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:sunset_wings_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "5ADBB2F818392AD5"
-					item: "fantasy_armor:dark_cover_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:dark_cover_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "76CBA5C174D1A3DF"
-					item: "fantasy_armor:golden_execution_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:golden_execution_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "0B118E9313DEF311"
-					item: "fantasy_armor:flesh_of_the_feaster_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:flesh_of_the_feaster_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "785950D3DC474E2C"
-					item: "fantasy_armor:evening_ghost_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:evening_ghost_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "7E322A257BA7714C"
-					item: "fantasy_armor:crucible_knight_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:crucible_knight_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "40DCDCA4C0879ED3"
-					item: "fantasy_armor:ronin_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:ronin_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "35B0FE156872192D"
-					item: "fantasy_armor:fog_guard_helmet"
+					item: {
+						Count: 1
+						id: "fantasy_armor:fog_guard_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
@@ -207,8 +333,14 @@
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "aquamirae:three_bolt_helmet"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "aquamirae:three_bolt_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 1.5d
 			id: "5433D8210E45724B"
 			rewards: [{
 				id: "7635BF37E8DC8E79"
@@ -216,38 +348,68 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "击败&6可妮莉亚&r概率掉落头盔"
+			subtitle: "击败&6可妮莉亚船长&r获得"
 			tasks: [
 				{
 					id: "15E38B29E15B1684"
-					item: "aquamirae:three_bolt_helmet"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "0918BA29A2CC5960"
-					item: "aquamirae:three_bolt_suit"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_suit"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "07C866732B5EBBB8"
-					item: "aquamirae:three_bolt_boots"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "49829D98ED8EF190"
-					item: "aquamirae:three_bolt_leggings"
+					item: {
+						Count: 1
+						id: "aquamirae:three_bolt_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "潜水套装"
-			x: -1.5d
-			y: -5.0d
+			x: 0.0d
+			y: -2.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["击败&d尼赫莫斯魔像&r掉落物锻造"]
-			icon: "fromtheshadows:diabolium_helmet"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "fromtheshadows:diabolium_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 1.5d
 			id: "1779FEDC1CD752E9"
 			rewards: [{
 				id: "7CF15E7C0866731A"
@@ -259,28 +421,52 @@
 			tasks: [
 				{
 					id: "554A5A2845ABD3FA"
-					item: "fromtheshadows:diabolium_chest"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_chest"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "7CA52384A2948395"
-					item: "fromtheshadows:diabolium_helmet"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "1CC2A5D78D2328D5"
-					item: "fromtheshadows:diabolium_leggings"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "魔金套装"
 			x: -1.0d
-			y: -3.5d
+			y: -0.40000000000000036d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "fromtheshadows:crust_helmet"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "fromtheshadows:crust_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 1.5d
 			id: "17F1EC5A58E17BD3"
 			rewards: [{
 				id: "5E29FE89C5F38369"
@@ -288,60 +474,95 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "击败&6蛮屠巨兽&r掉落物锻造"
+			subtitle: "击败&6蛮屠巨兽&r掉落物在摆渡人处交易"
 			tasks: [
 				{
 					id: "18AD35A7F0CA77E8"
-					item: "fromtheshadows:crust_chest"
+					item: {
+						Count: 1
+						id: "fromtheshadows:crust_chest"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "786B2CCB8E28EBA8"
-					item: "fromtheshadows:crust_helmet"
+					item: {
+						Count: 1
+						id: "fromtheshadows:crust_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "7479B77E6EFB2443"
-					item: "fromtheshadows:crust_leggings"
+					item: {
+						Count: 1
+						id: "fromtheshadows:crust_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "岩壳套装"
 			x: 1.0d
-			y: -3.5d
+			y: -0.40000000000000036d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "cataclysm:bone_reptile_chestplate"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "cataclysm:bone_reptile_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
 			id: "3CB062BCA9BD0FEC"
 			rewards: [{
 				id: "67F6375E1C6965ED"
 				type: "xp"
 				xp: 100
 			}]
-			shape: "rsquare"
-			size: 1.5d
+			shape: "none"
+			size: 2.0d
 			subtitle: "&6远古遗魂幻境&r内掉落物锻造"
 			tasks: [
 				{
 					id: "0CA15BC3816C2B49"
-					item: "cataclysm:bone_reptile_helmet"
+					item: {
+						Count: 1
+						id: "cataclysm:bone_reptile_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "024CBBE9E541FCD9"
-					item: "cataclysm:bone_reptile_chestplate"
+					item: {
+						Count: 1
+						id: "cataclysm:bone_reptile_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "骸龙套装"
-			x: -3.75d
-			y: 2.25d
+			x: -4.0d
+			y: -5.75d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "7587A089143BA6FA"
 			rewards: [{
 				id: "5E08F1BB3905181F"
@@ -359,100 +580,176 @@
 				}
 				{
 					id: "58C4C16D05E7B880"
-					item: "block_factorys_bosses:dragon_bones_chestplate"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bones_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "385349F8358256BE"
-					item: "block_factorys_bosses:dragon_bones_leggings"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bones_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "2B896F597055AE23"
-					item: "block_factorys_bosses:dragon_bones_boots"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bones_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "古龙套——龙裔套装"
-			x: -8.4d
-			y: -2.4d
+			x: -1.2d
+			y: -3.5999999999999996d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "cataclysm:ignitium_elytra_chestplate"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "cataclysm:ignitium_elytra_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
 			id: "66B95BDCAFA07D10"
-			shape: "square"
-			size: 1.5d
+			shape: "none"
+			size: 2.0d
 			subtitle: "&6伊格尼斯幻境&r内掉落物锻造"
 			tasks: [
 				{
 					id: "54AB2623AF09B530"
-					item: "cataclysm:ignitium_helmet"
+					item: {
+						Count: 1
+						id: "cataclysm:ignitium_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "59A4FEFE2F3CEFCA"
-					item: "cataclysm:ignitium_elytra_chestplate"
+					item: {
+						Count: 1
+						id: "cataclysm:ignitium_elytra_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "3F76E254E137165C"
-					item: "cataclysm:ignitium_leggings"
+					item: {
+						Count: 1
+						id: "cataclysm:ignitium_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "37E2F83440331CB7"
-					item: "cataclysm:ignitium_boots"
+					item: {
+						Count: 1
+						id: "cataclysm:ignitium_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "腾炎套装"
 			x: 0.0d
-			y: 2.0d
+			y: -6.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "cataclysm:cursium_chestplate"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "cataclysm:cursium_chestplate"
+				tag: {
+					Damage: 0
+				}
+			}
 			id: "54C39AAE680800C8"
 			rewards: [{
 				id: "6E2B89BC984681E7"
 				type: "xp"
 				xp: 100
 			}]
-			shape: "rsquare"
-			size: 1.5d
+			shape: "none"
+			size: 2.0d
 			subtitle: "&6玛莱迪克特斯幻境&r内掉落物锻造"
 			tasks: [
 				{
 					id: "063FF3ADA25F3176"
-					item: "cataclysm:cursium_helmet"
+					item: {
+						Count: 1
+						id: "cataclysm:cursium_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "6D211B98C9FC15C2"
-					item: "cataclysm:cursium_chestplate"
+					item: {
+						Count: 1
+						id: "cataclysm:cursium_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "38A122705B16CFDB"
-					item: "cataclysm:cursium_leggings"
+					item: {
+						Count: 1
+						id: "cataclysm:cursium_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "11B217EAD6490AF1"
-					item: "cataclysm:cursium_boots"
+					item: {
+						Count: 1
+						id: "cataclysm:cursium_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "咒魂套装"
-			x: 3.75d
-			y: 2.25d
+			x: 3.5d
+			y: -5.75d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon_scale: 2.0d
+			icon_scale: 1.5d
 			id: "083E31035AB51591"
 			rewards: [{
 				id: "75FAC95E2EDE910B"
@@ -465,33 +762,63 @@
 			tasks: [
 				{
 					id: "70CF4BD036E613E0"
-					item: "monsterexpansion:skrythe_chestplate"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "0C4B82D4296CD742"
-					item: "monsterexpansion:skrythe_helmet"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "2CEFE8214EE01EE2"
-					item: "monsterexpansion:skrythe_leggings"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "4C71B2882106DC90"
-					item: "monsterexpansion:skrythe_boots"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "古龙套——斯克里兹套装"
-			x: 8.4d
-			y: -2.4d
+			x: 1.2d
+			y: -3.5999999999999996d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "aquamirae:abyssal_tiara"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "aquamirae:abyssal_tiara"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 1.5d
 			id: "374137744E10EF8C"
 			rewards: [{
 				id: "4FE4FD3C7E8B0CDE"
@@ -503,38 +830,74 @@
 			tasks: [
 				{
 					id: "5501F1611A85B204"
-					item: "aquamirae:abyssal_heaume"
+					item: {
+						Count: 1
+						id: "aquamirae:abyssal_heaume"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "2264063B067FB694"
-					item: "aquamirae:abyssal_brigantine"
+					item: {
+						Count: 1
+						id: "aquamirae:abyssal_brigantine"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "18881AEE2C316748"
-					item: "aquamirae:abyssal_leggings"
+					item: {
+						Count: 1
+						id: "aquamirae:abyssal_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "5156B6ECFE9E9968"
-					item: "aquamirae:abyssal_boots"
+					item: {
+						Count: 1
+						id: "aquamirae:abyssal_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "0F71C6903E78E59B"
-					item: "aquamirae:abyssal_tiara"
+					item: {
+						Count: 1
+						id: "aquamirae:abyssal_tiara"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "晦暗深海套装"
-			x: 0.0d
-			y: -5.0d
+			x: -1.5d
+			y: -2.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			icon: "aquamirae:terrible_helmet"
-			icon_scale: 2.0d
+			icon: {
+				Count: 1
+				id: "aquamirae:terrible_helmet"
+				tag: {
+					Damage: 0
+				}
+			}
+			icon_scale: 1.5d
 			id: "2FEA17DDB5B78674"
 			rewards: [{
 				id: "7ACC9817E6EBF321"
@@ -546,64 +909,51 @@
 			tasks: [
 				{
 					id: "29F882141AA57A7F"
-					item: "aquamirae:terrible_helmet"
+					item: {
+						Count: 1
+						id: "aquamirae:terrible_helmet"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "0692A036CA0857D7"
-					item: "aquamirae:terrible_chestplate"
+					item: {
+						Count: 1
+						id: "aquamirae:terrible_chestplate"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "5CA224CFFED2D367"
-					item: "aquamirae:terrible_leggings"
+					item: {
+						Count: 1
+						id: "aquamirae:terrible_leggings"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 				{
 					id: "582F0313994E6899"
-					item: "aquamirae:terrible_boots"
+					item: {
+						Count: 1
+						id: "aquamirae:terrible_boots"
+						tag: {
+							Damage: 0
+						}
+					}
 					type: "item"
 				}
 			]
 			title: "可怖套装"
 			x: 1.5d
-			y: -5.0d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
-			icon: "efn:ruinfighter_helmet"
-			icon_scale: 2.0d
-			id: "1567B2B30EBDF46F"
-			rewards: [{
-				id: "46E66164A395189C"
-				type: "xp"
-				xp: 100
-			}]
-			shape: "rsquare"
-			tasks: [
-				{
-					id: "1B91ACC186AB3267"
-					item: "efn:ruinfighter_helmet"
-					type: "item"
-				}
-				{
-					id: "6753ECDD81113048"
-					item: "efn:ruinfighter_chestplate"
-					type: "item"
-				}
-				{
-					id: "70AF39EFF6F51AA3"
-					item: "efn:ruinfighter_leggings"
-					type: "item"
-				}
-				{
-					id: "711CC61A70016CEC"
-					item: "efn:ruinfighter_boots"
-					type: "item"
-				}
-			]
-			title: "墟骸战士套装"
-			x: 0.0d
 			y: -2.0d
 		}
 	]

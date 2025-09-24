@@ -35,4 +35,10 @@ public class FireAvoidSkill extends Skill {
         super.onRemoved(container);
         container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DODGE_SUCCESS_EVENT, EVENT_UUID);
     }
+
+    @Override
+    public void updateContainer(SkillContainer container) {
+        super.updateContainer(container);
+        container.getExecutor().getOriginal().clearFire();
+    }
 }
