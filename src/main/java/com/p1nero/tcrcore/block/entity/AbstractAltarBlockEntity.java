@@ -124,7 +124,6 @@ public abstract class AbstractAltarBlockEntity extends BlockEntity {
             if(flag) {
                 if(pPlayer instanceof ServerPlayer player) {
                     player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.PORTAL_TRAVEL), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
-                    player.displayClientMessage(TCRCoreMod.getInfo("reset_when_no_player").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
                 }
                 return;
             }

@@ -1,10 +1,15 @@
 package com.p1nero.tcrcore.network.packet.clientbound.helper;
 
+import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
+import com.p1nero.tcrcore.client.gui.TCREndScreen;
+import com.p1nero.tcrcore.network.TCRPacketHandler;
+import com.p1nero.tcrcore.network.packet.serverbound.EndScreenCallbackPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ServerboundClientCommandPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -50,6 +55,16 @@ public class TCRClientHandler {
     public static void syncTCRPlayer(CompoundTag compoundTag) {
         if(Minecraft.getInstance().player != null && Minecraft.getInstance().level != null) {
             TCRCapabilityProvider.getTCRPlayer(Minecraft.getInstance().player).loadNBTData(compoundTag);
+        }
+    }
+
+    public static void openEndScreen(){
+        if(Minecraft.getInstance().player != null) {
+            Minecraft.getInstance().setScreen(new TCREndScreen(true, ()->{
+                PacketRelay.sendToServer(TCRPacketHandler.INSTANCE, new EndScreenCallbackPacket());
+                Minecraft.getInstance().player.connection.send(new ServerboundClientCommandPacket(ServerboundClientCommandPacket.Action.PERFORM_RESPAWN));
+                Minecraft.getInstance().setScreen(null);
+            }));
         }
     }
 

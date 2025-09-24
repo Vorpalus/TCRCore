@@ -13,6 +13,7 @@ import com.p1nero.tcrcore.events.LivingEntityEventListeners;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
+import com.yesman.epicskills.registry.entry.EpicSkillsItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -82,7 +83,8 @@ public class TCRCoreMod {
                 ModItems.CORAL_CHUNK.get(),
                 Items.DRAGON_EGG,
                 BlockFactorysBossesModItems.KNIGHT_SWORD.get(),
-                EFNItem.DEEPDARK_HEART.get()
+                EFNItem.DEEPDARK_HEART.get(),
+                EpicSkillsItems.ABILIITY_STONE.get()
         ));
     }
 

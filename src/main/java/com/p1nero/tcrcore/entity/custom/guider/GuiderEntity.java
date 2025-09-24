@@ -54,6 +54,9 @@ import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.merlin204.worldgen.WraithonDimensions;
+import org.merlin204.worldgen.portal.PositionTeleporter;
+import org.merlin204.wraithon.Wraithon;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -71,7 +74,8 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private Vec3 from = Vec3.ZERO;
     private Vec3 dir = Vec3.ZERO;
-    private int startTick = 0;
+    private int spawnParticleTimer = 0;
+    private final int particleCount = 20;
     @Nullable
     private Player conversingPlayer;
 
@@ -89,21 +93,23 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
     public void tick() {
         super.tick();
         if(level() instanceof ServerLevel serverLevel) {
-            int particleCount = 20;
             double step = 5.0 / particleCount;
-            for (int i = tickCount - startTick; i <= particleCount; i++) {
-                ParticleOptions particle = ParticleTypes.END_ROD;
-                double distance = i * step;
-                Vec3 particlePos = from.add(dir.scale(distance).add(0, i * 0.1, 0));
-                serverLevel.sendParticles(
-                        particle,
-                        particlePos.x,
-                        particlePos.y,
-                        particlePos.z,
-                        0,
-                        dir.x, dir.y, dir.z,
-                        0.1f
-                );
+            if(spawnParticleTimer > 0) {
+                spawnParticleTimer--;
+                for (int i = particleCount - spawnParticleTimer; i <= particleCount; i++) {
+                    ParticleOptions particle = ParticleTypes.END_ROD;
+                    double distance = i * step;
+                    Vec3 particlePos = from.add(dir.scale(distance).add(0, i * 0.1, 0));
+                    serverLevel.sendParticles(
+                            particle,
+                            particlePos.x,
+                            particlePos.y,
+                            particlePos.z,
+                            0,
+                            dir.x, dir.y, dir.z,
+                            0.1f
+                    );
+                }
             }
         }
     }
@@ -187,13 +193,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                     .thenExecute((dialogueScreen -> GuiderGeoRenderer.useRedModel = true))
                     .addChoice(13, 12)
                     .addChoice(14, 13)
-                    .addFinalChoice(15, 3, (dialogueScreen -> {
-                        //TODO 渲染黑屏+字幕
-                        Minecraft.getInstance().setScreen(new TCREndScreen(true, ()->{
-                            Minecraft.getInstance().setScreen(null);
-                            Minecraft.getInstance().player.displayClientMessage(TCRCoreMod.getInfo("to_be_continue"), false);
-                        }));
-                    }));
+                    .addFinalChoice(15, 3);
             return treeBuilder;
         }
 
@@ -298,9 +298,10 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
         if(code == 4) {
             level().playSound(null, getX(), getY(), getZ(), SoundEvents.WITCH_AMBIENT, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
-        if (code == 3) {
-            //TODO 进入战灵维度
 
+        if (code == 3) {
+            player.changeDimension(player.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY), new PositionTeleporter(Wraithon.PLAYER_SPAWN_POS));
+            player.displayClientMessage(TCRCoreMod.getInfo("wraithon_start_tip"), false);
         }
 
         //对下面的补充，对话结束再说
@@ -313,7 +314,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
             if(stage <= 5) {
                 player.connection.send(new ClientboundSetTitleTextPacket(TCRCoreMod.getInfo("press_to_open_map")));
             }
-            startTick = tickCount;
+            spawnParticleTimer = particleCount;
         }
 
         if (code == 2) {
@@ -382,6 +383,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                 dir = target.subtract(from).normalize();
             }
             player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.END_PORTAL_SPAWN, player.getSoundSource(), 1.0F, 1.0F);
+            return;
         }
 
         if(!PlayerDataManager.pillagerKilled.get(player)) {

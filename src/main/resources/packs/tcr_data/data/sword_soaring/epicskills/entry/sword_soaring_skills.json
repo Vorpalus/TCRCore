@@ -10,7 +10,7 @@
       "skill": "sword_soaring:sword_soaring_apprentice"
     },
     {
-      "ability_points": 5,
+      "ability_points": 2,
       "hidden": false,
       "parents": [
         {
@@ -24,7 +24,7 @@
       "skill": "sword_soaring:sword_soaring_expert"
     },
     {
-      "ability_points": 10,
+      "ability_points": 3,
       "hidden": false,
       "parents": [
         {
@@ -47,7 +47,7 @@
       "skill": "sword_soaring:sword_soaring_elytra_apprentice"
     },
     {
-      "ability_points": 5,
+      "ability_points": 2,
       "hidden": false,
       "parents": [
         {
@@ -61,7 +61,7 @@
       "skill": "sword_soaring:sword_soaring_elytra_expert"
     },
     {
-      "ability_points": 10,
+      "ability_points": 3,
       "hidden": false,
       "parents": [
         {
@@ -93,7 +93,7 @@
       "skill": "sword_soaring:kill_aura_2"
     },
     {
-      "ability_points": 20,
+      "ability_points": 5,
       "hidden": false,
       "parents": [
         {
@@ -140,7 +140,7 @@
       "skill": "sword_soaring:rain_sword"
     },
     {
-      "ability_points": 20,
+      "ability_points": 5,
       "hidden": false,
       "parents": [
         {

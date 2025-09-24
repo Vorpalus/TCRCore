@@ -78,6 +78,7 @@
 	quests: [
 		{
 			description: [
+				"\\n现在&6摆渡人&r处新增 &c地狱&r &d末地&r 传送选项"
 				"\\n当不知如何寻找魔物时，可以请教&6土地公"
 				"\\n进入末地和地狱的方法无需多言，想必你已知晓"
 			]
@@ -96,7 +97,7 @@
 					type: "item"
 				}
 				{
-					count: 10
+					count: 12
 					id: "52673A4ECC9B6C07"
 					item: {
 						Count: 1
@@ -148,11 +149,25 @@
 				}
 			}
 			id: "6FD4134465F4B80A"
-			rewards: [{
-				id: "33F7F3DB93C195CE"
-				item: "cataclysm:music_disc_the_leviathan"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "33F7F3DB93C195CE"
+					item: "cataclysm:music_disc_the_leviathan"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "3FB160267FD9AA47"
+					item: {
+						Count: 1
+						id: "minecraft:diamond_block"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 2.0d
 			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启 \\n&c&l推荐：习得&b【避水咒】&c&l后再进行挑战！&r"
@@ -212,6 +227,18 @@
 					}
 					type: "item"
 				}
+				{
+					count: 4
+					id: "5253C6CB165F0BBD"
+					item: {
+						Count: 1
+						id: "minecraft:diamond_block"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
 			]
 			shape: "rsquare"
 			size: 2.0d
@@ -234,11 +261,25 @@
 				"[ \"点击查看\", { \"text\": \"掉落武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"40217A88C9D46BB1\" } } ]"
 			]
 			id: "588584D95F9A501F"
-			rewards: [{
-				id: "16E7BEA1F0909A4F"
-				item: "cataclysm:music_disc_scylla"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "16E7BEA1F0909A4F"
+					item: "cataclysm:music_disc_scylla"
+					type: "item"
+				}
+				{
+					count: 4
+					id: "52D25163F0FE1C96"
+					item: {
+						Count: 1
+						id: "minecraft:diamond_block"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 2.0d
 			subtitle: "位于对应幻镜之中。幻境需在&3圣殿长廊&r以对应之火种开启"
@@ -286,6 +327,18 @@
 					item: {
 						Count: 1
 						id: "cataclysm:ancient_metal_block"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					count: 4
+					id: "1DD81E755CB56065"
+					item: {
+						Count: 1
+						id: "minecraft:diamond_block"
 						tag: {
 							fdbosses: { }
 						}

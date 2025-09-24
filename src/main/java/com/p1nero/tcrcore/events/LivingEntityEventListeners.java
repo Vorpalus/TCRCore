@@ -9,6 +9,7 @@ import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.registries.EFNItem;
 import com.merlin204.sg.item.SGItems;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
+import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.dialog_lib.events.ServerNpcEntityInteractEvent;
 import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
@@ -19,6 +20,7 @@ import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayItemPickupParticlePacket;
+import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import net.kenddie.fantasyarmor.item.FAItems;
@@ -48,6 +50,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
@@ -59,6 +62,7 @@ import net.unusual.blockfactorysbosses.entity.SandwormEntity;
 import net.unusual.blockfactorysbosses.entity.SwordWaveEntity;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
+import org.merlin204.entity.wraithon.WraithonEntity;
 import yesman.epicfight.api.animation.AnimationPlayer;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -196,13 +200,27 @@ public class LivingEntityEventListeners {
 
                 CommandSourceStack commandSourceStack = player.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 if(!PlayerDataManager.fireAvoidUnlocked.get(player) && WorldUtil.isInStructure(player, WorldUtil.COVES)) {
-                    Objects.requireNonNull(player.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn tcrcore:fire_avoid true");
+                    Objects.requireNonNull(player.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s dodge_parry_reward:passive tcrcore:fire_avoid true");
                     player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
                     PlayerDataManager.fireAvoidUnlocked.put(player, true);
                 }
             }
         });
+
+        if(livingEntity.level() instanceof ServerLevel serverLevel) {
+            if(CataclysmDimensions.LEVELS.contains(serverLevel.dimension()) && livingEntity.getType().is(Tags.EntityTypes.BOSSES)) {
+                TCRDimSaveData.get(serverLevel).setBossKilled(true);
+            }
+
+            if(livingEntity instanceof WraithonEntity) {
+                //TODO 播放bgm
+                serverLevel.players().forEach(serverPlayer -> {
+                    TCRCapabilityProvider.getTCRPlayer(serverPlayer).setTickAfterBossDieLeft(200);
+                });
+            }
+
+        }
 
         if(livingEntity instanceof IronGolem && WorldUtil.isInStructure(livingEntity, WorldUtil.SKY_ISLAND)) {
             ItemUtil.addItemEntity(livingEntity, SGItems.GOLEM_HEART.get(), 1, ChatFormatting.GOLD.getColor().intValue());

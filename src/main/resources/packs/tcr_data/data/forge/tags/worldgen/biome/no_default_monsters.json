@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "cataclysm_dimension:badlands",
+    "cataclysm_dimension:deep_ocean",
+    "cataclysm_dimension:desert",
+    "cataclysm_dimension:nether_wastes",
+    "cataclysm_dimension:snowy_plains",
+    "cataclysm_dimension:soul_sand_valley",
+    "cataclysm_dimension:the_end",
+    "cataclysm_dimension:warm_ocean"
+  ]
+}

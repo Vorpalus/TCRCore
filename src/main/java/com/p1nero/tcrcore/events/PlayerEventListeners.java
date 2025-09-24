@@ -7,12 +7,14 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
+import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.world.capability.AbilityPoints;
 import net.blay09.mods.waystones.block.ModBlocks;
+import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -130,7 +132,8 @@ public class PlayerEventListeners {
             }
 
             if(CataclysmDimensions.LEVELS.contains(serverPlayer.serverLevel().dimension())) {
-                if(event.getLevel().getBlockState(event.getPos()).is(Blocks.CHEST)) {
+                boolean isChest = event.getLevel().getBlockState(event.getPos()).is(Blocks.CHEST) || event.getLevel().getBlockState(event.getPos()).is(noobanidus.mods.lootr.init.ModBlocks.CHEST.get());
+                if(isChest && !TCRDimSaveData.get(serverPlayer.serverLevel()).isBossKilled()) {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_block_no_interact"), true);
                     event.setCanceled(true);
                 }
@@ -199,6 +202,14 @@ public class PlayerEventListeners {
                 event.setCanceled(true);
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("can_not_enter_dim"), true);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerEnterDim(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if(event.getEntity() instanceof ServerPlayer serverPlayer && CataclysmDimensions.LEVELS.contains(event.getTo())) {
+            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("reset_when_no_player").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
+            TCRDimSaveData.get(serverPlayer.getServer().getLevel(event.getTo())).setBossKilled(false);
         }
     }
 

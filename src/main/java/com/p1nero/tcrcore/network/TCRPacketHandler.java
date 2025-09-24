@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.network;
 import com.p1nero.dialog_lib.network.packet.BasePacket;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.packet.clientbound.*;
+import com.p1nero.tcrcore.network.packet.serverbound.EndScreenCallbackPacket;
 import com.p1nero.tcrcore.network.packet.serverbound.ExecuteRiptidePacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -31,8 +32,10 @@ public class TCRPacketHandler {
         register(SyncTCRPlayerPacket.class, SyncTCRPlayerPacket::decode);
         register(AddAvlEntityAfterImageParticle.class, AddAvlEntityAfterImageParticle::decode);
 
+        register(EndScreenCallbackPacket.class, EndScreenCallbackPacket::decode);
         register(ExecuteRiptidePacket.class, ExecuteRiptidePacket::decode);
 
+        register(OpenEndScreenPacket.class, OpenEndScreenPacket::decode);
         register(PlayItemPickupParticlePacket.class, PlayItemPickupParticlePacket::decode);
         register(OpenBanPortalScreenPacket.class, OpenBanPortalScreenPacket::decode);
     }

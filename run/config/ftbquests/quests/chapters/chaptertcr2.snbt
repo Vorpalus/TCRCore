@@ -6,49 +6,16 @@
 	hide_quest_until_deps_visible: true
 	icon: "cataclysm:ceraunus"
 	id: "2D391C2F48D42ABA"
-	images: [
-		{
-			height: 9.0d
-			image: "epicfight:item/golden_spear"
-			rotation: 0.0d
-			width: 9.0d
-			x: -17.5d
-			y: -10.0d
-		}
-		{
-			height: 7.0d
-			image: "epicfight:item/golden_dagger"
-			rotation: 0.0d
-			width: 7.0d
-			x: 7.5d
-			y: -9.5d
-		}
-		{
-			height: 7.0d
-			image: "minecraft:item/golden_sword"
-			rotation: 0.0d
-			width: 7.0d
-			x: -17.5d
-			y: 5.5d
-		}
-		{
-			height: 7.0d
-			image: "epicfight:item/golden_tachi"
-			rotation: 0.0d
-			width: 7.0d
-			x: 8.5d
-			y: 5.5d
-		}
-		{
-			alpha: 200
-			height: 13.5d
-			image: "tcrcore:textures/ftb/weapon_shelf.png"
-			rotation: 0.0d
-			width: 24.0d
-			x: -3.0d
-			y: 0.5d
-		}
-	]
+	images: [{
+		alpha: 200
+		color: 16755200
+		height: 18.0d
+		image: "tcrcore:textures/ftb/weapon_shelf.png"
+		rotation: 0.0d
+		width: 32.0d
+		x: -3.0d
+		y: 1.5d
+	}]
 	order_index: 4
 	quest_links: [ ]
 	quests: [
@@ -121,8 +88,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -15.0d
-			y: -9.0d
+			x: -13.0d
+			y: 2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -163,8 +130,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -15.0d
-			y: -7.5d
+			x: -13.0d
+			y: 3.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -197,8 +164,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -13.5d
-			y: -9.0d
+			x: -11.5d
+			y: 2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -274,8 +241,8 @@
 				}
 				type: "item"
 			}]
-			x: 10.5d
-			y: -9.0d
+			x: 5.5d
+			y: 2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -299,8 +266,8 @@
 				}
 				type: "item"
 			}]
-			x: 12.0d
-			y: -9.0d
+			x: 7.0d
+			y: 2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -324,8 +291,8 @@
 				}
 				type: "item"
 			}]
-			x: 10.5d
-			y: -7.5d
+			x: 5.5d
+			y: 3.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -348,8 +315,8 @@
 				}
 				type: "item"
 			}]
-			x: 12.0d
-			y: -7.5d
+			x: 7.0d
+			y: 3.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -373,8 +340,8 @@
 				}
 				type: "item"
 			}]
-			x: 13.5d
-			y: -9.0d
+			x: 8.5d
+			y: 2.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -447,8 +414,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -15.0d
-			y: 6.0d
+			x: -12.5d
+			y: 6.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -480,8 +447,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -13.5d
-			y: 6.0d
+			x: -11.0d
+			y: 6.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -513,8 +480,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -12.0d
-			y: 6.0d
+			x: -9.5d
+			y: 6.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -566,8 +533,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -15.0d
-			y: 7.5d
+			x: -12.5d
+			y: 8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -619,8 +586,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -13.5d
-			y: 7.5d
+			x: -11.0d
+			y: 8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -743,8 +710,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: 12.5d
-			y: 6.0d
+			x: 5.5d
+			y: 8.0d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -770,8 +737,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: 12.5d
-			y: 4.5d
+			x: 5.5d
+			y: 6.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]
@@ -1054,8 +1021,8 @@
 				optional_task: true
 				type: "item"
 			}]
-			x: -13.5d
-			y: -7.5d
+			x: -11.5d
+			y: 3.5d
 		}
 		{
 			dependencies: ["2F9F109962C8ADF4"]

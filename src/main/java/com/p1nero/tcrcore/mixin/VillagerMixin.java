@@ -60,7 +60,7 @@ public abstract class VillagerMixin extends AbstractVillager {
             if (mainHand.is(Items.EMERALD)) {
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 if(!PlayerDataManager.waterAvoidUnlocked.get(serverPlayer) && WorldUtil.isInStructure(serverPlayer, WorldUtil.COVES)) {
-                    Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn tcrcore:water_avoid true");
+                    Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s dodge_parry_reward:passive tcrcore:water_avoid true");
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
                     level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
                     PlayerDataManager.waterAvoidUnlocked.put(serverPlayer, true);

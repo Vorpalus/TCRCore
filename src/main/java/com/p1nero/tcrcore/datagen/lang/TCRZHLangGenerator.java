@@ -9,6 +9,7 @@ import com.p1nero.tcrcore.client.KeyMappings;
 import com.p1nero.tcrcore.client.gui.BanPortalScreenHandler;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.item.TCRItems;
+import com.yesman.epicskills.registry.entry.EpicSkillsItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
@@ -21,7 +22,7 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
 
     @Override
     protected void addTranslations() {
-        this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "击败[监守者]获取");
+        this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "击败[监守者]或[可妮莉亚船长]获取");
         this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_SKULL.get(), "击败[炼狱魔龙]获取");
         this.addTCRItemInfo(ModItems.CORAL_CHUNK.get(), "于§d利维坦幻境§r击败[珊瑚巨像]获取");
         this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_BONE.get(), "击败[炼狱魔龙]获取");
@@ -29,6 +30,7 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.addTCRItemInfo(ModItems.CHITIN_CLAW.get(), "于§3斯库拉幻境§r击败巨钳守卫获取");
         this.addTCRItemInfo(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), "于§c地狱§r击败[冥界骑士]获取");
         this.addTCRItemInfo(Items.DRAGON_EGG, "于§d末地§r击败[末影龙]获取");
+        this.addTCRItemInfo(EpicSkillsItems.ABILIITY_STONE.get(), "右键使用以获取技能点");
 
         this.add("itemGroup.tcr.items", "远梦之棺 —— 核心 物品");
         this.add("key.categories." + TCRCoreMod.MOD_ID, "远梦之棺 —— 核心");
@@ -43,7 +45,8 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "神谕残卷");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "上面写着古老的神谕，暗示了火种散落的地方。回主城给守望者看看吧，说不定对冒险有帮助！");
 
-        this.addInfo("dim_block_no_interact", "§c无法与幻境方块交互！");
+        this.addInfo("wraithon_start_tip", "§d[Wraithon]: §6外来之人，你们的旅途到此结束！");
+        this.addInfo("dim_block_no_interact", "§cBoss未击败！暂时无法与幻境方块交互！");
         this.addInfo("altar_dim_info", "幻境信息：");
         this.addInfo("related_loot", "魔物： [%s] | 相关战利品：[%s]");
         this.add(TCRBlocks.CURSED_ALTAR_BLOCK.get(), "诅咒祭坛");
@@ -53,6 +56,8 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
 
         this.addInfo("to_be_continue", "[P1nero]: §6感谢游玩！恭喜你体验完测试版的全部内容，最终boss仍在制作中，未完待续！");
+
+        this.addInfo("second_after_boss_die_left", "将在 %d 秒后返回主世界");
 
         this.addInfo("unlock_new_dim_girl", "§6摆渡人处已解锁新选项!§r");
         this.addInfo("unlock_new_dim", "§c[地狱]§d[末地]§6已解锁!§r");
@@ -190,9 +195,9 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.addDialogAnswer(TCREntities.GUIDER.get(), 12, "你所击败的炼狱魔龙，天空岛的傀儡等，它们才是守护世界的神明眷属，正是他们阻碍了孤的大业！只要他们消失，损失几个灾厄村民对孤来说不算什么，更何况，你所带回的魔神火种可助孤重铸肉身。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 13, "我是谁？你作为祭品无权得知！哪有什么愚蠢的仪式，吸收了你的力量，世界将为姑所统治！受死吧！");
 
-        this.addDialogAnswer(TCREntities.GUIDER.get(), 14, "这...吾曾与黑潮军团在此地大战，损坏祭坛封印的英灵永远不会再回来了...但残存的英灵，已足以启动驱魔仪式。");
+        this.addDialogAnswer(TCREntities.GUIDER.get(), 14, "这...吾曾与§d「黑潮军团」§f在此地大战，损坏祭坛封印的英灵永远不会再回来了...但残存的英灵，已足以启动驱魔仪式。");
 
-        this.addDialogAnswer(TCREntities.GUIDER.get(), 15, "§b风暴之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§3[%s§3]§f，可去摆渡人处看看，说不定能换什么宝具。");
+        this.addDialogAnswer(TCREntities.GUIDER.get(), 15, "§b风暴之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§3[%s§3]§f，可去摆渡人处看看，说不定能换什么宝具。§d摆渡人§f就在§6圣殿的港口处§f等你。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 19, "§6烈焰之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§c[%s§c]§f，可去摆渡人处看看，说不定能换什么宝具。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 16, "§3深渊之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§c[%s§c]§f，可去摆渡人处看看，说不定能换什么宝具。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 17, "§2诅咒之火种§f...我感受到它就散落在§6[%s]§f击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§c[%s§c]§f，可去摆渡人处看看，说不定能换什么宝具。");

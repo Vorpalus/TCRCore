@@ -1,20 +1,11 @@
 {
-  "trail": {
-    "color": [216, 216, 216],
-    "begin_pos": [0.0, 0.0, -0.2],
-    "end_pos": [0.0, 0.0, -2.1],
-    "lifetime": 9,
-    "interpolations": 4,
-    "texture_path": "epicfight:textures/particle/swing_trail.png",
-    "particle_type": "epicfight:swing_trail"
-  },
-  "transforms": {
-    "mainhand": {
-      "Tool_R": {
-        "translation": [0.0, 0.0, 0.3],
-        "rotation": [-90.0, 0.0, 0.0],
-        "scale": [1.6, 1.6, 1.6]
-      }
+    "trail": {
+    	"color": [210, 240, 255],
+    	"begin_pos": [0.0, 0.0, -0.6],
+    	"end_pos": [0.0, 0.0, -1.7],
+    	"lifetime": 6,
+		"interpolations": 4,
+    	"texture_path": "epicfight:textures/particle/hilltrail2.png",
+    	"particle_type": "efn:bloom_trail"
     }
-  }
 }
