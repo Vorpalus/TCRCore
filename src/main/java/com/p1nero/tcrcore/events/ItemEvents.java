@@ -4,7 +4,6 @@ package com.p1nero.tcrcore.events;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -24,6 +23,7 @@ public class ItemEvents {
         if (List.of(ModItems.ABYSS_EYE.get(), ModItems.STORM_EYE.get(), ModItems.CURSED_EYE.get(), ModItems.MECH_EYE.get(), ModItems.FLAME_EYE.get(), ModItems.DESERT_EYE.get(), ModItems.MONSTROUS_EYE.get(), ModItems.VOID_EYE.get()).contains(event.getItemStack().getItem())) {
             event.getToolTip().add(TCRCoreMod.getInfo("time_to_altar").withStyle(ChatFormatting.GRAY));
         }
+        //TODO delete
 //        event.getToolTip().add(1, Component.literal(BuiltInRegistries.ITEM.getKey(event.getItemStack().getItem()).toString()));
         if(items.contains(event.getItemStack().getItem())) {
             event.getToolTip().add(1, Component.translatable(event.getItemStack().getItem().getDescriptionId() + ".tcr_info"));

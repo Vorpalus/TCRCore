@@ -8,10 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
-/**
- * 修复bug
- */
-public class CorneliaMusicPlayer {
+public class WraithonMusicPlayer {
 
     private static BossMusic music;
 
@@ -29,7 +26,7 @@ public class CorneliaMusicPlayer {
                 }
             } else {
                 if (entity.distanceTo(player) <= dis) {
-                    music = new BossMusic(bgm, entity, entity.getRandom(), dis);
+                    music = new BossMusic(bgm, entity, entity.getRandom());
                 } else {
                     music = null;
                 }
@@ -49,35 +46,33 @@ public class CorneliaMusicPlayer {
 
     private static class BossMusic extends AbstractTickableSoundInstance {
         public LivingEntity boss;
-        private float dis;
         private int ticksExisted = 0;
         public final SoundEvent soundEvent;
 
-        public BossMusic(SoundEvent bgm, LivingEntity boss, RandomSource random, float dis) {
+        public BossMusic(SoundEvent bgm, LivingEntity boss, RandomSource random) {
             super(bgm, SoundSource.RECORDS, random);
             this.boss = boss;
             this.soundEvent = bgm;
             this.attenuation = Attenuation.NONE;
             this.looping = true;
             this.delay = 0;
-            this.volume = 4.5F;
+            this.volume = 7F;
             this.x = boss.getX();
             this.y = boss.getY();
             this.z = boss.getZ();
-            this.dis = dis;
         }
 
         public boolean canPlaySound() {
-            return CorneliaMusicPlayer.music == this;
+            return WraithonMusicPlayer.music == this;
         }
 
         public void tick() {
-            if (boss == null || !boss.isAlive() || boss.isSilent() || (Minecraft.getInstance().player != null && boss.distanceTo(Minecraft.getInstance().player) > dis)) {
+            if (boss == null || !boss.isAlive() || boss.isSilent()) {
                 boss = null;
                 if (volume >= 0) {
                     volume -= 0.03F;
                 } else {
-                    CorneliaMusicPlayer.music = null;
+                    WraithonMusicPlayer.music = null;
                 }
             }
 

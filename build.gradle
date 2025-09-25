@@ -161,7 +161,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:7025236")
 //    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
-    implementation fg.deobf("libs:wraithonfastkill:1.0.0")
+    implementation fg.deobf("libs:wraithon:1.0.0")
     implementation fg.deobf("libs:epicskills:20.1.3")
     implementation fg.deobf("curse.maven:epic-fight-invincible-1184379:6992153")
     implementation fg.deobf("curse.maven:p1neros-epic-bow-1338443:6964978")
@@ -174,7 +174,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:better-lock-on-1339577:6998595")
 
-    implementation fg.deobf("libs:tudigong:1.0.0")
+    implementation fg.deobf("libs:tudigong:1.1.0")
     implementation fg.deobf("curse.maven:lithostitched-936015:6742615")//村庄插入
 
     implementation fg.deobf("curse.maven:global-shaderpack-properties-1344473:6982618")//全局光影包配置，添加灾变维度用。
@@ -211,6 +211,7 @@ dependencies {
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
 
     //主要boss
+    implementation fg.deobf("curse.maven:dodos-mobs-1349823:7018547")
 //    implementation fg.deobf("curse.maven:bossesrise-1314084:6900933")
     implementation fg.deobf("libs:bossesrise:1.0.9.1")
     implementation fg.deobf("curse.maven:monster-expansion-1336105:6957501")

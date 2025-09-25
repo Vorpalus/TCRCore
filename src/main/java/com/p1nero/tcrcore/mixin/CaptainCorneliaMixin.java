@@ -5,6 +5,7 @@ import com.obscuria.aquamirae.common.items.weapon.DividerItem;
 import com.obscuria.aquamirae.common.items.weapon.WhisperOfTheAbyssItem;
 import com.obscuria.aquamirae.registry.AquamiraeSounds;
 import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -43,9 +44,9 @@ public abstract class CaptainCorneliaMixin extends Monster {
     private void tcr$baseTick(CallbackInfo ci) {
         if (this.level().isClientSide) {
             Vec3 center = this.position();
+            //附近再播放
             if(this.isAlive()) {
-                this.level().getEntitiesOfClass(Player.class, (new AABB(center, center)).inflate(32.0F)).forEach(player ->
-                        CorneliaMusicPlayer.playBossMusic(this, AquamiraeSounds.MUSIC_FORSAKEN_DROWNAGE.get(), 32));
+                CorneliaMusicPlayer.playBossMusic(this, AquamiraeSounds.MUSIC_FORSAKEN_DROWNAGE.get(), 32);
             }
         }
     }

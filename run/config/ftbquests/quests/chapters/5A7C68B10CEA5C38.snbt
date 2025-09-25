@@ -191,8 +191,8 @@
 				type: "checkmark"
 			}]
 			title: "御剑凌虚！"
-			x: 3.0d
-			y: 5.0d
+			x: 1.5d
+			y: 7.0d
 		}
 		{
 			dependencies: ["7221EEC023D3C7D8"]
@@ -298,8 +298,8 @@
 				}
 				type: "item"
 			}]
-			x: 0.0d
-			y: 7.5d
+			x: -1.5d
+			y: 7.0d
 		}
 		{
 			dependencies: ["7221EEC023D3C7D8"]
@@ -374,6 +374,38 @@
 			}]
 			x: -2.0d
 			y: 2.0d
+		}
+		{
+			dependencies: ["7221EEC023D3C7D8"]
+			description: [
+				"&d斯克里兹&r是栖息在高海拔地区&a（风袭沙砾丘陵 / 沙砾山地）&r的魔物，可使用&6下界之星&r驯服"
+				""
+				"{image:tcrcore:textures/ftb/blue_dragon.png width:160 height:90 align:center}"
+			]
+			icon: {
+				Count: 1
+				id: "monsterexpansion:skrythe_frill"
+				tag: {
+					fdbosses: { }
+				}
+			}
+			id: "2DA2E2A05342A13F"
+			rewards: [{
+				id: "494045C0E9E4DE18"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			subtitle: "驯服&d斯克里兹&r，骑着它翱翔天际！"
+			tasks: [{
+				advancement: "tcrcore:dragon_tame"
+				criterion: ""
+				id: "71821EDE7FE53D51"
+				type: "advancement"
+			}]
+			title: "驯龙高手"
+			x: 3.0d
+			y: 5.0d
 		}
 	]
 	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]

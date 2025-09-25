@@ -22,7 +22,7 @@ public record ExecuteRiptidePacket() implements BasePacket {
     public void execute(Player player) {
         if(player instanceof ServerPlayer serverPlayer){
             ServerPlayerPatch serverPlayerPatch = EpicFightCapabilities.getEntityPatch(serverPlayer, ServerPlayerPatch.class);
-            if(serverPlayerPatch != null && serverPlayer.isInWater() && !serverPlayerPatch.getEntityState().inaction()) {
+            if(serverPlayerPatch != null && serverPlayer.isUnderWater() && !serverPlayerPatch.getEntityState().inaction()) {
                 serverPlayerPatch.playAnimationSynchronized(TCRAnimations.TSUNAMI, -0.15F);
             }
         }

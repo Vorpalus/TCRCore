@@ -110,19 +110,13 @@
             "names": [
               "一只路过的小吴 部分物品",
               "XVIII-凌 部分刀光",
-              "Ao 部分技能，主城守望者"
+              "Ao 部分技能，npc"
             ]
           },
           {
             "title": "地形",
             "names": [
               "wonderful艾晨"
-            ]
-          },
-          {
-            "title": "优化",
-            "names": [
-              "dreamforSh"
             ]
           }
         ]
@@ -150,12 +144,19 @@
     "section": "内测贡献",
     "disciplines": [
       {
-        "discipline": "",
+        "discipline": "排名不分先后",
         "titles": [
           {
             "title": "",
             "names": [
-
+              "T_muse_Y",
+              "HuaSheng_peanuts",
+              "merlin204",
+              "ShelMarow",
+              "Arcadia",
+              "霖",
+              "32spark",
+              "脚踏梯子hill"
             ]
           }
         ]
@@ -198,7 +199,7 @@
               "超级厉害宝宝(Super Awesome Baby) 大队",
               "Minecraft",
               "Minecraft Forge",
-              "以及本整合包中所有的模组、材质包、光影包。"
+              "以及本整合包中所有用到的模组、资源包、光影包及其作者们！"
             ]
           }
         ]

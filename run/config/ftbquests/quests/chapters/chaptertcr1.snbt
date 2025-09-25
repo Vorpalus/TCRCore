@@ -17,7 +17,7 @@
 	quest_links: [ ]
 	quests: [
 		{
-			description: ["“我已经将火种散落之地标记在地图&6（默认按下[M]键查看）&r上了，剩下的交给你了，天外的救世主！”"]
+			description: ["“我已经将火种散落之地标记在地图上了，剩下的交给你了，天外的救世主！”"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
 			icon_scale: 2.0d
@@ -139,14 +139,11 @@
 		}
 		{
 			description: [
-				"击败位于&6[龙之塔]&r的&c炼狱魔龙&r，夺回烈焰之眼"
+				"击败位于&6[冥界竞技场]&r的&c冥界骑士&r，夺回烈焰之眼"
 				""
 				""
 				"&l&c战利品：魔龙之骨&6"
 				"可在摆渡人处兑换&c血癫狂&r &c嗜血狂癫&r"
-				""
-				""
-				"[ \"点击查看\", { \"text\": \"战利品可锻造盔甲\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"7587A089143BA6FA\" } } ]"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -179,7 +176,7 @@
 					type: "item"
 				}
 				{
-					id: "573A79F15D9C6CB2"
+					id: "3F6173380C59BDCC"
 					item: {
 						Count: 1
 						id: "block_factorys_bosses:dragon_bones_chestplate"
@@ -193,7 +190,7 @@
 			]
 			shape: "none"
 			size: 2.0d
-			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”\\n&c&l推荐：习得&6【避火咒】&c&l后再进行挑战！&r"
+			subtitle: "“岩浆奔涌之地，祂剜出心脏，铸成永不熄灭的烽火台”"
 			tasks: [
 				{
 					id: "00F6FB2F90E7EC54"
@@ -228,12 +225,7 @@
 			invisible_until_tasks: 1
 			rewards: [
 				{
-					id: "08431139D31E6752"
-					item: "tcrcore:ancient_oracle_fragment"
-					type: "item"
-				}
-				{
-					count: 16
+					count: 4
 					id: "7E0F45C687F137DC"
 					item: {
 						Count: 1
@@ -310,16 +302,16 @@
 					type: "advancement"
 				}
 			]
-			title: "&3诅咒之火种&r&4[难度☆☆☆☆]&r"
+			title: "诅咒之火种&r&3[难度☆☆☆]&r"
 			x: -2.0d
 			y: -8.5d
 		}
 		{
 			description: [
-				"击败&6[沙海蠕虫巢穴]&r的&e远古沙海蠕虫&r，夺回沙漠之眼"
+				"击败&6[奇美拉之监牢]&r的&e骸骨奇美拉&r，夺回沙漠之眼"
 				""
 				""
-				"&l&c战利品：沙海毒刺&6"
+				"&l&c战利品：奇美拉之爪&6"
 				"可在摆渡人处兑换&6放逐之刃-左&r"
 				""
 				"&l&c额外奖励：解锁&r&6【避火咒】&r&r"
@@ -330,18 +322,31 @@
 			id: "720426084924F940"
 			invisible: true
 			invisible_until_tasks: 1
-			rewards: [{
-				id: "25CC9E5D5B1DC248"
-				item: {
-					Count: 1
-					id: "block_factorys_bosses:sandworm_dart"
-					tag: {
-						Damage: 0
-						fdbosses: { }
+			rewards: [
+				{
+					id: "78938D3EC514BA3F"
+					item: {
+						Count: 1
+						id: "dodosmobs:chimera_armor_chestplate"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
 					}
+					type: "item"
 				}
-				type: "item"
-			}]
+				{
+					id: "397ED74115CCCF3B"
+					item: {
+						Count: 1
+						id: "dodosmobs:chimera_claw"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "none"
 			size: 2.0d
 			subtitle: "“守卫者不是怪物，它们是子民自愿化身的活体墓碑”"
@@ -359,7 +364,7 @@
 					type: "advancement"
 				}
 			]
-			title: "沙漠之火种&d[难度☆☆☆]&r"
+			title: "沙漠之火种&d[难度☆☆]&r"
 			x: 2.5d
 			y: -11.5d
 		}

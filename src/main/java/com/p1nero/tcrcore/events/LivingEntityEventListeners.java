@@ -6,6 +6,7 @@ import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonste
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Maledictus.Maledictus_Entity;
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.IABossMonsters.Scylla.Scylla_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
+import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.Bone_Chimera_Entity;
 import com.hm.efn.registries.EFNItem;
 import com.merlin204.sg.item.SGItems;
 import com.obscuria.aquamirae.common.entities.CaptainCornelia;
@@ -16,6 +17,7 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
+import com.p1nero.tcrcore.client.sound.WraithonMusicPlayer;
 import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
@@ -56,13 +58,13 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.p1nero.ss.item.SwordSoaringItems;
 import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
-import net.unusual.blockfactorysbosses.entity.InfernalDragonEntity;
-import net.unusual.blockfactorysbosses.entity.SandwormEntity;
 import net.unusual.blockfactorysbosses.entity.SwordWaveEntity;
+import net.unusual.blockfactorysbosses.entity.UnderworldKnightEntity;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
-import org.merlin204.entity.wraithon.WraithonEntity;
+import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import yesman.epicfight.api.animation.AnimationPlayer;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -177,7 +179,7 @@ public class LivingEntityEventListeners {
                 PlayerDataManager.abyssEyeTraded.put(player, true);
             }
 
-            if(livingEntity instanceof InfernalDragonEntity && !PlayerDataManager.flameEyeTraded.get(player)) {
+            if(livingEntity instanceof UnderworldKnightEntity && !PlayerDataManager.flameEyeTraded.get(player)) {
                 ItemUtil.addItemEntity(player, ModItems.FLAME_EYE.get(), 1, ChatFormatting.RED.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss2"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
@@ -191,7 +193,7 @@ public class LivingEntityEventListeners {
                 giveOracle(player);
                 PlayerDataManager.cursedEyeTraded.put(player, true);
             }
-            if(livingEntity instanceof SandwormEntity && !PlayerDataManager.desertEyeTraded.get(player)) {
+            if(livingEntity instanceof Bone_Chimera_Entity && !PlayerDataManager.desertEyeTraded.get(player)) {
                 ItemUtil.addItemEntity(player, ModItems.DESERT_EYE.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
                 player.displayClientMessage(TCRCoreMod.getInfo("kill_boss5"), false);
                 player.displayClientMessage(TCRCoreMod.getInfo("time_to_altar"), true);
@@ -199,9 +201,9 @@ public class LivingEntityEventListeners {
                 PlayerDataManager.desertEyeTraded.put(player, true);
 
                 CommandSourceStack commandSourceStack = player.createCommandSourceStack().withPermission(2).withSuppressedOutput();
-                if(!PlayerDataManager.fireAvoidUnlocked.get(player) && WorldUtil.isInStructure(player, WorldUtil.COVES)) {
+                if(!PlayerDataManager.fireAvoidUnlocked.get(player)) {
                     Objects.requireNonNull(player.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s dodge_parry_reward:passive tcrcore:fire_avoid true");
-                    player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
+                    player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.FIRE_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
                     PlayerDataManager.fireAvoidUnlocked.put(player, true);
                 }
@@ -214,8 +216,8 @@ public class LivingEntityEventListeners {
             }
 
             if(livingEntity instanceof WraithonEntity) {
-                //TODO 播放bgm
                 serverLevel.players().forEach(serverPlayer -> {
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("wraithon_end_tip"), false);
                     TCRCapabilityProvider.getTCRPlayer(serverPlayer).setTickAfterBossDieLeft(200);
                 });
             }
@@ -233,6 +235,15 @@ public class LivingEntityEventListeners {
                 ItemUtil.addItemEntity(livingEntity, EFNItem.DEEPDARK_HEART.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
             }
         }
+
+        if(livingEntity instanceof WraithonEntity) {
+            if(livingEntity.level().isClientSide) {
+                WraithonMusicPlayer.stopBossMusic(livingEntity);
+            } else {
+                ItemUtil.addItemEntity(livingEntity, SwordSoaringItems.VATANSEVER.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+            }
+        }
+
         if(livingEntity instanceof Player player) {
             player.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
         }
@@ -321,7 +332,9 @@ public class LivingEntityEventListeners {
             witherBoss.setHealth(witherBoss.getMaxHealth());
         }
 
-        if(event.getEntity().level() instanceof ServerLevel serverLevel && event.getEntity() instanceof LivingEntity livingEntity && !(livingEntity instanceof Player)) {
+        if(event.getEntity().level() instanceof ServerLevel serverLevel && event.getEntity() instanceof LivingEntity livingEntity
+                && !(livingEntity instanceof Player)
+                && !(livingEntity instanceof WraithonEntity)) {
             ServerLevel end = serverLevel.getServer().getLevel(Level.END);
             if(end != null && end.getDragonFight() != null && end.getDragonFight().hasPreviouslyKilledDragon()) {
                 livingEntity.getAttribute(Attributes.MAX_HEALTH).removeModifier(uuid);

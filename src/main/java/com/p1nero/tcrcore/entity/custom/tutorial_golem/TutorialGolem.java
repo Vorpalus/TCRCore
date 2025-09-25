@@ -98,7 +98,7 @@ public class TutorialGolem extends IronGolem {
                 serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                 this.setTarget(null);
                 //引导玩家去守望者处
-                XianQiEntity xianQiEntity = new XianQiEntity(level(), WorldUtil.GUIDER_POS, serverPlayer);
+                XianQiEntity xianQiEntity = new XianQiEntity(level(), WorldUtil.GUIDER_POS, serverPlayer, null);
                 level().addFreshEntity(xianQiEntity);
             }
         }

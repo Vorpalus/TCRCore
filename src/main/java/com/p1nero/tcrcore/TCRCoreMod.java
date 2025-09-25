@@ -10,6 +10,7 @@ import com.p1nero.tcrcore.client.sound.TCRSounds;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.events.ItemEvents;
 import com.p1nero.tcrcore.events.LivingEntityEventListeners;
+import com.p1nero.tcrcore.gameassets.TCRSkillSlots;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
@@ -29,9 +30,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.p1nero.ss.SwordSoaringMod;
+import net.p1nero.ss.gameassets.SwordSoaringSkillSlots;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.slf4j.Logger;
+import yesman.epicfight.skill.SkillSlot;
 
 import java.util.List;
 import java.util.Locale;
@@ -44,6 +48,7 @@ public class TCRCoreMod {
     private static boolean isCheatMod = false;
 
     public TCRCoreMod(FMLJavaModLoadingContext context) {
+        SkillSlot.ENUM_MANAGER.registerEnumCls(TCRCoreMod.MOD_ID, TCRSkillSlots.class);
         IEventBus bus = context.getModEventBus();
         bus.addListener(this::commonSetup);
         bus.addListener(this::addPackFindersEvent);
@@ -78,7 +83,7 @@ public class TCRCoreMod {
         ItemEvents.items.addAll(List.of(
                 BlockFactorysBossesModItems.DRAGON_SKULL.get(),
                 BlockFactorysBossesModItems.DRAGON_BONE.get(),
-                BlockFactorysBossesModItems.SANDWORM_DART.get(),
+                com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(),
                 ModItems.CHITIN_CLAW.get(),
                 ModItems.CORAL_CHUNK.get(),
                 Items.DRAGON_EGG,

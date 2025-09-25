@@ -9,6 +9,7 @@
 	quests: [{
 		id: "554C106C56873196"
 		invisible: true
+		shape: "rsquare"
 		subtitle: "未完待续..."
 		tasks: [{
 			advancement: "tcrcore:stage4"

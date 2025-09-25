@@ -13,5 +13,6 @@ public class TCRSoundGenerator extends TCRSoundProvider {
     @Override
     public void registerSounds() {
         generateNewSoundWithSubtitle(TCRSounds.WIN_BGM, "bgm/win_bgm", 1);
+        generateNewSoundWithSubtitle(TCRSounds.BOSS_FIGHT_BGM, "bgm/boss_fight", 1);
     }
 }

@@ -1,5 +1,7 @@
 package com.p1nero.tcrcore.entity.custom.guider;
 
+import com.github.dodo.dodosmobs.init.ModEntities;
+import com.github.dodo.dodosmobs.init.ModItems;
 import com.hm.efn.registries.EFNItem;
 import com.merlin204.sg.item.SGItems;
 import com.obscuria.aquamirae.registry.AquamiraeEntities;
@@ -12,7 +14,6 @@ import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
-import com.p1nero.tcrcore.client.gui.TCREndScreen;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
@@ -21,7 +22,6 @@ import com.p1nero.tcrcore.utils.WaypointUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import dev.ftb.mods.ftbquests.item.FTBQuestsItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -54,9 +54,8 @@ import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.merlin204.worldgen.WraithonDimensions;
-import org.merlin204.worldgen.portal.PositionTeleporter;
-import org.merlin204.wraithon.Wraithon;
+import org.merlin204.wraithon.util.WraithonFieldTeleporter;
+import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -219,7 +218,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                         .thenExecute(2)
                         .addFinalChoice(dBuilder.optWithBrackets(5), 1);
 
-                case 2 -> treeBuilder.start(7)
+                case 3 -> treeBuilder.start(7)
                         .addChoice(dBuilder.optWithBrackets(9),
                                 dBuilder.ans(17,
                                         Component.translatable("structure.aquamirae.ice_maze").withStyle(ChatFormatting.DARK_GREEN),
@@ -229,25 +228,26 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                         .thenExecute(2)
                         .addFinalChoice(dBuilder.optWithBrackets(5), 1);
 
-                case 3 -> treeBuilder.start(7)
+                case 2 -> treeBuilder.start(7)
                         .addChoice(dBuilder.optWithBrackets(9),
                                 dBuilder.ans(18,
-                                        Component.translatable("structure.block_factorys_bosses.sandworm_nest").withStyle(ChatFormatting.YELLOW),
-                                        BlockFactorysBossesModEntities.SANDWORM.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
-                                        Component.translatable("structure.block_factorys_bosses.sandworm_nest").withStyle(ChatFormatting.YELLOW),
-                                        BlockFactorysBossesModItems.SANDWORM_DART.get().getDescription().copy().withStyle(ChatFormatting.RED)))
+                                        Component.translatable("structure.dodosmobs.jungle_prison").withStyle(ChatFormatting.YELLOW),
+                                        ModEntities.BONE_CHIMERA.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
+                                        Component.translatable("structure.dodosmobs.jungle_prison").withStyle(ChatFormatting.YELLOW),
+                                        ModItems.CHIERA_CLAW.get().getDescription().copy().withStyle(ChatFormatting.RED)))
                         .thenExecute(2)
                         .addFinalChoice(dBuilder.optWithBrackets(5), 1);
 
                 case 4 -> treeBuilder.start(7)
                         .addChoice(dBuilder.optWithBrackets(9),
-                                dBuilder.ans(18,
-                                        Component.translatable("structure.block_factorys_bosses.dragon_tower").withStyle(ChatFormatting.RED),
-                                        BlockFactorysBossesModEntities.INFERNAL_DRAGON.get().getDescription().copy().withStyle(ChatFormatting.RED),
-                                        Component.translatable("structure.block_factorys_bosses.dragon_tower").withStyle(ChatFormatting.RED),
-                                        BlockFactorysBossesModItems.DRAGON_BONE.get().getDescription().copy().withStyle(ChatFormatting.GOLD)))
+                                dBuilder.ans(19,
+                                        Component.translatable("structure.block_factorys_bosses.underworld_arena").withStyle(ChatFormatting.RED),
+                                        BlockFactorysBossesModEntities.UNDERWORLD_KNIGHT.get().getDescription().copy().withStyle(ChatFormatting.RED),
+                                        Component.translatable("structure.block_factorys_bosses.underworld_arena").withStyle(ChatFormatting.RED),
+                                        BlockFactorysBossesModItems.DRAGON_SKULL.get().getDescription().copy().withStyle(ChatFormatting.GOLD)))
                         .thenExecute(2)
                         .addFinalChoice(dBuilder.optWithBrackets(5), 1);
+                default -> treeBuilder.start(20).addFinalChoice(17);
             }
         }
         //正式起航，改变一下对话
@@ -300,7 +300,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
         }
 
         if (code == 3) {
-            player.changeDimension(player.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY), new PositionTeleporter(Wraithon.PLAYER_SPAWN_POS));
+            player.changeDimension(player.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY), new WraithonFieldTeleporter());
             player.displayClientMessage(TCRCoreMod.getInfo("wraithon_start_tip"), false);
         }
 
@@ -323,6 +323,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
             int stage = PlayerDataManager.stage.getInt(player);
             int newStage = stage + 1;
             if(newStage > 5) {
+                this.setConversingPlayer(null);
                 return;
             }
             TCRAdvancementData.finishAdvancement("stage" + (newStage), player);
@@ -355,7 +356,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                 }
             }
 
-            if(newStage == 3) {
+            if(newStage == 4) {
                 ItemUtil.addItem(player, AquamiraeItems.SHELL_HORN.get(), 1, true);//给号角
                 pos = WorldUtil.getNearbyStructurePos(player, "aquamirae:ship");//船长
                 if (pos != null) {
@@ -363,18 +364,21 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                 }
             }
 
-            if(newStage == 4) {
-                pos = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:sandworm_nest");//沙漠蠕虫巢穴
+            if(newStage == 3) {
+                pos = WorldUtil.getNearbyStructurePos(player, WorldUtil.SAND);//奇美拉
                 if (pos != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("desert_pos"), new BlockPos(pos.x, 64, pos.y), WaypointColor.YELLOW);
                 }
             }
 
             if(newStage == 5) {
-                pos = WorldUtil.getNearbyStructurePos(player, "block_factorys_bosses:dragon_tower");//龙之塔
+                pos = WorldUtil.getNearbyStructurePos(player, WorldUtil.FIRE);
                 if (pos != null) {
                     WaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("flame_pos"), new BlockPos(pos.x, 256, pos.y), WaypointColor.RED);
                 }
+
+                //召唤龙
+                net.alp.monsterexpansion.entity.ModEntities.SKRYTHE.get().spawn(player.serverLevel(), new BlockPos(WorldUtil.START_POS.above(10)), MobSpawnType.MOB_SUMMONED);
             }
 
             if(pos != null) {

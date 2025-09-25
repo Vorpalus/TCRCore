@@ -554,7 +554,7 @@
 			description: [
 				""
 				""
-				"可用下界之星驯服，掉落物可锻造&d斯克利兹套装&r"
+				"可用&d下界之星&r驯服，掉落物可锻造&d斯克利兹套装&r"
 				""
 				"[ \"点击查看\", { \"text\": \"斯克利兹套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"083E31035AB51591\" } } ]"
 			]
@@ -818,7 +818,7 @@
 			}]
 			title: "凋灵&4[难度☆☆☆☆]&r"
 			x: 1.0d
-			y: -0.5d
+			y: -2.0d
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
@@ -834,11 +834,63 @@
 				type: "item"
 			}]
 			shape: "rsquare"
+			size: 1.3d
 			subtitle: "异空间之魔龙，夺其子祠，以铸&3阎魔之刃"
 			tasks: [{
 				entity: "minecraft:ender_dragon"
 				icon: "minecraft:ender_eye"
 				id: "10A8B6DE432B127E"
+				type: "kill"
+				value: 1L
+			}]
+			title: "末影龙&4[难度☆☆☆☆]&r"
+			x: 1.0d
+			y: 0.0d
+		}
+		{
+			dependencies: ["68EDC89BB022788B"]
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon_scale: 1.5d
+			id: "4E2DD4620173E511"
+			rewards: [
+				{
+					id: "6AC28DE285DBEF1E"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bones_leggings"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "463D3EAD749F0031"
+					item: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_bones_boots"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "位于&c龙之塔&r顶，守护着龙裔。 &c&l推荐：习得&6【避火咒】&c&l后再进行挑战！&r"
+			tasks: [{
+				entity: "block_factorys_bosses:infernal_dragon"
+				icon: {
+					Count: 1
+					id: "block_factorys_bosses:dragon_skull"
+					tag: {
+						fdbosses: { }
+					}
+				}
+				id: "03BBFB33B22431C9"
 				type: "kill"
 				value: 1L
 			}]

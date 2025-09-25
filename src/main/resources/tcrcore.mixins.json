@@ -12,6 +12,7 @@
     "CeraunusMixin",
     "DodgeAnimationMixin",
     "DodgeLocationIndicatorMixin",
+    "ExtraDamageInstanceMixin",
     "FAArmorItemMixin",
     "GuardSkillMixin",
     "HornOfTheShattercryMixin",
@@ -23,7 +24,8 @@
     "SkillContainerMixin",
     "TakeDamageEventAttackMixin",
     "ThirstforBloodItemMixin",
-    "VillagerMixin"
+    "VillagerMixin",
+    "WraithonEntityMixin"
   ],
   "client": [
     "AquamiraeClientMixin",

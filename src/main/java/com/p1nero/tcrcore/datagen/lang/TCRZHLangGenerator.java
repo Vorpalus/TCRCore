@@ -23,12 +23,12 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
     @Override
     protected void addTranslations() {
         this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "击败[监守者]或[可妮莉亚船长]获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_SKULL.get(), "击败[炼狱魔龙]获取");
+        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_SKULL.get(), "击败[冥界骑士]或[炼狱魔龙]获取");
         this.addTCRItemInfo(ModItems.CORAL_CHUNK.get(), "于§d利维坦幻境§r击败[珊瑚巨像]获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_BONE.get(), "击败[炼狱魔龙]获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.SANDWORM_DART.get(), "击败沙海蠕虫获取");
+        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_BONE.get(), "击败[冥界骑士]或[炼狱魔龙]获取");
+        this.addTCRItemInfo(com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(), "击败[骸骨奇美拉]获取");
         this.addTCRItemInfo(ModItems.CHITIN_CLAW.get(), "于§3斯库拉幻境§r击败巨钳守卫获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), "于§c地狱§r击败[冥界骑士]获取");
+        this.addTCRItemInfo(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), "击败[冥界骑士]获取");
         this.addTCRItemInfo(Items.DRAGON_EGG, "于§d末地§r击败[末影龙]获取");
         this.addTCRItemInfo(EpicSkillsItems.ABILIITY_STONE.get(), "右键使用以获取技能点");
 
@@ -38,14 +38,15 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
 
         this.add("skill_tree.sword_soaring.unlock_tip", "与§6[天空岛]§r村民用绿宝石交易解锁");
         this.add("unlock_tip.tcrcore.battleborn.water_avoid", "使用绿宝石向§6[隐秘水湾]§r的村民交易习得");
-        this.add("unlock_tip.tcrcore.battleborn.fire_avoid", "击败§6[沙海蠕虫]§r习得");
+        this.add("unlock_tip.tcrcore.battleborn.fire_avoid", "击败§6[骸骨奇美拉]§r习得");
         this.addSkill("water_avoid", "避水咒", "可在水下自由呼吸！");
         this.addSkill("fire_avoid", "避火咒", "免疫火焰伤害！");
 
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "神谕残卷");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "上面写着古老的神谕，暗示了火种散落的地方。回主城给守望者看看吧，说不定对冒险有帮助！");
 
-        this.addInfo("wraithon_start_tip", "§d[Wraithon]: §6外来之人，你们的旅途到此结束！");
+        this.addInfo("wraithon_start_tip", "§d[Wraithon]: §6外来之人，你的旅途到此结束！");
+        this.addInfo("wraithon_end_tip", "§d[Wraithon]: §6这...不可能...");
         this.addInfo("dim_block_no_interact", "§cBoss未击败！暂时无法与幻境方块交互！");
         this.addInfo("altar_dim_info", "幻境信息：");
         this.addInfo("related_loot", "魔物： [%s] | 相关战利品：[%s]");
@@ -55,7 +56,7 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.add(TCRBlocks.FLAME_ALTAR_BLOCK.get(), "烈焰祭坛");
         this.add(TCRBlocks.DESERT_ALTAR_BLOCK.get(), "沙漠祭坛");
 
-        this.addInfo("to_be_continue", "[P1nero]: §6感谢游玩！恭喜你体验完测试版的全部内容，最终boss仍在制作中，未完待续！");
+        this.addInfo("to_be_continue", "[P1nero]: §6感谢游玩！恭喜你体验完测试版的全部内容，未完待续！");
 
         this.addInfo("second_after_boss_die_left", "将在 %d 秒后返回主世界");
 
@@ -106,10 +107,11 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
 
         this.addInfo("storm_pos", "风暴回响之所在：天空岛");
         this.addInfo("cursed_pos", "诅咒回响之所在：冰冻深海");
-        this.addInfo("desert_pos", "沙漠回响之所在：沙海蠕虫之巢");
-        this.addInfo("flame_pos", "烈焰回响之所在：龙之塔");
+        this.addInfo("desert_pos", "沙漠回响之所在：奇美拉之监牢");
+        this.addInfo("flame_pos", "烈焰回响之所在：幽冥竞技场");
         this.addInfo("abyss_pos", "深渊回响之所在：隐秘水湾");
 
+        this.addAdvancement("dragon_tame", "驯龙高手", "驯服斯克里兹");
         this.addAdvancement(TCRCoreMod.MOD_ID, "远梦之棺", "梦开始的地方，前往主城寻找守护者。");
         this.addAdvancement(TCRCoreMod.MOD_ID + "_weapon", "王之宝库", "所有可获得的且进行过适配的武器或材料，可通过 [JEI] 查看获取方式及详细信息");
         this.addAdvancement("find_ymsw", "隐秘水湾", "抵达隐秘水湾");
@@ -189,19 +191,22 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.addDialogOption(TCREntities.GUIDER.get(), 13, "[我不明白...]");
         this.addDialogOption(TCREntities.GUIDER.get(), 14, "[你到底是谁？]");
         this.addDialogOption(TCREntities.GUIDER.get(), 15, "[继续]");//拉入结界
+        this.addDialogOption(TCREntities.GUIDER.get(), 17, "[被发现了嘿嘿]");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 9, "位于终界异空间内的§d终界龙§f，它与§d「黑潮」§f颇有渊源。击败它后，它诞下的精华可铸成阎魔刀，乃来自异世之力，不可估量。但阁下需留意的是，异界魔龙消散之后，世间受到§d「黑潮」§f影响，魔物的生命将翻倍！");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 10, "阁下只需将§d『神谕残卷』§f与我，我将为你揭示神谕所记载的火种方位！随后阁下便可前往吾在地图上所标注之处，击败魔物，夺回火种，§6并将它们供奉在长廊之祭坛之上§f。待集齐所有火种即可启动仪式，净化§d「黑潮」§f！");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 11, "外来之人...你不会真以为自己是什么救世主吧...哈哈哈哈哈，你不过是孤的夺回力量的傀儡罢了！");
-        this.addDialogAnswer(TCREntities.GUIDER.get(), 12, "你所击败的炼狱魔龙，天空岛的傀儡等，它们才是守护世界的神明眷属，正是他们阻碍了孤的大业！只要他们消失，损失几个灾厄村民对孤来说不算什么，更何况，你所带回的魔神火种可助孤重铸肉身。");
+        this.addDialogAnswer(TCREntities.GUIDER.get(), 12, "你所击败的冥界骑士，天空岛的傀儡，监牢中的奇美拉，还有全员诅咒受到船长，它们才是守护世界的神明眷属，正是他们阻碍了孤的大业！只要他们消失，损失几个灾厄村民对孤来说不算什么，更何况，你所带回的魔神火种可助孤重铸肉身。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 13, "我是谁？你作为祭品无权得知！哪有什么愚蠢的仪式，吸收了你的力量，世界将为姑所统治！受死吧！");
 
         this.addDialogAnswer(TCREntities.GUIDER.get(), 14, "这...吾曾与§d「黑潮军团」§f在此地大战，损坏祭坛封印的英灵永远不会再回来了...但残存的英灵，已足以启动驱魔仪式。");
 
-        this.addDialogAnswer(TCREntities.GUIDER.get(), 15, "§b风暴之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§3[%s§3]§f，可去摆渡人处看看，说不定能换什么宝具。§d摆渡人§f就在§6圣殿的港口处§f等你。");
+        this.addDialogAnswer(TCREntities.GUIDER.get(), 15, "§b" +
+                "风暴之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§3[%s§3]§f，可去摆渡人处看看，说不定能换什么宝具。§d摆渡人§f就在§6圣殿的港口处§f等你。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 19, "§6烈焰之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§c[%s§c]§f，可去摆渡人处看看，说不定能换什么宝具。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 16, "§3深渊之火种§f...我感受到它就散落在§6[%s]§f，击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§c[%s§c]§f，可去摆渡人处看看，说不定能换什么宝具。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 17, "§2诅咒之火种§f...我感受到它就散落在§6[%s]§f击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§c[%s§c]§f，可去摆渡人处看看，说不定能换什么宝具。");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 18, "§e沙漠之火种§f...我感受到它就散落在§6[%s]§f击败%s夺回它吧！我已将§6[%s§6]§f的位置标注在地图之上了，吾便在此地等候。§e[%s§e]§f，可去摆渡人处看看，说不定能换什么宝具。");
+        this.addDialogAnswer(TCREntities.GUIDER.get(), 20, "正常走流程怎么会多出神谕残卷？你是不是偷了别人的？");
 
         this.addDialogAnswer(TCREntities.GIRL.get(), 0, "阁下，好久不见！");
         this.addDialogAnswer(TCREntities.GIRL.get(), 1, "阁下忘了我么？我是圣殿摆渡人，为众人指点迷津。阁下如有奇珍异宝，可与我瞧瞧，小女子可提取忆质，将其化为宝具！当你能踏足§c地狱§f或§d末地§f时，我也可以送你一程。");

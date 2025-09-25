@@ -199,16 +199,21 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                     new ItemStack(EFNItem.NF_CLAW.get(), 1),
                     142857, 0, 0.02f));
             offers.add(new MerchantOffer(
-                    new ItemStack(EFNItem.DEEPDARK_HEART.get(), 1),
-                    new ItemStack(EFNItem.AETHERIAL_DUSK_DUALSWORD.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(BlockFactorysBossesModItems.SANDWORM_DART.get(), 1),
+                    new ItemStack(com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(), 1),
                     new ItemStack(EFNItem.FIRE_EXSILIUMGLADIUS.get(), 1),
                     142857, 0, 0.02f));
             offers.add(new MerchantOffer(
                     new ItemStack(ModItems.KOBOLEDIATOR_SKULL.get(), 1),
                     new ItemStack(EFNItem.EXSILIUMGLADIUS.get(), 1),
+                    142857, 0, 0.02f));
+            offers.add(new MerchantOffer(
+                    new ItemStack(EFNItem.DEEPDARK_HEART.get(), 1),
+                    new ItemStack(EFNItem.AETHERIAL_DUSK_DUALSWORD.get(), 1),
+                    142857, 0, 0.02f));
+            offers.add(new MerchantOffer(
+                    new ItemStack(Items.BOW, 1),
+                    new ItemStack(ModItems.BLACK_STEEL_INGOT.get(), 1),
+                    new ItemStack(EFBowItems.MORTIS.get(), 1),
                     142857, 0, 0.02f));
             offers.add(new MerchantOffer(
                     new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 4),
@@ -217,11 +222,6 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
             offers.add(new MerchantOffer(
                     new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 4),
                     new ItemStack(EFNItem.CO_TACHI.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(Items.BOW, 1),
-                    new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 2),
-                    new ItemStack(EFBowItems.MORTIS.get(), 1),
                     142857, 0, 0.02f));
             offers.add(new MerchantOffer(
                     new ItemStack(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), 1),

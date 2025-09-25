@@ -73,6 +73,7 @@ public class TCRAdvancementData extends ForgeAdvancementProvider {
             Advancement desert_kill = registerAdvancement(desert_eye, "desert_kill", FrameType.CHALLENGE, ModItems.WRATH_OF_THE_DESERT.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.ANCIENT_REMNANT.get())));
             Advancement cursed_kill = registerAdvancement(cursed_eye, "cursed_kill", FrameType.CHALLENGE, ModItems.SOUL_RENDER.get(), true, true, false, KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(ModEntities.MALEDICTUS.get())));
 
+            Advancement dragonRide = registerAdvancement(root, "dragon_tame", FrameType.CHALLENGE, net.alp.monsterexpansion.item.ModItems.SKRYTHE_WING_MEMBRANE.get(), true, true, false, TameAnimalTrigger.TriggerInstance.tamedAnimal(EntityPredicate.Builder.entity().of(net.alp.monsterexpansion.entity.ModEntities.SKRYTHE.get()).build()));
 
             Advancement stage1 = registerAdvancement(root, "stage1", FrameType.CHALLENGE, Items.ANVIL, false, false, true);
             Advancement stage2 = registerAdvancement(root, "stage2", FrameType.CHALLENGE, Items.ANVIL, false, false, true);

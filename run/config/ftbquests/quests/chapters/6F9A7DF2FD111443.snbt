@@ -12,7 +12,8 @@
 	}
 	id: "6F9A7DF2FD111443"
 	images: [{
-		alpha: 64
+		alpha: 128
+		color: 16772521
 		height: 18.0d
 		image: "tcrcore:textures/ftb/armor_shelf.png"
 		rotation: 0.0d
@@ -57,7 +58,6 @@
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["&d皎月水晶&r锻造"]
-			icon_scale: 1.5d
 			id: "7B9624C198F07020"
 			rewards: [{
 				id: "30E35F3F8FAE4A06"
@@ -65,8 +65,8 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			size: 1.5d
-			subtitle: "侍奉光明之人，当享有光明之庇护"
+			size: 2.0d
+			subtitle: "侍奉光明之人，当享有光明之庇护 &6&l指向物品以查看对应套装效果"
 			tasks: [
 				{
 					id: "1FD49B33CBF8DA91"
@@ -164,7 +164,6 @@
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["&d皎月水晶&r锻造"]
-			icon_scale: 1.5d
 			id: "4AB65A5955823F0D"
 			rewards: [{
 				id: "203FF9EBF99D0C37"
@@ -172,8 +171,8 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			size: 1.5d
-			subtitle: "流浪之人，当享有自由之庇护"
+			size: 2.0d
+			subtitle: "流浪之人，当享有自由之庇护 &6&l指向物品以查看对应套装效果"
 			tasks: [
 				{
 					id: "7567149FA5516BB9"
@@ -227,7 +226,6 @@
 		{
 			dependencies: ["6552F3D1C32E5C75"]
 			description: ["&d皎月水晶&r锻造"]
-			icon_scale: 1.5d
 			id: "05DFD02A3AC11DE8"
 			rewards: [{
 				id: "3E31656CDA57D1DC"
@@ -235,8 +233,8 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			size: 1.5d
-			subtitle: "躬耕于黑暗之人，当享有黑暗之庇护"
+			size: 2.0d
+			subtitle: "躬耕于黑暗之人，当享有黑暗之庇护 &6&l指向物品以查看对应套装效果"
 			tasks: [
 				{
 					id: "1281FC7F70B4E6B7"
