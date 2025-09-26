@@ -472,7 +472,7 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "击败&6蛮屠巨兽&r掉落物在摆渡人处交易"
+			subtitle: "击败&6蛮屠巨兽&r掉落物在&3圣殿港口&r的摆渡人处交易"
 			tasks: [
 				{
 					id: "18AD35A7F0CA77E8"
@@ -529,7 +529,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
-			subtitle: "&6远古遗魂幻境&r内掉落物锻造"
+			subtitle: "&6远古遗魂幻境&r内掉落物锻造 或在&3圣殿港口&r的摆渡人处交易"
 			tasks: [
 				{
 					id: "0CA15BC3816C2B49"
@@ -626,7 +626,7 @@
 			id: "66B95BDCAFA07D10"
 			shape: "none"
 			size: 2.0d
-			subtitle: "&6伊格尼斯幻境&r内掉落物锻造"
+			subtitle: "&6伊格尼斯幻境&r内掉落物锻造 或在&3圣殿港口&r的摆渡人处交易"
 			tasks: [
 				{
 					id: "54AB2623AF09B530"
@@ -694,7 +694,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
-			subtitle: "&6玛莱迪克特斯幻境&r内掉落物锻造"
+			subtitle: "&6玛莱迪克特斯幻境&r内掉落物锻造 或在&3圣殿港口&r的摆渡人处交易"
 			tasks: [
 				{
 					id: "063FF3ADA25F3176"

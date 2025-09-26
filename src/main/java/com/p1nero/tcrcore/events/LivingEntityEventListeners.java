@@ -35,6 +35,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -45,6 +46,7 @@ import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -70,6 +72,7 @@ import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
+import yesman.epicfight.world.item.EpicFightItems;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -95,6 +98,12 @@ public class LivingEntityEventListeners {
                 serverLevel.addFreshEntity(entityToSpawn);
                 serverPlayer.getCooldowns().addCooldown(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), 80);
             }
+            EpicFightCapabilities.getUnparameterizedEntityPatch(serverPlayer, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {
+                if(serverPlayerPatch.isVanillaMode()) {
+                    event.setCanceled(true);
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_open_battle_mode"), true);
+                }
+            });
         }
 
         //防止摔死
@@ -215,7 +224,7 @@ public class LivingEntityEventListeners {
                 TCRDimSaveData.get(serverLevel).setBossKilled(true);
             }
 
-            if(livingEntity instanceof WraithonEntity) {
+            if(livingEntity instanceof WraithonEntity wraithonEntity && !wraithonEntity.isDead()) {
                 serverLevel.players().forEach(serverPlayer -> {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("wraithon_end_tip"), false);
                     TCRCapabilityProvider.getTCRPlayer(serverPlayer).setTickAfterBossDieLeft(200);
@@ -236,7 +245,7 @@ public class LivingEntityEventListeners {
             }
         }
 
-        if(livingEntity instanceof WraithonEntity) {
+        if(livingEntity instanceof WraithonEntity wraithonEntity && !wraithonEntity.isDead()) {
             if(livingEntity.level().isClientSide) {
                 WraithonMusicPlayer.stopBossMusic(livingEntity);
             } else {
@@ -299,14 +308,21 @@ public class LivingEntityEventListeners {
         }
     }
 
-    public static Set<EntityType<?>> entityTypes = new HashSet<>();
+    public static Set<EntityType<?>> illegalEntityTypes = new HashSet<>();
 
     @SubscribeEvent
     public static void onLivingJoin(EntityJoinLevelEvent event){
         if(event.getEntity().level().isClientSide) {
             return;
         }
-        if(entityTypes.contains(event.getEntity().getType())) {
+
+        if(event.getEntity() instanceof Skeleton skeleton) {
+            if(skeleton.getMainHandItem().is(Items.BOW) && skeleton.getRandom().nextFloat() < 0.8) {
+                skeleton.setItemInHand(InteractionHand.MAIN_HAND, EpicFightItems.IRON_GREATSWORD.get().getDefaultInstance());
+            }
+        }
+
+        if(illegalEntityTypes.contains(event.getEntity().getType())) {
             event.setCanceled(true);
         }
         UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");

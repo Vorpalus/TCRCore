@@ -46,7 +46,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
-import yesman.epicfight.world.item.EpicFightItems;
+import yesman.epicfight.world.capabilities.EpicFightCapabilities;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
 import java.util.Objects;
 
@@ -102,7 +103,7 @@ public class PlayerEventListeners {
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_dodge true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn epicfight:parrying true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s dodge_parry_reward:passive dodge_parry_reward:stamina1 true");
-                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s dodge efn:efn_step");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s dodge efn:efn_dodge");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s guard epicfight:parrying");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/epicfight skill add @s passive1 dodge_parry_reward:stamina1");
                 ItemUtil.addItem(serverPlayer, Items.IRON_SWORD, 1);
@@ -189,9 +190,12 @@ public class PlayerEventListeners {
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         Player player = event.getEntity();
-        Level level = player.level();
         if(player instanceof ServerPlayer serverPlayer) {
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+            player.setHealth(player.getMaxHealth());
+            EpicFightCapabilities.getUnparameterizedEntityPatch(player, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {
+                serverPlayerPatch.setStamina(serverPlayerPatch.getMaxStamina());
+            });
         }
     }
 

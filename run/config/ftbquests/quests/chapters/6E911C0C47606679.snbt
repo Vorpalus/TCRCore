@@ -636,15 +636,9 @@
 			icon: "block_factorys_bosses:yeti_spawn_egg"
 			id: "2E3DFA7D59FD06D4"
 			rewards: [{
-				id: "3787DC16641703F0"
-				item: {
-					Count: 1
-					id: "block_factorys_bosses:frozen_fist"
-					tag: {
-						Damage: 0
-					}
-				}
-				type: "item"
+				id: "45EA29023208FBF1"
+				type: "xp"
+				xp: 100
 			}]
 			subtitle: "位于雪原特定巢穴之中"
 			tasks: [
@@ -667,46 +661,45 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
-			description: ["[ \"点击查看\", { \"text\": \"战利品武器\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"387C944EDD8FA25B\" } } ]"]
-			icon: "block_factorys_bosses:underworld_knight_spawn_egg"
-			id: "697EB87B461228FE"
-			rewards: [
-				{
-					count: 8
-					id: "592E27D0B78415CB"
-					item: "block_factorys_bosses:ancient_iron_ingot"
-					type: "item"
+			description: [""]
+			icon: {
+				Count: 1
+				id: "block_factorys_bosses:sandworm_dart"
+				tag: {
+					Damage: 0
+					fdbosses: { }
 				}
+			}
+			id: "697EB87B461228FE"
+			rewards: [{
+				id: "467320D2B00CF415"
+				type: "xp"
+				xp: 100
+			}]
+			shape: "rsquare"
+			subtitle: "深藏&e沙海&r之中"
+			tasks: [
 				{
-					id: "15E0C19A8FD0AF40"
-					item: {
+					entity: "block_factorys_bosses:sandworm"
+					icon: {
 						Count: 1
-						id: "block_factorys_bosses:knight_sword"
+						id: "block_factorys_bosses:sandworm_dart"
 						tag: {
 							Damage: 0
 							fdbosses: { }
 						}
 					}
-					type: "item"
-				}
-			]
-			shape: "rsquare"
-			subtitle: "深藏&6地狱&r之中"
-			tasks: [
-				{
-					entity: "block_factorys_bosses:underworld_knight"
-					icon: "block_factorys_bosses:underworld_knight_spawn_egg"
 					id: "424210C6D8BB4252"
 					type: "kill"
 					value: 1L
 				}
 				{
 					id: "2E38402EB6613F66"
-					structure: "block_factorys_bosses:underworld_arena"
+					structure: "block_factorys_bosses:sandworm_nest"
 					type: "structure"
 				}
 			]
-			title: "冥界骑士&4[难度☆☆☆☆]&r"
+			title: "沙海蠕虫&4[难度☆☆☆☆]&r"
 			x: 3.5d
 			y: -2.5d
 		}
@@ -881,19 +874,26 @@
 			]
 			shape: "rsquare"
 			subtitle: "位于&c龙之塔&r顶，守护着龙裔。 &c&l推荐：习得&6【避火咒】&c&l后再进行挑战！&r"
-			tasks: [{
-				entity: "block_factorys_bosses:infernal_dragon"
-				icon: {
-					Count: 1
-					id: "block_factorys_bosses:dragon_skull"
-					tag: {
-						fdbosses: { }
+			tasks: [
+				{
+					entity: "block_factorys_bosses:infernal_dragon"
+					icon: {
+						Count: 1
+						id: "block_factorys_bosses:dragon_skull"
+						tag: {
+							fdbosses: { }
+						}
 					}
+					id: "03BBFB33B22431C9"
+					type: "kill"
+					value: 1L
 				}
-				id: "03BBFB33B22431C9"
-				type: "kill"
-				value: 1L
-			}]
+				{
+					id: "3CF1992B48EAA897"
+					structure: "block_factorys_bosses:dragon_tower"
+					type: "structure"
+				}
+			]
 			title: "末影龙&4[难度☆☆☆☆]&r"
 			x: 5.5d
 			y: 1.0d

@@ -134,7 +134,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "击败&c凋灵&r获取&d下界之星&r在摆渡人处交易"
+			subtitle: "击败&c凋灵&r获取&d下界之星&r在&3圣殿港口&r的摆渡人处交易"
 			tasks: [{
 				id: "6EBE0D34093C08A1"
 				item: "efn:meen_spear"
@@ -227,7 +227,7 @@
 				xp: 100
 			}]
 			shape: "square"
-			subtitle: "于&5利维坦幻境&r中击败&6珊瑚巨像&r获得&d珊瑚碎块&r合成"
+			subtitle: "于&5利维坦幻境&r中击败&6珊瑚巨像&r获得&d珊瑚碎块&r在&3圣殿港口&r的摆渡人处兑换"
 			tasks: [{
 				id: "02BA280CFC4F0205"
 				item: "efn:nf_claw"
@@ -355,7 +355,7 @@
 					Damage: 0
 				}
 			}
-			icon_scale: 2.0d
+			icon_scale: 1.4d
 			id: "387C944EDD8FA25B"
 			rewards: [{
 				id: "3755BEE32C9700D8"
@@ -427,7 +427,7 @@
 				xp: 100
 			}]
 			shape: "square"
-			subtitle: "&6傀儡之心&r在摆渡人处交易获得"
+			subtitle: "&6傀儡之心&r在&3圣殿港口&r的摆渡人处交易获得"
 			tasks: [{
 				id: "3C3BD883E127616F"
 				item: "efn:sword_of_pioneer"
@@ -529,7 +529,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "&b骑士长剑&r在摆渡人处交易获得"
+			subtitle: "&b骑士长剑&r在&3圣殿港口&r的摆渡人处交易获得"
 			tasks: [{
 				id: "1CFDB3F5D53BE5B7"
 				item: "efn:ruinsgreatsword"
@@ -600,7 +600,7 @@
 			description: [
 				""
 				""
-				"有着&a撕裂空间，刺破幽匿之力量&r，极其赏心悦目"
+				"有着&2撕裂空间，刺破幽匿之力量&r，极其赏心悦目"
 			]
 			icon: "efn:nf_dual_sword"
 			icon_scale: 2.0d
@@ -611,7 +611,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "击败&2可妮莉亚船长&r获取&d深暗之心&r在摆渡人处交易"
+			subtitle: "击败&2可妮莉亚船长&r获取&d深暗之心&r在&3圣殿港口&r的摆渡人处交易"
 			tasks: [{
 				id: "607DE602F85D4F13"
 				item: "efn:nf_dual_sword"
@@ -642,7 +642,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "击败&e沙海蠕虫&r后获取蠕虫之刺在摆渡人处交易 \\n击败&e骸龙斗士&r后获取骸龙之骨在摆渡人处交易"
+			subtitle: "击败&e沙海蠕虫&r后获取蠕虫之刺在&3圣殿港口&r的摆渡人处交易 \\n击败&e骸龙斗士&r后获取骸龙之骨在&3圣殿港口&r的摆渡人处交易"
 			tasks: [
 				{
 					id: "25B72AB677FC7EED"
@@ -671,6 +671,11 @@
 			]
 			icon: "efn:yamato_dmc4_in_sheath"
 			id: "627E4A2C0428CC5A"
+			rewards: [{
+				id: "56F53338EE7CD481"
+				type: "xp"
+				xp: 100
+			}]
 			shape: "rsquare"
 			size: 2.0d
 			subtitle: "击败&d&l末影龙&r后掉落的&d&l龙蛋&r在摆渡人处交易"
@@ -787,7 +792,7 @@
 				xp: 100
 			}]
 			shape: "square"
-			subtitle: "&6傀儡之心&r在摆渡人处交易获得"
+			subtitle: "&6傀儡之心&r在&3圣殿港口&r的摆渡人处交易获得"
 			tasks: [{
 				id: "59F8C4F178149A3A"
 				item: {
@@ -860,7 +865,7 @@
 				type: "item"
 			}]
 			shape: "square"
-			subtitle: "&3咒魂幻境&r中掉落的&6黑钢锭&r在摆渡人处交易，极高射速"
+			subtitle: "&3咒魂幻境&r中掉落的&6黑钢锭&r在&3圣殿港口&r的摆渡人处交易，极高射速"
 			tasks: [{
 				id: "4C5C12FB9A27DB22"
 				item: {

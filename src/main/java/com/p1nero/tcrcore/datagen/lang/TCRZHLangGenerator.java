@@ -60,6 +60,7 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
 
         this.addInfo("second_after_boss_die_left", "将在 %d 秒后返回主世界");
 
+        this.addInfo("press_to_open_battle_mode", "§c请开启战斗模式!§r");
         this.addInfo("unlock_new_dim_girl", "§6摆渡人处已解锁新选项!§r");
         this.addInfo("unlock_new_dim", "§c[地狱]§d[末地]§6已解锁!§r");
         this.addInfo("iron_golem_name", "天空岛之守卫");
@@ -223,6 +224,7 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.addDialogOption(TCREntities.GIRL.get(), 6, "前往地狱");
         this.addDialogOption(TCREntities.GIRL.get(), 7, "前往末地");
         this.addDialogOption(TCREntities.GIRL.get(), 8, "确定");
+        this.addDialogOption(TCREntities.GIRL.get(), 9, "饰品兑换");
 
     }
 }

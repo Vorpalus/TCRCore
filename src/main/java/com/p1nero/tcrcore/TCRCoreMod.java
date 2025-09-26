@@ -22,6 +22,7 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,10 +31,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.p1nero.ss.SwordSoaringMod;
-import net.p1nero.ss.gameassets.SwordSoaringSkillSlots;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
+import org.merlin204.wraithon.WraithonConfig;
 import org.slf4j.Logger;
 import yesman.epicfight.skill.SkillSlot;
 
@@ -69,7 +69,7 @@ public class TCRCoreMod {
                 isCheatMod = true;
             }
         });
-        LivingEntityEventListeners.entityTypes.addAll(List.of(
+        LivingEntityEventListeners.illegalEntityTypes.addAll(List.of(
                 ModEntities.URCHINKIN.get(),
                 ModEntities.KOBOLETON.get(),
                 ModEntities.ELITE_DRAUGR.get(),

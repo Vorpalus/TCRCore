@@ -1,5 +1,6 @@
 package com.p1nero.tcrcore.entity.custom.girl;
 
+import artifacts.item.ArtifactItem;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.registries.EFNItem;
 import com.merlin204.sg.item.SGItems;
@@ -15,6 +16,7 @@ import com.p1nero.tcrcore.events.SafeNetherTeleporter;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.talhanation.smallships.client.option.ModGameOptions;
 import com.yesman.epicskills.client.gui.screen.SkillTreeScreen;
+import net.genzyuro.uniqueaccessories.item.UAUniqueCurioItem;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -66,12 +68,207 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
     private Player conversingPlayer;
     @Nullable
     private Player tradingPlayer;
-    private final MerchantOffers offers = new MerchantOffers();
+    private MerchantOffers offers = new MerchantOffers();
     private final MerchantOffers offersWeapon = new MerchantOffers();
     private final MerchantOffers offersArmor = new MerchantOffers();
+    private final MerchantOffers artifacts = new MerchantOffers();
 
     public GirlEntity(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        initMerchant();
+    }
+
+    private void initMerchant() {
+        ForgeRegistries.ITEMS.getValues().forEach(item -> {
+            if(item instanceof ArtifactItem || item instanceof UAUniqueCurioItem) {
+                artifacts.add(new MerchantOffer(
+                        new ItemStack(FAItems.MOON_CRYSTAL.get(), 3),
+                        new ItemStack(item, 1),
+                        142857, 0, 0.02f));
+            }
+        });
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(SGItems.GOLEM_HEART.get(), 1),
+                new ItemStack(EpicFightItems.UCHIGATANA.get(), 1),
+                new ItemStack(EFNItem.SWORD_OF_PIONEER.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(SGItems.GOLEM_HEART.get(), 1),
+                new ItemStack(EpicFightItems.GOLDEN_DAGGER.get(), 1),
+                new ItemStack(EFNItem.NF_SHORT_SWORD.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(ModItems.CORAL_CHUNK.get(), 1),
+                new ItemStack(EFNItem.NF_CLAW.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(), 1),
+                new ItemStack(EFNItem.FIRE_EXSILIUMGLADIUS.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(ModItems.KOBOLEDIATOR_SKULL.get(), 1),
+                new ItemStack(EFNItem.EXSILIUMGLADIUS.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(EFNItem.DEEPDARK_HEART.get(), 1),
+                new ItemStack(EFNItem.AETHERIAL_DUSK_DUALSWORD.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(Items.BOW, 1),
+                new ItemStack(ModItems.BLACK_STEEL_INGOT.get(), 1),
+                new ItemStack(EFBowItems.MORTIS.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 4),
+                new ItemStack(EFNItem.AIR_TACHI.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 4),
+                new ItemStack(EFNItem.CO_TACHI.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), 1),
+                new ItemStack(EFNItem.RUINSGREATSWORD.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(Items.NETHER_STAR, 1),
+                new ItemStack(EFNItem.MEEN_SPEAR.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(Items.DRAGON_EGG, 1),
+                new ItemStack(EFNItem.YAMATO_DMC_IN_SHEATH.get(), 1),
+                142857, 0, 0.02f));
+        offersWeapon.add(new MerchantOffer(
+                new ItemStack(Items.DRAGON_EGG, 1),
+                new ItemStack(EFNItem.YAMATO_DMC4_IN_SHEATH.get(), 1),
+                142857, 0, 0.02f));
+
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(Items.NETHERITE_INGOT, 1),
+                new ItemStack(Items.DIAMOND, 4),
+                new ItemStack(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
+                new ItemStack(Items.DIAMOND_BOOTS, 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(ItemRegistry.CRUST_HEAD.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(ItemRegistry.CRUST_CHEST.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                new ItemStack(ItemRegistry.CRUST_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.FIN.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(AquamiraeItems.TERRIBLE_HELMET.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.FIN.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(AquamiraeItems.TERRIBLE_CHESTPLATE.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.FIN.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                new ItemStack(AquamiraeItems.TERRIBLE_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.FIN.get(), 1),
+                new ItemStack(Items.DIAMOND_BOOTS, 1),
+                new ItemStack(AquamiraeItems.TERRIBLE_BOOTS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(AquamiraeItems.ABYSSAL_HEAUME.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(AquamiraeItems.ABYSSAL_BRIGANTINE.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                new ItemStack(AquamiraeItems.ABYSSAL_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
+                new ItemStack(Items.DIAMOND_BOOTS, 1),
+                new ItemStack(AquamiraeItems.ABYSSAL_BOOTS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.KOBOLEDIATOR_SKULL.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(ModItems.BONE_REPTILE_HELMET.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.KOBOLETON_BONE.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(ModItems.BONE_REPTILE_CHESTPLATE.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(ModItems.IGNITIUM_HELMET.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(ModItems.IGNITIUM_CHESTPLATE.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                new ItemStack(ModItems.IGNITIUM_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_BOOTS, 1),
+                new ItemStack(ModItems.IGNITIUM_BOOTS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(ModItems.CURSIUM_HELMET.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(ModItems.CURSIUM_CHESTPLATE.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                new ItemStack(ModItems.CURSIUM_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
+                new ItemStack(Items.DIAMOND_BOOTS, 1),
+                new ItemStack(ModItems.CURSIUM_BOOTS.get(), 1),
+                142857, 0, 0.02f));
     }
 
     @Override
@@ -122,7 +319,9 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                             Minecraft.getInstance().setScreen(new SkillTreeScreen(localPlayerPatch));
                         }
                     }));
-            root.addChild(ans1).addChild(ans2).addChild(ans3).addChild(ans4);
+            //饰品
+            DialogNode ans7 = new DialogNode.FinalNode(dBuilder.optWithBrackets(9), 7);
+            root.addChild(ans1).addChild(ans2).addChild(ans3).addChild(ans7).addChild(ans4);
             treeBuilder.setRoot(root);
         } else {
             DialogNode root = new DialogNode(dBuilder.ans(0), dBuilder.optWithBrackets(0));//开场白 | 返回
@@ -142,8 +341,10 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                             Minecraft.getInstance().setScreen(new SkillTreeScreen(localPlayerPatch));
                         }
                     }));
+            //饰品
+            DialogNode ans7 = new DialogNode.FinalNode(dBuilder.optWithBrackets(9), 7);
 
-            root.addChild(ans1).addChild(ans2).addChild(ans3).addChild(ans4);
+            root.addChild(ans1).addChild(ans2).addChild(ans3).addChild(ans7).addChild(ans4);
 
             if(compoundTag.getBoolean("dim_unlock")) {
                 DialogNode ans5 = new DialogNode(dBuilder.ans(4), dBuilder.optWithBrackets(6))
@@ -183,198 +384,21 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
 
         //武器
         if(i == 1) {
-            offers.clear();
-            offers.add(new MerchantOffer(
-                    new ItemStack(SGItems.GOLEM_HEART.get(), 1),
-                    new ItemStack(EpicFightItems.UCHIGATANA.get(), 1),
-                    new ItemStack(EFNItem.SWORD_OF_PIONEER.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(SGItems.GOLEM_HEART.get(), 1),
-                    new ItemStack(EpicFightItems.GOLDEN_DAGGER.get(), 1),
-                    new ItemStack(EFNItem.NF_SHORT_SWORD.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.CORAL_CHUNK.get(), 1),
-                    new ItemStack(EFNItem.NF_CLAW.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(), 1),
-                    new ItemStack(EFNItem.FIRE_EXSILIUMGLADIUS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.KOBOLEDIATOR_SKULL.get(), 1),
-                    new ItemStack(EFNItem.EXSILIUMGLADIUS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(EFNItem.DEEPDARK_HEART.get(), 1),
-                    new ItemStack(EFNItem.AETHERIAL_DUSK_DUALSWORD.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(Items.BOW, 1),
-                    new ItemStack(ModItems.BLACK_STEEL_INGOT.get(), 1),
-                    new ItemStack(EFBowItems.MORTIS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 4),
-                    new ItemStack(EFNItem.AIR_TACHI.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(BlockFactorysBossesModItems.DRAGON_BONE.get(), 4),
-                    new ItemStack(EFNItem.CO_TACHI.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), 1),
-                    new ItemStack(EFNItem.RUINSGREATSWORD.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(Items.NETHER_STAR, 1),
-                    new ItemStack(EFNItem.MEEN_SPEAR.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(Items.DRAGON_EGG, 1),
-                    new ItemStack(EFNItem.YAMATO_DMC_IN_SHEATH.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(Items.DRAGON_EGG, 1),
-                    new ItemStack(EFNItem.YAMATO_DMC4_IN_SHEATH.get(), 1),
-                    142857, 0, 0.02f));
+            offers = offersWeapon;
             startTrade(serverPlayer);
         }
         //盔甲
         if(i == 2) {
-            offers.clear();
-
-            offers.add(new MerchantOffer(
-                    new ItemStack(Items.NETHERITE_INGOT, 1),
-                    new ItemStack(Items.DIAMOND, 4),
-                    new ItemStack(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
-                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(FAItems.MOON_CRYSTAL.get(), 1),
-                    new ItemStack(Items.DIAMOND_BOOTS, 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    new ItemStack(ItemRegistry.CRUST_HEAD.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    new ItemStack(ItemRegistry.CRUST_CHEST.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
-                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-                    new ItemStack(ItemRegistry.CRUST_LEGGINGS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.FIN.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    new ItemStack(AquamiraeItems.TERRIBLE_HELMET.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.FIN.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    new ItemStack(AquamiraeItems.TERRIBLE_CHESTPLATE.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.FIN.get(), 1),
-                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-                    new ItemStack(AquamiraeItems.TERRIBLE_LEGGINGS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.FIN.get(), 1),
-                    new ItemStack(Items.DIAMOND_BOOTS, 1),
-                    new ItemStack(AquamiraeItems.TERRIBLE_BOOTS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    new ItemStack(AquamiraeItems.ABYSSAL_HEAUME.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    new ItemStack(AquamiraeItems.ABYSSAL_BRIGANTINE.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
-                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-                    new ItemStack(AquamiraeItems.ABYSSAL_LEGGINGS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(AquamiraeItems.ABYSSAL_AMETHYST.get(), 1),
-                    new ItemStack(Items.DIAMOND_BOOTS, 1),
-                    new ItemStack(AquamiraeItems.ABYSSAL_BOOTS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.KOBOLEDIATOR_SKULL.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    new ItemStack(ModItems.BONE_REPTILE_HELMET.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.KOBOLETON_BONE.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    new ItemStack(ModItems.BONE_REPTILE_CHESTPLATE.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    new ItemStack(ModItems.IGNITIUM_HELMET.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    new ItemStack(ModItems.IGNITIUM_CHESTPLATE.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-                    new ItemStack(ModItems.IGNITIUM_LEGGINGS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_BOOTS, 1),
-                    new ItemStack(ModItems.IGNITIUM_BOOTS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_HELMET, 1),
-                    new ItemStack(ModItems.CURSIUM_HELMET.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
-                    new ItemStack(ModItems.CURSIUM_CHESTPLATE.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
-                    new ItemStack(ModItems.CURSIUM_LEGGINGS.get(), 1),
-                    142857, 0, 0.02f));
-            offers.add(new MerchantOffer(
-                    new ItemStack(ModItems.CURSIUM_INGOT.get(), 1),
-                    new ItemStack(Items.DIAMOND_BOOTS, 1),
-                    new ItemStack(ModItems.CURSIUM_BOOTS.get(), 1),
-                    142857, 0, 0.02f));
-
-
+            offers = offersArmor;
             startTrade(serverPlayer);
         }
+
+        if(i == 7) {
+            offers.clear();
+            offers = artifacts;
+            startTrade(serverPlayer);
+        }
+
         this.setConversingPlayer(null);
     }
 
