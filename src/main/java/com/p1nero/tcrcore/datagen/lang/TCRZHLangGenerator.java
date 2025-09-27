@@ -13,6 +13,7 @@ import com.yesman.epicskills.registry.entry.EpicSkillsItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
+import net.sonmok14.fromtheshadows.server.utils.registry.ItemRegistry;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 
 public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLanguageProvider {
@@ -22,14 +23,15 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
 
     @Override
     protected void addTranslations() {
-        this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "击败[监守者]或[可妮莉亚船长]获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_SKULL.get(), "击败[冥界骑士]或[炼狱魔龙]获取");
-        this.addTCRItemInfo(ModItems.CORAL_CHUNK.get(), "于§d利维坦幻境§r击败[珊瑚巨像]获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_BONE.get(), "击败[冥界骑士]或[炼狱魔龙]获取");
-        this.addTCRItemInfo(com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(), "击败[骸骨奇美拉]获取");
-        this.addTCRItemInfo(ModItems.CHITIN_CLAW.get(), "于§3斯库拉幻境§r击败巨钳守卫获取");
-        this.addTCRItemInfo(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), "击败[冥界骑士]获取");
-        this.addTCRItemInfo(Items.DRAGON_EGG, "于§d末地§r击败[末影龙]获取");
+        this.addTCRItemInfo(ItemRegistry.BOTTLE_OF_BLOOD.get(), "使用§d[尼赫莫斯]§r掉落物§c[晶化血髓]§r酿造获取");
+        this.addTCRItemInfo(EFNItem.DEEPDARK_HEART.get(), "击败§2[监守者]§r或§2[可妮莉亚船长]§r获取");
+        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_SKULL.get(), "击败§c[冥界骑士]§r或§4[炼狱魔龙]§r获取");
+        this.addTCRItemInfo(ModItems.CORAL_CHUNK.get(), "于§d利维坦幻境§r击败§a[珊瑚巨像]§r获取");
+        this.addTCRItemInfo(BlockFactorysBossesModItems.DRAGON_BONE.get(), "击败§c[冥界骑士]§r或§4[炼狱魔龙]§r获取");
+        this.addTCRItemInfo(com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(), "击败§e[骸骨奇美拉]§r获取");
+        this.addTCRItemInfo(ModItems.CHITIN_CLAW.get(), "于§3斯库拉幻境§r击败§3巨钳守卫§r获取");
+        this.addTCRItemInfo(BlockFactorysBossesModItems.KNIGHT_SWORD.get(), "击败§c[冥界骑士]§r获取");
+        this.addTCRItemInfo(Items.DRAGON_EGG, "于§d末地§r击败§d[末影龙]§r获取");
         this.addTCRItemInfo(EpicSkillsItems.ABILIITY_STONE.get(), "右键使用以获取技能点");
 
         this.add("itemGroup.tcr.items", "远梦之棺 —— 核心 物品");
@@ -42,6 +44,8 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.addSkill("water_avoid", "避水咒", "可在水下自由呼吸！");
         this.addSkill("fire_avoid", "避火咒", "免疫火焰伤害！");
 
+        this.add(TCRItems.ARTIFACT_TICKET.get(), "饰品精华");
+        this.addItemUsageInfo(TCRItems.ARTIFACT_TICKET.get(), "通过任务书某些任务获取。可在§d[圣殿港口]§r的§3[摆渡人]§r处提炼任意饰品");
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "神谕残卷");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "上面写着古老的神谕，暗示了火种散落的地方。回主城给守望者看看吧，说不定对冒险有帮助！");
 
@@ -224,7 +228,7 @@ public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLangu
         this.addDialogOption(TCREntities.GIRL.get(), 6, "前往地狱");
         this.addDialogOption(TCREntities.GIRL.get(), 7, "前往末地");
         this.addDialogOption(TCREntities.GIRL.get(), 8, "确定");
-        this.addDialogOption(TCREntities.GIRL.get(), 9, "饰品兑换");
+        this.addDialogOption(TCREntities.GIRL.get(), 9, "饰品提取");
 
     }
 }

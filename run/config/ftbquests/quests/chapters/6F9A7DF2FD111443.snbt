@@ -450,6 +450,18 @@
 					}
 					type: "item"
 				}
+				{
+					id: "1DDE9B5ABAF9FA82"
+					item: {
+						Count: 1
+						id: "fromtheshadows:diabolium_boots"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
 			]
 			title: "魔金套装"
 			x: -1.0d

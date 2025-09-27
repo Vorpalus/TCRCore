@@ -27,7 +27,7 @@
 			height: 9.0d
 			image: "tcrcore:textures/ftb/ghost.png"
 			rotation: 0.0d
-			width: 16.0d
+			width: 14.0d
 			x: -10.0d
 			y: 7.0d
 		}
@@ -456,6 +456,17 @@
 					}
 					type: "item"
 				}
+				{
+					id: "143DCC4EF2D22025"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
 			]
 			shape: "rsquare"
 			subtitle: "深藏于深暗之域，亦可现身于受到诅咒之船"
@@ -480,63 +491,25 @@
 		{
 			dependencies: ["68EDC89BB022788B"]
 			description: [
-				"获取&6晶化血髓&r和&6腐化之心&r之途径"
+				"获取&6晶化血髓&r和&6腐化之心&r之途径，可在&d港口摆渡人&r处锻造魔金盔甲"
 				""
 				"[ \"锻造\", { \"text\": \"点击查看嗜血渴求\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"6B63BADC1AD47A2B\" } } ]"
 				""
 				"[ \"锻造\", { \"text\": \"点击查看魔金套装\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"1779FEDC1CD752E9\" } } ]"
 			]
 			id: "2BF1F71D59A76031"
-			rewards: [
-				{
-					count: 8
-					id: "4C64C8986C35BE18"
-					item: {
-						Count: 1
-						id: "fromtheshadows:corrupted_heart"
-						tag: {
-							fdbosses: { }
-						}
+			rewards: [{
+				count: 8
+				id: "4C64C8986C35BE18"
+				item: {
+					Count: 1
+					id: "fromtheshadows:corrupted_heart"
+					tag: {
+						fdbosses: { }
 					}
-					type: "item"
 				}
-				{
-					id: "17803419C60F83D4"
-					item: {
-						Count: 1
-						id: "fromtheshadows:diabolium_helmet"
-						tag: {
-							Damage: 0
-							fdbosses: { }
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "2545CA663FD240EC"
-					item: {
-						Count: 1
-						id: "fromtheshadows:diabolium_chest"
-						tag: {
-							Damage: 0
-							fdbosses: { }
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "2A3AC603464825ED"
-					item: {
-						Count: 1
-						id: "fromtheshadows:diabolium_leggings"
-						tag: {
-							Damage: 0
-							fdbosses: { }
-						}
-					}
-					type: "item"
-				}
-			]
+				type: "item"
+			}]
 			subtitle: "位于各种洞穴之中，在下界存在变种，较难遇到的三级魔物"
 			tasks: [{
 				entity: "fromtheshadows:nehemoth"
@@ -626,6 +599,17 @@
 					id: "56D8D8254C1A17A7"
 					type: "biome"
 				}
+				{
+					id: "79C151230FA1A3B6"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
 			]
 			title: "斯克利兹&4[难度☆☆☆☆]&r"
 			x: -3.5d
@@ -671,11 +655,24 @@
 				}
 			}
 			id: "697EB87B461228FE"
-			rewards: [{
-				id: "467320D2B00CF415"
-				type: "xp"
-				xp: 100
-			}]
+			rewards: [
+				{
+					id: "467320D2B00CF415"
+					type: "xp"
+					xp: 100
+				}
+				{
+					id: "3E3B93FA73E8DAC8"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			subtitle: "深藏&e沙海&r之中"
 			tasks: [
@@ -799,6 +796,17 @@
 					item: "minecraft:nether_star"
 					type: "item"
 				}
+				{
+					id: "6D18910D14426DFB"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
 			]
 			shape: "rsquare"
 			subtitle: "需以秘法召唤之"
@@ -820,12 +828,25 @@
 			hide_dependent_lines: true
 			icon_scale: 1.5d
 			id: "0A406BFD18A36EC1"
-			rewards: [{
-				count: 2
-				id: "3FFC98A10CE86EA4"
-				item: "minecraft:netherite_ingot"
-				type: "item"
-			}]
+			rewards: [
+				{
+					count: 2
+					id: "3FFC98A10CE86EA4"
+					item: "minecraft:netherite_ingot"
+					type: "item"
+				}
+				{
+					id: "63771895D6A1AA62"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 1.3d
 			subtitle: "异空间之魔龙，夺其子祠，以铸&3阎魔之刃"
@@ -866,6 +887,17 @@
 						id: "block_factorys_bosses:dragon_bones_boots"
 						tag: {
 							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "716CFBFF5641D334"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
 							fdbosses: { }
 						}
 					}

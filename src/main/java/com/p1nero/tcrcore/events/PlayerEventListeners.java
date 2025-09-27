@@ -114,6 +114,12 @@ public class PlayerEventListeners {
                 PlayerDataManager.firstJoint.put(serverPlayer, true);
             }
 
+            if(TCRCoreMod.hasCheatMod()) {
+                serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 9999, 9999));
+                serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 9999, 9999));
+                serverPlayer.addEffect(new MobEffectInstance(MobEffects.LUCK, 9999, 9999));
+            }
+
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
         }
     }

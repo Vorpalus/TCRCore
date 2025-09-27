@@ -31,6 +31,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.sonmok14.fromtheshadows.server.utils.registry.ItemRegistry;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.merlin204.wraithon.WraithonConfig;
@@ -63,7 +64,7 @@ public class TCRCoreMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         TCRPacketHandler.register();
-        List<String> cheatModList = List.of("tacz", "projecte");
+        List<String> cheatModList = List.of("tacz", "projecte", "enchantmentlevelbreak");
         cheatModList.forEach(s -> {
             if(ModList.get().isLoaded(s)){
                 isCheatMod = true;
@@ -81,6 +82,7 @@ public class TCRCoreMod {
                 BlockFactorysBossesModEntities.FLAMING_SKELETON_GUARD_FIREBALL.get()
         ));
         ItemEvents.items.addAll(List.of(
+                ItemRegistry.BOTTLE_OF_BLOOD.get(),
                 BlockFactorysBossesModItems.DRAGON_SKULL.get(),
                 BlockFactorysBossesModItems.DRAGON_BONE.get(),
                 com.github.dodo.dodosmobs.init.ModItems.CHIERA_CLAW.get(),

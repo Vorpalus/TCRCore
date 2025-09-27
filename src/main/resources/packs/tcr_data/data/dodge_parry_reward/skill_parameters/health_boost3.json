@@ -1,4 +1,4 @@
 {
-  "effect_duration": 600,
-  "effect_amplifier": 5
+  "duration": 600,
+  "amplifier": 5
 }

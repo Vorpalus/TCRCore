@@ -53,18 +53,31 @@
 			id: "28346EDF4258D751"
 			invisible: true
 			invisible_until_tasks: 1
-			rewards: [{
-				id: "16BD4B61B573A722"
-				item: {
-					Count: 1
-					id: "super_golem:golem_heart"
-					tag: {
-						Damage: 0
-						fdbosses: { }
+			rewards: [
+				{
+					id: "16BD4B61B573A722"
+					item: {
+						Count: 1
+						id: "super_golem:golem_heart"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
 					}
+					type: "item"
 				}
-				type: "item"
-			}]
+				{
+					id: "2F7E004FF368033B"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "none"
 			size: 2.0d
 			subtitle: "“当战火撕裂云层，她以风暴为阶梯，为子民筑起悬空净土”"
@@ -104,18 +117,31 @@
 			id: "3E4068880C2881A9"
 			invisible: true
 			invisible_until_tasks: 1
-			rewards: [{
-				count: 4
-				id: "65648736A3477913"
-				item: {
-					Count: 1
-					id: "fromtheshadows:crimson_shell"
-					tag: {
-						fdbosses: { }
+			rewards: [
+				{
+					count: 4
+					id: "65648736A3477913"
+					item: {
+						Count: 1
+						id: "fromtheshadows:crimson_shell"
+						tag: {
+							fdbosses: { }
+						}
 					}
+					type: "item"
 				}
-				type: "item"
-			}]
+				{
+					id: "23434BD7156649CF"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "none"
 			size: 2.0d
 			subtitle: "“深渊吞噬陆地时，祂将自己缝进海床，血肉化成气泡之城”"
@@ -182,6 +208,17 @@
 						id: "block_factorys_bosses:dragon_bones_chestplate"
 						tag: {
 							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "0112A644E7526EDD"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
 							fdbosses: { }
 						}
 					}
@@ -340,6 +377,17 @@
 					item: {
 						Count: 1
 						id: "dodosmobs:chimera_claw"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "08AA206025974B91"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
 						tag: {
 							fdbosses: { }
 						}

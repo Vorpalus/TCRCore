@@ -101,11 +101,24 @@
 			]
 			icon: "cataclysm:soul_render"
 			id: "0D76D92CF8D39AE7"
-			rewards: [{
-				id: "096BA839A8327E79"
-				item: "fantasy_armor:moon_crystal"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "096BA839A8327E79"
+					item: "fantasy_armor:moon_crystal"
+					type: "item"
+				}
+				{
+					id: "23263535C1698718"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 1.5d
 			subtitle: "击败&6玛莱迪克特斯&r获得"
@@ -246,11 +259,24 @@
 				"同时钩爪功能保留，并添加适配动画"
 			]
 			id: "12C6899DBC971D90"
-			rewards: [{
-				id: "65ACE662A3AE43DB"
-				item: "fantasy_armor:moon_crystal"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "65ACE662A3AE43DB"
+					item: "fantasy_armor:moon_crystal"
+					type: "item"
+				}
+				{
+					id: "6C20E14CE936BFA8"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 1.5d
 			subtitle: "击败&6利维坦&r获得"
@@ -446,11 +472,24 @@
 			]
 			icon: "cataclysm:the_incinerator"
 			id: "016F12E968740FBA"
-			rewards: [{
-				id: "7DB99A23A8ADC6E9"
-				item: "fantasy_armor:moon_crystal"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "7DB99A23A8ADC6E9"
+					item: "fantasy_armor:moon_crystal"
+					type: "item"
+				}
+				{
+					id: "6A97FECA92F53AF4"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 1.5d
 			subtitle: "击败&6伊格尼斯&r获得"
@@ -472,11 +511,24 @@
 			]
 			icon: "cataclysm:wrath_of_the_desert"
 			id: "49526E12F56F14D0"
-			rewards: [{
-				id: "12083D8F9149829F"
-				item: "fantasy_armor:moon_crystal"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "12083D8F9149829F"
+					item: "fantasy_armor:moon_crystal"
+					type: "item"
+				}
+				{
+					id: "56D497174D4EEBFD"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 1.5d
 			subtitle: "击败&6远古遗魂&r获得"
@@ -498,11 +550,24 @@
 			]
 			icon: "cataclysm:ceraunus"
 			id: "40217A88C9D46BB1"
-			rewards: [{
-				id: "3929B514E5E14F60"
-				item: "fantasy_armor:moon_crystal"
-				type: "item"
-			}]
+			rewards: [
+				{
+					id: "3929B514E5E14F60"
+					item: "fantasy_armor:moon_crystal"
+					type: "item"
+				}
+				{
+					id: "69148157C4D96C12"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
 			shape: "rsquare"
 			size: 1.5d
 			subtitle: "击败&6斯库拉&r获得"

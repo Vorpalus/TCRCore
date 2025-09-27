@@ -13,6 +13,7 @@ import com.p1nero.dialog_lib.client.screen.DialogueScreenBuilder;
 import com.p1nero.epicfightbow.item.EFBowItems;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.events.SafeNetherTeleporter;
+import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.talhanation.smallships.client.option.ModGameOptions;
 import com.yesman.epicskills.client.gui.screen.SkillTreeScreen;
@@ -82,7 +83,7 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         ForgeRegistries.ITEMS.getValues().forEach(item -> {
             if(item instanceof ArtifactItem || item instanceof UAUniqueCurioItem) {
                 artifacts.add(new MerchantOffer(
-                        new ItemStack(FAItems.MOON_CRYSTAL.get(), 3),
+                        new ItemStack(TCRItems.ARTIFACT_TICKET.get(), 1),
                         new ItemStack(item, 1),
                         142857, 0, 0.02f));
             }
@@ -178,6 +179,26 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                 new ItemStack(ItemRegistry.CRIMSON_SHELL.get(), 1),
                 new ItemStack(Items.DIAMOND_LEGGINGS, 1),
                 new ItemStack(ItemRegistry.CRUST_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.BOTTLE_OF_BLOOD.get(), 1),
+                new ItemStack(Items.DIAMOND_HELMET, 1),
+                new ItemStack(ItemRegistry.DIABOLIUM_HEAD.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.BOTTLE_OF_BLOOD.get(), 1),
+                new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                new ItemStack(ItemRegistry.DIABOLIUM_CHEST.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.BOTTLE_OF_BLOOD.get(), 1),
+                new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                new ItemStack(ItemRegistry.DIABOLIUM_LEGGINGS.get(), 1),
+                142857, 0, 0.02f));
+        offersArmor.add(new MerchantOffer(
+                new ItemStack(ItemRegistry.BOTTLE_OF_BLOOD.get(), 1),
+                new ItemStack(Items.DIAMOND_BOOTS, 1),
+                new ItemStack(ItemRegistry.DIABOLIUM_BOOTS.get(), 1),
                 142857, 0, 0.02f));
         offersArmor.add(new MerchantOffer(
                 new ItemStack(AquamiraeItems.FIN.get(), 1),

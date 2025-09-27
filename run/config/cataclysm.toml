@@ -5,9 +5,9 @@
 	#ScreenShake(on/off)
 	"ScreenShake(on/off)" = true
 	#Forced viewpoint change when hit by a grab attack
-	"setThirdPerson(on/off)" = true
+	"setThirdPerson(on/off)" = false
 	#Forced viewpoint change when hit by a grab attack
-	"setFirstPerson(on/off)" = true
+	"setFirstPerson(on/off)" = false
 
 ["bosses Common settings"]
 	#custombossbar(on/off)

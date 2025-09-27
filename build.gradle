@@ -159,20 +159,19 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7025236")
-//    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7035137")
+    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:7035166")
     implementation fg.deobf("libs:wraithon:1.0.0")
-    implementation fg.deobf("libs:epicskills:20.1.3")
     implementation fg.deobf("curse.maven:epic-fight-invincible-1184379:6992153")
     implementation fg.deobf("curse.maven:p1neros-epic-bow-1338443:6964978")
-    implementation fg.deobf("curse.maven:sword-soaring-1011068:7028343")
+    implementation fg.deobf("curse.maven:sword-soaring-1011068:7035767")
     implementation fg.deobf("libs:dodge_parry_reward:20.12.1")
     implementation fg.deobf("libs:epic_fight_avalon:20.12.3")
     implementation fg.deobf("libs:EpicFightNightfall:2.0")
     implementation fg.deobf("libs:p1nero_ec:20.12.0.1")
     implementation fg.deobf("libs:p1nero_dl:1.6.0")
 
-    implementation fg.deobf("curse.maven:better-lock-on-1339577:6998595")
+    implementation fg.deobf("curse.maven:better-lock-on-1339577:7037697")
 
     implementation fg.deobf("libs:tudigong:1.1.0")
     implementation fg.deobf("curse.maven:lithostitched-936015:6742615")//村庄插入

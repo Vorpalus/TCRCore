@@ -6,29 +6,9 @@
 			"ability_points": 1
 		},
 		{
-			"skill": "epicfight:phantom_ascent",
-			"position_in_screen": [20, 100],
-			"ability_points": 5,
-			"parents": [
-				{
-					"skill": "efn:efn_dodge"
-				}
-			]
-		},
-		{
 			"skill": "efn:efn_step",
 			"position_in_screen": [120, 30],
 			"ability_points": 1
-		},
-		{
-			"skill": "epicfight:technician",
-			"position_in_screen": [120, 100],
-			"ability_points": 5,
-			"parents": [
-				{
-					"skill": "efn:efn_step"
-				}
-			]
 		},
 		{
 			"skill": "epicfight:parrying",
@@ -77,22 +57,12 @@
 		},
 		{
 			"skill": "epicfight:forbidden_strength",
-			"parents": [
-				{
-					"skill": "epicfight:technician"
-				}
-			],
-			"position_in_screen": [120, 170],
+			"position_in_screen": [120, 100],
 			"ability_points": 5
 		},
 		{
 			"skill": "epicfight:hypervitality",
-			"parents": [
-				{
-					"skill": "epicfight:forbidden_strength"
-				}
-			],
-			"position_in_screen": [120, 240],
+			"position_in_screen": [20, 100],
 			"ability_points": 5
 		}
 	],
