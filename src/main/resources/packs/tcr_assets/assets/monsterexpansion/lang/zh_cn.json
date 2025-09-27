@@ -1,22 +1,54 @@
 {
   "entity.monsterexpansion.skrythe": "斯克里兹",
-  "block.monsterexpansion.foundry": "熔炉工坊",
+  "entity.monsterexpansion.skrythe_tail": "斯克里兹之尾",
+
+  "entity.monsterexpansion.rhyza": "莱萨",
+  "entity.monsterexpansion.rhyza_tail": "莱萨之尾",
+
+  "entity.monsterexpansion.skrythe_part": "斯克里兹残躯",
+  "entity.monsterexpansion.rhyza_part": "莱萨残躯",
+
+  "block.monsterexpansion.foundry_placeholder": "熔炉",
+  "block.monsterexpansion.foundry": "熔炉",
+
   "item.monsterexpansion.skrythe_fang": "斯克里兹尖牙",
-  "item.monsterexpansion.skrythe_armorplate": "斯克里兹甲壳板",
+  "item.monsterexpansion.skrythe_armorplate": "斯克里兹甲板",
   "item.monsterexpansion.skrythe_wing_membrane": "斯克里兹翼膜",
-  "item.monsterexpansion.vocal_resonance_fold": "声带共振褶",
+  "item.monsterexpansion.vocal_resonance_fold": "声鸣共振褶",
   "item.monsterexpansion.skrythe_frill": "斯克里兹颈褶",
-  "item.monsterexpansion.horn_of_the_shattercry": "碎啸之角",
+  "item.monsterexpansion.skrythe_tail": "斯克里兹尾棘",
+
+  "item.monsterexpansion.rhyza_claw": "莱萨利爪",
+  "item.monsterexpansion.rhyza_fur": "莱萨毛皮",
+  "item.monsterexpansion.rhyza_carapace": "莱萨甲壳",
+  "item.monsterexpansion.rhyza_scale": "莱萨鳞片",
+  "item.monsterexpansion.rhyza_tail": "莱萨尾棘",
+  "item.monsterexpansion.rhyza_gleam_core": "莱萨辉光核",
+  "item.monsterexpansion.serrated_sharpclaw": "锯齿锐爪",
+  "item.monsterexpansion.monster_hardbone": "怪物坚骨",
+
+  "item.monsterexpansion.flash_arrow": "闪光箭",
+
+  "item.monsterexpansion.horn_of_the_shattercry": "裂鸣号角",
+  "item.monsterexpansion.duskrend": "暮色撕裂者",
+
   "item.monsterexpansion.skrythe_chestplate": "斯克里兹胸甲",
   "item.monsterexpansion.skrythe_helmet": "斯克里兹头盔",
   "item.monsterexpansion.skrythe_leggings": "斯克里兹护腿",
   "item.monsterexpansion.skrythe_boots": "斯克里兹靴子",
+  "item.monsterexpansion.rhyza_helmet": "莱萨头盔",
+  "item.monsterexpansion.rhyza_chestplate": "莱萨胸甲",
+  "item.monsterexpansion.rhyza_leggings": "莱萨护腿",
+  "item.monsterexpansion.rhyza_boots": "莱萨靴子",
 
-  "enchantment.monsterexpansion.polyphony": "多重和声",
-  "enchantment.monsterexpansion.echoing_reach": "回荡延伸",
+  "enchantment.monsterexpansion.polyphony": "多重和鸣",
+  "enchantment.monsterexpansion.echoing_reach": "回荡延展",
+  "enchantment.monsterexpansion.lunacy": "狂月之力",
 
-  "screen.monsterexpansion.foundry": "熔炉工坊",
+  "effect.monsterexpansion.cloaked": "隐匿",
+  "effect.monsterexpansion.cloaked_cooldown": "隐匿冷却",
+
+  "screen.monsterexpansion.foundry": "熔炉",
 
   "creativetab.monsterexpansion_tab": "怪物扩展"
 }
-

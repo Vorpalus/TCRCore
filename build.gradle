@@ -65,7 +65,7 @@ minecraft {
     // However, it must be at "META-INF/accesstransformer.cfg" in the final mod jar to be loaded by Forge.
     // This default location is a best practice to automatically put the file in the right place in the final jar.
     // See https://docs.minecraftforge.net/en/latest/advanced/accesstransformers/ for more information.
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -213,8 +213,9 @@ dependencies {
     implementation fg.deobf("curse.maven:dodos-mobs-1349823:7018547")
 //    implementation fg.deobf("curse.maven:bossesrise-1314084:6900933")
     implementation fg.deobf("libs:bossesrise:1.0.9.1")
-    implementation fg.deobf("curse.maven:monster-expansion-1336105:6957501")
-    implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:7009542")
+    implementation fg.deobf("curse.maven:monster-expansion-1336105:7038754")
+    implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:7037169")
+    implementation fg.deobf("curse.maven:more-hitboxes-1115989:6942239")
     implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:7028006")
     implementation fg.deobf("curse.maven:lendercataclysm-551586:6906993")
     implementation fg.deobf("curse.maven:curios-309927:6418456")

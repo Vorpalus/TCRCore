@@ -80,6 +80,10 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
     }
 
     private void initMerchant() {
+        offers.clear();
+        offersArmor.clear();
+        offersWeapon.clear();
+        artifacts.clear();
         ForgeRegistries.ITEMS.getValues().forEach(item -> {
             if(item instanceof ArtifactItem || item instanceof UAUniqueCurioItem) {
                 artifacts.add(new MerchantOffer(
@@ -299,6 +303,7 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
 
     @Override
     protected @NotNull InteractionResult mobInteract(@NotNull Player player, @NotNull InteractionHand hand) {
+        initMerchant();
         if (player instanceof ServerPlayer serverPlayer) {
             CompoundTag tag = new CompoundTag();
             tag.putBoolean("boat", PlayerDataManager.boatGet.get(serverPlayer));
@@ -405,18 +410,17 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
 
         //武器
         if(i == 1) {
-            offers = offersWeapon;
+            offers.addAll(offersWeapon);
             startTrade(serverPlayer);
         }
         //盔甲
         if(i == 2) {
-            offers = offersArmor;
+            offers.addAll(offersArmor);
             startTrade(serverPlayer);
         }
 
         if(i == 7) {
-            offers.clear();
-            offers = artifacts;
+            offers.addAll(artifacts);
             startTrade(serverPlayer);
         }
 

@@ -535,15 +535,10 @@
 			id: "2C89A1EDBADA8DB5"
 			rewards: [
 				{
-					id: "38EB09C8A7EF6657"
-					item: "monsterexpansion:foundry"
-					type: "item"
-				}
-				{
-					id: "24C47DD78015E5C3"
+					id: "4D69F6191A356F5C"
 					item: {
 						Count: 1
-						id: "monsterexpansion:skrythe_fang"
+						id: "tcrcore:artifact_ticket"
 						tag: {
 							fdbosses: { }
 						}
@@ -551,33 +546,48 @@
 					type: "item"
 				}
 				{
-					id: "1E3473D62B72A55E"
+					id: "52CFB2F5F150D4AB"
 					item: {
 						Count: 1
-						id: "monsterexpansion:skrythe_wing_membrane"
+						id: "monsterexpansion:skrythe_helmet"
 						tag: {
+							Damage: 0
 							fdbosses: { }
 						}
 					}
 					type: "item"
 				}
 				{
-					id: "79960E05215CF92C"
+					id: "63BD9D4EFFF82304"
 					item: {
 						Count: 1
-						id: "monsterexpansion:skrythe_frill"
+						id: "monsterexpansion:skrythe_chestplate"
 						tag: {
+							Damage: 0
 							fdbosses: { }
 						}
 					}
 					type: "item"
 				}
 				{
-					id: "53AFB88D909F34EA"
+					id: "7D788BF93E3B3297"
 					item: {
 						Count: 1
-						id: "monsterexpansion:skrythe_armorplate"
+						id: "monsterexpansion:skrythe_leggings"
 						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4DC98F67DEBF5840"
+					item: {
+						Count: 1
+						id: "monsterexpansion:skrythe_boots"
+						tag: {
+							Damage: 0
 							fdbosses: { }
 						}
 					}
@@ -598,17 +608,6 @@
 					biome: "minecraft:windswept_gravelly_hills"
 					id: "56D8D8254C1A17A7"
 					type: "biome"
-				}
-				{
-					id: "79C151230FA1A3B6"
-					item: {
-						Count: 1
-						id: "tcrcore:artifact_ticket"
-						tag: {
-							fdbosses: { }
-						}
-					}
-					type: "item"
 				}
 			]
 			title: "斯克利兹&4[难度☆☆☆☆]&r"
@@ -865,6 +864,13 @@
 			dependencies: ["68EDC89BB022788B"]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
+			icon: {
+				Count: 1
+				id: "block_factorys_bosses:dragon_skull"
+				tag: {
+					fdbosses: { }
+				}
+			}
 			icon_scale: 1.5d
 			id: "4E2DD4620173E511"
 			rewards: [
@@ -929,6 +935,103 @@
 			title: "末影龙&4[难度☆☆☆☆]&r"
 			x: 5.5d
 			y: 1.0d
+		}
+		{
+			dependencies: ["68EDC89BB022788B"]
+			description: [
+				""
+				""
+				""
+				""
+				""
+			]
+			icon: {
+				Count: 1
+				id: "monsterexpansion:rhyza_tail"
+				tag: {
+					fdbosses: { }
+				}
+			}
+			id: "1076C4FBFF37BE92"
+			rewards: [
+				{
+					id: "7B2866E15C714FE0"
+					item: {
+						Count: 1
+						id: "monsterexpansion:rhyza_helmet"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "58B6B3959877C99A"
+					item: {
+						Count: 1
+						id: "monsterexpansion:rhyza_chestplate"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "5E7992FB70139590"
+					item: {
+						Count: 1
+						id: "monsterexpansion:rhyza_leggings"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "3D09776FD3C5C42F"
+					item: {
+						Count: 1
+						id: "monsterexpansion:rhyza_boots"
+						tag: {
+							Damage: 0
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "76D1BE099119C1A8"
+					item: {
+						Count: 1
+						id: "tcrcore:artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+			]
+			shape: "rsquare"
+			subtitle: "???"
+			tasks: [{
+				entity: "monsterexpansion:rhyza"
+				icon: {
+					Count: 1
+					id: "monsterexpansion:rhyza_tail"
+					tag: {
+						fdbosses: { }
+					}
+				}
+				id: "2D9D94888B5B48C1"
+				type: "kill"
+				value: 1L
+			}]
+			title: "莱萨&4[难度☆☆☆☆]&r"
+			x: 1.3d
+			y: -5.0d
 		}
 	]
 	title: "&d神魔渊薮"
