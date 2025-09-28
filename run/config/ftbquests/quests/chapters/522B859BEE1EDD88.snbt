@@ -24,19 +24,19 @@
 			id: "54060FC753C24428"
 			invisible: true
 			shape: "square"
-			subtitle: "神谕揭示了古老的化形技术，现在该好好打扮自己了！"
+			subtitle: "{ftbquests.chapter.522B859BEE1EDD88.quest6054544097824359464.subtitle}"
 			tasks: [{
 				advancement: "tcrcore:stage1"
 				criterion: ""
 				id: "784955FD1BECAA6E"
-				title: "神谕解锁"
+				title: "{ftbquests.chapter.522B859BEE1EDD88.quest6054544097824359464.task.8667553503434812014.title}"
 				type: "advancement"
 			}]
 			x: 0.0d
 			y: -5.5d
 		}
 		{
-			description: ["右键&d全球资源库&r方块可以从&b全球时装资源库&r中挑选自己喜欢的时装并下载时装文件到&a本地&r。"]
+			description: ["{ftbquests.chapter.522B859BEE1EDD88.quest5237705525294358869.description1}"]
 			icon: "armourers_workshop:skin-library-global"
 			icon_scale: 2.0d
 			id: "48B0116CB9456155"
@@ -48,7 +48,7 @@
 			shape: "square"
 			tasks: [{
 				id: "30FB9D706252752F"
-				title: "全球资源库"
+				title: "{ftbquests.chapter.522B859BEE1EDD88.quest5237705525294358869.task.3529587838986384687.title}"
 				type: "checkmark"
 			}]
 			x: 2.5d
@@ -57,9 +57,9 @@
 		{
 			dependency_requirement: "one_started"
 			description: [
-				"将&b时装模板&r放入&d时装资源库&r，可以取出我们喜欢的时装。"
+				"{ftbquests.chapter.522B859BEE1EDD88.quest348391678466111360.description1}"
 				""
-				"之后，可以使用&6时装镶嵌台&r，或默认按下&6[ctrl + p]&r打开时装栏，装饰自己。"
+				"{ftbquests.chapter.522B859BEE1EDD88.quest348391678466111360.description2}"
 			]
 			icon: "armourers_workshop:skin-library"
 			icon_scale: 2.0d
@@ -72,7 +72,7 @@
 			shape: "square"
 			tasks: [{
 				id: "2D46AE8E7CF9DCEB"
-				title: "时装资源库"
+				title: "{ftbquests.chapter.522B859BEE1EDD88.quest348391678466111360.task.3262486907081841899.title}"
 				type: "checkmark"
 			}]
 			x: 7.5d
@@ -81,7 +81,7 @@
 		{
 			can_repeat: true
 			dependency_requirement: "one_started"
-			description: ["[ \"使用时装模板，可以将\", { \"text\": \"资源库\", \"underlined\": \"true\", \"clickEvent\": { \"action\": \"change_page\", \"value\": \"04D5BC62BDACB780\" } }, \"里的时装取出来\" ]"]
+			description: ["[\"\",{\"translate\":\"ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description1\"},{\"underlined\":1,\"translate\":\"ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description2\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"04D5BC62BDACB780\"},{\"translate\":\"ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description3\"}}]"]
 			icon: "armourers_workshop:skin-template"
 			id: "7DF46FF0EC2E12A8"
 			optional: true
@@ -100,15 +100,15 @@
 			shape: "square"
 			tasks: [{
 				id: "39738DABD258242F"
-				title: "64个足够了吧"
+				title: "{ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.task.4139808251591533615.title}"
 				type: "checkmark"
 			}]
-			title: "时装模板"
+			title: "{ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.title}"
 			x: 5.0d
 			y: -5.5d
 		}
 		{
-			description: ["使用&6镶嵌工作台&r可以将时装和物品绑定在一起，使我们可以在不同的武器下使用不同的时装"]
+			description: ["{ftbquests.chapter.522B859BEE1EDD88.quest7469604769731266141.description1}"]
 			icon: "armourers_workshop:skinning-table"
 			icon_scale: 2.0d
 			id: "67A95DF66065465D"
@@ -120,14 +120,14 @@
 			shape: "square"
 			tasks: [{
 				id: "09A28D13E65ACEEB"
-				title: "镶嵌工作台"
+				title: "{ftbquests.chapter.522B859BEE1EDD88.quest7469604769731266141.task.694272409177083627.title}"
 				type: "checkmark"
 			}]
-			title: "镶嵌工作台"
+			title: "{ftbquests.chapter.522B859BEE1EDD88.quest7469604769731266141.title}"
 			x: 10.0d
 			y: -5.5d
 		}
 	]
-	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
-	title: "&a化形秘术"
+	subtitle: ["{ftbquests.chapter.522B859BEE1EDD88.subtitle0}"]
+	title: "{ftbquests.chapter.522B859BEE1EDD88.title}"
 }

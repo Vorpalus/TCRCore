@@ -26,9 +26,9 @@
 	quests: [
 		{
 			description: [
-				"其实盔甲更多地起一个装饰作用，但是我们可以选择时装工坊"
+				"{ftbquests.chapter.6F9A7DF2FD111443.quest7301166028169305205.description1}"
 				""
-				"本章节主要展示本整合包携带的各种盔甲，可以查看各盔甲的特性，并选择一套心仪的盔甲！"
+				"{ftbquests.chapter.6F9A7DF2FD111443.quest7301166028169305205.description2}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -43,21 +43,21 @@
 			}]
 			shape: "square"
 			size: 2.0d
-			subtitle: "古籍有云，&6皎月水晶&r乃百胄之基"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest7301166028169305205.subtitle}"
 			tasks: [{
 				advancement: "tcrcore:stage2"
 				criterion: ""
 				id: "46DA77E11452FCE7"
-				title: "神谕解锁"
+				title: "{ftbquests.chapter.6F9A7DF2FD111443.quest7301166028169305205.task.5105524936170208487.title}"
 				type: "advancement"
 			}]
-			title: "天工护世玄甲谱"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest7301166028169305205.title}"
 			x: 0.0d
 			y: 2.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			description: ["&d皎月水晶&r锻造"]
+			description: ["{ftbquests.chapter.6F9A7DF2FD111443.quest8905345727084916768.description1}"]
 			id: "7B9624C198F07020"
 			rewards: [{
 				id: "30E35F3F8FAE4A06"
@@ -66,7 +66,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
-			subtitle: "侍奉光明之人，当享有光明之庇护 &6&l指向物品以查看对应套装效果"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest8905345727084916768.subtitle}"
 			tasks: [
 				{
 					id: "1FD49B33CBF8DA91"
@@ -157,13 +157,13 @@
 					type: "item"
 				}
 			]
-			title: "光明眷属"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest8905345727084916768.title}"
 			x: -6.0d
 			y: -7.5d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			description: ["&d皎月水晶&r锻造"]
+			description: ["{ftbquests.chapter.6F9A7DF2FD111443.quest5383589744301195021.description1}"]
 			id: "4AB65A5955823F0D"
 			rewards: [{
 				id: "203FF9EBF99D0C37"
@@ -172,7 +172,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
-			subtitle: "流浪之人，当享有自由之庇护 &6&l指向物品以查看对应套装效果"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest5383589744301195021.subtitle}"
 			tasks: [
 				{
 					id: "7567149FA5516BB9"
@@ -219,13 +219,13 @@
 					type: "item"
 				}
 			]
-			title: "流浪乐章"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest5383589744301195021.title}"
 			x: 6.0d
 			y: -7.5d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			description: ["&d皎月水晶&r锻造"]
+			description: ["{ftbquests.chapter.6F9A7DF2FD111443.quest423285769789054440.description1}"]
 			id: "05DFD02A3AC11DE8"
 			rewards: [{
 				id: "3E31656CDA57D1DC"
@@ -234,7 +234,7 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
-			subtitle: "躬耕于黑暗之人，当享有黑暗之庇护 &6&l指向物品以查看对应套装效果"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest423285769789054440.subtitle}"
 			tasks: [
 				{
 					id: "1281FC7F70B4E6B7"
@@ -325,7 +325,7 @@
 					type: "item"
 				}
 			]
-			title: "黑暗之魂"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest423285769789054440.title}"
 			x: 0.0d
 			y: -9.75d
 		}
@@ -346,7 +346,7 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "击败&6可妮莉亚船长&r获得"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest6067430759483142731.subtitle}"
 			tasks: [
 				{
 					id: "15E38B29E15B1684"
@@ -393,13 +393,13 @@
 					type: "item"
 				}
 			]
-			title: "潜水套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest6067430759483142731.title}"
 			x: 0.0d
 			y: -2.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
-			description: ["击败&d尼赫莫斯魔像&r掉落物锻造"]
+			description: ["{ftbquests.chapter.6F9A7DF2FD111443.quest1691663356384465641.description1}"]
 			icon: {
 				Count: 1
 				id: "fromtheshadows:diabolium_helmet"
@@ -415,7 +415,7 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "需用&6瓶装血&r酿造魔金锭"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest1691663356384465641.subtitle}"
 			tasks: [
 				{
 					id: "554A5A2845ABD3FA"
@@ -463,7 +463,7 @@
 					type: "item"
 				}
 			]
-			title: "魔金套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest1691663356384465641.title}"
 			x: -1.0d
 			y: -0.40000000000000036d
 		}
@@ -484,7 +484,7 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "击败&6蛮屠巨兽&r掉落物在&3圣殿港口&r的摆渡人处交易"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest1725420005041994707.subtitle}"
 			tasks: [
 				{
 					id: "18AD35A7F0CA77E8"
@@ -520,7 +520,7 @@
 					type: "item"
 				}
 			]
-			title: "岩壳套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest1725420005041994707.title}"
 			x: 1.0d
 			y: -0.40000000000000036d
 		}
@@ -541,7 +541,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
-			subtitle: "&6远古遗魂幻境&r内掉落物锻造 或在&3圣殿港口&r的摆渡人处交易"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest4373103800617865196.subtitle}"
 			tasks: [
 				{
 					id: "0CA15BC3816C2B49"
@@ -566,7 +566,7 @@
 					type: "item"
 				}
 			]
-			title: "骸龙套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest4373103800617865196.title}"
 			x: -4.0d
 			y: -5.75d
 		}
@@ -581,7 +581,7 @@
 			}]
 			shape: "rsquare"
 			size: 1.2d
-			subtitle: "击败&6炼狱魔龙&r掉落物锻造"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest8468914134903924474.subtitle}"
 			tasks: [
 				{
 					id: "1A076DE083C7B8D2"
@@ -622,7 +622,7 @@
 					type: "item"
 				}
 			]
-			title: "古龙套——龙裔套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest8468914134903924474.title}"
 			x: -1.2d
 			y: -3.5999999999999996d
 		}
@@ -638,7 +638,7 @@
 			id: "66B95BDCAFA07D10"
 			shape: "none"
 			size: 2.0d
-			subtitle: "&6伊格尼斯幻境&r内掉落物锻造 或在&3圣殿港口&r的摆渡人处交易"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest7402048465957584144.subtitle}"
 			tasks: [
 				{
 					id: "54AB2623AF09B530"
@@ -685,7 +685,7 @@
 					type: "item"
 				}
 			]
-			title: "腾炎套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest7402048465957584144.title}"
 			x: 0.0d
 			y: -6.0d
 		}
@@ -706,7 +706,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
-			subtitle: "&6玛莱迪克特斯幻境&r内掉落物锻造 或在&3圣殿港口&r的摆渡人处交易"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest6107895593504866504.subtitle}"
 			tasks: [
 				{
 					id: "063FF3ADA25F3176"
@@ -753,7 +753,7 @@
 					type: "item"
 				}
 			]
-			title: "咒魂套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest6107895593504866504.title}"
 			x: 3.5d
 			y: -5.75d
 		}
@@ -768,7 +768,7 @@
 			}]
 			shape: "rsquare"
 			size: 1.2d
-			subtitle: "击败&6斯克利兹&r掉落物锻造"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest593966091335964049.subtitle}"
 			tasks: [
 				{
 					id: "70CF4BD036E613E0"
@@ -815,7 +815,7 @@
 					type: "item"
 				}
 			]
-			title: "古龙套——斯克里兹套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest593966091335964049.title}"
 			x: 1.2d
 			y: -3.5999999999999996d
 		}
@@ -836,7 +836,7 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "寒冰迷宫探索"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest3981524518237695884.subtitle}"
 			tasks: [
 				{
 					id: "5501F1611A85B204"
@@ -894,7 +894,7 @@
 					type: "item"
 				}
 			]
-			title: "晦暗深海套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest3981524518237695884.title}"
 			x: -1.5d
 			y: -2.0d
 		}
@@ -915,7 +915,7 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "寒冰迷宫探索"
+			subtitle: "{ftbquests.chapter.6F9A7DF2FD111443.quest3452598305336821364.subtitle}"
 			tasks: [
 				{
 					id: "29F882141AA57A7F"
@@ -962,11 +962,11 @@
 					type: "item"
 				}
 			]
-			title: "可怖套装"
+			title: "{ftbquests.chapter.6F9A7DF2FD111443.quest3452598305336821364.title}"
 			x: 1.5d
 			y: -2.0d
 		}
 	]
-	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
-	title: "&6天工护世玄甲谱"
+	subtitle: ["{ftbquests.chapter.6F9A7DF2FD111443.subtitle0}"]
+	title: "{ftbquests.chapter.6F9A7DF2FD111443.title}"
 }

@@ -20,9 +20,9 @@
 	quests: [
 		{
 			description: [
-				"&a呱呱&r是一种很可爱的生物，但是除了可爱以外它并没有什么用。"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest8224116903557449688.description1}"
 				""
-				"当然，世界上除了呱呱，还有很多&e奇珍异兽&r，它们的掉落物可以制作成各种各样的&d法宝&r！"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest8224116903557449688.description2}"
 			]
 			hide_dependency_lines: true
 			hide_dependent_lines: true
@@ -37,13 +37,13 @@
 			}]
 			shape: "rsquare"
 			size: 2.0d
-			subtitle: "神谕揭示了世界上残存的，尚未被黑潮侵蚀之生灵"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest8224116903557449688.subtitle}"
 			tasks: [{
 				advancement: "tcrcore:stage1"
 				criterion: ""
 				icon: "ribbits:giant_lilypad"
 				id: "765769321FA247F9"
-				title: "神谕解锁"
+				title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest8224116903557449688.task.8527400083449333753.title}"
 				type: "advancement"
 			}]
 			x: 0.0d
@@ -57,7 +57,7 @@
 				type: "xp"
 				xp: 100
 			}]
-			subtitle: "[猛菇]掉落物制作"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest6447342440006754716.subtitle}"
 			tasks: [{
 				id: "43AF18FF03C7BB2C"
 				item: {
@@ -80,7 +80,7 @@
 				type: "xp"
 				xp: 100
 			}]
-			subtitle: "[避鱼]掉落物制作"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest1911815070047807113.subtitle}"
 			tasks: [{
 				id: "72CF0C6A03B19AB2"
 				item: {
@@ -103,7 +103,7 @@
 				type: "xp"
 				xp: 100
 			}]
-			subtitle: "[雪花蜘蛛]掉落物制作"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest5388982482588960547.subtitle}"
 			tasks: [{
 				id: "4CCB0960219EC247"
 				item: "more_critters:web_sack"
@@ -120,7 +120,7 @@
 				type: "xp"
 				xp: 100
 			}]
-			subtitle: "[尖啸蝙蝠]掉落物制作"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest4794721870038201433.subtitle}"
 			tasks: [{
 				id: "405D488CC8A67A14"
 				item: "more_critters:shriek_bomb"
@@ -132,15 +132,15 @@
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			description: [
-				"在&a大部分村庄&r之中你将找到&6土地庙&r，它可以为你指引方向。"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.description1}"
 				""
-				"古籍有云："
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.description2}"
 				""
-				"&6土地庙&r和&d土地公令咒&r皆可合成"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.description3}"
 				""
-				"在&6土地庙&r边上&3潜行三次&r即可召唤土地"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.description4}"
 				""
-				"在&6土地庙&r边上&3插上火把&r即可祈福"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.description5}"
 			]
 			id: "2FC8D0A969FBC1CE"
 			rewards: [{
@@ -150,7 +150,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
-			subtitle: "心诚则灵"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.subtitle}"
 			tasks: [{
 				advancement: "tudigong:sincerity"
 				criterion: ""
@@ -158,18 +158,18 @@
 				id: "307DE1524B2097F6"
 				type: "advancement"
 			}]
-			title: "土地庙"
+			title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest3443231341170901454.title}"
 			x: 0.0d
 			y: 5.0d
 		}
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			description: [
-				"&b御剑飞行&r乃本整合包的主要跑图方式"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest1470580929012265040.description1}"
 				""
-				"习得&b御剑术&r即可释放飞行技能，自由御剑飞行。"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest1470580929012265040.description2}"
 				""
-				"默认按&6[K]&r查看技能"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest1470580929012265040.description3}"
 			]
 			icon: {
 				Count: 1
@@ -184,30 +184,30 @@
 				type: "xp"
 				xp: 100
 			}]
-			subtitle: "炁引八荒，劍禦六合"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest1470580929012265040.subtitle}"
 			tasks: [{
 				id: "3B59E0C7195CEE97"
-				title: "御剑凌虚"
+				title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest1470580929012265040.task.4276696466893631127.title}"
 				type: "checkmark"
 			}]
-			title: "御剑凌虚！"
+			title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest1470580929012265040.title}"
 			x: 1.5d
 			y: 7.0d
 		}
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			description: [
-				"&b跑酷&r是一项很酷的运动，让我们可以轻松爬上三格高的地方，翻越障碍等，移动更加地灵活。"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.description1}"
 				""
-				"在本整合包中你将体会到&b跑酷&r与&6史诗战斗&r兼容的魅力！"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.description2}"
 				""
-				"&b常用的跑酷手法有：&r"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.description3}"
 				""
-				"起跳时按住&6[右键]&r以扳住更高的位置"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.description4}"
 				""
-				"即将落地时按&6[R]&r键以缓冲"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.description5}"
 				""
-				"更多精彩可在跑酷手册中学习，&c本整合包禁用了部分跑酷按键以免冲突&r"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.description6}"
 			]
 			icon: {
 				Count: 1
@@ -230,7 +230,7 @@
 			}]
 			tasks: [{
 				id: "3DF19071D1E7D6CE"
-				title: "跑酷！"
+				title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest5366344467862019140.task.4463507524228208334.title}"
 				type: "checkmark"
 			}]
 			x: -3.0d
@@ -286,7 +286,7 @@
 					type: "item"
 				}
 			]
-			subtitle: "在神的指引下，世人习得如何编织鞘翅，无需再前往终界"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest8900928271120663901.subtitle}"
 			tasks: [{
 				id: "6D6C3A42A449DD81"
 				item: {
@@ -304,11 +304,11 @@
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			description: [
-				"本整合包矿物来源主要来自击败魔物"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest1892043973836821613.description1}"
 				""
-				"&d掠夺者：概率掉落金锭、钻石锭、下界合金锭&r"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest1892043973836821613.description2}"
 				""
-				"&b所有Enemy：概率掉落铁锭、紫水晶、皎月水晶&r"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest1892043973836821613.description3}"
 			]
 			icon: {
 				Count: 1
@@ -332,22 +332,22 @@
 			shape: "rsquare"
 			tasks: [{
 				id: "09FB67DEA3FDE0C3"
-				title: "冒险包何须挖矿"
+				title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest1892043973836821613.task.719282771427451075.title}"
 				type: "checkmark"
 			}]
-			title: "矿物说明"
+			title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest1892043973836821613.title}"
 			x: 2.0d
 			y: 2.0d
 		}
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			description: [
-				"本整合包安装了&b“我来助你”&r模组，丰富多人游玩体验！"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest7487272814909384521.description1}"
 				""
-				"默认按下&6[右ALT]&r即可发射救难信号！"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest7487272814909384521.description2}"
 				""
 				""
-				"可自定义救难信号文本，以及前去支援时的文本"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest7487272814909384521.description3}"
 			]
 			icon: {
 				Count: 1
@@ -366,10 +366,10 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "“我来助你！”"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest7487272814909384521.subtitle}"
 			tasks: [{
 				id: "5293E10F1D65A447"
-				title: "我来助你！"
+				title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest7487272814909384521.task.5950346987720516679.title}"
 				type: "checkmark"
 			}]
 			x: -2.0d
@@ -378,9 +378,9 @@
 		{
 			dependencies: ["7221EEC023D3C7D8"]
 			description: [
-				"&d斯克里兹&r是栖息在高海拔地区&a（风袭沙砾丘陵 / 沙砾山地）&r的魔物，可使用&6下界之星&r驯服"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3288439856153403711.description1}"
 				""
-				"{image:tcrcore:textures/ftb/blue_dragon.png width:160 height:90 align:center}"
+				"{ftbquests.chapter.5A7C68B10CEA5C38.quest3288439856153403711.image0}"
 			]
 			icon: {
 				Count: 1
@@ -396,18 +396,18 @@
 				xp: 100
 			}]
 			shape: "rsquare"
-			subtitle: "驯服&d斯克里兹&r，骑着它翱翔天际！"
+			subtitle: "{ftbquests.chapter.5A7C68B10CEA5C38.quest3288439856153403711.subtitle}"
 			tasks: [{
 				advancement: "tcrcore:dragon_tame"
 				criterion: ""
 				id: "71821EDE7FE53D51"
 				type: "advancement"
 			}]
-			title: "驯龙高手"
+			title: "{ftbquests.chapter.5A7C68B10CEA5C38.quest3288439856153403711.title}"
 			x: 3.0d
 			y: 5.0d
 		}
 	]
-	subtitle: ["&6收集神谕残卷以解锁更多章节！&r"]
-	title: "&a大千世界"
+	subtitle: ["{ftbquests.chapter.5A7C68B10CEA5C38.subtitle0}"]
+	title: "{ftbquests.chapter.5A7C68B10CEA5C38.title}"
 }
