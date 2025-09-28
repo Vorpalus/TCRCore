@@ -1,5 +1,6 @@
 package com.p1nero.tcrcore.datagen.lang;
 
+import com.p1nero.dialog_lib.api.datagen.DialogueLanguageProvider;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import net.minecraft.client.KeyMapping;
@@ -20,7 +21,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import java.util.Locale;
 import java.util.function.Supplier;
 
-public abstract class TCRLangProvider extends LanguageProvider {
+public abstract class TCRLangProvider extends LanguageProvider implements DialogueLanguageProvider {
     public TCRLangProvider(PackOutput output, String locate) {
         super(output, TCRCoreMod.MOD_ID, locate);
     }

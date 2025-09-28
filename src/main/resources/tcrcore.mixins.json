@@ -19,7 +19,6 @@
     "Ignited_Revenant_EntityMixin",
     "ItemStackMixin",
     "KnightSwordItemMixin",
-    "LiechtenauerSkillMixin",
     "PlayerAdvancementsMixin",
     "PlayerPatchMixin",
     "SkillContainerMixin",

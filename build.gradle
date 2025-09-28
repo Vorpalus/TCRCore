@@ -202,6 +202,7 @@ dependencies {
     implementation fg.deobf("curse.maven:obscure-api-638417:4616364")
 
     //ftb
+    implementation fg.deobf("libs:ftbquestlocalizer:3.2.2")
     implementation fg.deobf("curse.maven:ftb-quests-forge-289412:6829212")
     implementation fg.deobf("curse.maven:ftb-library-forge-404465:6807424")
     implementation fg.deobf("curse.maven:ftb-teams-forge-404468:6130786")

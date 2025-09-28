@@ -938,13 +938,6 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
-			description: [
-				""
-				""
-				""
-				""
-				""
-			]
 			icon: {
 				Count: 1
 				id: "monsterexpansion:rhyza_tail"
@@ -1015,7 +1008,7 @@
 				}
 			]
 			shape: "rsquare"
-			subtitle: "???"
+			subtitle: "位于&d末地外岛&r的危险生物！"
 			tasks: [{
 				entity: "monsterexpansion:rhyza"
 				icon: {

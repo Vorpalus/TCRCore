@@ -2,7 +2,6 @@ package com.p1nero.tcrcore.datagen.lang;
 
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.registries.EFNItem;
-import com.p1nero.dialog_lib.api.datagen.DialogueLanguageProvider;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.client.KeyMappings;
@@ -16,7 +15,7 @@ import net.minecraft.world.item.Items;
 import net.sonmok14.fromtheshadows.server.utils.registry.ItemRegistry;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 
-public class TCRZHLangGenerator extends TCRLangProvider implements DialogueLanguageProvider {
+public class TCRZHLangGenerator extends TCRLangProvider {
     public TCRZHLangGenerator(PackOutput output) {
         super(output, "zh_cn");
     }

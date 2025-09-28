@@ -1,0 +1,14 @@
+{
+  "bgm.tcr.boss_fight_bgm": {
+    "sounds": [
+      "tcrcore:bgm/boss_fight"
+    ],
+    "subtitle": "subtitles.tcrcore.bgm.boss_fight_bgm"
+  },
+  "bgm.tcr.win_bgm": {
+    "sounds": [
+      "tcrcore:bgm/win_bgm"
+    ],
+    "subtitle": "subtitles.tcrcore.bgm.win_bgm"
+  }
+}
