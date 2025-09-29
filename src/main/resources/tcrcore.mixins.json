@@ -29,7 +29,6 @@
   ],
   "client": [
     "AquamiraeClientMixin",
-    "BetterAdvancementsScreenMixin",
     "CataclysmClientEventMixin",
     "LocalPlayerPatchAccessor",
     "LocalPlayerPatchMixin",

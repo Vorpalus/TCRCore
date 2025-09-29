@@ -10,6 +10,11 @@
 			"position_in_screen": [120, 30],
 			"ability_points": 1
 		},
+        {
+            "skill": "epicfight:emergency_escape",
+            "position_in_screen": [220, 30],
+            "ability_points": 2
+        },
 		{
 			"skill": "epicfight:parrying",
 			"position_in_screen": [340, 30],

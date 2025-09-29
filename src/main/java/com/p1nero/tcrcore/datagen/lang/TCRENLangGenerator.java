@@ -46,7 +46,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.ARTIFACT_TICKET.get(), "Artifact Essence");
         this.addItemUsageInfo(TCRItems.ARTIFACT_TICKET.get(), "Obtained from certain quests in the quest book. Can be used to refine any artifact with the §3[Ferry girl]§r at the §d[Saint Harbor]§r");
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "Oracle Fragment");
-        this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "It bears an ancient oracle hinting at the locations of scattered embers. Show it to the The Isle's Vigil in the main city; it might aid your adventure!");
+        this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "It bears an ancient oracle hinting at the locations of scattered embers. Show it to the The Sanctuary Keeper in the The Sanctuary; it might aid your adventure!");
 
         this.addInfo("wraithon_start_tip", "§d[Wraithon]: §6Outsider, your journey ends here!");
         this.addInfo("wraithon_end_tip", "§d[Wraithon]: §6This... is impossible...");
@@ -74,7 +74,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
 
         this.addInfo("finish_all_eye", "§dAll altars are lit!§r");
         this.addInfo("time_to_altar", "The scattered embers have been found. It's time to return and light the altars...");
-        this.addInfo("time_to_end", "All altars are lit. It's time to find the The Isle's Vigil to perform the ritual...");
+        this.addInfo("time_to_end", "All altars are lit. It's time to find the The Sanctuary Keeper to perform the ritual...");
 
         this.addInfo("can_not_enter_dim", "It seems you have not yet gained the divine approval to enter... §6Continue collecting embers§r to receive more oracles!");
         this.addInfo("reset_when_no_player", "If no players remain in the realm, leaving for too long will reset the realm!");
@@ -108,21 +108,21 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addInfo("press_to_open_map", "Press §6[M]§f to view the map");
 
         this.addInfo("storm_pos", "Location of the Storm Echo: Sky Island");
-        this.addInfo("cursed_pos", "Location of the Cursed Echo: Frozen Deep Sea");
+        this.addInfo("cursed_pos", "Location of the Cursed Echo: Ice Maze");
         this.addInfo("desert_pos", "Location of the Desert Echo: Chimera's Prison");
-        this.addInfo("flame_pos", "Location of the Flame Echo: Nether Coliseum");
+        this.addInfo("flame_pos", "Location of the Flame Echo: Underworld Arena");
         this.addInfo("abyss_pos", "Location of the Abyss Echo: Coves");
 
-        this.addAdvancement("dragon_tame", "Dragon Tamer", "Tame Skrill");
-        this.addAdvancement(TCRCoreMod.MOD_ID, "The Casket of Reveries", "Where the dream begins. Head to the main city to find the The Isle's Vigil.");
+        this.addAdvancement("dragon_tame", "Dragon Tamer", "Tame Skrythe");
+        this.addAdvancement(TCRCoreMod.MOD_ID, "The Casket of Reveries", "Where the dream begins. Head to the The Sanctuary to find the The Sanctuary Keeper.");
         this.addAdvancement(TCRCoreMod.MOD_ID + "_weapon", "King's Treasury", "All obtainable and adapted weapons or materials. Check [JEI] for acquisition methods and details.");
         this.addAdvancement("find_ymsw", "Coves", "Reach the Coves");
         this.addAdvancement("aquamirae_weapon", "Sea Spirit Tale - Weapons", "");
         this.addAdvancement("cataclysm_weapon", "Cataclysm - Weapons", "");
         this.addAdvancement("legend_weapon", "Legendary Weapons", "");
         this.addAdvancement("ef_legacy", "Epic Fight - Weapons", "All can be obtained through crafting, featuring different weapon skills and animation templates. Check JEI for recipes and skill info.");
-        this.addAdvancement("kill_pillager", "Proof of Allegiance", "The task is complete. Time to return to the The Isle's Vigil.");
-        this.addAdvancement("mark_map", "Marking Locations", "The The Isle's Vigil has marked the locations of the scattered Divine Eyes on your map. Now, go reclaim them!");
+        this.addAdvancement("kill_pillager", "Proof of Allegiance", "The task is complete. Time to return to the The Sanctuary Keeper.");
+        this.addAdvancement("mark_map", "Marking Locations", "The The Sanctuary Keeper has marked the locations of the scattered Divine Eyes on your map. Now, go reclaim them!");
         this.addAdvancement("storm_eye", "Eye of the Storm", "§a§oWhen war tore the clouds, she used the storm as a stairway, building a suspended paradise for her people.");
         this.addAdvancement("abyss_eye", "Eye of the Abyss", "§a§oWhen the abyss devoured the land, He sewed Himself into the seabed, His flesh becoming a city of bubbles.");
         this.addAdvancement("flame_eye", "Eye of the Flame", "§a§oWhere magma surged, He gouged out His heart, forging an eternal beacon.");
@@ -141,7 +141,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addAdvancement("stage4", "Stage 4", "");
         this.addAdvancement("stage5", "Stage 5", "");
 
-        this.add(TCREntities.GUIDER.get(), "The Isle's Vigil");
+        this.add(TCREntities.GUIDER.get(), "The Sanctuary Keeper");
         this.add(TCREntities.GIRL.get(), "Ferry girl");
         this.add(TCREntities.TUTORIAL_GOLEM.get(), "Training Golem");
 
@@ -174,7 +174,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCREntities.GUIDER.get(), 8, "Whoa, how did you turn into a beautiful girl?");
         this.addDialogOption(TCREntities.GUIDER.get(), 9, "Reveal the Oracle");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 0, "So... you drifted here from beyond this world? As you prepared to land, an unfamiliar deity pulled you into a barrier, and then you lost consciousness?");
-        this.addDialogAnswer(TCREntities.GUIDER.get(), 1, "I am the The Isle's Vigil of this world. That day, the heavens were abnormal, thunder roared, and a meteor fell into the sea. I rescued you from the depths. You must be the celestial warriors foretold in the ancient prophecy.");
+        this.addDialogAnswer(TCREntities.GUIDER.get(), 1, "I am the The Sanctuary Keeper of this world. That day, the heavens were abnormal, thunder roared, and a meteor fell into the sea. I rescued you from the depths. You must be the celestial warriors foretold in the ancient prophecy.");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 2, "Once, there was a glorious kingdom here, protected by heroic spirits. Until one day, the §d「Black Tide」§f descended upon the world, corrupting all things. Even some villagers were darkened into illagers. The gods, unable to resist the §d「Black Tide」§f, became spirits. As the ancient prophecy foretold, I sealed their remaining power here. §6However, fragments of their embers are still scattered across the world.§f I am cursed and cannot leave this place, so I can only wait silently for a savior to arrive...");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 3, "The ancient prophecy states that once you ignite all the embers, you can rebuild the temple, obtain the power of the spirits, and perform the ritual to cleanse the §d「Black Tide」§f! But before that, first §6defeat an illager§f and then§f return to me.");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 4, "It seems you truly are the prophesied savior! Have you collected any §d『Oracle Fragments』§f during your journey? Give the §d『Oracle Fragments』§f to me, and I will reveal the locations of the embers recorded in the oracle! Once you ignite all the embers, I will initiate the §d「Black Tide」§f cleansing ritual!");
