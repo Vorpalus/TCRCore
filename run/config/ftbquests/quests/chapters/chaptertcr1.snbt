@@ -333,7 +333,7 @@
 					type: "item"
 				}
 				{
-					advancement: "tcrcore:stage3"
+					advancement: "tcrcore:stage4"
 					criterion: ""
 					id: "4F92F23FAC985303"
 					type: "advancement"
@@ -406,7 +406,7 @@
 					type: "item"
 				}
 				{
-					advancement: "tcrcore:stage4"
+					advancement: "tcrcore:stage3"
 					criterion: ""
 					id: "59BE6E311BF5B10D"
 					type: "advancement"

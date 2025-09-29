@@ -28,8 +28,8 @@
 			image: "tcrcore:textures/ftb/ghost.png"
 			rotation: 0.0d
 			width: 14.0d
-			x: -10.0d
-			y: 7.0d
+			x: -7.5d
+			y: 6.5d
 		}
 		{
 			height: 9.0d

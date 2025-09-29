@@ -81,7 +81,7 @@
 		{
 			can_repeat: true
 			dependency_requirement: "one_started"
-			description: ["[\"\",{\"translate\":\"ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description1\"},{\"underlined\":1,\"translate\":\"ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description2\",\"clickEvent\":{\"action\":\"change_page\",\"value\":\"04D5BC62BDACB780\"},{\"translate\":\"ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description3\"}}]"]
+			description: ["{ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description1}{ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description2}{ftbquests.chapter.522B859BEE1EDD88.quest9076002229603668648.rich_description3}"]
 			icon: "armourers_workshop:skin-template"
 			id: "7DF46FF0EC2E12A8"
 			optional: true
