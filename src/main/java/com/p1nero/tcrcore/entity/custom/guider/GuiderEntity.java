@@ -36,6 +36,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -54,6 +55,11 @@ import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.merlin204.wraithon.WraithonMod;
+import org.merlin204.wraithon.entity.WraithonEntities;
+import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
+import org.merlin204.wraithon.entity.wraithon.WraithonEntityPatch;
+import org.merlin204.wraithon.epicfight.animation.WraithonAnimations;
 import org.merlin204.wraithon.util.WraithonFieldTeleporter;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -66,6 +72,8 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import xaero.hud.minimap.waypoint.WaypointColor;
 import yesman.epicfight.api.utils.math.Vec2i;
+import yesman.epicfight.world.capabilities.EpicFightCapabilities;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
 public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity {
 
@@ -300,7 +308,17 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
         }
 
         if (code == 3) {
-            player.changeDimension(player.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY), new WraithonFieldTeleporter());
+            ServerLevel wraithonLevel = player.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
+            player.changeDimension(wraithonLevel, new WraithonFieldTeleporter());
+            if(wraithonLevel.getEntities(WraithonEntities.WRAITHON.get(), LivingEntity::isAlive).isEmpty()) {
+                EpicFightCapabilities.getUnparameterizedEntityPatch(player, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {
+                    serverPlayerPatch.playAnimationSynchronized(WraithonAnimations.BIPE_COME, 0);
+                });
+                WraithonEntity wraithonEntity = WraithonEntities.WRAITHON.get().spawn(wraithonLevel, WraithonMod.WRAITHON_SPAWN_POS, MobSpawnType.MOB_SUMMONED);
+                EpicFightCapabilities.getUnparameterizedEntityPatch(wraithonEntity, WraithonEntityPatch.class).ifPresent(wraithonEntityPatch -> {
+                    wraithonEntityPatch.playAnimationSynchronized(WraithonAnimations.WRAITHON_BEGIN, 0);
+                });
+            }
             player.displayClientMessage(TCRCoreMod.getInfo("wraithon_start_tip"), false);
         }
 
