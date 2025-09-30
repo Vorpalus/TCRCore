@@ -1,0 +1,11 @@
+{
+  "trail": {
+    "color": [230, 230, 230],
+    "begin_pos": [0.0, 0.1, -0.2],
+    "end_pos": [0.0, 0.3, -2.1],
+    "lifetime": 4,
+    "interpolations": 2,
+    "texture_path": "efn:textures/trail/blood.png",
+    "particle_type": "efn:bloom_trail"
+  }
+}

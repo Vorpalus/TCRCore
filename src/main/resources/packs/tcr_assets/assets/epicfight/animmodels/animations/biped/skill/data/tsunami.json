@@ -1,0 +1,26 @@
+{
+	"trail_effects": [
+		{
+			"start_time": 0.35,
+			"end_time": 0.8,
+			"fade_time": 1.0,
+			"interpolations": 6,
+			"joint": "Root",
+			"item_skin_hand": "main_hand",
+	    	"begin_pos": [1.0, 1.0, 0.0],
+	    	"end_pos": [1.0, 1.2, 0.0],
+	    	"lifetime": 16
+		},
+		{
+			"start_time": 0.35,
+			"end_time": 0.8,
+			"fade_time": 1.0,
+			"interpolations": 6,
+			"joint": "Root",
+			"item_skin_hand": "main_hand",
+	    	"begin_pos": [-1.0, 1.0, 0.0],
+	    	"end_pos": [-1.0, 1.2, 0.0],
+	    	"lifetime": 16
+		}
+	]
+}

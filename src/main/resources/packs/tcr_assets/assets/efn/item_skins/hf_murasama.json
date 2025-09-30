@@ -1,0 +1,15 @@
+{
+  "renderer": "epic_fight_avalon:mesh_item",
+  "texture": "efn:textures/item/weapon/hf_murasama.png",
+  "mesh_main":"efn:weapon/hf_murasama",
+  "texture_l": "efn:textures/item/weapon/hf_murasama_light.png",
+  "trail": {
+    "color": [195, 195, 195],
+    "begin_pos": [0.0, 0.3, -0.3],
+    "end_pos": [0.0, 0.32, -2.2],
+    "lifetime": 5,
+    "interpolations": 1,
+    "texture_path": "efn:textures/trail/hf.png",
+    "particle_type": "efn:bloom_trail"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "renderer": "epic_fight_avalon:mesh_item",
+  "texture": "efn:textures/item/weapon/meen_spear.png",
+  "texture_l": "efn:textures/item/weapon/meen_spear_light.png",
+  "mesh_main":"efn:weapon/meen_spear",
+  "trail": {
+    "color": [230, 230, 230],
+    "begin_pos": [0.0, 0.24, -0.8],
+    "end_pos": [0.0, 0.24, -2.25],
+    "lifetime": 4,
+    "interpolations": 2,
+    "texture_path": "efn:textures/trail/meenlance.png",
+    "particle_type": "efn:bloom_trail"
+  }
+}

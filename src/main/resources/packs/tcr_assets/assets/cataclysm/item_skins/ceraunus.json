@@ -1,0 +1,20 @@
+{
+  "trail": {
+    "color": [64,64,64],
+    "begin_pos": [0.0, 0.0, -0.2],
+    "end_pos": [0.0, 0.0, -2.1],
+    "lifetime": 9,
+    "interpolations": 1,
+    "texture_path": "p1nero_ec:textures/particle/ceraunus_trail.png",
+    "particle_type": "efn:bloom_trail"
+  },
+  "transforms": {
+    "mainhand": {
+      "Tool_R": {
+        "translation": [0.0, 0.0, -0.9],
+        "rotation": [-90.0, 0.0, 0.0],
+        "scale": [1, 1, 1]
+      }
+    }
+  }
+}

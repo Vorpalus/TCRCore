@@ -1,0 +1,22 @@
+{
+    "renderer": "epicfight:uchigatana",
+    "sheath": "epicfight:uchigatana_sheath",
+    "trail": {
+    	"color": [150,150,150],
+    	"begin_pos": [0.05, 0.05, 0.0],
+		"end_pos": [0.05, 0.05, -1.9],
+    	"lifetime": 5,
+		"interpolations": 2,
+    	"texture_path": "epicfight:textures/particle/uchigatana.png",
+    	"particle_type": "efn:bloom_trail"
+    },
+    "transforms": {
+    	"offhand": {
+	    	"Chest": {
+	    		"translation": [0.155, 0.165, 0.145],
+	    		"rotation": [-50.0, -86.0, 3.0],
+	    		"scale": [1, 1, 1]
+	    	}
+    	}
+    }
+}

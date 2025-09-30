@@ -1,0 +1,74 @@
+{
+  "trail_effects": [
+    {
+      "start_time": 0.25,
+      "end_time": 0.75,
+      "joint": "Tool_R",
+      "item_skin_hand": "main_hand"
+    },
+    {
+      "start_time": 0.25,
+      "end_time": 0.75,
+      "joint": "Tool_R",
+      "item_skin_hand": "main_hand",
+      "color": [255, 255, 255],
+      "texture_path": "efn:textures/trail/power6.png"
+    },
+    {
+      "start_time": 0.35,
+      "end_time": 0.65,
+      "fade_time": 0.9,
+      "joint": "Tool_R",
+      "item_skin_hand": "main_hand",
+      "begin_pos": [-0.25, 0.2, -1.75],
+      "end_pos": [0.25, 0.4, -2.75],
+      "lifetime": 8,
+      "interpolations": 4,
+      "color": [255, 255, 255],
+      "texture_path": "efn:textures/trail/power7.png",
+      "particle_type": "efn:bloom_trail"
+    },
+    {
+      "start_time": 0.35,
+      "end_time": 0.65,
+      "fade_time": 0.9,
+      "joint": "Tool_R",
+      "item_skin_hand": "main_hand",
+      "begin_pos": [0.25, 0.2, -1.75],
+      "end_pos": [-0.25, 0.4, -2.75],
+      "lifetime": 8,
+      "interpolations": 4,
+      "color": [255, 255, 255],
+      "texture_path": "efn:textures/trail/power7.png",
+      "particle_type": "efn:bloom_trail"
+    },
+    {
+      "start_time": 0.67,
+      "end_time": 0.78,
+      "fade_time": 0.9,
+      "joint": "Tool_R",
+      "item_skin_hand": "main_hand",
+      "begin_pos": [-0.25, 0.2, -1.35],
+      "end_pos": [0.25, 0.4, -2.55],
+      "lifetime": 8,
+      "interpolations": 4,
+      "color": [255, 255, 255],
+      "texture_path": "efn:textures/trail/power7.png",
+      "particle_type": "efn:bloom_trail"
+    },
+    {
+      "start_time": 0.67,
+      "end_time": 0.78,
+      "fade_time": 0.9,
+      "joint": "Tool_R",
+      "item_skin_hand": "main_hand",
+      "begin_pos": [0.25, 0.2, -1.35],
+      "end_pos": [-0.25, 0.4, -2.55],
+      "lifetime": 8,
+      "interpolations": 4,
+      "color": [255, 255, 255],
+      "texture_path": "efn:textures/trail/power7.png",
+      "particle_type": "efn:bloom_trail"
+    }
+  ]
+}

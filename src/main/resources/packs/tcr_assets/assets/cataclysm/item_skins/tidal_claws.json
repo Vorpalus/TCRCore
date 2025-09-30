@@ -1,0 +1,12 @@
+{
+  "renderer": "p1nero_ec:tidal_claw",
+  "trail": {
+    "color": [255, 255, 255],
+    "begin_pos": [0.0, 0.0, 0.15],
+    "end_pos": [0.0, 0.4, -0.15],
+    "lifetime": 5,
+    "interpolations": 1,
+    "texture_path": "epicfight:textures/particle/tidal.png",
+    "particle_type": "efn:bloom_trail"
+  }
+}

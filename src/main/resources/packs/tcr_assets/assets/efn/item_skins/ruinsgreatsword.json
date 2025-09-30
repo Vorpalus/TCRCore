@@ -1,0 +1,11 @@
+{
+  "trail": {
+    "color": [230, 230, 230],
+    "begin_pos": [-0.2, 0.1, 0.0],
+    "end_pos": [-0.2, 0.0, -2.6],
+    "lifetime": 8,
+    "interpolations": 2,
+    "texture_path": "efn:textures/trail/ngg.png",
+    "particle_type": "efn:bloom_trail"
+  }
+}

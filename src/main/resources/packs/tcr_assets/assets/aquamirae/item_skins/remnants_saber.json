@@ -1,0 +1,11 @@
+{
+    "trail": {
+	"color": [140, 170, 170],
+    	"begin_pos": [0.0, 0.0, -0.0],
+    	"end_pos": [0.0, -0.2, -1.0],
+    	"lifetime": 5,
+		"interpolations": 4,
+    	"texture_path": "epicfight:textures/particle/hilltrail1.png",
+     	"particle_type": "efn:bloom_trail"
+    }
+}
