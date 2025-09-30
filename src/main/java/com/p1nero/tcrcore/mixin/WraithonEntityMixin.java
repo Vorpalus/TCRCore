@@ -24,7 +24,7 @@ public class WraithonEntityMixin extends PathfinderMob {
 
     @Inject(method = "getDefaultAttribute", at = @At("HEAD"), cancellable = true, remap = false)
     private static void tcr$getDefaultAttribute(CallbackInfoReturnable<AttributeSupplier> cir) {
-        cir.setReturnValue(Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 50)
+        cir.setReturnValue(Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 500)
                 .add(Attributes.ATTACK_DAMAGE, 20.0F)
                 .add(Attributes.FOLLOW_RANGE, 72.0F)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1000.0F)

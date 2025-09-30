@@ -278,7 +278,7 @@ dependencies {
 
     //饰品
     implementation fg.deobf("curse.maven:artifacts-312353:6399828")
-    implementation fg.deobf("curse.maven:unique-accessories-1336987:7003544")
+    implementation fg.deobf("curse.maven:unique-accessories-1336987:7039658")
     implementation fg.deobf("curse.maven:apothic-attributes-898963:5634071")
     implementation fg.deobf("curse.maven:placebo-283644:6274231")
 

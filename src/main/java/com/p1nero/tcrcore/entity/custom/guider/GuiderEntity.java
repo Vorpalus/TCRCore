@@ -16,6 +16,7 @@ import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.item.TCRItems;
+import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WaypointUtil;
@@ -35,10 +36,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -310,7 +308,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
         if (code == 3) {
             ServerLevel wraithonLevel = player.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
             player.changeDimension(wraithonLevel, new WraithonFieldTeleporter());
-            if(wraithonLevel.getEntities(WraithonEntities.WRAITHON.get(), LivingEntity::isAlive).isEmpty()) {
+            if(!TCRDimSaveData.get(wraithonLevel).isBossSummoned() && wraithonLevel.getEntities(WraithonEntities.WRAITHON.get(), LivingEntity::isAlive).isEmpty()) {
                 EpicFightCapabilities.getUnparameterizedEntityPatch(player, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {
                     serverPlayerPatch.playAnimationSynchronized(WraithonAnimations.BIPE_COME, 0);
                 });
@@ -318,6 +316,7 @@ public class GuiderEntity extends PathfinderMob implements IEntityNpc, GeoEntity
                 EpicFightCapabilities.getUnparameterizedEntityPatch(wraithonEntity, WraithonEntityPatch.class).ifPresent(wraithonEntityPatch -> {
                     wraithonEntityPatch.playAnimationSynchronized(WraithonAnimations.WRAITHON_BEGIN, 0);
                 });
+                TCRDimSaveData.get(wraithonLevel).setBossSummoned(true);
             }
             player.displayClientMessage(TCRCoreMod.getInfo("wraithon_start_tip"), false);
         }

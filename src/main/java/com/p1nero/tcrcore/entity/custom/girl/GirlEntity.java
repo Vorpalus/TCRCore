@@ -18,10 +18,10 @@ import com.p1nero.tcrcore.utils.ItemUtil;
 import com.talhanation.smallships.client.option.ModGameOptions;
 import com.yesman.epicskills.client.gui.screen.SkillTreeScreen;
 import net.genzyuro.uniqueaccessories.item.UAUniqueCurioItem;
+import net.genzyuro.uniqueaccessories.registry.UAItems;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -37,6 +37,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.Merchant;
@@ -62,6 +63,9 @@ import yesman.epicfight.client.ClientEngine;
 import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
 import yesman.epicfight.world.item.EpicFightItems;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, Merchant {
     protected static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -72,10 +76,18 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
     private MerchantOffers offers = new MerchantOffers();
     private final MerchantOffers offersWeapon = new MerchantOffers();
     private final MerchantOffers offersArmor = new MerchantOffers();
-    private final MerchantOffers artifacts = new MerchantOffers();
+    private final MerchantOffers offersArtifact = new MerchantOffers();
+    private final List<Item> rareItems;
 
     public GirlEntity(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
+        rareItems = List.of(artifacts.registry.ModItems.CRYSTAL_HEART.get(),
+                artifacts.registry.ModItems.FERAL_CLAWS.get(),
+                artifacts.registry.ModItems.VAMPIRIC_GLOVE.get(),
+                artifacts.registry.ModItems.POWER_GLOVE.get(),
+                UAItems.SUN_STONE.get(),
+                UAItems.MOON_STONE.get(),
+                UAItems.HERO_EMBLEM.get());
         initMerchant();
     }
 
@@ -83,13 +95,20 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         offers.clear();
         offersArmor.clear();
         offersWeapon.clear();
-        artifacts.clear();
+        offersArtifact.clear();
         ForgeRegistries.ITEMS.getValues().forEach(item -> {
             if(item instanceof ArtifactItem || item instanceof UAUniqueCurioItem) {
-                artifacts.add(new MerchantOffer(
-                        new ItemStack(TCRItems.ARTIFACT_TICKET.get(), 1),
-                        new ItemStack(item, 1),
-                        142857, 0, 0.02f));
+                if(rareItems.contains(item)) {
+                    offersArtifact.add(new MerchantOffer(
+                            new ItemStack(TCRItems.RARE_ARTIFACT_TICKET.get(), 1),
+                            new ItemStack(item, 1),
+                            142857, 0, 0.02f));
+                } else {
+                    offersArtifact.add(new MerchantOffer(
+                            new ItemStack(TCRItems.ARTIFACT_TICKET.get(), 1),
+                            new ItemStack(item, 1),
+                            142857, 0, 0.02f));
+                }
             }
         });
         offersWeapon.add(new MerchantOffer(
@@ -420,7 +439,7 @@ public class GirlEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         }
 
         if(i == 7) {
-            offers.addAll(artifacts);
+            offers.addAll(offersArtifact);
             startTrade(serverPlayer);
         }
 

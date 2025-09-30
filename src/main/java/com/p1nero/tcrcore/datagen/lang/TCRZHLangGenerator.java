@@ -44,7 +44,9 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addSkill("fire_avoid", "避火咒", "免疫火焰伤害！");
 
         this.add(TCRItems.ARTIFACT_TICKET.get(), "饰品精华");
-        this.addItemUsageInfo(TCRItems.ARTIFACT_TICKET.get(), "通过任务书某些任务获取。可在§d[圣殿港口]§r的§3[摆渡人]§r处提炼任意饰品");
+        this.addItemUsageInfo(TCRItems.ARTIFACT_TICKET.get(), "通过任务书某些任务获取。可在§d[圣殿港口]§r的§3[摆渡人]§r处提炼饰品");
+        this.add(TCRItems.RARE_ARTIFACT_TICKET.get(), "稀有饰品精华");
+        this.addItemUsageInfo(TCRItems.RARE_ARTIFACT_TICKET.get(), "通过任务书某些任务获取。可在§d[圣殿港口]§r的§3[摆渡人]§r处提炼稀有饰品");
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "神谕残卷");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "上面写着古老的神谕，暗示了火种散落的地方。回主城给守望者看看吧，说不定对冒险有帮助！");
 

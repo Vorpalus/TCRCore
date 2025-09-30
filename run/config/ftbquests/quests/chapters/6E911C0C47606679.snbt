@@ -167,6 +167,17 @@
 					}
 					type: "item"
 				}
+				{
+					id: "4554E5EA99136194"
+					item: {
+						Count: 1
+						id: "tcrcore:rare_artifact_ticket"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
 			]
 			shape: "rsquare"
 			size: 2.0d
@@ -406,6 +417,17 @@
 					item: {
 						Count: 1
 						id: "minecraft:blaze_powder"
+						tag: {
+							fdbosses: { }
+						}
+					}
+					type: "item"
+				}
+				{
+					id: "4CF3CE22F74D8719"
+					item: {
+						Count: 1
+						id: "tcrcore:rare_artifact_ticket"
 						tag: {
 							fdbosses: { }
 						}
@@ -827,25 +849,12 @@
 			hide_dependent_lines: true
 			icon_scale: 1.5d
 			id: "0A406BFD18A36EC1"
-			rewards: [
-				{
-					count: 2
-					id: "3FFC98A10CE86EA4"
-					item: "minecraft:netherite_ingot"
-					type: "item"
-				}
-				{
-					id: "63771895D6A1AA62"
-					item: {
-						Count: 1
-						id: "tcrcore:artifact_ticket"
-						tag: {
-							fdbosses: { }
-						}
-					}
-					type: "item"
-				}
-			]
+			rewards: [{
+				count: 2
+				id: "3FFC98A10CE86EA4"
+				item: "minecraft:netherite_ingot"
+				type: "item"
+			}]
 			shape: "rsquare"
 			size: 1.3d
 			subtitle: "{ftbquests.chapter.6E911C0C47606679.quest738709073673023169.subtitle}"
@@ -999,7 +1008,7 @@
 					id: "76D1BE099119C1A8"
 					item: {
 						Count: 1
-						id: "tcrcore:artifact_ticket"
+						id: "tcrcore:rare_artifact_ticket"
 						tag: {
 							fdbosses: { }
 						}

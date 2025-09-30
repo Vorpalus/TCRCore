@@ -1,24 +1,24 @@
 {
   "item.uniqueaccessories.championship_belt": "冠军腰带",
   "item.uniqueaccessories.royal_honeycomb": "皇家蜂巢",
-  "item.uniqueaccessories.golden_egg_charm": "金蛋护符",
+  "item.uniqueaccessories.golden_egg_charm": "金蛋",
   "item.uniqueaccessories.snow_golem_doll": "雪傀儡玩偶",
   "item.uniqueaccessories.strong_sticky_slime_ball": "强粘性粘液球",
   "item.uniqueaccessories.tool_belt": "工具腰带",
   "item.uniqueaccessories.ancient_chisel": "远古凿子",
   "item.uniqueaccessories.black_belt": "黑带",
-  "item.uniqueaccessories.shiny_stone": "闪亮之石",
-  "item.uniqueaccessories.life_jacket_belt": "救生衣腰带",
+  "item.uniqueaccessories.shiny_stone": "闪光石",
+  "item.uniqueaccessories.life_jacket_belt": "救生腰带",
   "item.uniqueaccessories.survival_belt": "生存腰带",
-  "item.uniqueaccessories.starved_wolf_skull": "饿狼颅骨",
+  "item.uniqueaccessories.starved_wolf_skull": "饿狼头骨",
   "item.uniqueaccessories.tabi": "足袋",
   "item.uniqueaccessories.magick_quiver": "魔法箭袋",
   "item.uniqueaccessories.withered_heart": "凋零之心",
-  "item.uniqueaccessories.moon_stone": "月亮石",
+  "item.uniqueaccessories.moon_stone": "月长石",
   "item.uniqueaccessories.sun_stone": "太阳石",
-  "item.uniqueaccessories.fossil_shark_tooth": "化石鲨鱼齿",
+  "item.uniqueaccessories.fossil_shark_tooth": "化石鲨鱼牙齿",
   "item.uniqueaccessories.soul_gem": "灵魂宝石",
-  "item.uniqueaccessories.devils_eyeball": "恶魔之眼",
+  "item.uniqueaccessories.devils_eyeball": "恶魔之瞳",
   "item.uniqueaccessories.supreme_meat": "至尊肉排",
   "item.uniqueaccessories.amplifier_stone": "扩音石",
   "item.uniqueaccessories.silver_cat_tail": "银猫尾",
@@ -29,6 +29,10 @@
   "item.uniqueaccessories.rocket_shoes": "火箭靴",
   "item.uniqueaccessories.blade_shoes": "刃靴",
   "item.uniqueaccessories.durable_spring": "耐久弹簧",
+  "item.uniqueaccessories.hero_emblem": "英雄徽章",
+  "item.uniqueaccessories.burning_soul": "燃烧之魂",
+  "item.uniqueaccessories.anklet_of_fortune": "幸运脚镯",
+  "item.uniqueaccessories.all_purpose_seasoning": "万能调味料",
 
   "curios.identifier.feet": "足部",
   "curios.modifiers.feet": "佩戴于足部时：",
@@ -39,64 +43,63 @@
 
   "tooltip.uniqueaccessories.hold_shift": "按住Shift查看详情",
 
-  "tooltip.uniqueaccessories.golden_egg_charm.desc1": "投掷金蛋而非普通蛋",
-  "tooltip.uniqueaccessories.golden_egg_charm.desc2": "金蛋：造成8点伤害，并在撞击点生成一个金粒",
+  "tooltip.uniqueaccessories.golden_egg_charm.desc1": "投掷金蛋而非普通鸡蛋",
+  "tooltip.uniqueaccessories.golden_egg_charm.desc2": "金蛋：造成8点伤害，并在命中点生成一个金粒",
 
-  "tooltip.uniqueaccessories.championship_belt.desc1": "徒手攻击伤害+5",
-  "tooltip.uniqueaccessories.championship_belt.desc2": "每有一个空护甲槽：护甲值+3 / 移动速度+5% / 闪避几率+5% / 击退抗性+10%",
+  "tooltip.uniqueaccessories.championship_belt.desc1": "徒手攻击伤害 +5",
+  "tooltip.uniqueaccessories.championship_belt.desc2": "每空一个盔甲槽：护甲值 +3 / 移动速度 +5% / 闪避几率 +5% / 击退抗性 +10%",
 
-  "tooltip.uniqueaccessories.snow_golem_doll.desc1": "雪球伤害+2",
+  "tooltip.uniqueaccessories.snow_golem_doll.desc1": "雪球伤害 +2",
   "tooltip.uniqueaccessories.snow_golem_doll.desc2": "潜行时在脚下生成雪",
 
-  "tooltip.uniqueaccessories.amplifier_stone.desc1": "使用号角时，会播放爆炸声并对24米内的生物造成2点伤害",
+  "tooltip.uniqueaccessories.amplifier_stone.desc1": "使用号角时，会发出爆炸声并对24米内的生物造成2点伤害",
 
-  "tooltip.uniqueaccessories.tool_belt.desc1": "方块触及范围+2米",
+  "tooltip.uniqueaccessories.tool_belt.desc1": "方块触及距离 +2米",
 
-  "tooltip.uniqueaccessories.ancient_chisel.desc1": "挖掘速度+50%",
+  "tooltip.uniqueaccessories.ancient_chisel.desc1": "挖掘速度 +50%",
 
+  "tooltip.uniqueaccessories.royal_honeycomb.desc1": "受击时，召唤一只强化蜜蜂攻击袭击者，持续8秒",
 
+  "tooltip.uniqueaccessories.strong_sticky_slime_ball.desc1": "移动速度 -10%",
+  "tooltip.uniqueaccessories.strong_sticky_slime_ball.desc2": "现在可以攀爬方块墙壁，潜行会使你固定不动",
 
-  "tooltip.uniqueaccessories.royal_honeycomb.desc1": "受击时召唤一只强化蜜蜂攻击攻击者，持续8秒",
+  "tooltip.uniqueaccessories.black_belt.desc1": "闪避几率 +15%",
 
-  "tooltip.uniqueaccessories.strong_sticky_slime_ball.desc1": "移动速度-10%",
-  "tooltip.uniqueaccessories.strong_sticky_slime_ball.desc2": "现在可以攀爬方块墙壁，蹲下会使你固定在原地",
-
-  "tooltip.uniqueaccessories.black_belt.desc1": "闪避几率+15%",
-
-  "tooltip.uniqueaccessories.shiny_stone.desc1": "若2秒内无任何动作，则快速回复生命值",
+  "tooltip.uniqueaccessories.shiny_stone.desc1": "如果2秒内无任何动作，则快速恢复生命值",
 
   "tooltip.uniqueaccessories.life_jacket_belt.desc1": "在水下快速上浮并漂浮在水面",
 
-  "tooltip.uniqueaccessories.survival_belt.desc1": "可以踏上最高1格高的方块",
+  "tooltip.uniqueaccessories.survival_belt.desc1": "可自动踏上1格高的方块",
   "tooltip.uniqueaccessories.survival_belt.desc2": "增加动物类生物的掉落物",
 
-  "tooltip.uniqueaccessories.starved_wolf_skull.desc1": "始终受饥饿效果影响，但近战命中时恢复1点生命值",
-  "tooltip.uniqueaccessories.starved_wolf_skull.desc2": "饥饿值≤6时：移动速度+20% / 饥饿值为0时：攻击伤害+6",
+  "tooltip.uniqueaccessories.starved_wolf_skull.desc1": "始终受饥饿效果影响，但近战攻击命中时恢复1点生命值",
+  "tooltip.uniqueaccessories.starved_wolf_skull.desc2": "饱食度 ≤ 6 时：移动速度 +20%",
+  "tooltip.uniqueaccessories.starved_wolf_skull.desc3": "饱食度 = 0 时：攻击伤害 +6",
 
-  "tooltip.uniqueaccessories.tabi.desc1": "行走移动速度+10%",
-  "tooltip.uniqueaccessories.tabi.desc2": "双击同一移动键可向该方向冲刺（仅当饥饿值≥7时有效）",
+  "tooltip.uniqueaccessories.tabi.desc1": "行走移动速度 +10%",
+  "tooltip.uniqueaccessories.tabi.desc2": "双击同一移动键可向该方向冲刺（仅当饱食度≥7时）",
 
-  "tooltip.uniqueaccessories.magick_quiver.desc1": "箭矢伤害+30% / 箭矢速度+20%",
+  "tooltip.uniqueaccessories.magick_quiver.desc1": "箭矢伤害 +30% / 箭矢速度 +20%",
 
-  "tooltip.uniqueaccessories.withered_heart.desc1": "将最大生命值设置为1",
+  "tooltip.uniqueaccessories.withered_heart.desc1": "将最大生命值设为1",
 
-  "tooltip.uniqueaccessories.moon_stone.desc1": "效果仅在夜间生效",
-  "tooltip.uniqueaccessories.moon_stone.desc2": "攻击伤害+4 / 箭矢伤害+20% / 攻击速度+1",
-  "tooltip.uniqueaccessories.moon_stone.desc3": "护甲值+4 / 暴击几率+20% / 挖掘速度+25%",
+  "tooltip.uniqueaccessories.moon_stone.desc1": "效果仅在夜晚生效",
+  "tooltip.uniqueaccessories.moon_stone.desc2": "攻击伤害 +4 / 箭矢伤害 +20% / 攻击速度 +1",
+  "tooltip.uniqueaccessories.moon_stone.desc3": "护甲值 +4 / 暴击几率 +20% / 挖掘速度 +25%",
   "tooltip.uniqueaccessories.moon_stone.desc4": "每6秒恢复1点生命值",
 
   "tooltip.uniqueaccessories.sun_stone.desc1": "效果仅在白天生效",
-  "tooltip.uniqueaccessories.sun_stone.desc2": "攻击伤害+4 / 箭矢伤害+20% / 攻击速度+1",
-  "tooltip.uniqueaccessories.sun_stone.desc3": "护甲值+4 / 暴击几率+20% / 挖掘速度+25%",
+  "tooltip.uniqueaccessories.sun_stone.desc2": "攻击伤害 +4 / 箭矢伤害 +20% / 攻击速度 +1",
+  "tooltip.uniqueaccessories.sun_stone.desc3": "护甲值 +4 / 暴击几率 +20% / 挖掘速度 +25%",
   "tooltip.uniqueaccessories.sun_stone.desc4": "每6秒恢复1点生命值",
 
-  "tooltip.uniqueaccessories.fossil_shark_tooth.desc1": "护甲穿透+5",
+  "tooltip.uniqueaccessories.fossil_shark_tooth.desc1": "护甲穿透 +5",
 
   "tooltip.uniqueaccessories.soul_gem.desc1": "击杀生物时恢复2点生命值",
 
-  "tooltip.uniqueaccessories.devils_eyeball.desc1": "暴击几率+20% / 暴击伤害+30%",
+  "tooltip.uniqueaccessories.devils_eyeball.desc1": "暴击几率 +20% / 暴击伤害 +30%",
 
-  "tooltip.uniqueaccessories.supreme_meat.desc1": "强化你跟随的狼：攻击伤害+3 / 护甲值+4 / 移动速度+20%",
+  "tooltip.uniqueaccessories.supreme_meat.desc1": "强化你跟随的狼：攻击伤害 +3 / 护甲值 +4 / 移动速度 +20%",
 
   "tooltip.uniqueaccessories.silver_cat_tail.desc1": "免疫摔落伤害，除非该伤害是致命的",
 
@@ -105,20 +108,31 @@
   "tooltip.uniqueaccessories.waist_warmer.desc1": "免疫细雪造成的冰冻伤害",
   "tooltip.uniqueaccessories.waist_warmer.desc2": "清晨醒来时：恢复10点生命值并获得2分钟的速度I、急迫I和力量I效果",
 
-  "tooltip.uniqueaccessories.small_propulsion.desc1": "抛射物速度+30%",
-  "tooltip.uniqueaccessories.small_propulsion.desc2": "影响：末影珍珠 / 雪球 / 蛋 / 投掷药水 / 三叉戟",
+  "tooltip.uniqueaccessories.small_propulsion.desc1": "抛射物速度 +30%",
+  "tooltip.uniqueaccessories.small_propulsion.desc2": "影响：末影珍珠 / 雪球 / 鸡蛋 / 投掷药水 / 三叉戟",
 
-  "tooltip.uniqueaccessories.sharp_fishing_hook.desc1": "鱼钩击中生物或从生物身上收回时造成2点伤害",
+  "tooltip.uniqueaccessories.sharp_fishing_hook.desc1": "当鱼钩击中生物或从生物身上收回时，造成2点伤害",
   "tooltip.uniqueaccessories.sharp_fishing_hook.desc2": "增强用钓鱼竿拉动生物的能力",
 
-  "tooltip.uniqueaccessories.rocket_shoes.desc1": "在空中按下跳跃键将启动推进器上升",
-  "tooltip.uniqueaccessories.rocket_shoes.desc2": "连续激活会增加上升力量",
+  "tooltip.uniqueaccessories.rocket_shoes.desc1": "在空中按下跳跃键将启动推进器并上升",
+  "tooltip.uniqueaccessories.rocket_shoes.desc2": "连续激活会增加上升动力",
   "tooltip.uniqueaccessories.rocket_shoes.desc3": "最多持续2秒，落地后可再次使用",
 
   "tooltip.uniqueaccessories.blade_shoes.desc1": "破坏脚下的植物和蜘蛛网",
 
-  "tooltip.uniqueaccessories.durable_spring.desc1": "移动速度+5%",
+  "tooltip.uniqueaccessories.durable_spring.desc1": "移动速度 +5%",
   "tooltip.uniqueaccessories.durable_spring.desc2": "增加跳跃高度",
+
+  "tooltip.uniqueaccessories.hero_emblem.desc1": "攻击伤害 +2 / 箭矢伤害 +10%",
+  "tooltip.uniqueaccessories.hero_emblem.desc2": "生命值 ≤ 8 时：攻击伤害 +4 / 箭矢伤害 +20% / 移动速度 +20%",
+  "tooltip.uniqueaccessories.hero_emblem.desc3": "生命值 = 1 时：攻击伤害 +6 / 箭矢伤害 +30% / 闪避几率 +20% / 暴击几率 +20% / 消除负面效果",
+
+  "tooltip.uniqueaccessories.burning_soul.desc1": "当受到足以将生命值降至0或以下的伤害时，消耗经验等级避免死亡",
+  "tooltip.uniqueaccessories.burning_soul.desc2": "每点伤害消耗1级",
+
+  "tooltip.uniqueaccessories.anklet_of_fortune.desc1": "当受到负面效果影响时，有50%几率将其无效化",
+
+  "tooltip.uniqueaccessories.all_purpose_seasoning.desc1": "当你食用食物时，恢复1点生命值并额外恢复2点饱食度",
 
   "item.uniqueaccessories.accessory_box": "饰品盒",
   "tooltip.uniqueaccessories.accessory_box.desc1": "内含随机饰品"

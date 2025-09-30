@@ -26,7 +26,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
@@ -46,6 +48,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
+import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
@@ -217,9 +220,18 @@ public class PlayerEventListeners {
 
     @SubscribeEvent
     public static void onPlayerEnterDim(PlayerEvent.PlayerChangedDimensionEvent event) {
-        if(event.getEntity() instanceof ServerPlayer serverPlayer && CataclysmDimensions.LEVELS.contains(event.getTo())) {
-            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("reset_when_no_player").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
-            TCRDimSaveData.get(serverPlayer.getServer().getLevel(event.getTo())).setBossKilled(false);
+        if(event.getEntity() instanceof ServerPlayer serverPlayer) {
+            if(event.getFrom() == WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY) {
+                ServerLevel wraithonLevel = serverPlayer.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
+                if(wraithonLevel.players().isEmpty()) {
+                    wraithonLevel.getAllEntities().forEach(Entity::discard);
+                    TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
+                }
+            }
+            if(CataclysmDimensions.LEVELS.contains(event.getTo())) {
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("reset_when_no_player").withStyle(ChatFormatting.RED, ChatFormatting.BOLD), false);
+                TCRDimSaveData.get(serverPlayer.getServer().getLevel(event.getTo())).setBossKilled(false);
+            }
         }
     }
 

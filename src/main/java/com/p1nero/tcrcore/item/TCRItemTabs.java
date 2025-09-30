@@ -21,5 +21,6 @@ public class TCRItemTabs {
                 output.accept(TCRBlocks.STORM_ALTAR_BLOCK.get());
                 output.accept(TCRItems.ANCIENT_ORACLE_FRAGMENT.get());
                 output.accept(TCRItems.ARTIFACT_TICKET.get());
+                output.accept(TCRItems.RARE_ARTIFACT_TICKET.get());
             }).build());
 }

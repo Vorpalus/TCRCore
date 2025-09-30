@@ -44,7 +44,9 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addSkill("fire_avoid", "Fire Avoidance Charm", "Immunity to fire damage!");
 
         this.add(TCRItems.ARTIFACT_TICKET.get(), "Artifact Essence");
-        this.addItemUsageInfo(TCRItems.ARTIFACT_TICKET.get(), "Obtained from certain quests in the quest book. Can be used to refine any artifact with the §3[Ferry girl]§r at the §d[Saint Harbor]§r");
+        this.addItemUsageInfo(TCRItems.ARTIFACT_TICKET.get(), "Obtained from certain quests in the quest book. Can be used to refine artifact with the §3[Ferry girl]§r at the §d[Saint Harbor]§r");
+        this.add(TCRItems.RARE_ARTIFACT_TICKET.get(), "Golden Artifact Essence");
+        this.addItemUsageInfo(TCRItems.RARE_ARTIFACT_TICKET.get(), "Obtained from certain quests in the quest book. Can be used to refine rare artifact with the §3[Ferry girl]§r at the §d[Saint Harbor]§r");
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "Oracle Fragment");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "It bears an ancient oracle hinting at the locations of scattered embers. Show it to the The Sanctuary Keeper in the The Sanctuary; it might aid your adventure!");
 

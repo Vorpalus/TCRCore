@@ -11,6 +11,16 @@ public class TCRDimSaveData extends SavedData {
     private Level level;
 
     private boolean bossKilled;
+    private boolean bossSummoned;
+
+    public boolean isBossSummoned() {
+        return bossSummoned;
+    }
+
+    public void setBossSummoned(boolean bossSummoned) {
+        this.bossSummoned = bossSummoned;
+        setDirty();
+    }
 
     public void setBossKilled(boolean bossKilled) {
         this.bossKilled = bossKilled;
@@ -30,10 +40,12 @@ public class TCRDimSaveData extends SavedData {
 
     @Override
     public @NotNull CompoundTag save(@NotNull CompoundTag pCompoundTag) {
+        pCompoundTag.putBoolean("bossSummoned", bossSummoned);
         return pCompoundTag;
     }
 
     public void load(CompoundTag nbt) {
+        bossSummoned = nbt.getBoolean("bossSummoned");
     }
 
     public static TCRDimSaveData decode(CompoundTag tag){

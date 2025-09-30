@@ -37,6 +37,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -67,6 +68,7 @@ import net.unusual.blockfactorysbosses.entity.UnderworldKnightEntity;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModEntities;
 import net.unusual.blockfactorysbosses.init.BlockFactorysBossesModItems;
 import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
+import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import yesman.epicfight.api.animation.AnimationPlayer;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -250,11 +252,18 @@ public class LivingEntityEventListeners {
                 WraithonMusicPlayer.stopBossMusic(livingEntity);
             } else {
                 ItemUtil.addItemEntity(livingEntity, SwordSoaringItems.VATANSEVER.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+                ServerLevel wraithonLevel = wraithonEntity.getServer().getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
+                TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
             }
         }
 
-        if(livingEntity instanceof Player player) {
-            player.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
+        if(livingEntity instanceof ServerPlayer serverPlayer) {
+            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("death_info"), false);
+            ServerLevel wraithonLevel = serverPlayer.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
+            if(wraithonLevel.players().isEmpty()) {
+                wraithonLevel.getAllEntities().forEach(Entity::discard);
+                TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
+            }
         }
     }
 
