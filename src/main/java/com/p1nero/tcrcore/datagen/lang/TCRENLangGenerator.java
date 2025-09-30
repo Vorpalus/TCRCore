@@ -85,7 +85,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addInfo("hit_barrier", "This area is not available yet. Come back later!");
 
         this.addInfo("death_info", "§6When enemies are too powerful, try combining different skills!");
-        this.addInfo("enter_dimension_tip", "Right-click the altar core to enter the Wraithon Realm");
+        this.addInfo("enter_dimension_tip", "Right-click the altar core to enter the Realm");
         this.addInfo("use_true_eye_tip", "Please use [%s] to right-click the altar core");
 
         this.addInfo("add_item_tip", "New item obtained: %s × %d!");
@@ -157,7 +157,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(EntityType.VILLAGER, 5, "Ding dong ji~ Ding dong ji~");
         this.addDialogAnswer(EntityType.VILLAGER, 6, "You da you da~");
         this.addDialogAnswer(EntityType.VILLAGER, 7, "Axi ga hayaku naru~ wow~");
-        this.addDialogOption(EntityType.VILLAGER, -2, "[This villager shows no interest in the item...]");
+        this.addDialogOption(EntityType.VILLAGER, -2, "[This villager shows no interest...]");
         this.addDialogOption(EntityType.VILLAGER, -1, "[Accept]");
         this.addDialogOption(EntityType.VILLAGER, 0, "[???]");
         this.addDialogOption(EntityType.VILLAGER, 1, "[It seems the local residents are heavily corrupted!]");
@@ -170,8 +170,8 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCREntities.GUIDER.get(), 4, "How can I help you?");
         this.addDialogOption(TCREntities.GUIDER.get(), 5, "Mark Locations");
         this.addDialogOption(TCREntities.GUIDER.get(), 6, "I was just joking earlier!");
-        this.addDialogOption(TCREntities.GUIDER.get(), 7, "§aI have already defeated pillagers§f");
-        this.addDialogOption(TCREntities.GUIDER.get(), 8, "Whoa, how did you turn into a beautiful girl?");
+        this.addDialogOption(TCREntities.GUIDER.get(), 7, "§aAlready defeated pillagers§f");
+        this.addDialogOption(TCREntities.GUIDER.get(), 8, "Whoa, a beautiful girl?");
         this.addDialogOption(TCREntities.GUIDER.get(), 9, "Reveal the Oracle");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 0, "So... you drifted here from beyond this world? As you prepared to land, an unfamiliar deity pulled you into a barrier, and then you lost consciousness?");
         this.addDialogAnswer(TCREntities.GUIDER.get(), 1, "I am the The Sanctuary Keeper of this world. That day, the heavens were abnormal, thunder roared, and a meteor fell into the sea. I rescued you from the depths. You must be the celestial warriors foretold in the ancient prophecy.");
@@ -184,12 +184,12 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCREntities.GUIDER.get(), 7, "§d『Oracle Fragment!』§f Give it to me, and I will reveal the ember locations it records, along with the blessings bestowed by the oracle!");
 
         this.addDialogAnswer(TCREntities.GUIDER.get(), 8, "O prophesied savior, what troubles you?");
-        this.addDialogOption(TCREntities.GUIDER.get(), 10, "How can I obtain the most powerful strength in this world?");
+        this.addDialogOption(TCREntities.GUIDER.get(), 10, "The most powerful strength?");
         this.addDialogOption(TCREntities.GUIDER.get(), 11, "What should we do next?");
 
-        this.addDialogOption(TCREntities.GUIDER.get(), 16, "What's the deal with the other damaged altars in the hall?");
+        this.addDialogOption(TCREntities.GUIDER.get(), 16, "Other damaged altars in the hall?");
 
-        this.addDialogOption(TCREntities.GUIDER.get(), 12, "[I have lit all the altars. Begin the ritual!]");
+        this.addDialogOption(TCREntities.GUIDER.get(), 12, "[I have lit all the altars!]");
         this.addDialogOption(TCREntities.GUIDER.get(), 13, "[I don't understand...]");
         this.addDialogOption(TCREntities.GUIDER.get(), 14, "[Who are you really?]");
         this.addDialogOption(TCREntities.GUIDER.get(), 15, "[Continue]"); // Pulled into the barrier

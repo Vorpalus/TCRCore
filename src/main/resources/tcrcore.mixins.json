@@ -33,8 +33,7 @@
     "LocalPlayerPatchAccessor",
     "LocalPlayerPatchMixin",
     "LogoRendererMixin",
-    "PanoramaRendererMixin",
-    "SyncResourceKeysMixin"
+    "PanoramaRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

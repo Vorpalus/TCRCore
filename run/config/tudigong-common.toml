@@ -34,6 +34,8 @@ mark_location = true
 	#Duration in ticks for the glowing highlight effect (20 ticks = 1 second).
 	#Range: 100 ~ 72000
 	highlight_duration_ticks = 600
+	#A list of structure resource locations that TuDiGong will not be able to find.
+	structure_blacklist = []
 
 ["Entity Behavior"]
 	#Time in ticks before TuDiGong despawns if not interacted with.
