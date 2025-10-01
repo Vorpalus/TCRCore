@@ -64,12 +64,12 @@ public class TCRCoreMod {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         TCRPacketHandler.register();
-        List<String> cheatModList = List.of("tacz", "projecte", "enchantmentlevelbreak");
-        cheatModList.forEach(s -> {
-            if(ModList.get().isLoaded(s)){
-                isCheatMod = true;
-            }
-        });
+//        List<String> cheatModList = List.of("tacz", "projecte", "enchantmentlevelbreak");
+//        cheatModList.forEach(s -> {
+//            if(ModList.get().isLoaded(s)){
+//                isCheatMod = true;
+//            }
+//        });
         LivingEntityEventListeners.illegalEntityTypes.addAll(List.of(
                 ModEntities.URCHINKIN.get(),
                 ModEntities.KOBOLETON.get(),
