@@ -231,8 +231,8 @@
 	"gui.epicfight.item_preferences.tooltip": "编辑挖掘和战斗偏好的物品列表",
 	"gui.epicfight.export_custom_armor.tooltip": "将所有自定义盔甲模型导出为资源包",
 	"gui.epicfight.first_person_model.tooltip": "开启/关闭第一人称中的动画模型。",
-	"gui.epicfight.use_animation_shader.tooltip": "开启/关闭动画着色器。开启动画着色器可提高帧率，但可能与某些着色器包不兼容",
-	"gui.epicfight.use_animation_shader.locked.tooltip": "此选项已被锁定，因为您正在使用不兼容的着色器包。请重新加载着色器包以解锁此选项。",
+	"gui.epicfight.use_animation_shader.tooltip": "开启/关闭动画着色器。开启动画着色器可提高帧率，但可能与某些光影包不兼容",
+	"gui.epicfight.use_animation_shader.locked.tooltip": "此选项已被锁定，因为您正在使用不兼容的光影包。请重新加载光影包以解锁此选项。",
 	"gui.epicfight.enable_pov_action.tooltip": "在第一人称中启用依赖于动画的摄像机移动。",
 	"gui.epicfight.enable_cosmetics.tooltip": "开启/关闭玩家的赞助者外观。您需要重新连接世界才能使更改生效。",
 
@@ -647,7 +647,7 @@
 	"epicfight.messages.version_notifier": "史诗战斗-%s",
 
 	"epicfight.messages.shader_transform_fail": "创建着色器 %s 失败。请不要在您的环境中开启动画着色器...",
-	"epicfight.messages.mode_switching_disabled": "此世界中原版/史诗战斗模式切换已禁用。请启用游戏规则或联系服务器管理员。",
+	"epicfight.messages.mode_switching_disabled": "此世界中原版/史诗战斗模式切换已禁用。请启用游戏规则[canSwitchPlayerMode]或联系服务器管理员。",
 
 	"eof": "文件结束"
 }

@@ -133,6 +133,7 @@
   "info.tcr.add_item_tip": "New item obtained: %s × %d!",
   "info.tcr.altar_dim_info": "Realm Info:",
   "info.tcr.can_not_enter_dim": "It seems you have not yet gained the divine approval to enter... §6Continue collecting embers§r to receive more oracles!",
+  "info.tcr.cs_warning": "§c§l WARNING！Compute Shader is inactive now! You could enable it in Epic Fight config to get a better experience!",
   "info.tcr.cursed_pos": "Location of the Cursed Echo: Ice Maze",
   "info.tcr.death_info": "§6When enemies are too powerful, try combining different skills!",
   "info.tcr.desert_pos": "Location of the Desert Echo: Chimera's Prison",

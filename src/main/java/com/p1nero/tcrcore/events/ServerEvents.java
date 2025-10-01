@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.events;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
+import com.p1nero.tcrcore.utils.DimensionResourceCopier;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.blay09.mods.waystones.block.WaystoneBlock;
@@ -81,7 +82,8 @@ public class ServerEvents {
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent event) {
-        copyDuelDirectory(event.getServer());
+//        copyDuelDirectory(event.getServer());
+        DimensionResourceCopier.copyDimensionToSaves(event.getServer());
     }
 
     public static void copyDuelDirectory(MinecraftServer server) {

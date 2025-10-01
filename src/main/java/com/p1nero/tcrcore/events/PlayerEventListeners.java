@@ -7,6 +7,7 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
+import com.p1nero.tcrcore.network.packet.clientbound.helper.DistHelper;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
 import com.p1nero.tcrcore.utils.EntityUtil;
@@ -49,6 +50,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.init.ModItems;
 import net.sonmok14.fromtheshadows.server.entity.mob.BulldrogiothEntity;
 import net.sonmok14.fromtheshadows.server.utils.registry.EntityRegistry;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
+import yesman.epicfight.config.ClientConfig;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
@@ -124,6 +126,12 @@ public class PlayerEventListeners {
             }
 
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+        } else {
+            DistHelper.runClient(() -> () -> {
+                if(!ClientConfig.activateComputeShader) {
+                    player.displayClientMessage(TCRCoreMod.getInfo("cs_warning"), false);
+                }
+            });
         }
     }
 

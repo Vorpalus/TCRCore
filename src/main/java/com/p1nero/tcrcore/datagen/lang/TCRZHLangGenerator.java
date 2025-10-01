@@ -50,6 +50,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "神谕残卷");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "上面写着古老的神谕，暗示了火种散落的地方。回主城给守望者看看吧，说不定对冒险有帮助！");
 
+        this.addInfo("cs_warning", "§c§l警告！Compute Shader未启用！建议在史诗战斗设置中开启以获得更流畅的体验！");
         this.addInfo("wraithon_start_tip", "§d[Wraithon]: §6外来之人，你的旅途到此结束！");
         this.addInfo("wraithon_end_tip", "§d[Wraithon]: §6这...不可能...");
         this.addInfo("dim_block_no_interact", "§cBoss未击败！暂时无法与幻境方块交互！");
