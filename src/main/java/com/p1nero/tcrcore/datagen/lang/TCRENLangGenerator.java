@@ -50,6 +50,8 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "Oracle Fragment");
         this.addItemUsageInfo(TCRItems.ANCIENT_ORACLE_FRAGMENT.get(), "It bears an ancient oracle hinting at the locations of scattered embers. Show it to the The Sanctuary Keeper in the The Sanctuary; it might aid your adventure!");
 
+        this.addInfo("boss_killed_ready_return", "§6Boss has been defeated! Block interaction unlocked!");
+        this.addInfo("click_to_return", "§a[Click to return]");
         this.addInfo("cs_warning", "§c§l WARNING！Compute Shader is inactive now! You could enable it in Epic Fight config to get a better experience!");
         this.addInfo("wraithon_start_tip", "§d[Wraithon]: §6Outsider, your journey ends here!");
         this.addInfo("wraithon_end_tip", "§d[Wraithon]: §6This... is impossible...");

@@ -28,6 +28,8 @@ public class TCRPacketHandler {
         register(PersistentDoubleDataSyncPacket.class, PersistentDoubleDataSyncPacket::decode);
         register(PersistentStringDataSyncPacket.class, PersistentStringDataSyncPacket::decode);
 
+        register(CSTipPacket.class, CSTipPacket::decode);
+
         register(SetTargetPacket.class, SetTargetPacket::decode);
         register(SyncTCRPlayerPacket.class, SyncTCRPlayerPacket::decode);
         register(AddAvlEntityAfterImageParticle.class, AddAvlEntityAfterImageParticle::decode);

@@ -30,6 +30,7 @@
   "client": [
     "AquamiraeClientMixin",
     "CataclysmClientEventMixin",
+    "EFClientConfigMixin",
     "LocalPlayerPatchAccessor",
     "LocalPlayerPatchMixin",
     "LogoRendererMixin",

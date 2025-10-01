@@ -3,10 +3,13 @@ package com.p1nero.tcrcore.events;
 
 import com.hm.efn.registries.EFNItem;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
+import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
+import com.p1nero.tcrcore.network.TCRPacketHandler;
+import com.p1nero.tcrcore.network.packet.clientbound.CSTipPacket;
 import com.p1nero.tcrcore.network.packet.clientbound.helper.DistHelper;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.save_data.TCRLevelSaveData;
@@ -126,12 +129,8 @@ public class PlayerEventListeners {
             }
 
             TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
-        } else {
-            DistHelper.runClient(() -> () -> {
-                if(!ClientConfig.activateComputeShader) {
-                    player.displayClientMessage(TCRCoreMod.getInfo("cs_warning"), false);
-                }
-            });
+
+            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new CSTipPacket(), serverPlayer);
         }
     }
 

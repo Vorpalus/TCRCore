@@ -29,7 +29,10 @@ import net.kenddie.fantasyarmor.item.FAItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -224,6 +227,19 @@ public class LivingEntityEventListeners {
         if(livingEntity.level() instanceof ServerLevel serverLevel) {
             if(CataclysmDimensions.LEVELS.contains(serverLevel.dimension()) && livingEntity.getType().is(Tags.EntityTypes.BOSSES)) {
                 TCRDimSaveData.get(serverLevel).setBossKilled(true);
+                //回城
+                MutableComponent clickToReturn = TCRCoreMod.getInfo("click_to_return");
+                clickToReturn.setStyle(Style.EMPTY
+                        .applyFormat(ChatFormatting.GREEN)
+                        .withBold(true)
+                        .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/execute in minecraft:overworld as @s run tp " + WorldUtil.START_POS.getX() + " " + WorldUtil.START_POS.getY() + " " + WorldUtil.START_POS.getZ()))
+                );
+
+                serverLevel.players().forEach((serverPlayer -> {
+                    serverPlayer.displayClientMessage(TCRCoreMod.getInfo("boss_killed_ready_return"), false);
+                    serverPlayer.displayClientMessage(clickToReturn, false);
+                }));
+
             }
 
             if(livingEntity instanceof WraithonEntity wraithonEntity && !wraithonEntity.isDead()) {
