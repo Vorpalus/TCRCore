@@ -106,6 +106,7 @@ public class PlayerEventListeners {
                 TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID, serverPlayer);
                 CommandSourceStack commandSourceStack = serverPlayer.createCommandSourceStack().withPermission(2).withSuppressedOutput();
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/gamerule keepInventory true");
+                Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/gamerule canSwitchPlayerMode true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/gamerule mobGriefing false");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_step true");
                 Objects.requireNonNull(serverPlayer.getServer()).getCommands().performPrefixedCommand(commandSourceStack, "/skilltree unlock @s epicskills:battleborn efn:efn_dodge true");
@@ -168,6 +169,9 @@ public class PlayerEventListeners {
                 }
             }
             if(event.player instanceof ServerPlayer serverPlayer) {
+                if(!serverPlayer.serverLevel().isLoaded(serverPlayer.getOnPos())) {
+                    return;
+                }
                 if(!PlayerDataManager.bllSummoned.get(event.player) && WorldUtil.isInStructure(event.player, WorldUtil.COVES)) {
                     //定点生
                     BlockPos pos = TCRLevelSaveData.get(serverPlayer.serverLevel()).getCoversPos();
@@ -175,7 +179,7 @@ public class PlayerEventListeners {
                         pos = event.player.getOnPos();
                     }
                     //保险措施
-                    if(EntityUtil.getNearByEntities(serverPlayer.serverLevel(), pos.getCenter(), 20, BulldrogiothEntity.class).isEmpty()) {
+                    if(EntityUtil.getNearByEntities(serverPlayer.serverLevel(), pos.getCenter(), 100, BulldrogiothEntity.class).isEmpty()) {
                         BulldrogiothEntity entity = EntityRegistry.BULLDROGIOTH.get().spawn(serverPlayer.serverLevel(), pos, MobSpawnType.SPAWNER);
                         entity.setGlowingTag(true);
                         PlayerDataManager.bllSummoned.put(event.player, true);

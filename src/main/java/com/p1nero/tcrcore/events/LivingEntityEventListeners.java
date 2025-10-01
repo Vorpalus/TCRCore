@@ -23,6 +23,7 @@ import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayItemPickupParticlePacket;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
+import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import net.kenddie.fantasyarmor.item.FAItems;
@@ -347,8 +348,16 @@ public class LivingEntityEventListeners {
             }
         }
 
+        if(event.getEntity() instanceof BulldrogiothEntity bulldrogiothEntity) {
+            if(!EntityUtil.getNearByEntities(event.getLevel(), bulldrogiothEntity.position(), 50, BulldrogiothEntity.class).isEmpty()) {
+                event.setCanceled(true);
+                return;
+            }
+        }
+
         if(illegalEntityTypes.contains(event.getEntity().getType())) {
             event.setCanceled(true);
+            return;
         }
         UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");
         if(event.getEntity() instanceof IronGolem ironGolem) {
